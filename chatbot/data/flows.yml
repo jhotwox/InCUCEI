@@ -1,0 +1,9 @@
+flows:
+  transfer_money:
+    description: Help users send money to friends and family.
+    steps:
+      - collect: recipient
+      - collect: amount
+      - collect: currency
+        description: the number of MXN to send
+      - action: utter_transfer_complete
