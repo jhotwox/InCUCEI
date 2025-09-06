@@ -1,56 +1,17 @@
-# Node modules
+# Node.js dependencies
 server/node_modules/
-client/node_modules/
-node_modules/
-
-# Logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Environment variables
-server/.env
-.env
-client/.env
-chatbot/.env
-
-# Build output
-dist/
-build/
-server/dist/
-client/dist/
-server/build/
-client/build/
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# IDE files
-.vscode/
-.idea/
-*.swp
-
-# Coverage
-coverage/
-server/coverage/
 
 # Python virtual environment
-venv/
-.env/
-.venv/
+chatbot/venv/
 
-# Rasa models
-models/
-*.pyc
-__pycache__/
+# Python cache files
+chatbot/__pycache__/
+chatbot/**/*.pyc
 
-# Rasa cache and logs
-.rasa/
-.rasa_cache/
-logs/
-*.log
+# Environment files
+server/.env
+chatbot/.env
 
-# Jupyter notebooks checkpoints (si usas notebooks)
-.ipynb_checkpoints/
+# OS generated files
+.DS_Store
+Thumbs.db
