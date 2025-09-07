@@ -51,7 +51,7 @@ export const loginStyles = StyleSheet.create({
         width: "100%",
         display: "flex",
         justifyContent: "space-around",
-        paddingTop: 280,
+        paddingTop: 160,
     },
     containerLogin: {
         
@@ -67,6 +67,7 @@ export const loginStyles = StyleSheet.create({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        marginBottom: 60,
     },
     formContainer: {
         display: "flex",
@@ -74,7 +75,6 @@ export const loginStyles = StyleSheet.create({
         marginHorizontal: 8,
         padding: 5,
         flex: 2,
-        // marginTop: "1rem",
     },
     form: {
         // borderRadius: 10,
@@ -87,8 +87,6 @@ export const loginStyles = StyleSheet.create({
         alignItems: "center",
         flexDirection: "row",
         justifyContent: "space-around",
-        // backgroundColor: "#0ac",
-        // padding: 3,
     },
 });
 

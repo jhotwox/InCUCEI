@@ -1,38 +1,66 @@
-import React, { useEffect, useState, useCallback } from "react"
-import { Text, View, TouchableOpacity, Image, Dimensions } from "react-native"
+import { useEffect, useState, useCallback, useRef } from "react"
+import { Text, View, TouchableOpacity, Dimensions } from "react-native"
 import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated"
 import { loginStyles } from "../../styles/common.style"
-import { Button, TextInput, useTheme } from "react-native-paper"
+import { Button, useTheme } from "react-native-paper"
 import { router } from "expo-router"
-import { Background } from "../../components"
-// API
-// import { loginRequest } from "../api/auth.api"
-// Redux
-// import { setUser } from "../slices/home.slice"
-// slice de toast para el futuro
+import { Background, Input } from "../../components"
+import { useRegister } from "../../hooks/auth/useRegister"
+import { useSnackBar } from "../../contexts/SnackBar.context"
 
 export default () => {
-  const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
-  const [usernameErr, setUsernameErr] = useState("")
   const [emailErr, setEmailErr] = useState("")
   const [passErr, setPassErr] = useState("")
-  const [showPass, setShowPass] = useState(false)
+  const [confirmPassErr, setConfirmPassErr] = useState("")
+  const [enable, setEnable] = useState(true)
+
+  const emailRef = useRef(null)
+  const passwordRef = useRef(null)
+  const confirmPasswordRef = useRef(null)
 
   const theme = useTheme()
+  const { error, loading, register } = useRegister()
+  const { showSnack } = useSnackBar()
 
   // #region Register
-  const register = async () => {
-    const response = await registerRequest({ email, password, username })
-    if (Array.isArray(response)) {
-      setErrors(response)
-      return
+  const handlePress = async () => {
+    const user = { email, password, confirmPassword }
+    const { token } = await register(user).catch((err) => {
+      console.log("[-] Register screen: ", err)
+      return null
+    })
+
+    if (token) {
+      // console.log("Usuario registrado! -> ", token)
+      showSnack("Usuario registrado exitosamente", "success")
+      router.replace("Home.screen")
     }
-    if (response.data.username != undefined)
-      console.log("[+] Usuario registrado! -> ", response.data.username)
   }
+
+  useEffect(() => {
+    console.log("error -> ", error)
+    if (error?.path === "email") {
+      emailRef.current?.shake()
+      setEmailErr(error?.message)
+    } else if (error?.path === "password") {
+      passwordRef.current?.shake()
+      setPassErr(error?.message)
+    }
+    else if (error?.path === "confirmPassword") {
+      confirmPasswordRef.current?.shake()
+      setConfirmPassErr(error?.message)
+    } else if (error?.path === "") {
+      showSnack(error?.message, "error")
+    }
+  }, [error])
+
+  useEffect(() => {
+    const result = email.length > 0 && password.length > 5 && confirmPassword.length > 5
+    setEnable(result)
+  }, [email, password, confirmPassword])
 
   return (
     <>
@@ -41,18 +69,7 @@ export default () => {
         {
           // #region Ligths
         }
-        <View style={loginStyles.lights}>
-          <Animated.Image
-            entering={FadeInUp.delay(200).duration(1000).springify().damping(6)}
-            style={loginStyles.light1}
-            source={require("../../assets/images/login/light.png")}
-          />
-          <Animated.Image
-            entering={FadeInUp.delay(200).duration(1000).springify().damping(6)}
-            style={loginStyles.light2}
-            source={require("../../assets/images/login/light.png")}
-          />
-        </View>
+
         {
           // #region Form
         }
@@ -72,59 +89,67 @@ export default () => {
               entering={FadeInDown.duration(1000).springify()}
               style={loginStyles.form}
             >
-              <TextInput
-                placeholder="Email"
+              <Input
+                ref={emailRef}
+                placeholder="Correo electrónico"
                 value={email}
-                onChangeText={setEmail}
+                // setValue={setEmail}
+                onChangeText={(text) => {
+                  setEmail(text)
+                  if (emailErr !== "") setEmailErr("")
+                }}
+                leftIcon="email"
+                error={emailErr}
                 keyboardType="email-address"
                 autoComplete="email"
                 textContentType="emailAddress"
-                left={<TextInput.Icon icon={"email"} />}
                 maxLength={64}
                 autoCapitalize="none"
                 enterKeyHint="next"
+                onSubmitEditing={() => passwordRef.current?.focus()}
               />
             </Animated.View>
             <Animated.View
               entering={FadeInDown.delay(200).duration(1000).springify()}
               style={loginStyles.form}
             >
-              <TextInput
-                placeholder="Password"
-                secureTextEntry={!showPass}
+              <Input
+                ref={passwordRef}
+                placeholder="Contraseña"
                 value={password}
-                onChangeText={setPassword}
-                maxLength={64}
-                autoComplete="password"
+                // setValue={setPassword}
+                onChangeText={(text) => {
+                  setPassword(text)
+                  if (passErr !== "") setPassErr("")
+                }}
+                leftIcon="lock"
+                isPassword
+                error={passErr}
                 textContentType="password"
-                left={<TextInput.Icon icon={"lock"} />}
-                right={
-                  <TextInput.Icon
-                    icon={showPass ? "eye" : "eye-off"}
-                    onPress={() => setShowPass(!showPass)}
-                  />
-                }
+                maxLength={64}
+                enterKeyHint="next"
+                onSubmitEditing={() => confirmPasswordRef.current?.focus()}
               />
             </Animated.View>
             <Animated.View
               entering={FadeInDown.delay(400).duration(1000).springify()}
               style={loginStyles.form}
             >
-              <TextInput
-                placeholder="Confirm Password"
-                secureTextEntry={!showPass}
+              <Input
+                ref={confirmPasswordRef}
+                placeholder="Confirmar contraseña"
                 value={confirmPassword}
-                onChangeText={setConfirmPassword}
-                maxLength={64}
-                autoComplete="password"
+                setValue={setConfirmPassword}
+                leftIcon="lock"
+                isPassword
+                error={confirmPassErr}
+                onChangeText={(text) => {
+                  setConfirmPassword(text)
+                  if (confirmPassErr !== "") setConfirmPassErr/("")
+                }}
                 textContentType="password"
-                left={<TextInput.Icon icon={"lock"} />}
-                right={
-                  <TextInput.Icon
-                    icon={showPass ? "eye" : "eye-off"}
-                    onPress={() => setShowPass(!showPass)}
-                  />
-                }
+                maxLength={64}
+                enterKeyHint="done"
               />
             </Animated.View>
             {
@@ -136,10 +161,12 @@ export default () => {
             >
               <Button
                 mode="contained"
-                onPress={register}
+                onPress={handlePress}
                 width={Dimensions.get("window").width * 0.5}
-                style={{ padding: 4, borderRadius: 50 }}
+                style={{ borderRadius: 50 }}
                 labelStyle={{ fontSize: 18, fontWeight: "bold" }}
+                disabled={!enable || loading}
+                loading={loading}
               >
                 Registrarse
               </Button>

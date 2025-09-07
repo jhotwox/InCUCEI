@@ -1,5 +1,8 @@
 ## MONGO
+### Mongo with docker (don't use)
+``` BASH
 MONGO CONNECTION: mongodb://admin:admin123@localhost:27017
+```
 
 ``` BASH
 mongosh "mongodb+srv://incucei.ldif0fo.mongodb.net/" --apiVersion 1 --username <username> --password <password>
@@ -39,3 +42,8 @@ USE
 ``` BASH
 rasa inspect
 ```
+
+## TODO LIST
+### FRONT
+- [ ] focus en el input incompleto cuando presionas el boton de iniciar sesion o registrar
+

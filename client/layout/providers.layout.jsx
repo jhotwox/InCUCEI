@@ -1,4 +1,5 @@
 import { PaperProvider, MD3LightTheme } from "react-native-paper"
+import { SnackBarProvider } from "../contexts/SnackBar.context"
 
 export const Providers =  ({ children }) => {
   const theme = {
@@ -59,7 +60,9 @@ export const Providers =  ({ children }) => {
   
   return (
     <PaperProvider theme={theme}>
-      {children}
+      <SnackBarProvider>
+        {children}
+      </SnackBarProvider>
     </PaperProvider>
   )
 }
