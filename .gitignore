@@ -1,6 +1,7 @@
 # Environment files
 server/.env
 chatbot/.env
+chatbot-cucei-assistant/.env
 client/.env
 
 #Express
@@ -10,10 +11,19 @@ server/node_modules/
 #Python
 ## Python virtual environment
 chatbot/venv/
+chatbot-cucei-assistant/venv/
 
 ## Python cache files
 chatbot/__pycache__/
+chatbot-cucei-assistant/__pycache__/
 chatbot/**/*.pyc
+chatbot-cucei-assistant/**/*.pyc
+
+## Rasa
+chatbot/models/
+chatbot-cucei-assistant/models/
+chatbot/.rasa/
+chatbot-cucei-assistant/.rasa/
 
 ## OS generated files
 .DS_Store

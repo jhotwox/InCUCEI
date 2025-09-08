@@ -1,0 +1,30 @@
+patterns:
+  pattern_academic_assistance:
+    description: Flow for handling academic-related queries and requests for materials.
+    name: pattern academic assistance
+    steps:
+      - action: utter_ask_topic
+      - action: action_fetch_academic_material
+      - action: utter_material_provided
+  pattern_chitchat:
+    description: Conversation repair flow for off-topic interactions that won't disrupt the main conversation. should not respond to greetings or anything else for which there is a flow defined
+    name: pattern chitchat
+    steps:
+      - action: utter_free_chitchat_response
+  pattern_search:
+    description: Flow for handling knowledge-based questions
+    name: pattern search
+    steps:
+      - action: utter_free_chitchat_response
+  # pattern_greet:
+  #   description: Flow for handling greetings from the user.
+  #   name: pattern greet
+  #   steps:
+  #     - intent: greet
+  #     - action: utter_greet
+  # pattern_goodbye:
+  #   description: Flow for handling farewells from the user.
+  #   name: pattern goodbye
+  #   steps:
+  #     - intent: goodbye
+  #     - action: utter_goodbye

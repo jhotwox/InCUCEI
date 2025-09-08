@@ -1,0 +1,84 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hola
+    - buenos días
+    - qué tal
+    - Como estás?
+    - buenas tardes
+    - buenas noches
+    - noches
+    - dias
+    - tardes
+    - hey
+    - holaa
+    - holis
+    - qué hubo
+    - qué onda
+    - qué pasa
+    - qué pasa calabaza
+    - buenas
+    - qué hubo
+    - qué hubo?
+    - hi
+
+- intent: goodbye
+  examples: |
+    - adiós
+    - hasta luego
+    - nos vemos
+    - te veo luego
+    - chao
+    - chau
+    - me voy
+    - hasta la próxima
+    - camara
+    - nos estamos viendo
+    - bye
+
+# - intent: thank_you
+#   examples: |
+#     - gracias
+#     - muchas gracias
+#     - te lo agradezco
+#     - muy amable
+#     - se agradece
+#     - mil gracias
+#     - gracias por tu ayuda
+#     - gracias por la info
+#     - gracias por la información
+#     - gracias por tu asistencia
+#     - te agradezco mucho
+#     - te lo agradezco mucho
+#     - gracias, muy amable
+#     - gracias por tu apoyo
+#     - gracias por tu soporte
+#     - gracias por ayudarme
+#     - gracias por ayudarme con esto
+#     - gracias por tu tiempo
+#     - gracias por tu tiempo y ayuda
+#     - muchas gracias por tu ayuda
+#     - muchas gracias por la información
+#     - muchas gracias por la info
+#     - muchas gracias por tu asistencia
+#     - muchas gracias por tu apoyo
+#     - muchas gracias por tu soporte
+#     - muchas gracias por ayudarme
+#     - muchas gracias por ayudarme con esto
+#     - muchas gracias por tu tiempo
+#     - muchas gracias por tu tiempo y ayuda
+    
+
+- intent: request_academic_material
+  examples: |
+    - necesito apuntes de álgebra
+    - ¿tienes exámenes pasados de física?
+    - pásame la guía de programación
+    - ¿me puedes dar libros sobre minería de datos?
+    - busco recursos para aprender cálculo
+    - ¿dónde encuentro material de estadística?
+    - ¿tienes artículos sobre inteligencia artificial?
+    - ¿me puedes proporcionar videos de matemáticas?
+    

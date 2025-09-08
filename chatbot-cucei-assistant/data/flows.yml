@@ -1,0 +1,49 @@
+flows:
+  academic_assistance:
+    description: Help users find academic materials and resources.
+    steps:
+      # - collect: topic
+      #   description: The topic of the academic material requested.
+      - collect: topic
+        description: The topic of the academic material requested (e.g., algebra, mineria de datos, etc.).
+      - action: action_fetch_academic_materials
+      - action: utter_material_found
+      - action: utter_material_not_found
+
+  human_contact:
+    description: Seamlessly send contact information when necessary.
+    steps:
+      - collect: confirm_human_contact
+        next:
+        - if: slots.confirm_human_contact
+          then:
+          - action: utter_human_contact
+          # - action: utter_human_complete
+            next: END
+        - else:
+          - action: utter_human_contact_canceled
+            next: END
+  
+  greet:
+    description: Handle user greetings.
+    steps:
+      # - action: greet
+      - action: utter_greet
+
+  goodbye:
+    description: Handle user farewells.
+    steps:
+      # - intent: goodbye
+      - action: utter_goodbye
+
+  # thank_you:
+  #   description: Handle user expressions of gratitude.
+  #   steps:
+  #     - intent: thank_you
+  #     - action: utter_thank_you
+
+  pattern_chitchat:
+    description: Handle off-topic interactions without disrupting the main conversation.
+    name: pattern chitchat
+    steps:
+      - action: utter_free_chitchat_response
