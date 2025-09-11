@@ -2,20 +2,22 @@ version: "3.1"
 
 intents:
   - request_academic_material
+  - request_coordination_info
+  - request_registration_process
   - greet
   - goodbye
   # - thank_you
 
+entities:
+  - topic
+  - career
+
 slots:
-  # material_type:
-  #   type: text
-  #   mappings:
-  #     - type: from_llm
-  # material_name:
-  #   type: text
-  #   mappings:
-  #     - type: from_llm
   topic:
+    type: text
+    mappings:
+      - type: from_llm
+  career:
     type: text
     mappings:
       - type: from_llm
@@ -23,21 +25,36 @@ slots:
     type: bool
     mappings:
       - type: from_llm
-        # allow_nlu_correction: true
 
 responses:
   utter_ask_topic:
-    - text: "Cuál es la materia en la que necesitas material?"
+    - text: "¿Cuál es la materia en la que necesitas material?"
       metadata:
         rephrase: True
 
   utter_material_found:
-    - text: "Aquí encontraras el material que necesitas: {material_link}"
+    - text: "Aquí encontrarás el material que necesitas: {material_link}"
       metadata:
         rephrase: True
 
   utter_material_not_found:
     - text: "No se encontró el material solicitado."
+      metadata:
+        rephrase: True
+
+  utter_coordination_info:
+    - text: "Información de la coordinación de {career}: {coordination_data}"
+      metadata:
+        rephrase: True
+
+  utter_registration_process:
+    - text: |
+        Estos son los pasos para el registro de materias en CUCEI:
+        1. Ingresa a [SIIAU](http://www.siiau.udg.mx).
+        2. Selecciona 'Registro de materias'.
+        3. Ingresa tu código de estudiante y NIP.
+        4. Selecciona tus materias disponibles.
+        5. Confirma tu horario y guarda comprobante.
       metadata:
         rephrase: True
 
@@ -50,42 +67,29 @@ responses:
     - text: "Puedes contactar este correo: test@academicos.udg.mx o este teléfono: +52 33 1234 5678"
       metadata:
         rephrase: True
-        # rephrase_prompt: |
-        #   The following is a conversation in spanish with an AI assistant built with Rasa.
-        #   The assistant can help the user with academic materials.
-        #   The assistant is helpful, creative, clever, and very friendly.
-        #   The user has just requested human contact information.
-        #   The assistant should respond in a way that is polite and continues to offer help.
-        #   Context / previous conversation with the user:
-        #   {{history}}
-        #   {{current_input}}
-        #   Suggested AI Response:
 
   utter_human_contact_canceled:
-    - text: "Entendido, no te proporcionaré información de contacto. Hay algo más en lo que pueda ayudarte?"
+    - text: "Entendido, no te proporcionaré información de contacto. ¿Hay algo más en lo que pueda ayudarte?"
       metadata:
         rephrase: True
   
   utter_greet:
-    - text: "Hola! Como te puedo asistir el dia de hoy?"
+    - text: "¡Hola! ¿Cómo te puedo asistir el día de hoy?"
       metadata:
         rephrase: True
 
   utter_goodbye:
-    - text: "Hasta luego! si necesitas asistencia en el futuro, Sientete libre de preguntar."
+    - text: "¡Hasta luego! Si necesitas asistencia en el futuro, siéntete libre de preguntar."
       metadata:
         rephrase: True
-
-  # utter_thank_you:
-  #   - text: "¡Con gusto! 😊"
 
   utter_free_chitchat_response:
     - text: "placeholder"
       metadata:
         rephrase: True
         rephrase_prompt: |
-          The following is a conversation in spanish with an AI assistant built with Rasa.
-          The assistant can help the user with academic materials.
+          The following is a conversation in Spanish with an AI assistant built with Rasa.
+          The assistant can help the user with academic materials, coordinations, and UDG processes.
           The assistant is helpful, creative, clever, and very friendly.
           The user is making small talk, and the assistant should respond, keeping things light.
           Context / previous conversation with the user:
@@ -93,7 +97,7 @@ responses:
           {{current_input}}
           Suggested AI Response:
 
-
 actions:
   - action_fetch_academic_materials
+  - action_fetch_coordination_info
   - action_human_contact

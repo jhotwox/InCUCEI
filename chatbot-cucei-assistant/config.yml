@@ -1,7 +1,8 @@
-#Tutorial
+# Tutorial
 recipe: default.v1
 
 language: es
+
 pipeline:
 - name: CompactLLMCommandGenerator
   llm:
@@ -16,7 +17,6 @@ policies:
 # Copilot
 express_backend:
   url: "http://192.168.100.32:3000"
-# Copilot
-# assistant_id: 20250907-131251-wicker-creek
-# Tutorial
-assistant_id: 20250829-145730-convoluted-coot
+
+# Identificador del asistente
+assistant_id: 20250907-131251-wicker-creek

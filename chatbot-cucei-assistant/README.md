@@ -53,6 +53,7 @@ chatbot-cucei-assistant
 5. **Export license key into the shell**:
    ```
    export RASA_PRO_LICENSE=<Rasa_license from the .env>
+    $env:RASA_PRO_LICENSE = "TOKEN"
    ```
 
 6. **Train**:

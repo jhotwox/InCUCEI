@@ -82,3 +82,26 @@ nlu:
     - ¿tienes artículos sobre inteligencia artificial?
     - ¿me puedes proporcionar videos de matemáticas?
     
+    - necesito apuntes de [álgebra](topic)
+    - ¿tienes exámenes pasados de [física](topic)?
+    - pásame la guía de [programación](topic)
+    - busco recursos para aprender [cálculo](topic)
+    - ¿me puedes dar libros sobre [minería de datos](topic)?
+
+
+
+- intent: request_coordination_info
+  examples: |
+    - quiero información de la coordinación de [Ingeniería Informática](career)
+    - ¿dónde está la coordinación de [Mecatrónica](career)?
+    - ¿me das el contacto de la coordinación de [Civil](career)?
+    - horarios de atención de la coordinación de [Industrial](career)
+
+- intent: request_registration_process
+  examples: |
+    - ¿cómo me registro en materias en CUCEI?
+    - necesito ayuda con el proceso de inscripción en la UdG
+    - pasos para registrar materias
+    - guía para hacer mi horario en CUCEI
+
+    
