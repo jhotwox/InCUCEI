@@ -1,4 +1,7 @@
+import { router } from 'expo-router'
 import axios from '../api/axios'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+
 
 export const loginRequest = async (user) => {
   return await axios
@@ -31,22 +34,21 @@ export const registerRequest = async (user) => {
   })
 }
 
-export const logoutRequest = async () => {
+export const profileRequest = async (token) => {
+  console.log("Token: ", token)
+  
   return await axios
-  .post('/logout')
+  .post('/profile')
   .catch((err) => {
-    console.log("[-] Logout: ", err)
-    console.log("[-] Logout message: ", err.response.data.message)
-    return err.response.data.err
+    console.log("[-] Profile error completo: ", err)
+    console.log("[-] Status: ", err.response?.status)
+    console.log("[-] Data: ", err.response?.data)
+    console.log("[-] URL: ", err.config?.url)
+    throw err
   })
 }
 
-export const profileRequest = async () => {
-  return await axios
-  .get('/profile')
-  .catch((err) => {
-    console.log("[-] Profile: ", err)
-    console.log("[-] Profile message: ", err.response.data.message)
-    return err.response.data.err
-  })
+export const logoutRequest = async () => {
+  await AsyncStorage.removeItem('token').catch(err => console.error("AsyncStorage remove token: ", err))
+  router.replace("Login.screen")
 }

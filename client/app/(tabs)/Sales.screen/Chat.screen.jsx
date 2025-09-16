@@ -1,0 +1,166 @@
+import { useEffect, useRef, useState } from "react"
+import { useAuth } from "../../../contexts/Auth.context"
+import { useSocket } from "../../../contexts/Socket.context"
+import { useMessages } from "../../../hooks/useMessages"
+import { Card } from "react-native-paper"
+import { KeyboardAvoidingView, StyleSheet, View } from "react-native"
+
+export default ({ route }) => {
+  const { chatUserId, chatUserEmail } = route.params
+  const [inputMessage, setInputMessage] = useState("")
+  const flatListRef = useRef(null)
+
+  const { user } = useAuth()
+  const { joinRoom, leaveRoom } = useSocket()
+  const { messages, sendMessage, loading, getRoomId, markAsRead } =
+    useMessages(chatUserId)
+
+  const roomId = getRoomId(user._id, chatUserId)
+
+  useEffect(() => {
+    joinRoom(roomId)
+    markAsRead(roomId)
+
+    return () => {
+      leaveRoom(roomId)
+    }
+  }, [roomId])
+
+  const handleSendMessage = async () => {
+    if (!inputMessage.trim()) return
+
+    const messageContent = inputMessage.trim()
+    setInputMessage("")
+
+    try {
+      await sendMessage(chatUserId, messageContent)
+    } catch (err) {
+      console.error("Error sending message:", err)
+    }
+  }
+
+  const renderMessage = ({ item }) => {
+    const isOwnMessage = item.sender._id === user.id || item.sender === user.id
+
+    return (
+      <View
+        style={[
+          styles.messageContainer,
+          isOwnMessage ? styles.myMessage : styles.theirMessage,
+        ]}
+      >
+        <Card
+          style={[
+            styles.messageCard,
+            isOwnMessage ? styles.myMessageCard : styles.theirMessageCard,
+          ]}
+        >
+          <Card.Content>
+            <Text>{item.content}</Text>
+            <Text style={styles.timestamp}>
+              {new Date(item.createdAt).toLocaleTimeString()}
+            </Text>
+          </Card.Content>
+        </Card>
+      </View>
+    )
+  }
+
+  return (
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      // keyboardVerticalOffset={90}
+    >
+      <View style={styles.header}>
+        <Text variant="titleLarge">{chatUserEmail}</Text>
+      </View>
+
+      <FlatList
+        ref={flatListRef}
+        // data={messages.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))}
+        data={messages}
+        renderItem={renderMessage}
+        keyExtractor={(item) => item._id}
+        style={styles.messagesList}
+        onContentSizeChange={() =>
+          flatListRef.current.scrollToEnd({ animated: true })
+        }
+        onLayout={() => flatListRef.current.scrollToEnd({ animated: true })}
+      />
+
+      <View style={styles.inputContainer}>
+        <TextInput
+          value={inputMessage}
+          onChangeText={setInputMessage}
+          placeholder="Escribe un mensaje..."
+          style={styles.textInput}
+          multiline
+        />
+        <Button
+          mode="contained"
+          onPress={handleSendMessage}
+          disabled={!inputMessage.trim()}
+          style={styles.sendButton}
+        >
+          Enviar
+        </Button>
+      </View>
+    </KeyboardAvoidingView>
+  )
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#f5f5f5",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  header: {
+    padding: 16,
+    backgroundColor: "#FFF",
+    borderBottomWidth: 1,
+    borderBottomColor: "#DDD",
+  },
+  messagesList: {
+    flex: 1,
+    padding: 8,
+  },
+  messageContainer: {
+    marginVertical: 4,
+  },
+  myMessage: {
+    alignSelf: "flex-end",
+  },
+  theirMessage: {
+    alignSelf: "flex-start",
+  },
+  messageCard: {
+    maxWidth: "80%",
+  },
+  myMessageCard: {
+    backgroundColor: "#DCF8C6",
+  },
+  theirMessageCard: {
+    backgroundColor: "#FFF",
+  },
+  timestamp: {
+    fontSize: 10,
+    opacity: 0.7,
+    marginTop: 4,
+  },
+  inputContainer: {
+    flexDirection: "row",
+    padding: 16,
+    backgroundColor: "#FFF",
+    alignItems: "flex-end",
+  },
+  textInput: {
+    flex: 1,
+    marginRight: 8,
+  },
+  sendButton: {
+    minWidth: 80,
+  },
+})

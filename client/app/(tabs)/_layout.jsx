@@ -1,9 +1,53 @@
-import { Stack } from 'expo-router'
+import { Tabs } from "expo-router"
+import { Icon, useTheme } from "react-native-paper"
 
 export default () => {
+  const theme = useTheme()
+
   return (
-    <Stack screenOptions={{ headerShown: false }} initialRouteName='Home.screen' >
-      {/* <Stack.Screen name="Home.screen" /> */}
-    </Stack>
-  );
-};
+    <Tabs
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: theme.colors.primary,
+        tabBarStyle: { backgroundColor: theme.colors.background },
+      }}
+    >
+      <Tabs.Screen
+        name="Home.screen"
+        options={{
+          title: "Asistente",
+          tabBarIcon: ({ color }) => (
+            <Icon size={28} source="home" theme={theme} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="Map.screen"
+        options={{
+          title: "Mapa",
+          tabBarIcon: ({ color }) => (
+            <Icon size={28} source="map" theme={theme} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="Sales.screen"
+        options={{
+          title: "Ventas",
+          tabBarIcon: ({ color }) => (
+            <Icon size={28} source="purse" theme={theme} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="Settings.screen"
+        options={{
+          title: "Perfil",
+          tabBarIcon: ({ color }) => (
+            <Icon size={28} source="account" theme={theme} />
+          ),
+        }}
+      />
+    </Tabs>
+  )
+}

@@ -4,6 +4,7 @@ import { Providers } from "../layout/providers.layout"
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 export default function App () {
+  
   return (
     <Providers>
       <GestureHandlerRootView style={{ flex: 1 }}>

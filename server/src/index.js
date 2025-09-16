@@ -1,8 +1,11 @@
-import app from './app.js'
+import { server } from './app.js'
 import { PORT } from './config.js'
 import { connectDB } from './database.js'
 
 connectDB()
-app.listen(PORT)
+server.listen(PORT, () => {
+  console.log(`Server listen on port ${PORT}`)
+})
+// app.listen(PORT)
 
-console.log(`Server listen on port ${PORT}`)
+// console.log(`Server listen on port ${PORT}`)

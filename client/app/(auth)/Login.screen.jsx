@@ -7,8 +7,9 @@ import { loginStyles } from "../../styles/common.style"
 import { Button, useTheme } from "react-native-paper"
 import { router } from "expo-router"
 import { Background, Input } from "../../components"
-import { useLogin } from "../../hooks/auth/useLogin"
 import { useSnackBar } from "../../contexts/SnackBar.context"
+import { useAuth } from '../../contexts/Auth.context'
+
 // slice de toast para el futuro
 
 export default () => {
@@ -22,24 +23,16 @@ export default () => {
   const passwordRef = useRef(null)
 
   const theme = useTheme()
-  const { error, loading, login } = useLogin()
+  const { login, loading, error } = useAuth()
   const { showSnack } = useSnackBar()
 
   // #region Login
   const handlePress = async () => {
-    const user = { email, password }
-    const { token } = await login(user).catch((err) => {
-      console.log("[-] Login screen: ", err)
-      return null
-    })
-    // console.log("[+] response -> ", response)
-
-    if (token) {
-      // console.log("Usuario logeado! -> ", token)
-      // showSnack("Usuario logeado exitosamente", "success")
-      router.replace("Home.screen")
-    }
+    const credentials = { email, password }
+    const response = await login(credentials).catch((err) => console.log("[-] Login screen: ", err))
+    console.log("[+] response -> ", response.data)
   }
+  
 
   useEffect(() => {
     console.log("error -> ", error)

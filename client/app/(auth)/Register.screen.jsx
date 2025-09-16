@@ -5,8 +5,8 @@ import { loginStyles } from "../../styles/common.style"
 import { Button, useTheme } from "react-native-paper"
 import { router } from "expo-router"
 import { Background, Input } from "../../components"
-import { useRegister } from "../../hooks/auth/useRegister"
 import { useSnackBar } from "../../contexts/SnackBar.context"
+import { useAuth } from "../../contexts/Auth.context"
 
 export default () => {
   const [email, setEmail] = useState("")
@@ -22,19 +22,15 @@ export default () => {
   const confirmPasswordRef = useRef(null)
 
   const theme = useTheme()
-  const { error, loading, register } = useRegister()
+  const { register, loading, error } = useAuth()
   const { showSnack } = useSnackBar()
 
   // #region Register
   const handlePress = async () => {
-    const user = { email, password, confirmPassword }
-    const { token } = await register(user).catch((err) => {
-      console.log("[-] Register screen: ", err)
-      return null
-    })
+    const credentials = { email, password, confirmPassword }
+    const { data } = await register(credentials).catch((err) => console.log("[-] Register screen: ", err))
 
-    if (token) {
-      // console.log("Usuario registrado! -> ", token)
+    if (data?.token) {
       showSnack("Usuario registrado exitosamente", "success")
       router.replace("Home.screen")
     }

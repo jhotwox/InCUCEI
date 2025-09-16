@@ -1,6 +1,6 @@
-import bcrypt from 'bcryptjs'
-import User from '../models/user.model.js'
-import { createAccessToken } from '../libs/jwt.js'
+import bcrypt from "bcryptjs"
+import User from "../models/user.model.js"
+import { createAccessToken } from "../libs/jwt.js"
 
 export const register = async (req, res) => {
   const { email, password } = req.body
@@ -10,7 +10,7 @@ export const register = async (req, res) => {
     const passwordHash = await bcrypt.hash(password, 10)
     const newUser = new User({
       email,
-      passwordHash
+      passwordHash,
     })
     const user = await newUser.save()
     const token = await createAccessToken({ id: user._id })
@@ -25,15 +25,19 @@ export const register = async (req, res) => {
       token,
       status: true,
     })
-  } catch(err) {
+  } catch (err) {
     // console.log("[-] Register err: ", err)
     if (err?.code === 11000)
-      return res.status(409).json({ message: "Correo ya registrado", status: false })
-    
+      return res
+        .status(409)
+        .json({ message: "Correo ya registrado", status: false })
+
     if (err.name === "ValidationError")
       return res.status(400).json({ message: err.message, status: false })
-      
-    return res.status(500).json({ message: "Error en el servidor", status: false })
+
+    return res
+      .status(500)
+      .json({ message: "Error en el servidor", status: false })
   }
 }
 
@@ -43,11 +47,17 @@ export const login = async (req, res) => {
 
   try {
     const userFound = await User.findOne({ email })
-    if (!userFound) return res.status(400).json({ message: "No se encontro el usuario", status: false })
-    
+    if (!userFound)
+      return res
+        .status(400)
+        .json({ message: "No se encontro el usuario", status: false })
+
     const isMatch = await bcrypt.compare(password, userFound.passwordHash)
-    if (!isMatch) return res.status(400).json({ message: "Correo o contraseña incorrecta", status: false })
-    
+    if (!isMatch)
+      return res
+        .status(400)
+        .json({ message: "Correo o contraseña incorrecta", status: false })
+
     const token = await createAccessToken({ id: userFound._id })
     // res.cookie("token", token)
     return res.json({
@@ -58,46 +68,49 @@ export const login = async (req, res) => {
         updatedAt: userFound.updatedAt,
       },
       token,
-      status: true
+      status: true,
     })
-  } catch(err) {
+  } catch (err) {
     return res.status(500).json({ message: err.message, status: false })
   }
 }
 
-// export const logout = (req, res) => {
-//   res.cookie("token", "", {
-//     expires: new Date(0),
-//   })
-//   return res.sendStatus(200)
-// }
-
 export const profile = async (req, res) => {
-  const userFound = await User.findById(req.user.id)
-  if (!userFound) return res.status(400).json({ message: "Usuario no encontrado", status: false })
-    
-  return res.json({
-    id: userFound._id,
-    email: userFound.email,
-    createdAt: userFound.createdAt,
-    updatedAt: userFound.updatedAt,
-    status: true
-  })
+  try {
+    const userFound = await User.findById(req.user.id)
+    if (!userFound)
+      return res
+        .status(400)
+        .json({ message: "Usuario no encontrado", status: false })
+
+    return res.json({
+      id: userFound._id,
+      email: userFound.email,
+      createdAt: userFound.createdAt,
+      updatedAt: userFound.updatedAt,
+      status: true,
+    })
+  } catch (err) {
+    return res.status(500).json({ message: err.message, status: false })
+  }
 }
 
 export const deleteUser = async (req, res) => {
   try {
     const userDeleted = await User.findByIdAndDelete(req.user.id)
-    if (!userDeleted) return res.status(400).json({ message: "Usuario no encontrado", status: false })
-    
+    if (!userDeleted)
+      return res
+        .status(400)
+        .json({ message: "Usuario no encontrado", status: false })
+
     return res.json({
       id: userDeleted._id,
       email: userDeleted.email,
       createdAt: userDeleted.createdAt,
       updatedAt: userDeleted.updatedAt,
-      status: true
+      status: true,
     })
-  } catch(err) {
+  } catch (err) {
     return res.status(500).json({ message: err.message, status: false })
   }
 }
