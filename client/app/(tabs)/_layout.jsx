@@ -17,7 +17,7 @@ export default () => {
         options={{
           title: "Asistente",
           tabBarIcon: ({ color }) => (
-            <Icon size={28} source="home" theme={theme} />
+            <Icon size={28} source="handshake" theme={theme} />
           ),
         }}
       />

@@ -2,29 +2,41 @@ import { useEffect, useRef, useState } from "react"
 import { useAuth } from "../../../contexts/Auth.context"
 import { useSocket } from "../../../contexts/Socket.context"
 import { useMessages } from "../../../hooks/useMessages"
-import { Card } from "react-native-paper"
-import { KeyboardAvoidingView, StyleSheet, View } from "react-native"
+import { Button, Card, Text, TextInput } from "react-native-paper"
+import { FlatList, KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native"
+import { useLocalSearchParams } from "expo-router"
 
-export default ({ route }) => {
-  const { chatUserId, chatUserEmail } = route.params
+export default function ChatScreen () {
+  const { commerceId, commerceName, commerceUserId } = useLocalSearchParams()
   const [inputMessage, setInputMessage] = useState("")
   const flatListRef = useRef(null)
 
   const { user } = useAuth()
   const { joinRoom, leaveRoom } = useSocket()
-  const { messages, sendMessage, loading, getRoomId, markAsRead } =
-    useMessages(chatUserId)
+  const {
+    messages,
+    sendMessage,
+    loading,
+    markAsRead,
+    loadConversation,
+  } = useMessages()
 
-  const roomId = getRoomId(user._id, chatUserId)
+  const roomId = `user_${user.id}_commerce_${commerceId}`
 
   useEffect(() => {
+    console.log("Initilizing chat with:", { commerceId, commerceName })
+    console.log("Generated roomId:", roomId)
+    
+    loadConversation(commerceId)
+    
     joinRoom(roomId)
+
     markAsRead(roomId)
 
     return () => {
       leaveRoom(roomId)
     }
-  }, [roomId])
+  }, [roomId, commerceId])
 
   const handleSendMessage = async () => {
     if (!inputMessage.trim()) return
@@ -33,7 +45,11 @@ export default ({ route }) => {
     setInputMessage("")
 
     try {
-      await sendMessage(chatUserId, messageContent)
+      await sendMessage(commerceId, messageContent, "text")
+
+      setTimeout(() => {
+        flatListRef.current?.scrollToEnd({ animated: true })
+      }, 100)
     } catch (err) {
       console.error("Error sending message:", err)
     }
@@ -66,6 +82,14 @@ export default ({ route }) => {
     )
   }
 
+  if (loading) {
+    return (
+      <View style={[styles.container, { justifyContent: "center" }]}>
+        <Text>Cargando mensajes...</Text>
+      </View>
+    )
+  }
+
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -73,7 +97,8 @@ export default ({ route }) => {
       // keyboardVerticalOffset={90}
     >
       <View style={styles.header}>
-        <Text variant="titleLarge">{chatUserEmail}</Text>
+        <Text variant="titleLarge">{commerceName}</Text>
+        <Text variant="titleLarge">Conversación con comercio</Text>
       </View>
 
       <FlatList
@@ -96,11 +121,12 @@ export default ({ route }) => {
           placeholder="Escribe un mensaje..."
           style={styles.textInput}
           multiline
+          maxLength={1000}
         />
         <Button
           mode="contained"
           onPress={handleSendMessage}
-          disabled={!inputMessage.trim()}
+          disabled={!inputMessage.trim() || loading}
           style={styles.sendButton}
         >
           Enviar

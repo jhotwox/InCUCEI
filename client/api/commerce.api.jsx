@@ -8,6 +8,14 @@ export const getCommerce = async () => {
   })
 }
 
+export const getAllComerces = async () => {
+  return axios.get("/commerces").catch((err) => {
+    console.log("[-] Get all commerces: ", err)
+    console.log("[-] All commerces data: ", err.response?.data)
+    throw err.response?.data || err
+  })
+}
+
 export const createCommerce = async (commerce) => {
   return axios.post("/commerce", commerce).catch((err) => {
     console.log("[-] Create commerce: ", err)

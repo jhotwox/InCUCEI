@@ -1,12 +1,12 @@
-import { createContext, useContext, useState, useEffect } from 'react'
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import { createContext, useContext, useState, useEffect } from "react"
+import AsyncStorage from "@react-native-async-storage/async-storage"
 import { ZodError } from "zod"
 import { AxiosError } from "axios"
-import { loginRequest, registerRequest, profileRequest } from '../api/auth.api'
+import { loginRequest, registerRequest, profileRequest } from "../api/auth.api"
 import { LoginValidator, RegisterValidator } from "../validators/auth.validator"
 import { handleZodError } from "../handler/zod.handler"
 import { handleAxiosError } from "../handler/axios.handler"
-import { router } from 'expo-router'
+import { router } from "expo-router"
 
 const AuthContext = createContext()
 
@@ -34,7 +34,7 @@ export function AuthProvider({ children }) {
 
   const loadToken = async () => {
     try {
-      const storedToken = await AsyncStorage.getItem('token')
+      const storedToken = await AsyncStorage.getItem("token")
       if (storedToken) {
         // Validate token by fetching profile
         const { data } = await profileRequest(storedToken)
@@ -46,14 +46,14 @@ export function AuthProvider({ children }) {
           console.log("token loaded")
         } else {
           // Token is invalid, remove it
-          await AsyncStorage.removeItem('token')
+          await AsyncStorage.removeItem("token")
           setToken(null)
           setUser(null)
           console.log("invalid token removed")
         }
       }
     } catch (err) {
-      console.error('Error loading token:', err)
+      console.error("Error loading token:", err)
       setError(err)
     } finally {
       setLoading(false)
@@ -61,33 +61,29 @@ export function AuthProvider({ children }) {
   }
 
   const login = async (credentials) => {
-    try { 
+    try {
       setLoading(true)
       setError(null)
 
       const valid = LoginValidator.safeParse(credentials)
 
-      if (!valid.success)
-        throw valid.error
-      
-      if (!valid.data)
-        throw "Datos inválidos"
-      
+      if (!valid.success) throw valid.error
+
+      if (!valid.data) throw "Datos inválidos"
+
       const response = await loginRequest(credentials)
 
       if (response?.data?.token) {
         const { token, user } = response.data
 
-        await AsyncStorage.setItem('token', token)
+        await AsyncStorage.setItem("token", token)
         setToken(token)
         setUser(user)
-        
+
         // router.replace("Home.screen")
 
         return response
       }
-
-
     } catch (err) {
       let message = "Error desconocido"
       let path = ""
@@ -95,7 +91,8 @@ export function AuthProvider({ children }) {
       console.log("[-] Auth context login error: ", err)
 
       if (err instanceof ZodError) [message, path] = handleZodError(err)
-      else if (err instanceof AxiosError) [message, path] = handleAxiosError(err)
+      else if (err instanceof AxiosError)
+        [message, path] = handleAxiosError(err)
       else if (typeof err === "string") {
         message = err
       } else if (Array.isArray(err)) {
@@ -103,7 +100,7 @@ export function AuthProvider({ children }) {
       } else if (err instanceof Error) {
         message = err.message
         path = err.stack
-      } 
+      }
 
       setError({ message, path, id: Date.now() })
     } finally {
@@ -112,22 +109,39 @@ export function AuthProvider({ children }) {
   }
 
   const register = async (credentials) => {
-    try { 
+    try {
       setLoading(true)
       setError(null)
 
-      const valid = RegisterValidator.safeParse(credentials)
+      // Add name to credentials
+      // The name is before the . and the last name after the . and before the @
+      let name = credentials.email.split("@")[0].split(".")[0]
+      name = name.charAt(0).toUpperCase() + name.slice(1)
+      let lastName =
+        credentials.email.split("@")[0].split(".")[1].slice(0, -4) || ""
+      lastName = lastName.charAt(0).toUpperCase() + lastName.slice(1)
 
-      if (valid.error)
-        throw valid.error
-      
-      if (!valid.data)
-        throw "Error al validar los datos"
+      if (lastName) name += " " + lastName
 
-      const response = await registerRequest(credentials)
+      console.log("Name: ", name)
+      const newCredentials = { ...credentials, name }
+      const valid = RegisterValidator.safeParse(newCredentials)
 
-      return response
+      if (valid.error) throw valid.error
 
+      if (!valid.data) throw "Error al validar los datos"
+
+      const response = await registerRequest(newCredentials)
+
+      if (response?.data?.token) {
+        const { token, user } = response.data
+
+        await AsyncStorage.setItem("token", token)
+        setToken(token)
+        setUser(user)
+        
+        return response
+      }
     } catch (err) {
       let message = "Error desconocido"
       let path = ""
@@ -135,7 +149,8 @@ export function AuthProvider({ children }) {
       console.log("[-] Auth context register error: ", err)
 
       if (err instanceof ZodError) [message, path] = handleZodError(err)
-      else if (err instanceof AxiosError) [message, path] = handleAxiosError(err)
+      else if (err instanceof AxiosError)
+        [message, path] = handleAxiosError(err)
       else if (typeof err === "string") {
         message = err
       } else if (Array.isArray(err)) {
@@ -143,7 +158,7 @@ export function AuthProvider({ children }) {
       } else if (err instanceof Error) {
         message = err.message
         path = err.stack
-      } 
+      }
 
       setError({ message, path, id: Date.now() })
     } finally {
@@ -173,7 +188,8 @@ export function AuthProvider({ children }) {
       console.log("[-] Auth context profile error: ", err)
 
       if (err instanceof ZodError) [message, path] = handleZodError(err)
-      else if (err instanceof AxiosError) [message, path] = handleAxiosError(err)
+      else if (err instanceof AxiosError)
+        [message, path] = handleAxiosError(err)
       else if (typeof err === "string") {
         message = err
       } else if (Array.isArray(err)) {
@@ -181,7 +197,7 @@ export function AuthProvider({ children }) {
       } else if (err instanceof Error) {
         message = err.message
         path = err.stack
-      } 
+      }
 
       setError({ message, path, id: Date.now() })
     } finally {
@@ -190,21 +206,22 @@ export function AuthProvider({ children }) {
   }
 
   const logout = async () => {
-    await AsyncStorage.removeItem('token')
+    await AsyncStorage.removeItem("token")
     setToken(null)
     setUser(null)
   }
 
   return (
-    <AuthContext.Provider value={{
-      token,
-      user,
-      login,
-      register,
-      profile,
-      logout,
-      loading,
-      error
+    <AuthContext.Provider
+      value={{
+        token,
+        user,
+        login,
+        register,
+        profile,
+        logout,
+        loading,
+        error,
       }}
     >
       {children}

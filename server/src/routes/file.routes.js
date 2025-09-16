@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
     const { imageType } = req.query
     const userId = req.user.id
     const extension = path.extname(file.originalname)
-
+    
     cb(null, `${imageType}_${userId}${extension}`)
   },
 })

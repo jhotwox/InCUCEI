@@ -343,7 +343,7 @@ export default forwardRef(
                   {isUploading
                     ? "Subiendo imagen..."
                     : selectedFile
-                    ? "Cambiar archivo"
+                    ? "Cambiar " + type
                     : placeholder}
                 </Text>
                 <Text

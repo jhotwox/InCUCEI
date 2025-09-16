@@ -160,7 +160,10 @@ export const getCommerceByUserId = async (req, res) => {
 
 export const getAllCommerce = async (req, res) => {
   try {
-    const commerces = await Commerce.find()
+    const userId = req.user.id
+    
+    // Exclude commerces from the current user
+    const commerces = await Commerce.find({ userId: { $ne: userId } })
     if (!commerces)
       return res
         .status(400)
@@ -181,7 +184,7 @@ export const getAllCommerce = async (req, res) => {
     })
 
     return res.json({
-      commercesWithImages,
+      commerces: commercesWithImages,
       status: true,
     })
   } catch (err) {

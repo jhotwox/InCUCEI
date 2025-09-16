@@ -8,7 +8,7 @@ import {
 import { useSocket } from "../contexts/Socket.context.jsx"
 import { useAuth } from "../contexts/Auth.context.jsx"
 
-export const useMessages = (chatUserId = null) => {
+export const useMessages = () => {
   const [messages, setMessages] = useState([])
   const [chats, setChats] = useState([])
   const [loading, setLoading] = useState(false)
@@ -17,19 +17,19 @@ export const useMessages = (chatUserId = null) => {
   const { socket } = useSocket()
   const { user } = useAuth()
 
-  const getRoomId = useCallback((userId1, userId2) => {
-    return [userId1, userId2].sort().join("_")
-  }, [])
+  // const getRoomId = useCallback((userId1, userId2) => {
+  //   return [userId1, userId2].sort().join("_")
+  // }, [])
 
-  const loadConversation = useCallback(async (userId) => {
-    if (!userId) return
+  const loadConversation = useCallback(async (commerceId) => {
+    if (!commerceId) return
 
     try {
       setLoading(true)
       setError(null)
 
-      const response = await getConversationRequest(userId)
-      setMessages(response.data.messages || [])
+      const response = await getConversationRequest(commerceId)
+      setMessages(response.data.data || [])
     } catch (err) {
       setError(err)
       console.error("Err loadConversation: ", err)
@@ -38,34 +38,20 @@ export const useMessages = (chatUserId = null) => {
     }
   }, [])
 
-  const loadChats = useCallback(async () => {
-    try {
-      setLoading(true)
-      setError(null)
-
-      const response = await getUserChatsRequest()
-      setChats(response.data.chats || [])
-    } catch (err) {
-      setError(err)
-      console.error("Err loadChats: ", err)
-    } finally {
-      setLoading(false)
-    }
-  }, [])
-
   const sendMessage = useCallback(
-    async (receiverId, content, messageType = "text") => {
+    async (commerceId, content, messageType = "text") => {
       try {
         setError(null)
 
         const response = await sendMessageRequest(
-          receiverId,
+          commerceId,
           content,
           messageType
         )
-        const newMessage = response.data.message
+        const newMessage = response.data.data
 
         setMessages((prev) => [...prev, newMessage])
+
         return newMessage
       } catch (err) {
         setError(err)
@@ -77,13 +63,13 @@ export const useMessages = (chatUserId = null) => {
   )
 
   const markAsRead = useCallback(
-    async (roomId) => {
+    async (commerceId) => {
       try {
-        await markAsReadRequest(roomId)
+        await markAsReadRequest(commerceId)
 
         setMessages((prev) =>
           prev.map((msg) =>
-            msg.roomId === roomId && msg.receiver === user.id
+            msg.commerce === commerceId && msg.commerce._id === commerceId
               ? { ...msg, read: true }
               : msg
           )
@@ -94,6 +80,21 @@ export const useMessages = (chatUserId = null) => {
     },
     [user]
   )
+
+  const loadChats = useCallback(async () => {
+    try {
+      setLoading(true)
+      setError(null)
+
+      const response = await getUserChatsRequest()
+      setChats(response.data.data || [])
+    } catch (err) {
+      setError(err)
+      console.error("Err loadChats: ", err)
+    } finally {
+      setLoading(false)
+    }
+  }, [])
 
   useEffect(() => {
     if (!socket) return
@@ -114,11 +115,11 @@ export const useMessages = (chatUserId = null) => {
     }
   }, [socket])
 
-  useEffect(() => {
-    if (chatUserId) {
-      loadConversation(chatUserId)
-    }
-  }, [chatUserId, loadConversation])
+  // useEffect(() => {
+  //   if (chatUserId) {
+  //     loadConversation(chatUserId)
+  //   }
+  // }, [chatUserId, loadConversation])
 
   return {
     messages,
@@ -129,6 +130,5 @@ export const useMessages = (chatUserId = null) => {
     loadConversation,
     loadChats,
     markAsRead,
-    getRoomId,
   }
 }

@@ -34,6 +34,6 @@ router.delete("/commerce/:id", authRequired, deleteCommerce)
 
 router.get("/commerce", authRequired, getCommerceByUserId)
 
-router.get("/commerces", getAllCommerce)
+router.get("/commerces", authRequired, getAllCommerce)
 
 export default router

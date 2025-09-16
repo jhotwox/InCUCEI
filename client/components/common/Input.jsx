@@ -11,6 +11,7 @@ export default forwardRef(
       leftIcon,
       isPassword = false,
       error = "",
+      rightIcon = null,
       ...props
     },
     ref
@@ -54,7 +55,9 @@ export default forwardRef(
                 icon={visible ? "eye" : "eye-off"}
                 onPress={handleVisible}
               />
-            ) : null
+            ) : (
+              rightIcon && <TextInput.Icon icon={rightIcon} />
+            )
           }
           activeUnderlineColor={getUnderlineColor()}
           underlineColor={getUnderlineColor()}

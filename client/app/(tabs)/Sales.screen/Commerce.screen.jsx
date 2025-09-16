@@ -179,11 +179,14 @@ export default () => {
           ? "Crear comercio".toUpperCase()
           : "Actualizar comercio".toUpperCase()}
       </Text>
-      <Input label="Nombre" value={name} onChangeText={setName} ref={nameRef} />
+      <Input label="Nombre" value={name} onChangeText={setName} ref={nameRef} leftIcon="format-title" />
       <Input
         label="Descripción"
         value={description}
         onChangeText={setDescription}
+        leftIcon="view-agenda"
+        multiline
+        numberOfLines={3}
         ref={descriptionRef}
       />
       <FileInput

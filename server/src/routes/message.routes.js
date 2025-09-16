@@ -4,6 +4,7 @@ import {
   sendMessage,
   getConversation,
   getUserChats,
+  getCommerceChats,
   markAsRead
 } from '../controller/message.controller.js'
 
@@ -12,13 +13,16 @@ const router = Router()
 // Send a message
 router.post('/messages/send', authRequired, sendMessage)
 
-// Get conversation with a user
-router.get('/messages/conversation/:userId', authRequired, getConversation)
+// Get conversation with a commerce
+router.get('/messages/conversation/:commerceId', authRequired, getConversation)
 
 // Get user chats
-router.get('/messages/chats', authRequired, getUserChats)
+router.get('/messages/user-chats', authRequired, getUserChats)
+
+// Get commerce chats
+router.get('/messages/commerce-chats', authRequired, getCommerceChats)
 
 // Mark messages as read
-router.post('/messages/read/:roomId', authRequired, markAsRead)
+router.put('/messages/read/:commerceId', authRequired, markAsRead)
 
 export default router

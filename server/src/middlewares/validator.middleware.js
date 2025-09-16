@@ -3,7 +3,13 @@ export const validatorSchema = (schema) => (req, res, next) => {
     schema.parse(req.body)
     next()
   } catch (err) {
-    // console.log("[-] validator err -> ", err.issues)
-    return res.status(400).json({ err: err.issues[0].message, status: false })
+    console.log("[-] validator err -> ", err.issues)
+    return res
+      .status(400)
+      .json({
+        err: err.issues[0].message,
+        path: err.issues[0].path,
+      status: false,
+      })
   }
 }

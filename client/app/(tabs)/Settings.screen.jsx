@@ -21,7 +21,7 @@ export default () => {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Background />
-      <Text>Hola {user?.email}</Text>
+      <Text>Hola {user?.name}</Text>
       <Button onPress={handlePress} icon="logout" mode="contained-tonal">Logout</Button>
     </View>
   )

@@ -35,7 +35,7 @@ export const registerRequest = async (user) => {
 }
 
 export const profileRequest = async (token) => {
-  console.log("Token: ", token)
+  // console.log("Token: ", token)
   
   return await axios
   .post('/profile')

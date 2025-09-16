@@ -3,22 +3,29 @@ import User from "../models/user.model.js"
 import { createAccessToken } from "../libs/jwt.js"
 
 export const register = async (req, res) => {
-  const { email, password } = req.body
+  const { name, email, password } = req.body
   // console.log( email, password)
 
   try {
+    // The name is the part before the . and the lastname is the part after the . and before a number
+    // const name = email.split("@")[0].split(".")[0]
+    // const lastname = email.split("@")[0].split(".")[1] || ""
+    // // console.log("Name ", `${name} ${lastname}`)
+
     const passwordHash = await bcrypt.hash(password, 10)
     const newUser = new User({
+      name,
       email,
       passwordHash,
     })
     const user = await newUser.save()
     const token = await createAccessToken({ id: user._id })
-    // res.cookie("token", token)
+
     return res.json({
       user: {
         id: user._id,
         email: user.email,
+        name: user.name,
         createdAt: user.createdAt,
         updatedAt: user.updatedAt,
       },
@@ -26,7 +33,7 @@ export const register = async (req, res) => {
       status: true,
     })
   } catch (err) {
-    // console.log("[-] Register err: ", err)
+    console.log("[-] Register err: ", err)
     if (err?.code === 11000)
       return res
         .status(409)
@@ -64,6 +71,7 @@ export const login = async (req, res) => {
       user: {
         id: userFound._id,
         email: userFound.email,
+        name: userFound.name,
         createdAt: userFound.createdAt,
         updatedAt: userFound.updatedAt,
       },
@@ -82,10 +90,11 @@ export const profile = async (req, res) => {
       return res
         .status(400)
         .json({ message: "Usuario no encontrado", status: false })
-
+    
     return res.json({
       id: userFound._id,
       email: userFound.email,
+      name: userFound.name,
       createdAt: userFound.createdAt,
       updatedAt: userFound.updatedAt,
       status: true,
@@ -106,6 +115,7 @@ export const deleteUser = async (req, res) => {
     return res.json({
       id: userDeleted._id,
       email: userDeleted.email,
+      name: userDeleted.name,
       createdAt: userDeleted.createdAt,
       updatedAt: userDeleted.updatedAt,
       status: true,

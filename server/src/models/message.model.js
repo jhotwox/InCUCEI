@@ -7,9 +7,9 @@ const messageSchema = new mongoose.Schema(
       ref: 'User',
       required: true,
     },
-    receiver: {
+    commerce: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
+      ref: 'Commerce',
       required: true,
     },
     content: {
@@ -36,7 +36,7 @@ const messageSchema = new mongoose.Schema(
   }
 )
 
-messageSchema.index({ sender: 1, receiver: 1, createdAt: -1 })
+messageSchema.index({ sender: 1, commerce: 1, createdAt: -1 })
 messageSchema.index({ roomId: 1, createdAt: -1 })
 
 export default mongoose.model("Message", messageSchema)

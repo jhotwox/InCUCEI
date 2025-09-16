@@ -6,6 +6,9 @@ const loginSchema = z.object({
 })
 
 const registerSchema = z.object({
+  name: z
+    .string({ required_error: "El nombre es requerido" })
+    .min(2, { message: "El nombre debe tener mínimo 2 caracteres" }),
   email: z.string({ error: "El correo no puede estar vacío" }).email({ error: "Correo inválido" }),
   password: z.string().min(6, { error: "La contraseña debe tener al menos 6 caracteres" }),
   confirmPassword: z.string().min(6, { error: "La contraseña debe tener al menos 6 caracteres" })
