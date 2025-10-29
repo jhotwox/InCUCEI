@@ -23,10 +23,12 @@ export const sendChatbotMessage = async (req, res) => {
 
     const conversationId = `user_${userId}_chatbot`
 
+    // Optimized query with lean() for better performance
     const recentMessages = await ChatbotMessage.find({ conversationId, userId })
       .sort({ createdAt: -1 })
       .limit(10)
       .select("message response createdAt")
+      .lean() // Use lean for better performance
 
     const text = await geminiService.generateResponse(
       message,
@@ -99,27 +101,31 @@ export const getChatbotHistory = async (req, res) => {
 
     const conversationId = `user_${userId}_chatbot`
 
-    const messages = await ChatbotMessage.find({ conversationId, userId })
-      .sort({ createdAt: -1 })
-      .limit(parseInt(limit))
-      .skip((parseInt(page) - 1) * parseInt(limit))
-      .select("message response messageType createdAt metadata")
+    const limitNum = parseInt(limit)
+    const pageNum = parseInt(page)
+    const skip = (pageNum - 1) * limitNum
 
-    const totalMessages = await ChatbotMessage.countDocuments({
-      conversationId,
-      userId,
-    })
+    // Use lean() for better performance and fetch messages and count in parallel
+    const [messages, totalMessages] = await Promise.all([
+      ChatbotMessage.find({ conversationId, userId })
+        .sort({ createdAt: -1 })
+        .limit(limitNum)
+        .skip(skip)
+        .select("message response messageType createdAt metadata")
+        .lean(),
+      ChatbotMessage.countDocuments({ conversationId, userId })
+    ])
 
     console.log("returning messages...")
     return res.json({
       message: "Chatbot history retrieved",
       data: messages.reverse(),
       pagination: {
-        currentPage: parseInt(page),
-        totalPages: Math.ceil(totalMessages / parseInt(limit)),
+        currentPage: pageNum,
+        totalPages: Math.ceil(totalMessages / limitNum),
         totalMessages,
-        hasNextPage: parseInt(page) * parseInt(limit) < totalMessages,
-        hasPrevPage: parseInt(page) > 1,
+        hasNextPage: pageNum * limitNum < totalMessages,
+        hasPrevPage: pageNum > 1,
       },
       status: true,
     })

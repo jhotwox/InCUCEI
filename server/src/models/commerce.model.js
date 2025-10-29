@@ -23,6 +23,7 @@ const commerceSchema = new mongoose.Schema(
   }
 )
 
-// commerceSchema.index({ userId: 1 }, { unique: true })
+// Index for efficient queries by userId
+commerceSchema.index({ userId: 1 }, { unique: true })
 
 export default mongoose.model("Commerce", commerceSchema)

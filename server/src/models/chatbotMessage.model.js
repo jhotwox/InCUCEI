@@ -46,5 +46,6 @@ const chatbotMessageSchema = new mongoose.Schema(
 // Índices para optimizar consultas
 chatbotMessageSchema.index({ userId: 1, createdAt: -1 })
 chatbotMessageSchema.index({ conversationId: 1, createdAt: -1 })
+chatbotMessageSchema.index({ conversationId: 1, userId: 1, createdAt: -1 }) // Compound index for history queries
 
 export default mongoose.model("ChatbotMessage", chatbotMessageSchema)

@@ -126,5 +126,5 @@ export const deleteUser = async (req, res) => {
 }
 
 export const ping = async (req, res) => {
-  return await res.status(200).json({ message: "Servidor vivo!", status: true })
+  return res.status(200).json({ message: "Servidor vivo!", status: true })
 }

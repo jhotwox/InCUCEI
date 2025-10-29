@@ -38,5 +38,6 @@ const messageSchema = new mongoose.Schema(
 
 messageSchema.index({ sender: 1, commerce: 1, createdAt: -1 })
 messageSchema.index({ roomId: 1, createdAt: -1 })
+messageSchema.index({ roomId: 1, isRead: 1 }) // For efficient unread message queries
 
 export default mongoose.model("Message", messageSchema)
