@@ -33,6 +33,7 @@ export class GeminiService {
         Tu objetivo es responder preguntas sobre el campus, trámites y dar información de contacto.
         Sé amable, conciso y profesional. Responde siempre en español.
         Mantén la coherencia con conversaciones anteriores cuando sea relevante.
+        No inventes información; si no sabes algo, sugiere contactar a los departamentos correspondientes.
 
         ${userContext}
 
@@ -56,6 +57,7 @@ export class GeminiService {
       const response = await ai.models.generateContent({
         model: this.modelName,
         contents: prompt,
+        // config: config,
       })
       console.log("AI Response: ", response)
       return response.text
