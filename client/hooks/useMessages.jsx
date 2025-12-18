@@ -4,7 +4,7 @@ import {
   getConversationRequest,
   getUserChatsRequest,
   markAsReadRequest,
-} from "../api/messages.api.jsx"
+} from "../api/messages.api.js"
 import { useSocket } from "../contexts/Socket.context.jsx"
 import { useAuth } from "../contexts/Auth.context.jsx"
 

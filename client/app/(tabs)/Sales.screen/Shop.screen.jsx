@@ -3,7 +3,7 @@ import { FlatList, View } from "react-native"
 import { Text, useTheme } from "react-native-paper"
 import { Background, Input } from "../../../components"
 import { getAllComerces } from "../../../api/commerce.api"
-import { useSnackBar } from "../../../contexts/SnackBar.context"
+import { useToast } from "../../../contexts/Toast.context.jsx"
 import { CommerceCard } from "../../../components/shop/CommerceCard.jsx"
 import { useAuth } from "../../../contexts/Auth.context.jsx"
 
@@ -12,7 +12,7 @@ export default () => {
   const [commerces, setCommerces] = useState([])
 
   const theme = useTheme()
-  const { showSnack } = useSnackBar()
+  const { showToast } = useToast()
   const { user } = useAuth()
 
   useEffect(() => {
@@ -25,8 +25,8 @@ export default () => {
         .catch((err) => {
           console.log("Error fetching all commerces: ", err)
           if (err?.message && typeof err.message === "string")
-            showSnack(err.message, "error")
-          else showSnack("Error al obtener los comercios", "error")
+            showToast(err.message, "error")
+          else showToast("Error al obtener los comercios", "error")
         })
     }
 

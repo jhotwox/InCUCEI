@@ -1,7 +1,8 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react"
 import { io } from "socket.io-client"
 import { useAuth } from "./Auth.context"
-import { IP } from "../constants"
+
+
 
 const SocketContext = createContext()
 
@@ -18,7 +19,7 @@ export const SocketProvider = ({ children }) => {
   useEffect(() => {
     if (token && user) {
       // Conect to socket server
-      const newSocket = io(`http://${IP}:3000`, {
+      const newSocket = io(`http://${process.env.EXPO_PUBLIC_SERVER_IP}:3000`, {
         transports: ["websocket"],
         autoConnect: true,
       })

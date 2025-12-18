@@ -8,7 +8,7 @@ import {
   updateCommerce,
   deleteCommerce,
 } from "../../../api/commerce.api"
-import { useSnackBar } from "../../../contexts/SnackBar.context"
+import { useToast } from "../../../contexts/Toast.context"
 import { string } from "zod"
 
 const createFileObjectFromUrl = (url, type) => {
@@ -40,7 +40,7 @@ export default () => {
   const inputs = [nameRef, descriptionRef]
 
   const theme = useTheme()
-  const { showSnack } = useSnackBar()
+  const { showToast } = useToast()
 
   // useEffect(() => {
   //   console.log("Logo URL changed: ", logoUrl)
@@ -79,7 +79,7 @@ export default () => {
             return
           }
           console.error("Error fetching commerce data: ", err)
-          showSnack("Error cargando datos del comercio", "error")
+          showToast("Error cargando datos del comercio", "error")
         })
       // Replace this with actual data fetching logic
     }
@@ -114,11 +114,11 @@ export default () => {
         .then(({ data }) => {
           console.log("Create commerce data: ", data)
           setCommerce(data.commerce)
-          showSnack("Comercio creado correctamente", "success")
+          showToast("Comercio creado correctamente", "success")
         })
         .catch((err) => {
           console.error("Error creating commerce: ", err)
-          showSnack("Error creando comercio", "error")
+          showToast("Error creando comercio", "error")
         })
     } else {
       await updateCommerce(
@@ -131,12 +131,12 @@ export default () => {
         .then(({ data }) => {
           console.log("Update commerce data: ", data)
           setCommerce(data.commerce)
-          showSnack("Datos actualizados correctamente", "success")
+          showToast("Datos actualizados correctamente", "success")
         })
         .catch((err) => {
           console.log("Error updating commerce: ", err)
-          if (typeof err === "string") showSnack(err, "error")
-          else showSnack("Error actualizando los datos", "error")
+          if (typeof err === "string") showToast(err, "error")
+          else showToast("Error actualizando los datos", "error")
         })
     }
   }
@@ -150,11 +150,11 @@ export default () => {
         setDescription("")
         setLogoUrl(null)
         setBannerUrl(null)
-        showSnack("Comercio eliminado correctamente", "success")
+        showToast("Comercio eliminado correctamente", "success")
       })
       .catch((err) => {
         console.error("Error deleting commerce: ", err)
-        showSnack("Error eliminando el comercio", "error")
+        showToast("Error eliminando el comercio", "error")
       })
   }
 

@@ -5,7 +5,7 @@ import { loginStyles } from "../../styles/common.style"
 import { Button, useTheme } from "react-native-paper"
 import { router } from "expo-router"
 import { Background, Input } from "../../components"
-import { useSnackBar } from "../../contexts/SnackBar.context"
+import { useToast } from "../../contexts/Toast.context"
 import { useAuth } from "../../contexts/Auth.context"
 
 export default () => {
@@ -23,7 +23,7 @@ export default () => {
 
   const theme = useTheme()
   const { register, loading, error } = useAuth()
-  const { showSnack } = useSnackBar()
+  const { showToast } = useToast()
 
   // #region Register
   const handlePress = async () => {
@@ -31,7 +31,7 @@ export default () => {
     const { data } = await register(credentials).catch((err) => console.log("[-] Register screen: ", err))
 
     if (data?.token) {
-      showSnack("Usuario registrado exitosamente", "success")
+      showToast("Usuario registrado exitosamente", "success")
       router.replace("Home.screen")
     }
   }
@@ -49,7 +49,7 @@ export default () => {
       confirmPasswordRef.current?.shake()
       setConfirmPassErr(error?.message)
     } else if (error?.path === "") {
-      showSnack(error?.message, "error")
+      showToast(error?.message, "error")
     }
   }, [error])
 

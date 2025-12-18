@@ -6,7 +6,7 @@ import {
   loadHistory,
   deleteHistory,
   sendMessage as sendMessageRequest,
-} from "../api/chatbotMessage.api.jsx"
+} from "../api/chatbotMessage.api.js"
 
 export default () => {
   const [messages, setMessages] = useState([])

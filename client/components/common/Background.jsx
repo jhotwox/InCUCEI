@@ -8,6 +8,21 @@ import { topography } from '../../assets/backgrounds'
 
 const { width: WIDTH, height: HEIGHT } = Dimensions.get('window')
 
+/**
+ * Animated background component that renders a full-screen SVG path and continuously animates its position.
+ *
+ * @param {{background?: string|null, color?: string|null}} props
+ * @param {string|null} [background=null] - Background color for the container. If null, defaults to theme.colors.onSurfaceDisabled.
+ * @param {string|null} [color=null] - Fill color for the SVG path. If null, defaults to theme.colors.primary.
+ * @returns {JSX.Element} A view that fills the screen containing an animated SVG decorative background (pointerEvents set to 'none').
+ *
+ * @remarks
+ * - Uses useTheme() for default colors.
+ * - Uses useSharedValue, useAnimatedStyle and withRepeat/withTiming to drive a continuous translation animation.
+ * - Animation is started on focus via useFocusEffect.
+ * - The SVG dimensions depend on externally defined WIDTH and HEIGHT and the path data provided by topography.d.
+ */
+
 export default ({ background = null, color = null }) => {
   const theme = useTheme()
   const offset = useSharedValue(0)

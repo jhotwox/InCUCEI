@@ -120,8 +120,22 @@ InCUCEI es una plataforma integral para la comunidad del Centro Universitario de
 
 ---
 
+##  Ubicaciones Clave
+### Frontend (client/)
+- `layout/Providers.layout.jsx`: Tema de colores de la app.
+- 
+
+---
+
+## Lista de contextos
+- `contexts/Snackbar.context.jsx`: Manejo de notificaciones tipo snackbar.
+- `contexts/Auth.context.jsx`: Manejo de autenticación y estado del usuario.
+- `contexts/Socket.context.jsx`: Conexión y manejo de Socket.IO.
+
+---
+
 ## Contacto y Recursos
-- Documentación técnica y endpoints: consultar los archivos README.md y los esquemas en `/server/src/schemas/`.
+- Documentación técnica: consultar los archivos README.md y los esquemas en `/server/src/schemas/`.
 - Para dudas sobre integración de Gemini, revisar `/server/src/services/gemini.service.js`.
 - Para nuevas funcionalidades, seguir la arquitectura modular y aprovechar los contextos y hooks existentes.
 

@@ -7,14 +7,50 @@ import { loginStyles } from "../../styles/common.style"
 import { Button, useTheme } from "react-native-paper"
 import { router } from "expo-router"
 import { Background, Input } from "../../components"
-import { useSnackBar } from "../../contexts/SnackBar.context"
+import { useToast } from "../../contexts/Toast.context"
 import { useAuth } from '../../contexts/Auth.context'
 
 // slice de toast para el futuro
+/**
+ * Login screen component (default export).
+ *
+ * Renders a login form with email and password inputs, client-side validation,
+ * animated transitions, and buttons to submit credentials or navigate to the
+ * registration screen. Integrates with app theme, auth and toast hooks.
+ *
+ * State:
+ * - email {string} - controlled email input, initialised from EXPO_PUBLIC_USER_EMAIL env var or empty string.
+ * - password {string} - controlled password input (default "123456" in selection).
+ * - emailErr {string} - email field error message.
+ * - passErr {string} - password field error message.
+ * - enable {boolean} - whether the submit button should be enabled (true when email present and password length > 5).
+ *
+ * Refs:
+ * - emailRef {React.RefObject} - used to shake the email input on validation errors and to focus/clear as needed.
+ * - passwordRef {React.RefObject} - used to shake the password input and focus from the email input.
+ *
+ * Hooks / side effects:
+ * - useTheme() supplies styling/theme colors.
+ * - useAuth() provides { login, loading, error } where `login(credentials)` returns a response with `data.token` on success.
+ *   - handlePress: constructs { email, password }, calls login, logs the response, and shows a success toast when a token is received.
+ * - useToast() provides showToast(message, type) for success/error notifications.
+ * - useEffect watching `error`: if error.path === "email" or "password" the corresponding field is shaken and an error state set;
+ *   if error.path === "" an error toast is shown.
+ * - useEffect watching `email` and `password`: updates `enable` based on simple validation (email non-empty and password length > 5).
+ *
+ * UI behavior:
+ * - Inputs clear their respective error state on change.
+ * - Email input uses keyboard/email optimizations and moves focus to password on submit.
+ * - Password input supports secure entry and limits input length.
+ * - Submit button is disabled when `!enable` or while `loading` and shows a loading indicator when `loading`.
+ *
+ * @component
+ * @returns {JSX.Element} A React element representing the login screen.
+ */
 
 export default () => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("123456")
+  const [email, setEmail] = useState(process.env.EXPO_PUBLIC_USER_EMAIL || "")
+  const [password, setPassword] = useState(process.env.EXPO_PUBLIC_USER_PASSWORD || "")
   const [emailErr, setEmailErr] = useState("")
   const [passErr, setPassErr] = useState("")
   const [enable, setEnable] = useState(true)
@@ -24,13 +60,15 @@ export default () => {
 
   const theme = useTheme()
   const { login, loading, error } = useAuth()
-  const { showSnack } = useSnackBar()
+  const { showToast } = useToast()
 
   // #region Login
   const handlePress = async () => {
     const credentials = { email, password }
     const response = await login(credentials).catch((err) => console.log("[-] Login screen: ", err))
     console.log("[+] response -> ", response.data)
+    if (response?.data?.token)
+      showToast("¡Inicio de sesión exitoso!", "success")
   }
   
 
@@ -43,7 +81,7 @@ export default () => {
       passwordRef.current?.shake()
       setPassErr(error?.message)
     } else if (error?.path === "") {
-      showSnack(error?.message, "error")
+      showToast(error?.message, "error")
     }
   }, [error])
 

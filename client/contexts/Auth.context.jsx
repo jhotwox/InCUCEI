@@ -8,6 +8,46 @@ import { handleZodError } from "../handler/zod.handler"
 import { handleAxiosError } from "../handler/axios.handler"
 import { router } from "expo-router"
 
+/**
+ * @type {Object} user
+ * @property {string} id
+ * @property {string} email
+ * @property {string} name
+ */
+
+/**
+ * @typedef {Object} error
+ * @property {string} message
+ * @property {string} path
+ * @property {number} id
+ */
+
+/**
+ * AuthContext para manejo de autenticación global en la app InCUCEI.
+ * Provee estado y funciones para login, registro, perfil y logout.
+ *
+ * @module AuthContext
+ * @typedef {Object} AuthContextValue
+ * @property {string|null} token - JWT del usuario autenticado.
+ * @property {Object|null} user - Datos del usuario autenticado.
+ * @property {boolean} loading - Estado de carga de operaciones.
+ * @property {Object|null} error - Último error ocurrido.
+ * @property {function(Object): Promise<Object>} login - Inicia sesión con credenciales.
+ * @property {function(Object): Promise<Object>} register - Registra usuario con credenciales.
+ * @property {function(): Promise<Object>} profile - Obtiene perfil del usuario autenticado.
+ * @property {function(): Promise<void>} logout - Cierra sesión y elimina token.
+ *
+ * @example
+ * import { useAuth } from "../contexts/Auth.context"
+ * const { login, register, user, token, logout } = useAuth()
+ *
+ * @see contexts/Auth.context.jsx
+ * @see api/auth.api.js
+ * @see validators/auth.validator.js
+ * @see handler/zod.handler.js
+ * @see handler/axios.handler.js
+ */
+
 const AuthContext = createContext()
 
 export function AuthProvider({ children }) {
@@ -53,8 +93,9 @@ export function AuthProvider({ children }) {
         }
       }
     } catch (err) {
-      console.error("Error loading token:", err)
-      setError(err)
+      console.log("Error loading token:", err)
+      const [message, path] = handleAxiosError(err)
+      setError({message, path, id: Date.now()})
     } finally {
       setLoading(false)
     }

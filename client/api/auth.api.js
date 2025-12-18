@@ -8,12 +8,13 @@ export const loginRequest = async (user) => {
   .post('/login', user)
   .catch((err) => {
     console.log("[-] Login: ", err)
-    console.log("[-] Login message: ", err.response.data.message)
-    if (err.response.data.message)
-      throw err.response.data.message
+    console.log("[-] Login code: ", err.code)
+    // console.log("[-] Login message: ", err.response.data.message)
+    // if (err.response.data.message)
+    //   throw err.response.data.message
     
-    if (err.response.data.err)
-      throw err.response.data.err
+    // if (err.response.data.err)
+    //   throw err.response.data.err
     
     throw err
   })

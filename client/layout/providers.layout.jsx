@@ -1,5 +1,5 @@
 import { PaperProvider, MD3LightTheme } from "react-native-paper"
-import { SnackBarProvider } from "../contexts/SnackBar.context"
+import { ToastProvider } from "../contexts/Toast.context"
 import { AuthProvider } from "../contexts/Auth.context"
 import { SocketProvider } from "../contexts/Socket.context"
 
@@ -62,13 +62,13 @@ export const Providers = ({ children }) => {
 
   return (
     <PaperProvider theme={theme}>
-      <SnackBarProvider>
+      <ToastProvider>
         <AuthProvider>
           <SocketProvider>
             {children}
           </SocketProvider>
         </AuthProvider>
-      </SnackBarProvider>
+      </ToastProvider>
     </PaperProvider>
   )
 }

@@ -1,6 +1,16 @@
 import { forwardRef, useImperativeHandle } from 'react'
 import Animated, { useSharedValue, useAnimatedStyle, interpolate, Extrapolation, withTiming } from 'react-native-reanimated'
 
+/**
+ * ShakeView - a forwardRef Animated.View wrapper that exposes an imperative `shake()` method.
+ *
+ * @param {Object} props - Component properties.
+ * @param {import('react-native').StyleProp<import('react-native').ViewStyle>} [props.style={}] - Optional style applied to the Animated.View container.
+ * @param {React.ReactNode} [props.children] - Child elements to be rendered inside the Animated.View.
+ * @param {React.Ref<{shake: () => void}>} ref - Forwarded ref exposing a `shake()` method which triggers a short horizontal shake animation.
+ * @returns {JSX.Element} An Animated.View that can be shaken programmatically via the ref.
+ */
+
 export default forwardRef(({ style = {}, children }, ref) => {
   const animated = useSharedValue(0)
 
