@@ -352,7 +352,7 @@ export default forwardRef(
         <View>
           <Text
             variant="bodyMedium"
-            style={{ color: theme.colors.onSurface, marginBottom: 8 }}
+            style={{ color: theme.colors.onSurface }}
           >
             {label === "" ? null : label}
           </Text>

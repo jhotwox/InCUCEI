@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { View } from "react-native"
 import { Button, Text, useTheme } from "react-native-paper"
-import { Background, Input, FileInput } from "../../../components"
+import { Background, Input, FileInput, BlurCard } from "../../../components"
 import {
   getCommerce,
   createCommerce,
@@ -9,7 +9,6 @@ import {
   deleteCommerce,
 } from "../../../api/commerce.api"
 import { useToast } from "../../../contexts/Toast.context"
-import { string } from "zod"
 
 const createFileObjectFromUrl = (url, type) => {
   if (!url) return null
@@ -81,7 +80,6 @@ export default () => {
           console.error("Error fetching commerce data: ", err)
           showToast("Error cargando datos del comercio", "error")
         })
-      // Replace this with actual data fetching logic
     }
 
     fetchCommerce()
@@ -179,32 +177,46 @@ export default () => {
           ? "Crear comercio".toUpperCase()
           : "Actualizar comercio".toUpperCase()}
       </Text>
-      <Input label="Nombre" value={name} onChangeText={setName} ref={nameRef} leftIcon="format-title" />
-      <Input
-        label="Descripción"
-        value={description}
-        onChangeText={setDescription}
-        leftIcon="view-agenda"
-        multiline
-        numberOfLines={3}
-        ref={descriptionRef}
-      />
-      <FileInput
-        placeholder="Selecciona logo"
-        value={logoUrl}
-        // selectedFile={logoUrl}
-        onFileSelect={handleLogoSelect}
-        type="logo"
-        ref={logoUrlRef}
-      />
-      <FileInput
-        // label="Imagen de productos"
-        placeholder="Selecciona banner"
-        value={bannerUrl}
-        onFileSelect={handleBannerSelect}
-        type="banner"
-        ref={bannerRef}
-      />
+
+      <BlurCard styles={{ marginTop: 8, paddingVertical: 8, paddingHorizontal: 18 }}>
+          <Input
+            label="Nombre"
+            value={name}
+            onChangeText={setName}
+            ref={nameRef}
+            leftIcon="format-title"
+            style={{ marginTop: 8 }}
+          />
+          <Input
+            label="Descripción"
+            value={description}
+            onChangeText={setDescription}
+            leftIcon="view-agenda"
+            multiline
+            numberOfLines={3}
+            ref={descriptionRef}
+          />
+      </BlurCard>
+
+      <BlurCard styles={{ paddingBottom: 20, paddingHorizontal: 18 }}>
+        <FileInput
+          placeholder="Selecciona logo"
+          value={logoUrl}
+          // selectedFile={logoUrl}
+          onFileSelect={handleLogoSelect}
+          type="logo"
+          ref={logoUrlRef}
+        />
+        <FileInput
+          // label="Imagen de productos"
+          placeholder="Selecciona banner"
+          value={bannerUrl}
+          onFileSelect={handleBannerSelect}
+          type="banner"
+          ref={bannerRef}
+        />
+      </BlurCard>
+      
       <Button
         icon={!commerce ? "plus" : "content-save"}
         mode="contained"

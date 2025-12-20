@@ -72,12 +72,14 @@ export class GeminiService {
         - Servicios Escolares: servicios.escolares@cucei.udg.mx
         - Coordinación de Informática: coordinacion.di@cucei.udg.mx
         - Teléfono principal: +52 33 1378-5900
+        - Sitio web principal: https://www.cucei.udg.mx/
 
         INSTRUCCIONES IMPORTANTES:
         - Si el usuario pregunta sobre algo mencionado en el historial, haz referencia a conversaciones previas
         - Mantén un tono conversacional y natural
         - Si no sabes algo específico, sugiere contactar directamente a los departamentos
         - Recuerda detalles importantes de conversaciones anteriores
+        - Si proporcionas una dirección de correo, teléfono, sitio web, etc. Enviar como hyperlink en formato markdown
         `
 
       const prompt = `${systemPrompt}\n\nPregunta actual del estudiante: ${message}`

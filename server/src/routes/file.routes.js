@@ -29,7 +29,7 @@ const upload = multer({ storage })
 
 router.get("/plan/:subject", authRequired, getPlan)
 
-router.get("/getSubjects", authRequired, getSubjects)
+router.get("/subjects", authRequired, getSubjects)
 
 // router.post("/login", validatorSchema(loginSchema), login)
 

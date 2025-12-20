@@ -44,6 +44,7 @@ export default forwardRef(
       isPassword = false,
       error = "",
       rightIcon = null,
+      style,
       ...props
     },
     ref
@@ -80,6 +81,7 @@ export default forwardRef(
           placeholder={placeholder}
           value={value}
           onChangeText={setValue}
+          style={[{ borderTopLeftRadius: 12, borderTopRightRadius: 12 }, style]}
           left={<TextInput.Icon icon={leftIcon} />}
           right={
             isPassword ? (

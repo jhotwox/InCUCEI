@@ -1,4 +1,4 @@
-import axios from "../api/axios"
+import axios from "./axios"
 
 export const loadHistory = async () => {
   return await axios.get("/chatbot/history").catch((err) => {

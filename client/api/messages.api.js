@@ -1,4 +1,4 @@
-import axios from "../api/axios"
+import axios from "./axios"
 
 export const sendMessageRequest = async (
   commerceId,

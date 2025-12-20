@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken'
 import { TOKEN } from '../config.js'
 
+// Middleware to validate JWT token and add user info to request (JWT have user id encoded)
 export const authRequired = (req, res, next) => {
   console.log("[+] Validating token...")
   const authHeader = req.headers.authorization

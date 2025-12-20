@@ -3,19 +3,23 @@ import { View, FlatList, KeyboardAvoidingView, Platform } from "react-native"
 import {
   TextInput,
   Button,
+  IconButton,
   Text,
   Card,
   ActivityIndicator,
+  useTheme,
 } from "react-native-paper"
 import useChatbot from "../../hooks/useChatBot"
 import { StyleSheet } from "react-native"
-import { Background } from "../../components"
+import { Background, MarkdownText } from "../../components"
 
-export default function () {
+export default () => {
   const [inputMessage, setInputMessage] = useState("")
   const flatListRef = useRef(null)
+  
   const { messages, sendMessage, loading, isTyping, loadingChatHistory } =
     useChatbot()
+  const theme = useTheme()
 
   const handleSendMessage = async () => {
     if (!inputMessage.trim() || loading) return
@@ -39,15 +43,21 @@ export default function () {
         <Card
           style={[
             styles.messageCard,
-            item.isUser ? styles.userCard : styles.botCard,
+            item.isUser ? { backgroundColor: theme.colors.secondary } : styles.botCard,
             item.isError && styles.errorCard,
           ]}
         >
           <Card.Content>
-            <Text style={item.isUser ? styles.userText : styles.botText}>
+            {item.isUser ? (
+            <Text style={styles.userText}>
               {item.text}
             </Text>
-            <Text style={styles.timestamp}>
+            ) : (
+              <MarkdownText style={styles.botText}>
+                {item.text}
+              </MarkdownText>
+            )}
+            <Text style={[styles.timestamp, item.isUser && styles.myTimestamp]}>
               {item.timestamp.toLocaleTimeString()}
             </Text>
           </Card.Content>
@@ -85,6 +95,7 @@ export default function () {
       style={styles.container}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
+      <Background background={theme.colors.onPrimary}/>
       <View style={styles.header}>
         <Text variant="titleLarge">🤖 Asistente CUCEI</Text>
         <Text variant="bodySmall">Tu asistente académico personal</Text>
@@ -98,6 +109,7 @@ export default function () {
           item?.id ? item?.id.toString() : `message-${index}`
         }
         style={styles.messagesList}
+        contentContainerStyle={{ paddingBottom: 16 }}
         ListFooterComponent={renderTypingIndicator}
         showsVerticalScrollIndicator={false}
       />
@@ -111,29 +123,24 @@ export default function () {
           multiline
           disabled={loading}
         />
-        <Button
+        <IconButton
+          icon={loading ? "progress-clock" : "send"}
           mode="contained"
           onPress={handleSendMessage}
           disabled={!inputMessage.trim() || loading}
           style={styles.sendButton}
-        >
-          {loading ? "⏳" : "📤"}
-        </Button>
+          iconColor="#FFF"
+          containerColor={theme.colors.primary}
+        />
       </View>
     </KeyboardAvoidingView>
   )
-  // return (
-  //   <>
-  //     <Background />
-  //     <Text>Home screen</Text>
-  //   </>
-  // )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f5f5f5",
+    backgroundColor: "transparent",
   },
   header: {
     padding: 16,
@@ -141,10 +148,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderBottomWidth: 1,
     borderBottomColor: "#e0e0e0",
+    paddingTop: 32,
   },
   messagesList: {
     flex: 1,
     padding: 8,
+    // paddingBottom: 16,
   },
   messageContainer: {
     marginVertical: 4,
@@ -173,6 +182,9 @@ const styles = StyleSheet.create({
   botText: {
     color: "#333",
   },
+  myTimestamp: {
+    color: "#f6f6f6",
+  },
   timestamp: {
     fontSize: 10,
     opacity: 0.7,
@@ -189,15 +201,20 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     flexDirection: "row",
-    padding: 16,
+    paddingHorizontal: 16,
+    paddingVertical: 8,
     backgroundColor: "#fff",
     alignItems: "flex-end",
   },
   textInput: {
     flex: 1,
+    height: 32,
     marginRight: 8,
   },
   sendButton: {
-    minWidth: 60,
+    width: 40,
+    height: 40,
+    justifyContent: "center",
+    borderRadius: 20
   },
 })
