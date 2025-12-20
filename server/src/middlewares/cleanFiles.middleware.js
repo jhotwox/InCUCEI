@@ -1,7 +1,7 @@
-import fs from "fs"
+import fs from "fs/promises"
 import path from "path"
 
-export const cleanExistingFiles = (req, res, next) => {
+export const cleanExistingFiles = async (req, res, next) => {
   const { imageType } = req.query
   const userId = req.user.id
   const baseFilename = `${imageType}_${userId}`
@@ -9,19 +9,29 @@ export const cleanExistingFiles = (req, res, next) => {
 
   try {
     if (imageType === "logo" || imageType === "banner") {
-      if (fs.existsSync(uploadDir)) {
-        const files = fs.readdirSync(uploadDir)
+      try {
+        // Check if directory exists
+        await fs.access(uploadDir)
+        const files = await fs.readdir(uploadDir)
 
-        files
+        // Delete matching files in parallel
+        const deletePromises = files
           .filter((file) => file.startsWith(baseFilename + "."))
-          .forEach((file) => {
+          .map(async (file) => {
             try {
-              fs.unlinkSync(path.join(uploadDir, file))
+              await fs.unlink(path.join(uploadDir, file))
               console.log(`Deleted file: ${file}`)
             } catch (err) {
               console.error(`Error deleting file ${file}:`, err)
             }
           })
+        
+        await Promise.all(deletePromises)
+      } catch (err) {
+        // Directory doesn't exist or other error, continue
+        if (err.code !== 'ENOENT') {
+          console.error("Error accessing upload directory:", err)
+        }
       }
     } else {
       return res

@@ -76,7 +76,8 @@ export const getConversation = async (req, res) => {
       .populate("sender", "email name")
       .populate("commerce", "name userId")
       .sort({ createdAt: 1 }) // Sort by creation date ascending
-      .limit(50) // Limit to last 50 messages
+      .limit(100) // Increased limit to 100 messages
+      .lean() // Use lean for better performance when not modifying documents
 
     return res.json({
       messages: "Conversation fetched successfully",
