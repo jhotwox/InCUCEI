@@ -96,3 +96,6 @@ cd server
 npm i
 npm run dev
 ```
+
+
+Agregue algo y aprendi varias cosas 
