@@ -75,3 +75,24 @@ Carpeta chatbot-cucei-assistant es el de verdad
 - [ ] Agregar informacion de contacto real para cada departamento, division, etc
 - [ ] Limitar lo que dice que es capas de hacer cuando preguntas quien es
 
+## Instalación del proyecto
+``` BASH
+git clone https://github.com/jhotwox/InCUCEI
+```
+
+#### Mover el archivo .env (El que mande con la etiqueta)
+
+> Abrir proyecto en visual studio code
+> Crear dos terminales en visual studio code, en la primera de ellas:
+``` BASH
+cd client
+npm i
+npx expo start
+```
+
+> En la segunda de ellas
+``` BASH
+cd server
+npm i
+npm run dev
+```

@@ -132,9 +132,14 @@ export function AuthProvider({ children }) {
       console.log("[-] Auth context login error: ", err)
 
       if (err instanceof ZodError) [message, path] = handleZodError(err)
-      else if (err instanceof AxiosError)
-        [message, path] = handleAxiosError(err)
-      else if (typeof err === "string") {
+      else if (err instanceof AxiosError) {
+        console.log("is axios error")
+        try {
+          [message, path] = handleAxiosError(err)
+        } catch (axiosErr) {
+          console.log("[-] Error handling axios error: ", axiosErr)
+        }
+      } else if (typeof err === "string") {
         message = err
       } else if (Array.isArray(err)) {
         message = err.join(", ")
@@ -142,8 +147,9 @@ export function AuthProvider({ children }) {
         message = err.message
         path = err.stack
       }
-
+      
       setError({ message, path, id: Date.now() })
+      console.log("Error seteado")
     } finally {
       setLoading(false)
     }

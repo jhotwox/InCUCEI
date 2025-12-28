@@ -65,6 +65,7 @@ export default () => {
   // #region Login
   const handlePress = async () => {
     const credentials = { email, password }
+    console.log("Credentials: ", { email, password })
     const response = await login(credentials).catch((err) => console.log("[-] Login screen: ", err))
     console.log("[+] response -> ", response.data)
     if (response?.data?.token)
@@ -81,6 +82,8 @@ export default () => {
       passwordRef.current?.shake()
       setPassErr(error?.message)
     } else if (error?.path === "") {
+      console.log("General")
+      console.log("Mesage in login: ", error?.message)
       showToast(error?.message, "error")
     }
   }, [error])
