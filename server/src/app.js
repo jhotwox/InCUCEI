@@ -12,7 +12,7 @@ import fileRoutes from "./routes/file.routes.js"
 import messageRoutes from "./routes/message.routes.js"
 import commerceRoutes from "./routes/commerce.routes.js"
 import chatbotRoutes from "./routes/chatbot.routes.js"
-import { GeminiService } from "./services/gemini.service.js"
+import { GeminiService } from "./services/gemini/index.js"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -42,7 +42,7 @@ app.use("/files", express.static(path.join(__dirname, "files")))
 app.use("/uploads", express.static(path.join(__dirname, "../uploads")))
 
 app.use("/api", userRoutes)
-app.use("/api", fileRoutes)
+app.use("/api/file/", fileRoutes)
 app.use("/api", messageRoutes)
 app.use("/api", commerceRoutes)
 app.use("/api", chatbotRoutes)

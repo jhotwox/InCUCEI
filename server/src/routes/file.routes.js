@@ -27,9 +27,11 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage })
 
-router.get("/plan/:subject", authRequired, getPlan)
+router.get("/find/:subject", authRequired, getPlan)
 
 router.get("/subjects", authRequired, getSubjects)
+
+// router.get("/exist/:subject", authRequired, subjectExist)
 
 // router.post("/login", validatorSchema(loginSchema), login)
 

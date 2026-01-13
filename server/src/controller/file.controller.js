@@ -1,54 +1,45 @@
-import path from "path"
-import fs from "fs"
-import { fileURLToPath } from "url"
-import { studyPlanData } from "../data/study_plan.js"
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+import { subjectsData } from "../data/subjects.data.js"
+import { getStudyPlan, getAllSubjects } from "../services/subjects.service.js"
+import { romanToArabic, IDontLikeTildesAnymore } from "../libs/string.utils.js"
 
 export const getPlan = async (req, res) => {
   const { subject } = req.params
+  let fomattedSubject = subject.toLowerCase()
+  
+  try {
+    // Format subject
+    fomattedSubject = romanToArabic(fomattedSubject)
+    fomattedSubject = IDontLikeTildesAnymore(fomattedSubject)
 
-  const subjectData = studyPlanData.subjects[subject.toLowerCase()]
-
-  if (!subjectData) {
+    // Get study plan
+    const response = getStudyPlan(fomattedSubject)
+    return res.json(response)
+  } catch (error) {
     return res
-      .status(404)
-      .json({ message: "Materia no encontrada", status: false })
+      .status(error.status || 500)
+      .json({ message: error.message || "Error interno del servidor", status: false })
   }
-
-  const filePath = path.join(__dirname, "../files/study_plan", subjectData.file)
-
-  if (!fs.existsSync(filePath)) {
-    return res
-      .status(404)
-      .json({ message: "Archivo no encontrado", status: false })
-  }
-
-  const host = process.env.HOST || "localhost"
-  const port = process.env.PORT || "3000"
-  const protocol = process.env.NODE_ENV === "production" ? "https" : "http"
-
-  const serverUrl = `${protocol}://${host}:${port}/files/study_plan/${subjectData.file}`
-  console.log("Server URL:", serverUrl)
-  console.log("full host:", host + ":" + port)
-
-  return res.json({
-    data: {
-      subject: subjectData.name,
-      code: subjectData.code,
-      file: subjectData.file,
-      path: serverUrl,
-    },
-    status: true,
-  })
 }
 
 export const getSubjects = async (req, res) => {
-  const subjects = Object.entries(studyPlanData.subjects).map(
+  const subjects = getAllSubjects()
+
+  return res.json({ data: subjects, status: true })
+}
+
+// Not used currently
+export const getSubjectsByCarrer = async (req, res) => {
+  const career = req.params.career.toUpperCase()
+  if (!subjectsData[career]) {
+    return res
+      .status(404)
+      .json({ message: "Carrera no encontrada", status: false })
+  }
+
+  const subjects = Object.entries(subjectsData[career]).map(
     ([key, subject]) => ({
       key,
-      name: subject.name,
+      names: subject.names,
       code: subject.code,
     })
   )
@@ -72,6 +63,5 @@ export const uploadFile = async (req, res) => {
   })
 }
 
-export const ping = async (req, res) => {
-  return await res.status(200).json({ message: "Servidor vivo!", status: true })
-}
+export const ping = async (req, res) =>
+  await res.status(200).json({ message: "Servidor vivo!", status: true })
