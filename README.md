@@ -9,7 +9,7 @@ MONGO CONNECTION: mongodb://admin:admin123@localhost:27017
 mongosh "mongodb+srv://incucei.ldif0fo.mongodb.net/" --apiVersion 1 --username <username> --password <password>
 ```
 
-``` BASH  
+``` BASH
 use InCUCEI
 db.chatbot.insertOne( { x: 1 } );
 ```
@@ -80,17 +80,28 @@ Carpeta chatbot-cucei-assistant es el de verdad
 git clone https://github.com/jhotwox/InCUCEI
 ```
 
-#### Mover el archivo .env (El que mande con la etiqueta)
+#### Mover el archivo .env del cliente dentro de la carpeta `client` y cambiar los siguientes valores del archivo:
+- Cambiar correo electronico por el propio
+- Cambiar contraseña por la propia
+- Cambiar la IP de `EXPO_PUBLIC_SERVER_IP` por la IP de tu maquina
+
+##### Para ver la IP en windows, dentro de la terminal escribir el siguiente comando:
+``` PS
+ipconfig
+```
+
+#### Mover el archivo .env del server dentro de la carpeta `server`
 
 > Abrir proyecto en visual studio code
-> Crear dos terminales en visual studio code, en la primera de ellas:
+>
+> Crear dos terminales (puede ser dentro de visual studio code), en la primera de ellas escribir:
 ``` BASH
 cd client
 npm i
 npx expo start
 ```
 
-> En la segunda de ellas
+> En la segunda de ellas escribir:
 ``` BASH
 cd server
 npm i

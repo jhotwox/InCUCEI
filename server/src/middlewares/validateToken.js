@@ -3,7 +3,7 @@ import { TOKEN } from '../config.js'
 
 // Middleware to validate JWT token and add user info to request (JWT have user id encoded)
 export const authRequired = (req, res, next) => {
-  console.log("[+] Validating token...")
+  // console.log("[+] Validating token...")
   const authHeader = req.headers.authorization
   const token = authHeader && authHeader.startsWith('Bearer ')
     ? authHeader.slice(7)

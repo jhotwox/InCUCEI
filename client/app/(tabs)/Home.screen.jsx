@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from "react"
 import { View, FlatList, KeyboardAvoidingView, Platform } from "react-native"
 import {
   TextInput,
-  Button,
   IconButton,
   Text,
   Card,
@@ -28,6 +27,11 @@ export default () => {
     setInputMessage("")
 
     await sendMessage(message).catch(console.error)
+  }
+
+  const handleContentSizeChange = () => {
+    if (!loadingChatHistory)
+      flatListRef.current?.scrollToEnd({ animated: false })
   }
 
   const renderMessage = ({ item }) => {
@@ -81,11 +85,19 @@ export default () => {
     )
   }
 
+  // Auto-scroll al final cuando se carga el historial
+  useEffect(() => {
+    if (messages.length > 0 && !loadingChatHistory)
+      setTimeout(() => {
+        flatListRef.current?.scrollToEnd({ animated: false })
+      }, 100)
+  }, [messages.length])
+
   useEffect(() => {
     // Auto-scroll al final cuando hay nuevos mensajes
-    flatListRef.current?.scrollToEnd({ animated: true })
-  }, [messages])
-  // }, [messages, isTyping])
+    if (!loadingChatHistory && messages.length > 0)
+      flatListRef.current?.scrollToEnd({ animated: true })
+  }, [messages.length, loadingChatHistory])
 
   if (loadingChatHistory)
     return <ActivityIndicator style={{ flex: 1 }} size="large" />
@@ -112,6 +124,7 @@ export default () => {
         contentContainerStyle={{ paddingBottom: 16 }}
         ListFooterComponent={renderTypingIndicator}
         showsVerticalScrollIndicator={false}
+        onContentSizeChange={handleContentSizeChange}
       />
 
       <View style={styles.inputContainer}>

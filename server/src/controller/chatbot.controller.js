@@ -1,4 +1,4 @@
-import { GeminiService } from "../services/gemini.service.js"
+import { GeminiService } from "../services/gemini/index.js"
 import ChatbotMessage from "../models/chatbotMessage.model.js"
 
 const geminiService = new GeminiService()
