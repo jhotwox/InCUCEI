@@ -1,4 +1,4 @@
-import { getStudyPlan, getSubjectByName } from '../subjects.service.js'
+import { getMaterial, getStudyPlan, getSubjectByName } from '../subjects.service.js'
 import { formatSubjectName } from "../../libs/string.utils.js"
 import { ERROR_MESSAGES } from './gemini.config.js'
 
@@ -8,9 +8,31 @@ import { ERROR_MESSAGES } from './gemini.config.js'
  * Handler para obtener material de estudio de una materia
  */
 export function handleGetSubjectMaterial(subject) {
-  const result = `El material de estudio para la materia ${subject} está disponible en la plataforma educativa de CUCEI.`
-  console.log(`[+] Subject Material Info: ${result}`)
-  return result
+  try {
+    const formattedSubject = formatSubjectName(subject)
+    const foundSubject = getSubjectByName(formattedSubject)
+
+    if (!foundSubject) {
+      console.log(`[!] Subject not found: ${subject}`)
+      return ERROR_MESSAGES.subjectNotFound(subject)
+    }
+
+    console.log(`[+] Found Subject: ${JSON.stringify(foundSubject)}`)
+    const materialResponse = getMaterial(foundSubject.key, foundSubject.career)
+    
+    const result = JSON.stringify({
+      subject: materialResponse.data.subject,
+      code: materialResponse.data.code,
+      file: materialResponse.data.file,
+      path: materialResponse.data.path
+    })
+    
+    console.log(`[+] Material Result: ${result}`)
+    return result
+  } catch (error) {
+    console.error("Error fetching material: ", error)
+    return ERROR_MESSAGES.materialError(subject)
+  }
 }
 
 /**

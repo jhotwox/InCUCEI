@@ -4,6 +4,10 @@ chatbot/.env
 chatbot-cucei-assistant/.env
 client/.env
 
+# Config files
+.vscode/
+.idea/
+
 #Express
 ## Node.js dependencies
 server/node_modules/

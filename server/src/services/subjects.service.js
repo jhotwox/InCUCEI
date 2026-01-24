@@ -84,3 +84,40 @@ export const getStudyPlan = (subject, career = null) => {
     status: true,
   }
 }
+
+export const getMaterial = (subject, carrer = null) => {
+  let subjectData = null;
+
+  if (carrer) {
+    subjectData = subjectsData[carrer][subject.toLowerCase()]
+  } else {
+    const foundSubject = getAllSubjects().find((subj) => subj.key === subject.toLowerCase())
+
+    if (foundSubject)
+      subjectData = subjectsData[foundSubject.carrer][subject.toLowerCase()]
+  }
+
+  if (!subjectData)
+    throw new Error("Material no encontrado", 404)
+
+  const filePath = path.join(__dirname, '../files/material', subjectData.files.material);
+
+  if (!fs.existsSync(filePath))
+    throw new Error("Archivo no encontrado", 404);
+
+  const host = process.env.HOST || "localhost"
+  const port = process.env.PORT || "3000"
+  const protocol = process.env.NODE_ENV === "production" ? "https" : "http"  
+
+  const serverUrl = `${protocol}://${host}:${port}/files/material/${subjectData.files.material}`;
+
+  return {
+    data: {
+      subject: subjectData.names ? subjectData.names[0] : subject,
+      code: subjectData.code,
+      file: subjectData.files.material,
+      path: serverUrl,
+    },
+    status: true,
+  }
+}

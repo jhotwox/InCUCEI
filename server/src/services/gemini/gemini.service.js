@@ -1,4 +1,4 @@
-import { AI, MODEL_NAME, ERROR_MESSAGES } from './gemini.config.js'
+import { getGeminiAI, MODEL_NAME, ERROR_MESSAGES } from './gemini.config.js'
 import { functionDeclarations } from './gemini.functions.js'
 import { executeFunctionCall } from './gemini.handlers.js'
 import { 
@@ -21,6 +21,8 @@ export class GeminiService {
    * Genera contenido con el modelo AI
    */
   async _generateAIContent(contents, config) {
+    // Alterna la API key en cada consulta
+    const AI = getGeminiAI()
     return await AI.models.generateContent({
       model: this.modelName,
       contents,
