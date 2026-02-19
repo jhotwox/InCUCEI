@@ -2,7 +2,7 @@ import { createContext, useContext, useState, useEffect } from "react"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import { ZodError } from "zod"
 import { AxiosError } from "axios"
-import { loginRequest, registerRequest, profileRequest } from "../api/auth.api"
+import { loginRequest, registerRequest, profileRequest, updateProfileRequest } from "../api/auth.api"
 import { LoginValidator, RegisterValidator } from "../validators/auth.validator"
 import { handleZodError } from "../handler/zod.handler"
 import { handleAxiosError } from "../handler/axios.handler"
@@ -13,6 +13,7 @@ import { router } from "expo-router"
  * @property {string} id
  * @property {string} email
  * @property {string} name
+ * @property {string} profileUrl
  */
 
 /**
@@ -55,11 +56,17 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [profileImageChanged, setProfileImageChanged] = useState(false)
 
   useEffect(() => {
-    // Cargar token al iniciar la app
+    // Load token on app load
     loadToken()
   }, [])
+
+  // useEffect(() => {
+  //   // Load token on app load
+  //   console.log("PIC status: ", profileImageChanged)
+  // }, [profileImageChanged])
 
   // Protect routes
   useEffect(() => {
@@ -83,7 +90,8 @@ export function AuthProvider({ children }) {
           setUser(data)
           setToken(storedToken)
           router.replace("Home.screen")
-          console.log("token loaded")
+          console.log("user Data: ", data)
+          // console.log("token loaded")
         } else {
           // Token is invalid, remove it
           await AsyncStorage.removeItem("token")
@@ -258,6 +266,48 @@ export function AuthProvider({ children }) {
     setUser(null)
   }
 
+  const updateUser = async (userData) => {
+    try {
+      setLoading(true)
+      setError(null)
+
+      const response = await updateProfileRequest(userData)
+
+      if (response?.data?.id) {
+        setUser(response.data)
+        
+        // Update profileImageChanged
+        setProfileImageChanged(true)
+
+        return response
+      } else {
+        throw "Error al actualizar el perfil"
+      }
+    } catch (err) {
+      let message = "Error desconocido"
+      let path = ""
+
+      console.log("[-] Auth context updateUser error: ", err)
+
+      if (err instanceof ZodError) [message, path] = handleZodError(err)
+      else if (err instanceof AxiosError)
+        [message, path] = handleAxiosError(err)
+      else if (typeof err === "string") {
+        message = err
+      } else if (Array.isArray(err)) {
+        message = err.join(", ")
+      } else if (err instanceof Error) {
+        message = err.message
+        path = err.stack
+      }
+
+      setError({ message, path, id: Date.now() })
+      throw err
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <AuthContext.Provider
       value={{
@@ -267,6 +317,9 @@ export function AuthProvider({ children }) {
         register,
         profile,
         logout,
+        updateUser,
+        profileImageChanged,
+        setProfileImageChanged,
         loading,
         error,
       }}

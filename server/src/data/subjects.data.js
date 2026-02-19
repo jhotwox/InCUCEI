@@ -75,7 +75,7 @@ export const subjectsData = {
     },
     "ingenieria_software_i": {
       names: [
-        "Ingenieria de Software I", "Ingenieria Software I", "Ingenieria de Software", "Ingenieria Software", "Ingenieria S. I", "Ingenieria S.", 
+        "Ingenieria de Software I", "Ingenieria Software I", "Ingenieria de Software", "Ingenieria Software", "Ingenieria S. I", "Ingenieria S.",
         "Ing Software I", "Ing Soft I", "Ing Soft", "Ing de S.", "Ing S.", "Ing de S. I", "Ing S. I", "Ing de S.I", "Ing S.I", "Ing de S. I.", "Ing S. I.", "Ing de S.I.", "Ing S.I.",
         "Ing. Software I", "Ing. Soft I", "Ing. Soft", "Ing. S.", "Ing. S.", "Ing. de S. I", "Ing. S. I", "Ing. de S.I", "Ing. S.I", "Ing. de S. I.", "Ing. S. I.", "Ing. de S.I.", "Ing. S.I.",
         "IS", "ISI",

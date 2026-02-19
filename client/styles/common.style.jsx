@@ -57,7 +57,6 @@ export const loginStyles = StyleSheet.create({
         
     },
     title: {
-        color: "#FFCA87",
         fontWeight: "bold",
         letterSpacing: 2,
         fontSize: 48,

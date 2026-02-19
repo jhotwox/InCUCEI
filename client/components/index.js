@@ -4,5 +4,5 @@ import Input from './common/Input'
 import FileInput from './common/FileInput'
 import BlurCard from './common/BlurCard'
 import MarkdownText from './common/MarkdownText'
-
-export { Background, ShakeView, Input, FileInput, BlurCard, MarkdownText }
+import AnimatedContainer from './common/AnimatedContainer'
+export { Background, ShakeView, Input, FileInput, BlurCard, MarkdownText, AnimatedContainer }

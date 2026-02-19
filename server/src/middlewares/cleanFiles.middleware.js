@@ -8,7 +8,7 @@ export const cleanExistingFiles = (req, res, next) => {
   const uploadDir = "uploads/"
 
   try {
-    if (imageType === "logo" || imageType === "banner") {
+    if (imageType === "logo" || imageType === "banner" || imageType === "profile") {
       if (fs.existsSync(uploadDir)) {
         const files = fs.readdirSync(uploadDir)
 

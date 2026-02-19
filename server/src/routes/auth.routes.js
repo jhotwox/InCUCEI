@@ -15,6 +15,8 @@ router.post("/login", validatorSchema(loginSchema), login)
 
 router.post("/profile", authRequired, profile)
 
+router.patch("/profile", authRequired, profile)
+
 router.post("/ping", ping)
 
 router.delete("/delete", authRequired, deleteUser)

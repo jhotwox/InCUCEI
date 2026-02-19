@@ -1,103 +1,223 @@
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useCallback, memo, useEffect } from "react"
 import { View, FlatList, KeyboardAvoidingView, Platform } from "react-native"
 import {
   TextInput,
   IconButton,
   Text,
-  Card,
   ActivityIndicator,
   useTheme,
+  Avatar,
+  Surface,
 } from "react-native-paper"
+import Animated, {
+  FadeInLeft,
+  FadeInRight,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+  withRepeat,
+  withSequence,
+} from "react-native-reanimated"
+import { LinearGradient } from "expo-linear-gradient"
+import { BlurView } from "expo-blur"
 import useChatbot from "../../hooks/useChatBot"
 import { StyleSheet } from "react-native"
 import { Background, MarkdownText } from "../../components"
+import { useAuth } from "../../contexts/Auth.context"
+import { createFileObjectFromUrl } from "../../utils/generateFileObjectFromURL"
+
+const MessageItem = memo(({ item, theme, profileUrl, index, profileImageKey }) => {
+  if (!item) return null
+
+  const AnimatedView = Animated.createAnimatedComponent(View)
+  // const uri = item.isUser ? createFileObjectFromUrl(profileUrl, "profile")?.uri : null
+  const uri = item.isUser && profileUrl
+  ? `${createFileObjectFromUrl(profileUrl, "profile")?.uri}?t=${profileImageKey}`
+  : null;
+
+  return (
+    <AnimatedView
+      entering={item.isUser ? FadeInRight.delay(index * 50) : FadeInLeft.delay(index * 50)}
+      style={[
+        styles.messageContainer,
+        item.isUser ? styles.userMessage : styles.botMessage,
+      ]}
+    >
+      {!item.isUser && (
+        <Avatar.Icon
+          size={32}
+          icon="robot"
+          style={[styles.avatar, { backgroundColor: theme.colors.primaryContainer }]}
+          color={theme.colors.primary}
+        />
+      )}
+      <Surface
+        elevation={item.isUser ? 2 : 1}
+        style={[
+          styles.messageCard,
+          item.isUser ? styles.userCard : styles.botCard,
+          item.isError && styles.errorCard,
+        ]}
+      >
+        <LinearGradient
+          colors={
+            item.isUser
+              ? [theme.colors.primary, theme.colors.secondary]
+              : item.isError
+              ? ["#ffebee", "#ffcdd2"]
+              : ["#ffffff", "#f8f9fa"]
+          }
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={styles.gradientContainer}
+        >
+          {item.isUser ? (
+            <Text style={[styles.messageText, styles.userText]}>
+              {item.text}
+            </Text>
+          ) : (
+            <MarkdownText style={[styles.messageText, styles.botText]}>
+              {item.text}
+            </MarkdownText>
+          )}
+          <Text style={[styles.timestamp, item.isUser && styles.myTimestamp]}>
+            {item.timestamp.toLocaleTimeString("es-MX", {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </Text>
+        </LinearGradient>
+      </Surface>
+
+      {item.isUser && !profileUrl && (
+        <Avatar.Icon
+          size={32}
+          icon="account-circle"
+          style={[styles.avatar, { backgroundColor: theme.colors.secondaryContainer }]}
+          color={theme.colors.secondary}
+        />
+      )}
+      {item.isUser && profileUrl && (
+        <Avatar.Image
+          size={32}
+          source={{ uri: uri }}
+          style={[styles.avatar, { backgroundColor: theme.colors.secondaryContainer }]}
+        />
+      )}
+    </AnimatedView>
+  )
+})
+
+const TypingIndicator = memo(() => {
+  const dot1 = useSharedValue(0)
+  const dot2 = useSharedValue(0)
+  const dot3 = useSharedValue(0)
+
+  useEffect(() => {
+    dot1.value = withRepeat(
+      withSequence(
+        withSpring(1, { damping: 2 }),
+        withSpring(0, { damping: 2 })
+      ),
+      -1
+    )
+    dot2.value = withRepeat(
+      withSequence(
+        withSpring(0),
+        withSpring(1, { damping: 2 }),
+        withSpring(0, { damping: 2 })
+      ),
+      -1
+    )
+    dot3.value = withRepeat(
+      withSequence(
+        withSpring(0),
+        withSpring(0),
+        withSpring(1, { damping: 2 }),
+        withSpring(0, { damping: 2 })
+      ),
+      -1
+    )
+  }, [])
+
+  const animatedStyle1 = useAnimatedStyle(() => ({
+    opacity: dot1.value,
+    transform: [{ translateY: dot1.value * -8 }],
+  }))
+
+  const animatedStyle2 = useAnimatedStyle(() => ({
+    opacity: dot2.value,
+    transform: [{ translateY: dot2.value * -8 }],
+  }))
+
+  const animatedStyle3 = useAnimatedStyle(() => ({
+    opacity: dot3.value,
+    transform: [{ translateY: dot3.value * -8 }],
+  }))
+
+  const AnimatedView = Animated.createAnimatedComponent(View)
+
+  return (
+    <AnimatedView
+      entering={FadeInLeft}
+      style={[styles.messageContainer, styles.botMessage]}
+    >
+      <Avatar.Icon
+        size={32}
+        icon="robot"
+        style={[styles.avatar, { backgroundColor: "#E3F2FD" }]}
+        color="#1976D2"
+      />
+      <Surface elevation={1} style={[styles.messageCard, styles.botCard, styles.typingCard]}>
+        <View style={styles.typingContainer}>
+          <Animated.View style={[styles.typingDot, animatedStyle1]} />
+          <Animated.View style={[styles.typingDot, animatedStyle2]} />
+          <Animated.View style={[styles.typingDot, animatedStyle3]} />
+        </View>
+      </Surface>
+    </AnimatedView>
+  )
+})
 
 export default () => {
   const [inputMessage, setInputMessage] = useState("")
+  const [profileImageKey, setProfileImageKey] = useState(Date.now())
   const flatListRef = useRef(null)
   
-  const { messages, sendMessage, loading, isTyping, loadingChatHistory } =
+  const { messages, sendMessage, loading: chatLoading, isTyping, loadingChatHistory } =
     useChatbot()
   const theme = useTheme()
+  const { user, profileImageChanged, setProfileImageChanged, loading: authLoading } = useAuth()
 
-  const handleSendMessage = async () => {
+  const loading = chatLoading || authLoading
+  const profileUrl = user?.profileUrl
+
+  // Actualizar la clave de imagen solo cuando cambie el profileUrl
+  useEffect(() => {
+    if (profileUrl) {
+      setProfileImageKey(Date.now())
+      setProfileImageChanged(false)
+    }
+  
+  }, [profileUrl, profileImageChanged])
+
+
+  const handleSendMessage = useCallback(async () => {
     if (!inputMessage.trim() || loading) return
 
     const message = inputMessage.trim()
     setInputMessage("")
 
     await sendMessage(message).catch(console.error)
-  }
+  }, [inputMessage, loading, sendMessage])
 
-  const handleContentSizeChange = () => {
-    if (!loadingChatHistory)
-      flatListRef.current?.scrollToEnd({ animated: false })
-  }
+  const renderMessage = useCallback(({ item, index }) => (
+    <MessageItem item={item} theme={theme} profileUrl={profileUrl} index={index} profileImageKey={profileImageKey} />
+  ), [theme, profileUrl, profileImageKey])
 
-  const renderMessage = ({ item }) => {
-    if (!item) return null
-
-    return (
-      <View
-        style={[
-          styles.messageContainer,
-          item.isUser ? styles.userMessage : styles.botMessage,
-        ]}
-      >
-        <Card
-          style={[
-            styles.messageCard,
-            item.isUser ? { backgroundColor: theme.colors.secondary } : styles.botCard,
-            item.isError && styles.errorCard,
-          ]}
-        >
-          <Card.Content>
-            {item.isUser ? (
-            <Text style={styles.userText}>
-              {item.text}
-            </Text>
-            ) : (
-              <MarkdownText style={styles.botText}>
-                {item.text}
-              </MarkdownText>
-            )}
-            <Text style={[styles.timestamp, item.isUser && styles.myTimestamp]}>
-              {item.timestamp.toLocaleTimeString()}
-            </Text>
-          </Card.Content>
-        </Card>
-      </View>
-    )
-  }
-
-  const renderTypingIndicator = () => {
-    if (!isTyping) return null
-
-    return (
-      <View style={[styles.messageContainer, styles.botMessage]}>
-        <Card style={[styles.messageCard, styles.botCard]}>
-          <Card.Content style={styles.typingContainer}>
-            <ActivityIndicator size="small" color="#666" />
-            <Text style={styles.typingText}>Asistente escribiendo...</Text>
-          </Card.Content>
-        </Card>
-      </View>
-    )
-  }
-
-  // Auto-scroll al final cuando se carga el historial
-  useEffect(() => {
-    if (messages.length > 0 && !loadingChatHistory)
-      setTimeout(() => {
-        flatListRef.current?.scrollToEnd({ animated: false })
-      }, 100)
-  }, [messages.length])
-
-  useEffect(() => {
-    // Auto-scroll al final cuando hay nuevos mensajes
-    if (!loadingChatHistory && messages.length > 0)
-      flatListRef.current?.scrollToEnd({ animated: true })
-  }, [messages.length, loadingChatHistory])
+  const keyExtractor = useCallback((item, index) =>
+    item?.id ? item?.id.toString() : `message-${index}`
+  , [])
 
   if (loadingChatHistory)
     return <ActivityIndicator style={{ flex: 1 }} size="large" />
@@ -106,45 +226,85 @@ export default () => {
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 90 : 0}
     >
-      <Background background={theme.colors.onPrimary}/>
-      <View style={styles.header}>
-        <Text variant="titleLarge">🤖 Asistente CUCEI</Text>
-        <Text variant="bodySmall">Tu asistente académico personal</Text>
-      </View>
+      <Background background={theme.colors.onPrimary} />
+      
+      <LinearGradient
+        colors={[theme.colors.primary, theme.colors.secondary]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        style={styles.header}
+      >
+        <BlurView intensity={20} tint="light" style={styles.blurHeader}>
+          <View style={styles.headerContent}>
+            <Avatar.Icon
+              size={40}
+              icon="robot-excited"
+              style={{ backgroundColor: "rgba(255,255,255,0.3)" }}
+              color="#fff"
+            />
+            <View style={styles.headerTextContainer}>
+              <Text variant="titleLarge" style={styles.headerTitle}>
+                Asistente CUCEI
+              </Text>
+              <Text variant="bodySmall" style={styles.headerSubtitle}>
+                Pregúntame lo que necesites
+              </Text>
+            </View>
+          </View>
+        </BlurView>
+      </LinearGradient>
 
       <FlatList
         ref={flatListRef}
         data={messages}
         renderItem={renderMessage}
-        keyExtractor={(item, index) =>
-          item?.id ? item?.id.toString() : `message-${index}`
-        }
+        keyExtractor={keyExtractor}
+        inverted={true}
         style={styles.messagesList}
-        contentContainerStyle={{ paddingBottom: 16 }}
-        ListFooterComponent={renderTypingIndicator}
+        contentContainerStyle={styles.messagesContent}
+        ListFooterComponent={isTyping ? TypingIndicator : null}
         showsVerticalScrollIndicator={false}
-        onContentSizeChange={handleContentSizeChange}
+        removeClippedSubviews={true}
+        maxToRenderPerBatch={10}
+        windowSize={10}
+        initialNumToRender={15}
       />
 
       <View style={styles.inputContainer}>
-        <TextInput
-          value={inputMessage}
-          onChangeText={setInputMessage}
-          placeholder="Pregúntame sobre CUCEI..."
-          style={styles.textInput}
-          multiline
-          disabled={loading}
-        />
-        <IconButton
-          icon={loading ? "progress-clock" : "send"}
-          mode="contained"
-          onPress={handleSendMessage}
-          disabled={!inputMessage.trim() || loading}
-          style={styles.sendButton}
-          iconColor="#FFF"
-          containerColor={theme.colors.primary}
-        />
+        <Surface style={styles.inputWrapper} elevation={2}>
+          <TextInput
+            value={inputMessage}
+            onChangeText={setInputMessage}
+            placeholder="Escribe un mensaje..."
+            placeholderTextColor="#999"
+            style={styles.textInput}
+            mode="flat"
+            multiline
+            maxLength={500}
+            disabled={loading}
+            underlineColor="transparent"
+            activeUnderlineColor="transparent"
+            contentStyle={styles.textInputContent}
+            cursorColor={theme.colors.tertiary}
+          />
+          <IconButton
+            icon={loading ? "dots-horizontal" : "send"}
+            mode="contained"
+            onPress={handleSendMessage}
+            disabled={!inputMessage.trim() || loading}
+            style={styles.sendButton}
+            iconColor="#fff"
+            containerColor={
+              !inputMessage.trim() || loading
+                ? "#ccc"
+                : theme.colors.primary
+            }
+            size={24}
+            animated
+          />
+        </Surface>
       </View>
     </KeyboardAvoidingView>
   )
@@ -156,78 +316,146 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
   },
   header: {
-    padding: 16,
-    backgroundColor: "#fff",
+    // paddingTop: Platform.OS === "ios" ? 44 : 32,
+    // paddingTop: 12,
+    // paddingBottom: 1,
+  },
+  blurHeader: {
+    overflow: "hidden",
+  },
+  headerContent: {
+    flexDirection: "row",
     alignItems: "center",
-    borderBottomWidth: 1,
-    borderBottomColor: "#e0e0e0",
-    paddingTop: 32,
+    paddingHorizontal: 16,
+    paddingTop: 52, // Ajusta el paddingTop para cambiar la altura del header
+    paddingBottom: 12, // Ajusta el paddingBottom para el espacio entre el headerAvatar y el borde inferior del header
+  },
+  headerTextContainer: {
+    marginLeft: 12,
+    flex: 1,
+  },
+  headerTitle: {
+    color: "#fff",
+    fontWeight: "700",
+    letterSpacing: 0.5,
+  },
+  headerSubtitle: {
+    color: "rgba(255,255,255,0.9)",
+    marginTop: 2,
   },
   messagesList: {
     flex: 1,
-    padding: 8,
-    // paddingBottom: 16,
+    paddingHorizontal: 12,
+  },
+  messagesContent: {
+    paddingBottom: 16,
+    paddingTop: 8,
   },
   messageContainer: {
-    marginVertical: 4,
-  },
-  userMessage: {
+    marginVertical: 6,
+    flexDirection: "row",
     alignItems: "flex-end",
   },
+  userMessage: {
+    justifyContent: "flex-end",
+  },
   botMessage: {
-    alignItems: "flex-start",
+    justifyContent: "flex-start",
   },
   messageCard: {
-    maxWidth: "85%",
+    maxWidth: "75%",
+    borderRadius: 20,
+    overflow: "hidden",
   },
   userCard: {
-    backgroundColor: "#007AFF",
+    borderBottomRightRadius: 4,
   },
   botCard: {
+    borderBottomLeftRadius: 4,
     backgroundColor: "#fff",
   },
   errorCard: {
-    backgroundColor: "#ffebee",
+    borderWidth: 1,
+    borderColor: "#f44336",
+  },
+  gradientContainer: {
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+  },
+  messageText: {
+    lineHeight: 20,
   },
   userText: {
     color: "#fff",
+    fontSize: 15,
   },
   botText: {
-    color: "#333",
+    color: "#1a1a1a",
+    fontSize: 15,
   },
   myTimestamp: {
-    color: "#f6f6f6",
+    color: "rgba(255,255,255,0.8)",
   },
   timestamp: {
-    fontSize: 10,
-    opacity: 0.7,
-    marginTop: 4,
+    fontSize: 11,
+    opacity: 0.6,
+    marginTop: 6,
+    fontWeight: "500",
+  },
+  avatar: {
+    marginHorizontal: 6,
+  },
+  typingCard: {
+    paddingHorizontal: 20,
+    paddingVertical: 16,
   },
   typingContainer: {
     flexDirection: "row",
     alignItems: "center",
+    gap: 6,
   },
-  typingText: {
-    marginLeft: 8,
-    fontStyle: "italic",
-    color: "#666",
+  typingDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: "#1976D2",
   },
   inputContainer: {
+    backgroundColor: "transparent",
+    // backgroundColor: "#f00",
+    paddingHorizontal: 12,
+    // paddingVertical: 8,
+    paddingBottom: Platform.OS === "ios" ? 28 : 10,
+  },
+  inputWrapper: {
     flexDirection: "row",
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    backgroundColor: "#fff",
     alignItems: "flex-end",
+    backgroundColor: "#f5f5f5",
+    // backgroundColor: "#F0F",
+    borderRadius: 36,
+    paddingLeft: 16,
+    paddingRight: 4,
+    paddingTop: 2,
+    // paddingVertical: 4,
+    minHeight: 32,
   },
   textInput: {
     flex: 1,
-    height: 32,
-    marginRight: 8,
+    maxHeight: 120,
+    minHeight: 40,
+    backgroundColor: "transparent",
+    // backgroundColor: "#FF0",
+    fontSize: 15,
+    paddingHorizontal: 0,
+  },
+  textInputContent: {
+    paddingVertical: 10,
+    paddingHorizontal: 0,
   },
   sendButton: {
-    width: 40,
-    height: 40,
-    justifyContent: "center",
-    borderRadius: 20
+    margin: 0,
+    marginLeft: 4,
+    marginRight: 6,
+    marginBottom: 9,
   },
 })

@@ -1,9 +1,16 @@
 import { Text } from "react-native-paper"
 import { Background } from "../../components"
+import { memo } from "react"
+import { View } from "react-native"
 
-export default () => {
+const MapScreen = () => {
   return <>
     <Background />
-    <Text>Map screen</Text>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Map screen</Text>
+
+    </View>
   </>
 }
+
+export default memo(MapScreen)

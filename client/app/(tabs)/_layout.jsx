@@ -10,14 +10,17 @@ export default () => {
         headerShown: false,
         tabBarActiveTintColor: theme.colors.primary,
         tabBarStyle: { backgroundColor: theme.colors.background },
+        animation: 'shift',
+        animationDuration: 200,
       }}
     >
+      {/* If  */}
       <Tabs.Screen
         name="Home.screen"
         options={{
           title: "Asistente",
-          tabBarIcon: ({ color }) => (
-            <Icon size={28} source="handshake" theme={theme} />
+          tabBarIcon: ({ focused, color }) => (
+            <Icon size={28} source={focused ? "handshake" : "handshake-outline"} theme={theme} />
           ),
         }}
       />
@@ -25,8 +28,8 @@ export default () => {
         name="Map.screen"
         options={{
           title: "Mapa",
-          tabBarIcon: ({ color }) => (
-            <Icon size={28} source="map" theme={theme} />
+          tabBarIcon: ({ focused, color }) => (
+            <Icon size={28} source={focused ? "map" : "map-outline"} theme={theme} />
           ),
         }}
       />
@@ -34,8 +37,8 @@ export default () => {
         name="Sales.screen"
         options={{
           title: "Ventas",
-          tabBarIcon: ({ color }) => (
-            <Icon size={28} source="purse" theme={theme} />
+          tabBarIcon: ({ focused, color }) => (
+            <Icon size={28} source={focused ? "purse" : "purse-outline"} theme={theme} />
           ),
         }}
       />
@@ -43,8 +46,8 @@ export default () => {
         name="Settings.screen"
         options={{
           title: "Perfil",
-          tabBarIcon: ({ color }) => (
-            <Icon size={28} source="account" theme={theme} />
+          tabBarIcon: ({ focused, color }) => (
+            <Icon size={28} source={focused ? "account" : "account-outline"} theme={theme} />
           ),
         }}
       />

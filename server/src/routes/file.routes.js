@@ -26,6 +26,8 @@ const storage = multer.diskStorage({
   },
 })
 const upload = multer({ storage })
+// const limits = { fileSize: 10 * 1024 * 1024 } // 10MB
+// const upload = multer({ storage, limits })
 
 router.get("/find/:subject", authRequired, getPlan)
 

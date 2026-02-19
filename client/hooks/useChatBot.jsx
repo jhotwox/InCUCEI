@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useState, useRef } from "react"
 import { useSocket } from "../contexts/Socket.context.jsx"
 import { useAuth } from "../contexts/Auth.context"
 import axios from "../api/axios"
@@ -15,9 +15,10 @@ export default () => {
   const [loadingChatHistory, setLoadingChatHistory] = useState(false)
   const { socket } = useSocket()
   const { user } = useAuth()
+  const hasLoadedHistory = useRef(false)
 
   const loadChatHistory = useCallback(async () => {
-    if (!user) return
+    if (!user || hasLoadedHistory.current) return
 
     try {
       setLoadingChatHistory(true)
@@ -28,28 +29,23 @@ export default () => {
       const historyMessages = []
       response.data.data.forEach((msg) => {
         historyMessages.push({
+          id: `${msg._id}_bot`,
+          text: msg.response,
+          isUser: false,
+          // Asegura que el mensaje del bot sea posterior
+          timestamp: new Date(new Date(msg.createdAt).getTime() + 1),
+        })
+
+        historyMessages.push({
           id: `${msg._id}_user`,
           text: msg.message,
           isUser: true,
           timestamp: new Date(msg.createdAt),
         })
-
-        historyMessages.push({
-          id: `${msg._id}_bot`,
-          text: msg.response,
-          isUser: false,
-          timestamp: new Date(new Date(msg.createdAt).getTime() + 1), // Asegura que el mensaje del bot sea posterior
-        })
       })
 
-      historyMessages.sort((a, b) => a.timestamp - b.timestamp)
-
-      console.log(
-        "[+] Loaded chat history:",
-        historyMessages.length,
-        "messages"
-      )
       setMessages(historyMessages)
+      hasLoadedHistory.current = true
     } catch (err) {
       console.error("Error loading chat history:", err)
     } finally {

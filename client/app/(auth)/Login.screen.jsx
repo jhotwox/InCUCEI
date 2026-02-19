@@ -110,7 +110,7 @@ export default () => {
             entering={FadeInUp.duration(1000).springify()}
             style={loginStyles.titleContainer}
           >
-            <Text style={loginStyles.title}>InCUCEI</Text>
+            <Text style={[loginStyles.title, { color: theme.colors.title }]}>InCUCEI</Text>
           </Animated.View>
           <View style={loginStyles.formContainer}>
             {

@@ -113,7 +113,7 @@ export const getChatbotHistory = async (req, res) => {
     console.log("returning messages...")
     return res.json({
       message: "Chatbot history retrieved",
-      data: messages.reverse(),
+      data: messages,
       pagination: {
         currentPage: parseInt(page),
         totalPages: Math.ceil(totalMessages / parseInt(limit)),

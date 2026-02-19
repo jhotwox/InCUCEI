@@ -9,7 +9,14 @@ export default function App () {
     <Providers>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <StatusBar style="auto" />
-        <Stack screenOptions={{ headerShown: false }} initialRouteName='(auth)' >
+        <Stack 
+          screenOptions={{ 
+            headerShown: false,
+            animation: 'fade',
+            animationDuration: 200,
+          }} 
+          initialRouteName='(auth)' 
+        >
           <Stack.Screen name="(auth)" />
           <Stack.Screen name="(tabs)" />
         </Stack>

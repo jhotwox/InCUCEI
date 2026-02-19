@@ -36,6 +36,7 @@ import { uploadImage } from "../../api/commerce.api"
  * @param {string} [type] - Optional semantic type label used in UI when a file is selected (e.g., "avatar", "image").
  * @param {string} [error=""] - Error message string to display below the input; if non-empty, border becomes error color.
  * @param {string} [placeholder="Ningún archivo seleccionado"] - Placeholder text when no file is selected.
+ * @param {(uploadedUrl: string) => void} [onUploadSuccess] - Callback invoked after successful image upload with the uploaded URL.
  * @param {Object} [...props] - Any additional props are spread onto the outer container (not strictly required).
  *
  * Forwarded ref (useImperativeHandle):
@@ -80,6 +81,7 @@ export default forwardRef(
       type,
       error = "",
       placeholder = "Ningún archivo seleccionado",
+      onUploadSuccess,
       ...props
     },
     ref
@@ -131,11 +133,18 @@ export default forwardRef(
         if (data.status) {
           showToast("Imagen subida correctamente", "success")
 
-          return {
+          const uploadedFile = {
             ...imageFile,
             uploadedUrl: data?.file?.path,
             isUploaded: true,
           }
+
+          // Llamar callback si existe
+          if (onUploadSuccess && data?.file?.path) {
+            onUploadSuccess(data.file.path)
+          }
+
+          return uploadedFile
         } else {
           throw new Error(response.message || "Error al subir imagen")
         }
@@ -156,7 +165,7 @@ export default forwardRef(
         const result = await ImagePicker.launchImageLibraryAsync({
           mediaTypes: ImagePicker.mediaTypes,
           allowsEditing: true,
-          aspect: [4, 3],
+          aspect: type === "profile" ? [1, 1] : [4, 3],
           quality: 0.8,
           allowsMultipleSelection: multiple,
         })
