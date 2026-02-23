@@ -1,13 +1,97 @@
 import { PaperProvider, MD3LightTheme } from "react-native-paper"
 import { GestureHandlerRootView } from "react-native-gesture-handler"
+import { useFonts } from "expo-font"
+import { ActivityIndicator, View } from "react-native"
 import { ToastProvider } from "../contexts/Toast.context"
 import { AuthProvider } from "../contexts/Auth.context"
 import { SocketProvider } from "../contexts/Socket.context"
 import { BackgroundAnimationProvider } from "../contexts/BackgroundAnimation.context"
 
+const FONTFAMILY = "Lexend"
+// const FONTFAMILY = "PlusJakartaSans"
+
 export const Providers = ({ children }) => {
+  const [fontsLoaded] = useFonts({
+    'Lexend': require('../assets/fonts/Lexend-VariableFont_wght.ttf'),
+    'PlusJakartaSans': require('../assets/fonts/PlusJakartaSans-VariableFont_wght.ttf'),
+    'PlusJakartaSans-Italic': require('../assets/fonts/PlusJakartaSans-Italic-VariableFont_wght.ttf')
+  })
+
+  if (!fontsLoaded) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" />
+      </View>
+    )
+  }
   const theme = {
     ...MD3LightTheme,
+    fonts: {
+      ...MD3LightTheme.fonts,
+      default: {
+        fontFamily: FONTFAMILY,
+      },
+      displayLarge: {
+        ...MD3LightTheme.fonts.displayLarge,
+        fontFamily: FONTFAMILY,
+      },
+      displayMedium: {
+        ...MD3LightTheme.fonts.displayMedium,
+        fontFamily: FONTFAMILY,
+      },
+      displaySmall: {
+        ...MD3LightTheme.fonts.displaySmall,
+        fontFamily: FONTFAMILY,
+      },
+      headlineLarge: {
+        ...MD3LightTheme.fonts.headlineLarge,
+        fontFamily: FONTFAMILY,
+      },
+      headlineMedium: {
+        ...MD3LightTheme.fonts.headlineMedium,
+        fontFamily: FONTFAMILY,
+      },
+      headlineSmall: {
+        ...MD3LightTheme.fonts.headlineSmall,
+        fontFamily: FONTFAMILY,
+      },
+      titleLarge: {
+        ...MD3LightTheme.fonts.titleLarge,
+        fontFamily: FONTFAMILY,
+      },
+      titleMedium: {
+        ...MD3LightTheme.fonts.titleMedium,
+        fontFamily: FONTFAMILY,
+      },
+      titleSmall: {
+        ...MD3LightTheme.fonts.titleSmall,
+        fontFamily: FONTFAMILY,
+      },
+      labelLarge: {
+        ...MD3LightTheme.fonts.labelLarge,
+        fontFamily: FONTFAMILY,
+      },
+      labelMedium: {
+        ...MD3LightTheme.fonts.labelMedium,
+        fontFamily: FONTFAMILY,
+      },
+      labelSmall: {
+        ...MD3LightTheme.fonts.labelSmall,
+        fontFamily: FONTFAMILY,
+      },
+      bodyLarge: {
+        ...MD3LightTheme.fonts.bodyLarge,
+        fontFamily: FONTFAMILY,
+      },
+      bodyMedium: {
+        ...MD3LightTheme.fonts.bodyMedium,
+        fontFamily: FONTFAMILY,
+      },
+      bodySmall: {
+        ...MD3LightTheme.fonts.bodySmall,
+        fontFamily: FONTFAMILY,
+      },
+    },
     colors: {
       ...MD3LightTheme.colors,
       // Verde principal más brillante para mejor contraste

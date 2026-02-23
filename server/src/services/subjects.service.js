@@ -61,16 +61,16 @@ export const getStudyPlan = (subject, career = null) => {
 
   // console.log("Final Subject: ", subjectData)
 
-  const filePath = path.join(__dirname, "../files/study_plan", subjectData.files.study_plan)
+  const filePath = path.join(__dirname, "../files/study_plan",subjectData.career, subjectData.files.study_plan)  
 
-  if (!fs.existsSync(filePath))    
+  if (!fs.existsSync(filePath))
     throw new Error("Archivo no encontrado", 404)
 
   const host = process.env.HOST || "localhost"
   const port = process.env.PORT || "3000"
   const protocol = process.env.NODE_ENV === "production" ? "https" : "http"
 
-  const serverUrl = `${protocol}://${host}:${port}/files/study_plan/${subjectData.files.study_plan}`
+  const serverUrl = `${protocol}://${host}:${port}/files/study_plan/${subjectData.career}/${subjectData.files.study_plan}`
   // console.log("Server URL:", serverUrl)
   // console.log("full host:", host + ":" + port)
 
@@ -85,16 +85,16 @@ export const getStudyPlan = (subject, career = null) => {
   }
 }
 
-export const getMaterial = (subject, carrer = null) => {
+export const getMaterial = (subject, career = null) => {
   let subjectData = null;
 
-  if (carrer) {
-    subjectData = subjectsData[carrer][subject.toLowerCase()]
+  if (career) {
+    subjectData = subjectsData[career][subject.toLowerCase()]
   } else {
     const foundSubject = getAllSubjects().find((subj) => subj.key === subject.toLowerCase())
 
     if (foundSubject)
-      subjectData = subjectsData[foundSubject.carrer][subject.toLowerCase()]
+      subjectData = subjectsData[foundSubject.career][subject.toLowerCase()]
   }
 
   if (!subjectData)

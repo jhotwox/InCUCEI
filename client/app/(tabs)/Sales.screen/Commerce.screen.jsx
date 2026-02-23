@@ -169,10 +169,11 @@ export default () => {
         label="Nombre"
         value={name}
         onChangeText={setName}
-        ref={nameRef}
         leftIcon="format-title"
         style={{ marginTop: 8 }}
-      />
+        ref={nameRef}
+        key="name"
+        />
       <Input
         label="Descripción"
         value={description}
@@ -181,6 +182,7 @@ export default () => {
         multiline
         numberOfLines={3}
         ref={descriptionRef}
+        key="description"
       />
     </BlurCard>
   )
@@ -193,13 +195,15 @@ export default () => {
         onFileSelect={handleLogoSelect}
         type="logo"
         ref={logoUrlRef}
-      />
+        key="logo"
+        />
       <FileInput
         placeholder="Selecciona banner"
         value={bannerUrl}
         onFileSelect={handleBannerSelect}
         type="banner"
         ref={bannerRef}
+        key="banner"
       />
     </BlurCard>
   )
@@ -213,7 +217,8 @@ export default () => {
         onPress={handleSave}
         buttonColor={commerce && theme.colors.secondary}
         textColor={commerce && theme.colors.onSecondary}
-      >
+        key="save"
+        >
         {!commerce ? "Crear" : "Actualizar"}
       </Button>
       {commerce && (
@@ -224,6 +229,7 @@ export default () => {
           buttonColor={theme.colors.delete}
           textColor={theme.colors.onDelete}
           icon="delete"
+          key="delete"
         >
           Eliminar
         </Button>

@@ -37,6 +37,8 @@ export default ({ children, style }) => {
     body: {
       color: theme.colors.onSurface,
       fontSize: 14,
+      // fontFamily: 'Lexend'
+      fontFamily: "PlusJakartaSans"
     },
     heading1: {
       color: theme.colors.primary,
@@ -101,7 +103,7 @@ export default ({ children, style }) => {
     link: (node, children, parent, styles) => {
       const url = node.attributes.href
       return (
-        <Text  
+        <Text
           key={node.key}
           style={styles.link}
           onPress={() => handleLinkPress(url)}

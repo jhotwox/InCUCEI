@@ -60,8 +60,8 @@ export const updatePictureRequest = async (formData, imageType) => {
     .catch((err) => {
       console.log("[-] Upload image: ", err)
       console.log("[-] Upload image message: ", err?.message)
-      console.log("[-] Upload image repsonse message: ", err.response?.message)
-      console.log("[-] Upload image data: ", err.response?.data)
+      // console.log("[-] Upload image repsonse message: ", err.response?.message)
+      // console.log("[-] Upload image data: ", err.response?.data)
       throw err.response?.data || err
     })
 }

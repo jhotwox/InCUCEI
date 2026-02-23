@@ -49,4 +49,12 @@ export const ToastProvider = ({ children }) => {
   )
 }
 
+/**
+ * Hook para acceder al contexto de notificaciones tipo toast.
+ * @example
+ * import { useToast } from "../contexts/Toast.context"
+ * const { showToast } = useToast()
+ * showToast("Operación exitosa", "success", 3000)
+ * @returns {ToastContextValue} Función para mostrar notificaciones tipo toast.
+ */
 export const useToast = () => useContext(ToastContext)

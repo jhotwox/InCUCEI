@@ -68,7 +68,7 @@ export default () => {
       isUser: true,
       timestamp: new Date(),
     }
-    setMessages((prev) => [...prev, userMessage])
+    setMessages((prev) => [userMessage, ...prev])
     setLoading(true)
 
     try {
@@ -89,7 +89,7 @@ export default () => {
         isError: true,
         timestamp: new Date(),
       }
-      setMessages((prev) => [...prev, errorMessage])
+      setMessages((prev) => [errorMessage, ...prev])
     }
   }, [])
 
@@ -105,7 +105,7 @@ export default () => {
         isUser: false,
         timestamp: new Date(data.timestamp),
       }
-      setMessages((prev) => [...prev, botMessage])
+      setMessages((prev) => [botMessage, ...prev])
       setLoading(false)
       setIsTyping(false)
     }
@@ -125,7 +125,7 @@ export default () => {
         isError: true,
         timestamp: new Date(data.timestamp),
       }
-      setMessages((prev) => [...prev, errorMessage])
+      setMessages((prev) => [errorMessage, ...prev])
       setLoading(false)
       setIsTyping(false)
     }

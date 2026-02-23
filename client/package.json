@@ -30,7 +30,8 @@
     "react-redux": "^9.2.0",
     "socket.io-client": "^4.8.1",
     "zod": "^4.1.5",
-    "expo-linear-gradient": "~14.1.5"
+    "expo-linear-gradient": "~14.1.5",
+    "expo-font": "~13.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
