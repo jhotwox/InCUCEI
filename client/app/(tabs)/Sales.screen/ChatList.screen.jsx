@@ -4,13 +4,14 @@ import { useMessages } from "../../../hooks/useMessages"
 import { Badge, Card, Text } from "react-native-paper"
 import { FlatList, View } from "react-native"
 import { useEffect } from "react"
+import { TouchableOpacity } from "react-native"
 
 export default () => {
   const { user } = useAuth()
   const { chats, loadChats, loading } = useMessages()
 
   useEffect(() => {
-    loadChats()
+    loadChats() 
   }, [])
 
   const renderChatItem = ({ item }) => {

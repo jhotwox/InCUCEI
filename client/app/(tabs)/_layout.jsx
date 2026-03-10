@@ -21,6 +21,7 @@ export default () => {
           ),
         }}
       />
+
       <Tabs.Screen
         name="Map.screen"
         options={{
@@ -30,6 +31,7 @@ export default () => {
           ),
         }}
       />
+
       <Tabs.Screen
         name="Sales.screen"
         options={{
@@ -39,6 +41,18 @@ export default () => {
           ),
         }}
       />
+
+      {/* NUEVA PESTAÑA */}
+      <Tabs.Screen
+        name="Chats.screen"
+        options={{
+          title: "Chats",
+          tabBarIcon: ({ color }) => (
+            <Icon size={28} source="chat" theme={theme} />
+          ),
+        }}
+      />
+
       <Tabs.Screen
         name="Settings.screen"
         options={{
