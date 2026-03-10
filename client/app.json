@@ -29,7 +29,19 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-font"
+      ["expo-font"],
+      [
+        "@rnmapbox/maps",
+        {
+          "RNMapboxMapsDownloadToken": "sk.eyJ1IjoiZ2Vyc29uMzAiLCJhIjoiY21tN2NucDV3MHIzMTJvb3V0OWtmNG83MiJ9.0wA2pkWyqm5KveHU_DNJ7g"
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Show current location on map."
+        }
+      ]
     ]
   }
 }
