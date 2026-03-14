@@ -35,31 +35,54 @@ export class GeminiService {
    */
   async _processFunctionCall(initialResponse, message, userContext, historyContext, config) {
     const functionCall = initialResponse.functionCalls[0]
-    
+
     // Ejecutar la función
     const functionResult = await executeFunctionCall(functionCall)
-    
+
+    // Verificar si el resultado tiene una acción especial
+    let specialAction = null
+    try {
+      const parsedResult = JSON.parse(functionResult)
+      if (parsedResult.action) {
+        specialAction = parsedResult
+      }
+    } catch (e) {
+      // No es JSON o no tiene acción especial
+      console.log("[-] Don't have any special action or wrong JSON")
+    }
+
     // Preparar la respuesta de la función
     const functionResponsePart = {
       name: functionCall.name,
       response: { result: functionResult }
     }
-    
+
     // Construir el prompt para la respuesta final
     const systemPromptResponse = buildSystemPrompt(userContext, historyContext, true)
     const prompt = buildCompletePrompt(systemPromptResponse, message)
-    
+
     // Construir contenidos con la llamada a función y su resultado
     const responseContents = [
       { role: 'user', parts: [{ text: prompt }] },
       initialResponse.candidates[0].content,
       { role: 'user', parts: [{ functionResponse: functionResponsePart }] }
     ]
-    
+
     // Obtener respuesta final
     const finalResponse = await this._generateAIContent(responseContents, config)
-    
+
     console.log("[+] Final AI Response: ", finalResponse.text)
+
+    // Si hay acción especial, retornar JSON con texto de Gemini
+    if (specialAction) {
+      const enrichedAction = {
+        ...specialAction,
+        generatedMessage: finalResponse.text // Guardar respuesta de Gemini
+      }
+      console.log("[+] Returning special action with Gemini message")
+      return JSON.stringify(enrichedAction)
+    }
+
     return finalResponse.text
   }
 

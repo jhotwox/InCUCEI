@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback, memo, useEffect } from "react"
-import { View, FlatList, KeyboardAvoidingView, Platform } from "react-native"
+import { View, FlatList, KeyboardAvoidingView, Platform, StyleSheet } from "react-native"
 import {
   TextInput,
   IconButton,
@@ -20,10 +20,11 @@ import Animated, {
 } from "react-native-reanimated"
 import { LinearGradient } from "expo-linear-gradient"
 import { BlurView } from "expo-blur"
-import useChatbot from "../../hooks/useChatBot"
-import { StyleSheet } from "react-native"
+import { router } from "expo-router"
 import { Background, MarkdownText } from "../../components"
+import useChatbot from "../../hooks/useChatBot"
 import { useAuth } from "../../contexts/Auth.context"
+import { useToast } from "../../contexts/Toast.context"
 import { createFileObjectFromUrl } from "../../utils/generateFileObjectFromURL"
 
 const MessageItem = memo(({ item, theme, profileUrl, index, profileImageKey }) => {
@@ -33,7 +34,7 @@ const MessageItem = memo(({ item, theme, profileUrl, index, profileImageKey }) =
   // const uri = item.isUser ? createFileObjectFromUrl(profileUrl, "profile")?.uri : null
   const uri = item.isUser && profileUrl
   ? `${createFileObjectFromUrl(profileUrl, "profile")?.uri}?t=${profileImageKey}`
-  : null;
+  : null
 
   return (
     <AnimatedView
@@ -183,11 +184,12 @@ export default () => {
   const [inputMessage, setInputMessage] = useState("")
   const [profileImageKey, setProfileImageKey] = useState(Date.now())
   const flatListRef = useRef(null)
-  
-  const { messages, sendMessage, loading: chatLoading, isTyping, loadingChatHistory } =
+
+  const { messages, sendMessage, loading: chatLoading, isTyping, loadingChatHistory, mapNavigationData, clearMapNavigation } =
     useChatbot()
   const theme = useTheme()
   const { user, profileImageChanged, setProfileImageChanged, loading: authLoading } = useAuth()
+  const { showToast } = useToast()
 
   const loading = chatLoading || authLoading
   const profileUrl = user?.profileUrl
@@ -198,8 +200,34 @@ export default () => {
       setProfileImageKey(Date.now())
       setProfileImageChanged(false)
     }
-  
+
   }, [profileUrl, profileImageChanged])
+
+  // Manejar navegación al mapa
+  useEffect(() => {
+    if (mapNavigationData) {
+      console.log("[+] Navigating to map with data:", mapNavigationData)
+
+      // Navegar al tab del mapa con los parámetros
+      showToast(
+        `Mostrar ${mapNavigationData.placeName} en el mapa`,
+        "success",
+        10000,
+        () => {
+          router.push({
+            pathname: "/(tabs)/Map.screen",
+            params: {
+              placeId: mapNavigationData.placeId,
+              placeName: mapNavigationData.placeName,
+              focusPlace: "true", // Pasarlo como string para params
+            }
+          })
+
+          // Limpiar los datos de navegación después de usarlos
+          clearMapNavigation()
+        })
+    }
+  }, [mapNavigationData, clearMapNavigation])
 
 
   const handleSendMessage = useCallback(async () => {
@@ -293,6 +321,7 @@ export default () => {
             icon={loading ? "dots-horizontal" : "send"}
             mode="contained"
             onPress={handleSendMessage}
+            // onPress={handleToast}
             disabled={!inputMessage.trim() || loading}
             style={styles.sendButton}
             iconColor="#fff"

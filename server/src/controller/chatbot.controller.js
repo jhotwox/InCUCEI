@@ -37,23 +37,53 @@ export const sendChatbotMessage = async (req, res) => {
 
     const responseTime = Date.now() - startTime
 
+    // Verificar si la respuesta es una acción especial (navegación al mapa)
+    let navigationAction = null
+    let displayText = text
+
+    try {
+      const parsed = JSON.parse(text)
+      if (parsed.action === "navigate_to_map" && parsed.success) {
+        navigationAction = parsed
+        // Usar el mensaje generado por Gemini si está disponible
+        displayText = parsed.generatedMessage || parsed.message
+      }
+      console.log("Display text: ", displayText);
+      console.log("navigation action: ", navigationAction);
+    } catch (e) {
+      console.log("[-] chatbot controller: ", e);
+      // No es JSON, es texto normal
+    }
+
     const chatBotMessage = new ChatbotMessage({
       userId,
       conversationId,
       message,
-      response: text,
+      response: displayText,
       messageType: type,
       metadata: {
         responseTime,
         geminiModel: geminiService.modelName,
+        ...(navigationAction && { navigationAction })
       },
     })
 
     await chatBotMessage.save()
 
     if (userId) {
+      // Si hay acción de navegación, enviar evento especial
+      if (navigationAction) {
+        io.to(userId).emit("chatbotNavigateMap", {
+          placeId: navigationAction.placeId,
+          placeName: navigationAction.placeName,
+          placeType: navigationAction.placeType,
+          coordinates: navigationAction.coordinates,
+          timestamp: new Date(),
+        })
+      }
+
       io.to(userId).emit("chatbotResponse", {
-        message: text,
+        message: displayText,
         timestamp: new Date(),
         type,
         messageId: chatBotMessage._id,

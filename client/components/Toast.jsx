@@ -8,7 +8,7 @@ import Animated, {
   runOnJS,
 } from "react-native-reanimated"
 import { Gesture, GestureDetector } from "react-native-gesture-handler"
-import { Text, useTheme } from "react-native-paper"
+import { Text, useTheme, IconButton } from "react-native-paper"
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons"
 
 const SWIPE_THRESHOLD = 40
@@ -29,7 +29,7 @@ const TYPE_CONFIG = {
  * @param {number}  duration - Time in ms before auto-closing
  * @param {function} onDismiss - Callback when dismissed (after animation)
  */
-export const Toast = ({ visible, message, type = "info", duration = 2500, onDismiss }) => {
+export const Toast = ({ visible, message, type = "info", duration = 2500, onDismiss, onClick }) => {
   const theme = useTheme()
   const translateY = useSharedValue(120)
   const opacity    = useSharedValue(0)
@@ -135,13 +135,22 @@ export const Toast = ({ visible, message, type = "info", duration = 2500, onDism
           style={styles.typeIcon}
         />
 
-        {/* Menssage */}
+        {/* Message */}
         <Text
           numberOfLines={2}
           style={[styles.message, { color: colors.text }]}
         >
           {message}
         </Text>
+
+        {onClick && (
+          <IconButton
+            icon="arrow-right"
+            size={24}
+            onPress={onClick}
+            iconColor={theme.colors.onPrimary}
+          />
+        )}
 
         {/* Close icon */}
         {/* <MaterialCommunityIcons

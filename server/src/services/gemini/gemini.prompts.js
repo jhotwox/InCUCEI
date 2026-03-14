@@ -47,15 +47,15 @@ function getBaseInstructions(forFunctionResponse) {
   if (forFunctionResponse) {
     return "Presenta la info de BD al usuario de forma clara sin perder detalles."
   }
-  
-  return "Si necesitas info de materias, usa get_subject_material o get_subject_study_plan sin avisar."
+
+  return "Si necesitas info de materias, usa get_subject_material o get_subject_study_plan. Si el usuario pregunta por ubicaciones o quiere ver algo en el mapa, usa show_location_on_map. No avises que usarás las funciones, solo úsalas."
 }
 
 /**
  * Construye las instrucciones de funciones si aplica
  */
 function getFunctionInstructions(forFunctionResponse) {
-  return forFunctionResponse ? '' : '- Usa funciones para materiales/planes de estudio'
+  return forFunctionResponse ? '' : '- Usa funciones para materiales/planes de estudio y ubicaciones en el mapa'
 }
 
 /**

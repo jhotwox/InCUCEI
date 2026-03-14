@@ -13,6 +13,7 @@ export default () => {
   const [isTyping, setIsTyping] = useState(false)
   const [loading, setLoading] = useState(false)
   const [loadingChatHistory, setLoadingChatHistory] = useState(false)
+  const [mapNavigationData, setMapNavigationData] = useState(null)
   const { socket } = useSocket()
   const { user } = useAuth()
   const hasLoadedHistory = useRef(false)
@@ -130,14 +131,22 @@ export default () => {
       setIsTyping(false)
     }
 
+    // Navegación al mapa
+    const handleChatbotNavigateMap = (data) => {
+      console.log("[+] Navigate to map:", data)
+      setMapNavigationData(data)
+    }
+
     socket.on("chatbotResponse", handleChatbotResponse)
     socket.on("chatbotTyping", handleChatbotTyping)
     socket.on("chatbotError", handleChatbotError)
+    socket.on("chatbotNavigateMap", handleChatbotNavigateMap)
 
     return () => {
       socket.off("chatbotResponse", handleChatbotResponse)
       socket.off("chatbotTyping", handleChatbotTyping)
       socket.off("chatbotError", handleChatbotError)
+      socket.off("chatbotNavigateMap", handleChatbotNavigateMap)
     }
   }, [socket, user])
 
@@ -154,6 +163,10 @@ export default () => {
     setLoading(false)
   }, [])
 
+  const clearMapNavigation = useCallback(() => {
+    setMapNavigationData(null)
+  }, [])
+
   return {
     messages,
     sendMessage,
@@ -163,5 +176,7 @@ export default () => {
     loadChatHistory,
     deleteHistory,
     clearMessages,
+    mapNavigationData,
+    clearMapNavigation,
   }
 }

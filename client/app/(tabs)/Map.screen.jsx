@@ -1,7 +1,8 @@
 import { Button, Text } from "react-native-paper"
-import { memo, useState, useRef } from "react"
+import { memo, useState, useRef, useEffect } from "react"
 import { StyleSheet, View, TextInput, TouchableOpacity, FlatList, Keyboard } from 'react-native';
 import { StatusBar } from "expo-status-bar";
+import { useLocalSearchParams } from "expo-router";
 import { PLACES } from '../../constants/places';
 import Mapbox from '@rnmapbox/maps';
 Mapbox.setAccessToken('pk.eyJ1IjoiZ2Vyc29uMzAiLCJhIjoiY21mZGZxZ3ppMDc2YzJxcHo2enQxbnNwayJ9.uvEc9toQvd04tBlJ6Ko5iA');
@@ -10,7 +11,8 @@ const MapScreen = () => {
   const [search, setSearch] = useState('');
   const [showRestrooms, setShowRestrooms] = useState(false);
   const cameraRef = useRef(null);
-  
+  const params = useLocalSearchParams();
+
   const centerCampus = [-103.32473086798036, 20.657210257040575];
 
   const searchResults = search
@@ -20,12 +22,27 @@ const MapScreen = () => {
   const goToLocation = (coordinates) => {
     cameraRef.current?.setCamera({
       centerCoordinate: coordinates,
-      zoomLevel: 18, 
-      animationDuration: 1500, 
+      zoomLevel: 18,
+      animationDuration: 1500,
     });
-    setSearch(''); 
-    Keyboard.dismiss(); 
+    setSearch('');
+    Keyboard.dismiss();
   };
+
+  // Manejar navegación desde el chatbot
+  useEffect(() => {
+    if (params.focusPlace === "true" && params.placeId) {
+      console.log("[+] Focusing place from chatbot:", params.placeName)
+
+      const place = PLACES.find(p => p.id === params.placeId)
+      if (place) {
+        // Esperar un momento para que el mapa esté listo
+        setTimeout(() => {
+          goToLocation(place.coord)
+        }, 1000)
+      }
+    }
+  }, [params.focusPlace, params.placeId])
 
   // 🛠️ TRUCO DE DESARROLLADOR: Obtener coordenadas exactas
   const onTouchCoordinates = (event) => {
