@@ -4,7 +4,7 @@ export const createFileObjectFromUrl = (url, type) => {
   return {
     uri: url.startsWith("http")
       ? url
-      : `http://${process.env.EXPO_PUBLIC_SERVER_IP}:3000/${url}`,
+      : `${process.env.EXPO_PUBLIC_SERVER_IP}/${url}`,
     name: `${type}_image.jpg`,
     type: "image/jpeg",
     isUploaded: true,

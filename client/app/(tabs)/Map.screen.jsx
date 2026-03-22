@@ -1,8 +1,9 @@
-import { Button, Text } from "react-native-paper"
+import { Button, Text, FAB } from "react-native-paper"
 import { memo, useState, useRef, useEffect } from "react"
 import { StyleSheet, View, TextInput, TouchableOpacity, FlatList, Keyboard } from 'react-native';
 import { StatusBar } from "expo-status-bar";
 import { useLocalSearchParams } from "expo-router";
+import * as Location from 'expo-location';
 import { PLACES } from '../../constants/places';
 import Mapbox from '@rnmapbox/maps';
 Mapbox.setAccessToken('pk.eyJ1IjoiZ2Vyc29uMzAiLCJhIjoiY21mZGZxZ3ppMDc2YzJxcHo2enQxbnNwayJ9.uvEc9toQvd04tBlJ6Ko5iA');
@@ -10,6 +11,10 @@ Mapbox.setAccessToken('pk.eyJ1IjoiZ2Vyc29uMzAiLCJhIjoiY21mZGZxZ3ppMDc2YzJxcHo2en
 const MapScreen = () => {
   const [search, setSearch] = useState('');
   const [showRestrooms, setShowRestrooms] = useState(false);
+  const [selectedPlace, setSelectedPlace] = useState(null);
+  const [userLocation, setUserLocation] = useState(null);
+  const [locationPermission, setLocationPermission] = useState(null);
+
   const cameraRef = useRef(null);
   const params = useLocalSearchParams();
 
@@ -20,12 +25,30 @@ const MapScreen = () => {
     : [];
 
   const goToLocation = (coordinates) => {
+    setSelectedPlace(coordinates);
+
     cameraRef.current?.setCamera({
-      centerCoordinate: coordinates,
+      centerCoordinate: coordinates.coord,
       zoomLevel: 18,
       animationDuration: 1500,
     });
     setSearch('');
+    Keyboard.dismiss();
+  };
+
+  // Centrar en la ubicación actual del usuario
+  const centerOnUserLocation = () => {
+    if (!userLocation) {
+      console.log('❌ No hay ubicación disponible');
+      return;
+    }
+
+    cameraRef.current?.setCamera({
+      centerCoordinate: [userLocation.longitude, userLocation.latitude],
+      zoomLevel: 18,
+      animationDuration: 1500,
+    });
+
     Keyboard.dismiss();
   };
 
@@ -38,17 +61,78 @@ const MapScreen = () => {
       if (place) {
         // Esperar un momento para que el mapa esté listo
         setTimeout(() => {
-          goToLocation(place.coord)
+          goToLocation(place)
         }, 1000)
       }
     }
   }, [params.focusPlace, params.placeId])
+
+  // Solicitar permisos y rastrear ubicación
+  useEffect(() => {
+    let locationSubscription = null;
+
+    (async () => {
+      try {
+        // Solicitar permisos de ubicación
+        const { status } = await Location.requestForegroundPermissionsAsync();
+        setLocationPermission(status === 'granted');
+
+        if (status !== 'granted') {
+          console.log('❌ Permiso de ubicación denegado');
+          return;
+        }
+
+        // Obtener ubicación inicial
+        const location = await Location.getCurrentPositionAsync({
+          accuracy: Location.Accuracy.High,
+        });
+
+        setUserLocation({
+          latitude: location.coords.latitude,
+          longitude: location.coords.longitude,
+        });
+
+        // Rastrear ubicación en tiempo real
+        locationSubscription = await Location.watchPositionAsync(
+          {
+            accuracy: Location.Accuracy.High,
+            distanceInterval: 10, // Actualizar cada 10 metros
+            timeInterval: 5000, // Actualizar cada 5 segundos
+          },
+          (location) => {
+            setUserLocation({
+              latitude: location.coords.latitude,
+              longitude: location.coords.longitude,
+            });
+          }
+        );
+      } catch (error) {
+        console.error('❌ Error al obtener ubicación:', error);
+      }
+    })();
+
+    // Cleanup: detener el rastreo cuando el componente se desmonte
+    return () => {
+      if (locationSubscription) {
+        locationSubscription.remove();
+      }
+    };
+  }, []);
 
   // 🛠️ TRUCO DE DESARROLLADOR: Obtener coordenadas exactas
   const onTouchCoordinates = (event) => {
     const coordinates = event.geometry.coordinates;
     console.log(`📍 Coordenadas tocadas: [${coordinates[0]}, ${coordinates[1]}]`);
   };
+
+  const geoJSONSearchPoint = selectedPlace ? {
+    type: 'FeatureCollection',
+    features: [{
+      type: 'Feature',
+      geometry: { type: 'Point', coordinates: selectedPlace.coord },
+      properties: { nombre: selectedPlace.name }
+    }]
+  } : null;
 
   const restroomsGeoJSON = {
     type: 'FeatureCollection',
@@ -58,20 +142,30 @@ const MapScreen = () => {
       properties: { nombre: bano.name }
     }))
   };
-  
+
+  const handleSetSearch = (text) => {
+    setSearch(text);
+    if (selectedPlace) setSelectedPlace(null);
+  };
+
   return (
     <View style={styles.container}>
       
       <StatusBar style={"dark"} />
       
-      <Mapbox.MapView 
-        style={styles.map} 
+      <Mapbox.MapView
+        style={styles.map}
         styleURL={Mapbox.StyleURL.Street}
-        onPress={onTouchCoordinates} // <-- El sensor que detecta tus toques
+        // onPress={onTouchCoordinates} // <-- El sensor que detecta tus toques
       >
-        <Mapbox.LocationPuck
-          puckBearing="heading"
-        />
+        {/* Marcador de ubicación del usuario */}
+        {userLocation && (
+          <Mapbox.LocationPuck
+            puckBearingEnabled
+            puckBearing="heading"
+            pulsing={{ isEnabled: true, color: '#007AFF', radius: 30 }}
+          />
+        )}
         
         <Mapbox.Camera
           ref={cameraRef}
@@ -96,6 +190,21 @@ const MapScreen = () => {
             fillExtrusionBase: 0,
           }}
         />
+
+        {selectedPlace && (
+          <Mapbox.ShapeSource id="seleccionSource" shape={geoJSONSearchPoint}>
+            <Mapbox.CircleLayer 
+              id="seleccionCapa" 
+              style={{ 
+                circleColor: '#007AFF',
+                circleRadius: 10,
+                circleStrokeColor: '#ffffff',
+                circleStrokeWidth: 3,
+                circleOpacity: 0.9,
+              }} 
+            />
+          </Mapbox.ShapeSource>
+        )}
 
         {showRestrooms && (
           <Mapbox.ShapeSource id="restroomsSource" shape={restroomsGeoJSON}>
@@ -122,11 +231,11 @@ const MapScreen = () => {
               placeholder="Buscar edificio..."
               placeholderTextColor="#888"
               value={search}
-              onChangeText={setSearch}
+              onChangeText={handleSetSearch}
             />
             {/* Show X if they are text */}
             {search.length > 0 && (
-              <TouchableOpacity onPress={() => setSearch('')} style={styles.botonLimpiar}>
+              <TouchableOpacity onPress={() => {setSearch(''); setSelectedPlace(null); }} style={styles.botonLimpiar}>
                 <Text style={styles.textoLimpiar}>✖</Text>
               </TouchableOpacity>
             )}
@@ -148,7 +257,7 @@ const MapScreen = () => {
               data={searchResults}
               keyExtractor={(item) => item.id}
               renderItem={({ item }) => (
-                <TouchableOpacity style={styles.resultadoItem} onPress={() => goToLocation(item.coord)}>
+                <TouchableOpacity style={styles.resultadoItem} onPress={() => goToLocation(item)}>
                   <Text style={styles.resultadoTexto}>
                     {item.type === 'baño' ? '🚽 ' : '🏢 '}
                     {item.name}
@@ -159,6 +268,16 @@ const MapScreen = () => {
           </View>
         )}
       </View>
+
+      {/* Botón flotante para centrar en ubicación actual */}
+      {locationPermission && userLocation && (
+        <FAB
+          icon="crosshairs-gps"
+          style={styles.fab}
+          onPress={centerOnUserLocation}
+          color="#fff"
+        />
+      )}
     </View>
   )
 }
@@ -233,6 +352,13 @@ const styles = StyleSheet.create({
   resultadoTexto: {
     fontSize: 16,
     color: '#333333', // Texto oscuro para los resultados
+  },
+  fab: {
+    position: 'absolute',
+    right: 20,
+    bottom: 40,
+    backgroundColor: '#007AFF',
+    borderRadius: 50,
   }
 });
 

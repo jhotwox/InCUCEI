@@ -70,7 +70,7 @@ export const getStudyPlan = (subject, career = null) => {
   const port = process.env.PORT || "3000"
   const protocol = process.env.NODE_ENV === "production" ? "https" : "http"
 
-  const serverUrl = `${protocol}://${host}:${port}/files/study_plan/${subjectData.career}/${subjectData.files.study_plan}`
+  const serverUrl = `${protocol}://${host}${port !== "" ? `:${port}` : ""}/files/study_plan/${subjectData.career}/${subjectData.files.study_plan}`
   // console.log("Server URL:", serverUrl)
   // console.log("full host:", host + ":" + port)
 
@@ -109,7 +109,7 @@ export const getMaterial = (subject, career = null) => {
   const port = process.env.PORT || "3000"
   const protocol = process.env.NODE_ENV === "production" ? "https" : "http"  
 
-  const serverUrl = `${protocol}://${host}:${port}/files/material/${subjectData.files.material}`;
+  const serverUrl = `${protocol}://${host}${port !== "" ? `:${port}` : ""}/files/material/${subjectData.files.material}`;
 
   return {
     data: {
