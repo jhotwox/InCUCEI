@@ -19,7 +19,7 @@ export const SocketProvider = ({ children }) => {
   useEffect(() => {
     if (token && user) {
       // Conect to socket server
-      const newSocket = io(`http://${process.env.EXPO_PUBLIC_SERVER_IP}:3000`, {
+      const newSocket = io(`${process.env.EXPO_PUBLIC_SERVER_IP}`, {
         transports: ["websocket"],
         autoConnect: true,
       })
