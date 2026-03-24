@@ -41,7 +41,6 @@ app.set("io", io)
 
 // Routes
 app.use("/files", express.static(path.join(__dirname, "files")))
-app.use("/uploads", express.static(path.join(__dirname, "../uploads")))
 
 app.use("/api", userRoutes)
 app.use("/api/file/", fileRoutes)

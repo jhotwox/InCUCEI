@@ -21,6 +21,28 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: null,
     },
+    profilePublicId: {
+      type: String,
+      default: null,
+    },
+
+    // Allows uploading logo/banner before the commerce exists (mirrors old disk behavior).
+    pendingLogoUrl: {
+      type: String,
+      default: null,
+    },
+    pendingLogoPublicId: {
+      type: String,
+      default: null,
+    },
+    pendingBannerUrl: {
+      type: String,
+      default: null,
+    },
+    pendingBannerPublicId: {
+      type: String,
+      default: null,
+    },
   },
   {
     timestamps: true,

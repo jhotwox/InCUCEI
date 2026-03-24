@@ -17,6 +17,23 @@ const commerceSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+
+    logoUrl: {
+      type: String,
+      default: null,
+    },
+    logoPublicId: {
+      type: String,
+      default: null,
+    },
+    bannerUrl: {
+      type: String,
+      default: null,
+    },
+    bannerPublicId: {
+      type: String,
+      default: null,
+    },
   },
   {
     timestamps: true,
