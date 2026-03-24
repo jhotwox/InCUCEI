@@ -1,0 +1,63 @@
+flows:
+  subject_material:
+    description: Provide study material for a CUCEI subject.
+    steps:
+      - collect: topic
+        description: The subject name requested by the user.
+      - action: action_get_subject_material
+
+  subject_study_plan:
+    description: Provide study plan for a CUCEI subject.
+    steps:
+      - collect: topic
+        description: The subject name requested by the user.
+      - action: action_get_subject_study_plan
+
+  subjects_list:
+    description: List available subjects.
+    steps:
+      - action: action_get_subjects
+
+  show_location:
+    description: Show a CUCEI location on the map.
+    steps:
+      - collect: location_name
+        description: The location name requested by the user.
+      - action: action_show_location_on_map
+
+  human_contact:
+    description: Seamlessly send contact information when necessary.
+    steps:
+      - collect: confirm_human_contact
+        next:
+          - if: slots.confirm_human_contact
+            then:
+              - action: utter_human_contact
+                next: END
+          - else:
+            - action: utter_human_contact_canceled
+              next: END
+  
+  greet:
+    description: Handle user greetings.
+    steps:
+      # - action: greet
+      - action: utter_greet
+
+  goodbye:
+    description: Handle user farewells.
+    steps:
+      # - intent: goodbye
+      - action: utter_goodbye
+
+  # thank_you:
+  #   description: Handle user expressions of gratitude.
+  #   steps:
+  #     - intent: thank_you
+  #     - action: utter_thank_you
+
+  pattern_chitchat:
+    description: Handle off-topic interactions without disrupting the main conversation.
+    name: pattern chitchat
+    steps:
+      - action: utter_free_chitchat_response

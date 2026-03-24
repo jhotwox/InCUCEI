@@ -48,7 +48,7 @@ deactivate
 - Para nuevas funcionalidades, seguir la arquitectura modular y aprovechar los contextos y hooks existentes.
 
 
-# OUTDATED (THE CHATBOT IS NO LONGER IN PYTHON — IT'S NOW A JS BACKEND USING GEMINI)
+# OUTDATED (THE CHATBOT IS NO LONGER IN PYTHON — IT'S NOW A JS BACKEND)
 
 ### CHATBOT
 
@@ -60,12 +60,12 @@ Carpeta chatbot-cucei-assistant es el de verdad
 ## TODO LIST
 ### FRONT
 - [ ] focus en el input incompleto cuando presionas el boton de iniciar sesion o registrar
-- [ ] Crear mapa
-- [ ] Dar funcionalidad al mapa
-- [ ] Crear chatbot
-- [ ] Conectar el chatbot
-- [ ] Crear sistema de ventas
-- [ ] Crear chat entre usuario y vendedor
+- [x] Crear mapa
+- [x] Dar funcionalidad al mapa
+- [x] Crear chatbot
+- [x] Conectar el chatbot
+- [x] Crear sistema de ventas
+- [x] Crear chat entre usuario y vendedor
 - [ ] Comunicar la ubicacion del vendedor con el mapa
 
 ### CHATBOT

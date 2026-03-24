@@ -1,17 +1,28 @@
-import { memo, useCallback } from "react"
+import { memo, useCallback, useMemo, useState } from "react"
 import { Pressable, StyleSheet, View, FlatList } from "react-native"
 import { router, useFocusEffect } from "expo-router"
 import { LinearGradient } from "expo-linear-gradient"
 import { BlurView } from "expo-blur"
-import { Avatar, Badge, Surface, Text, useTheme } from "react-native-paper"
+import {
+  ActivityIndicator,
+  Avatar,
+  Badge,
+  Surface,
+  Text,
+  useTheme,
+} from "react-native-paper"
 import { Background } from "../../../components"
+import { useToast } from "../../../contexts/Toast.context"
 import { useMessages } from "../../../hooks/useMessages"
+import { getCommerce } from "../../../api/commerce.api"
+import { createFileObjectFromUrl } from "../../../utils/generateFileObjectFromURL"
 
 const ChatItem = memo(({ item, onPress, theme }) => {
+  const sender = item?.senderInfo
   const commerce = item?.commerceInfo
   const lastMessage = item?.lastMessage
 
-  const title = commerce?.name || "Comercio"
+  const title = sender?.name || "Usuario"
   const subtitle = lastMessage?.content || ""
   const dateText = lastMessage?.createdAt
     ? new Date(lastMessage.createdAt).toLocaleString("es-MX")
@@ -23,12 +34,12 @@ const ChatItem = memo(({ item, onPress, theme }) => {
     <Pressable onPress={onPress} style={styles.itemPressable}>
       <Surface elevation={2} style={styles.itemSurface}>
         <View style={styles.itemRow}>
-          {commerce?.logoUrl ? (
-            <Avatar.Image size={44} source={{ uri: commerce.logoUrl }} />
+          {sender?.profileUrl ? (
+            <Avatar.Image size={44} source={{ uri: sender.profileUrl }} />
           ) : (
             <Avatar.Icon
               size={44}
-              icon="store"
+              icon="account"
               style={{ backgroundColor: theme.colors.primaryContainer }}
               color={theme.colors.primary}
             />
@@ -36,17 +47,38 @@ const ChatItem = memo(({ item, onPress, theme }) => {
 
           <View style={styles.itemTextCol}>
             <View style={styles.itemTitleRow}>
-              <Text variant="titleMedium" numberOfLines={1} style={styles.itemTitle}>
+              <Text
+                variant="titleMedium"
+                numberOfLines={1}
+                style={styles.itemTitle}
+              >
                 {title}
               </Text>
               {!!unreadCount && <Badge size={20}>{unreadCount}</Badge>}
             </View>
-            <Text variant="bodySmall" numberOfLines={1} style={styles.itemSubtitle}>
+            <Text
+              variant="bodySmall"
+              numberOfLines={1}
+              style={styles.itemSubtitle}
+            >
               {subtitle}
             </Text>
-            <Text variant="labelSmall" numberOfLines={1} style={styles.itemDate}>
+            <Text
+              variant="labelSmall"
+              numberOfLines={1}
+              style={styles.itemDate}
+            >
               {dateText}
             </Text>
+            {!!commerce?.name && (
+              <Text
+                variant="labelSmall"
+                numberOfLines={1}
+                style={styles.itemCommerce}
+              >
+                {sender?.email}
+              </Text>
+            )}
           </View>
         </View>
       </Surface>
@@ -56,44 +88,86 @@ const ChatItem = memo(({ item, onPress, theme }) => {
 
 export default () => {
   const theme = useTheme()
-  const { chats, loadChats, loading } = useMessages()
+  const { commerceChats, loadCommerceChats, loading } = useMessages()
+  const { showToast } = useToast()
+
+  const [hasCommerce, setHasCommerce] = useState(true)
+  const [checkingCommerce, setCheckingCommerce] = useState(true)
+
+  const verifyCommerceAndLoad = useCallback(async () => {
+    try {
+      setCheckingCommerce(true)
+      await getCommerce()
+      setHasCommerce(true)
+      await loadCommerceChats()
+    } catch (err) {
+      const message = typeof err?.message === "string" ? err.message : ""
+      if (message === "Comercio no encontrado") {
+        setHasCommerce(false)
+        return
+      }
+
+      setHasCommerce(false)
+      showToast("No se pudo verificar tu comercio", "error")
+    } finally {
+      setCheckingCommerce(false)
+    }
+  }, [loadCommerceChats, showToast])
 
   useFocusEffect(
     useCallback(() => {
-      loadChats()
-    }, [loadChats])
+      verifyCommerceAndLoad()
+    }, [verifyCommerceAndLoad]),
+  )
+
+  const listData = useMemo(
+    () => (hasCommerce ? commerceChats : []),
+    [hasCommerce, commerceChats],
   )
 
   const keyExtractor = useCallback((item, index) => {
-    const commerceId = item?.commerceInfo?._id || item?._id
-    return commerceId ? commerceId.toString() : `chat-${index}`
+    const userId = item?._id
+    const commerceId = item?.commerceInfo?._id
+    if (userId && commerceId) return `${commerceId}_${userId}`
+    return `commerce-chat-${index}`
   }, [])
 
   const renderItem = useCallback(
     ({ item }) => {
+      const sender = item?.senderInfo
       const commerce = item?.commerceInfo
-      const commerceId = commerce?._id || item?._id
+      const commerceId = commerce?._id
       const commerceName = commerce?.name
+      const chatUserId = sender?._id
+      const chatUserEmail = sender?.email
+      const chatUserName = sender?.name
+      const uri = sender?.profileUrl
+        ? `${createFileObjectFromUrl(sender?.profileUrl, "profile")?.uri}`
+        : null
+      const newItem = { ...item, senderInfo: { ...sender, profileUrl: uri } }
 
       return (
         <ChatItem
-          item={item}
+          item={newItem}
           theme={theme}
           onPress={() => {
-            if (!commerceId) return
+            if (!commerceId || !chatUserId) return
             router.push({
               pathname: "/(tabs)/Sales.screen/Chat.screen",
               params: {
-                mode: "user",
+                mode: "commerce",
                 commerceId: commerceId.toString(),
                 commerceName: commerceName || "Comercio",
+                chatUserId: chatUserId.toString(),
+                chatUserEmail: chatUserEmail || "",
+                chatUserName: chatUserName || "",
               },
             })
           }}
         />
       )
     },
-    [theme]
+    [theme],
   )
 
   return (
@@ -110,16 +184,16 @@ export default () => {
           <View style={styles.headerContent}>
             <Avatar.Icon
               size={40}
-              icon="chat"
+              icon="account-group"
               style={{ backgroundColor: "rgba(255,255,255,0.3)" }}
               color="#fff"
             />
             <View style={styles.headerTextContainer}>
               <Text variant="titleLarge" style={styles.headerTitle}>
-                Chats
+                Clientes
               </Text>
               <Text variant="bodySmall" style={styles.headerSubtitle}>
-                Tus conversaciones con comercios
+                Mensajes recibidos en tu comercio
               </Text>
             </View>
           </View>
@@ -127,11 +201,11 @@ export default () => {
       </LinearGradient>
 
       <FlatList
-        data={chats}
+        data={listData}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
-        refreshing={loading}
-        onRefresh={loadChats}
+        refreshing={loading || checkingCommerce}
+        onRefresh={verifyCommerceAndLoad}
         contentContainerStyle={styles.listContent}
         showsVerticalScrollIndicator={false}
         removeClippedSubviews={true}
@@ -139,16 +213,26 @@ export default () => {
         windowSize={10}
         initialNumToRender={12}
         ListEmptyComponent={
-          !loading ? (
+          !loading && !checkingCommerce ? (
             <View style={styles.emptyState}>
-              <Text variant="bodyMedium">No hay chats disponibles</Text>
+              <Text variant="bodyMedium">
+                {hasCommerce
+                  ? "No hay mensajes de clientes"
+                  : "No tienes un comercio creado"}
+              </Text>
               <Text variant="bodySmall" style={styles.emptyHint}>
-                Ve a Tienda y presiona "Contactar" en un comercio
+                {hasCommerce
+                  ? "Cuando un usuario te contacte, aparecerá aquí"
+                  : 'Crea tu comercio en la pestaña "Mi Comercio" para recibir mensajes'}
               </Text>
             </View>
           ) : null
         }
       />
+
+      {checkingCommerce && !loading && listData.length === 0 && (
+        <ActivityIndicator style={{ paddingVertical: 12 }} />
+      )}
     </View>
   )
 }
@@ -222,6 +306,10 @@ const styles = StyleSheet.create({
   itemDate: {
     marginTop: 6,
     opacity: 0.6,
+  },
+  itemCommerce: {
+    marginTop: 6,
+    opacity: 0.7,
   },
   emptyState: {
     alignItems: "center",

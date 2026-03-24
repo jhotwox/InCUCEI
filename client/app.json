@@ -23,13 +23,19 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.jhotwox.client"
+      "package": "com.jhotwox.client",
+      "permissions": [
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      ["expo-font"],
+      [
+        "expo-font"
+      ],
       [
         "@rnmapbox/maps",
         {
@@ -42,6 +48,11 @@
           "locationWhenInUsePermission": "Show current location on map."
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "834be67a-1814-4c1a-affc-0a412e5ee67d"
+      }
+    }
   }
 }

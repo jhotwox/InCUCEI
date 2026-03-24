@@ -1,0 +1,37 @@
+version: "3.1"
+
+rules:
+  - rule: Saludo
+    steps:
+      - intent: greet
+      - action: utter_greet
+
+  - rule: Despedida
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - rule: Material por materia
+    steps:
+      - intent: request_subject_material
+      - action: action_get_subject_material
+
+  - rule: Plan de estudios por materia
+    steps:
+      - intent: request_subject_study_plan
+      - action: action_get_subject_study_plan
+
+  - rule: Listar materias
+    steps:
+      - intent: request_subjects
+      - action: action_get_subjects
+
+  - rule: Mostrar ubicación en mapa
+    steps:
+      - intent: request_location_map
+      - action: action_show_location_on_map
+
+  - rule: Contacto humano
+    steps:
+      - intent: request_human_contact
+      - action: action_human_contact

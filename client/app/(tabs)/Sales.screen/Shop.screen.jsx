@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { FlatList, View } from "react-native"
 import { Text, useTheme } from "react-native-paper"
 import { Background, Input } from "../../../components"
@@ -10,28 +10,38 @@ import { useAuth } from "../../../contexts/Auth.context.jsx"
 export default () => {
   const [search, setSearch] = useState("")
   const [commerces, setCommerces] = useState([])
+  const [refreshing, setRefreshing] = useState(false)
 
   const theme = useTheme()
   const { showToast } = useToast()
   const { user } = useAuth()
 
-  useEffect(() => {
-    const fetchCommerces = async () => {
-      await getAllComerces()
-        .then(({ data }) => {
-          // console.log("All commerces data: ", data)
-          setCommerces(data.commerces)
-        })
-        .catch((err) => {
-          console.log("Error fetching all commerces: ", err)
-          if (err?.message && typeof err.message === "string")
-            showToast(err.message, "error")
-          else showToast("Error al obtener los comercios", "error")
-        })
-    }
+  const fetchCommerces = useCallback(
+    async ({ showErrorToast } = { showErrorToast: true }) => {
+      try {
+        const { data } = await getAllComerces()
+        setCommerces(data.commerces)
+      } catch (err) {
+        console.log("Error fetching all commerces: ", err)
+        if (!showErrorToast) return
 
+        if (err?.message && typeof err.message === "string")
+          showToast(err.message, "error")
+        else showToast("Error al obtener los comercios", "error")
+      }
+    },
+    [showToast]
+  )
+
+  const onRefresh = useCallback(async () => {
+    setRefreshing(true)
+    await fetchCommerces({ showErrorToast: false })
+    setRefreshing(false)
+  }, [fetchCommerces])
+
+  useEffect(() => {
     fetchCommerces()
-  }, [])
+  }, [fetchCommerces])
 
   const filteredCommerces = commerces.filter(
     (commerce) =>
@@ -56,6 +66,8 @@ export default () => {
         renderItem={({ item }) => (
           <CommerceCard commerce={item} userId={user?.id} />
         )}
+        refreshing={refreshing}
+        onRefresh={onRefresh}
         showsVerticalScrollIndicator={false}
         ListEmptyComponent={() => (
           <Text

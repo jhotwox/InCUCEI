@@ -41,9 +41,18 @@ export default () => {
       <Tabs.Screen
         name="ChatList.screen"
         options={{
-          title: "Chats",
+          title: "Mis chats",
           tabBarIcon: ({ focused, color }) => (
             <Icon size={24} source={focused ? "chat" : "chat-outline"} theme={theme} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="CommerceChatList.screen"
+        options={{
+          title: "Clientes",
+          tabBarIcon: ({ focused, color }) => (
+            <Icon size={24} source={focused ? "account-group" : "account-group-outline"} theme={theme} />
           ),
         }}
       />

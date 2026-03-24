@@ -1,0 +1,26 @@
+# Action server (Rasa SDK)
+action_endpoint:
+  url: "http://localhost:5055/webhook"
+
+# Tracker store (optional)
+# If you want persistence, configure this via environment variables or a secret manager.
+# Example (MongoDB):
+# tracker_store:
+#   type: mongod
+#   url: ${MONGO_URL}
+#   db: ${MONGO_DB}
+#   username: ${MONGO_USERNAME}
+#   password: ${MONGO_PASSWORD}
+
+# Allow rephrasing of responses using a Rasa-hosted model
+nlg:
+  type: rephrase
+  llm:
+    model_group: rasa_command_generation_model
+
+model_groups:
+  - id: rasa_command_generation_model
+    models:
+      - provider: rasa
+        model: rasa/command-generator-llama-3.1-8b-instruct
+        api_base: "https://tutorial-llm.rasa.ai"

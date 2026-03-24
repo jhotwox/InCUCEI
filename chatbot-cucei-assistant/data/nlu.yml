@@ -1,0 +1,76 @@
+version: "3.1"
+
+nlu:
+  - intent: greet
+    examples: |
+      - hola
+      - buenos días
+      - qué tal
+      - como estás?
+      - buenas tardes
+      - buenas noches
+      - noches
+      - dias
+      - tardes
+      - hey
+      - holaa
+      - holis
+      - qué hubo
+      - qué onda
+      - qué pasa
+      - qué pasa calabaza
+      - buenas
+      - hi
+
+  - intent: goodbye
+    examples: |
+      - adiós
+      - hasta luego
+      - nos vemos
+      - te veo luego
+      - chao
+      - chau
+      - me voy
+      - hasta la próxima
+      - camara
+      - nos estamos viendo
+      - bye
+
+  - intent: request_subject_material
+    examples: |
+      - necesito material de [Algoritmia](subject)
+      - pásame apuntes de [Bases de Datos](subject)
+      - ¿tienes material de [Cálculo Diferencial](subject)?
+      - quiero el material de [Ingenieria de Software I](subject)
+      - dame el material de [Administracion de Redes](subject)
+      - necesito el material de [BD](subject)
+
+  - intent: request_subject_study_plan
+    examples: |
+      - quiero el plan de estudios de [Algoritmia](subject)
+      - pásame el plan de [Bases de Datos](subject)
+      - ¿me das el plan de [Cálculo Diferencial](subject)?
+      - necesito el plan de [Ingenieria de Software I](subject)
+
+  - intent: request_subjects
+    examples: |
+      - qué materias tienes
+      - lista de materias
+      - dime las materias disponibles
+      - cuáles son las materias
+
+  - intent: request_location_map
+    examples: |
+      - ¿dónde está [Biblioteca](location)?
+      - muéstrame [Modulo A](location)
+      - llévame al [Modulo B](location)
+      - necesito encontrar el [Baño Modulo U](location)
+      - quiero ver [Lonaria](location) en el mapa
+
+  - intent: request_human_contact
+    examples: |
+      - necesito un contacto
+      - me puedes dar un correo o teléfono
+      - quiero hablar con alguien
+      - dame información de contacto
+    

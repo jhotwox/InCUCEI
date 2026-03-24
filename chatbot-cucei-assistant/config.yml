@@ -1,0 +1,22 @@
+#Tutorial
+recipe: default.v1
+
+language: es
+pipeline:
+- name: CompactLLMCommandGenerator
+  llm:
+    model_group: rasa_command_generation_model
+  flow_retrieval:
+    active: false
+
+policies:
+- name: FlowPolicy
+# Supports rule-based training data in data/rules.yml
+- name: RulePolicy
+# - name: EnterpriseSearchPolicy
+
+# Actions build URLs using INCUCEI_SERVER_BASE_URL (see README).
+# Copilot
+# assistant_id: 20250907-131251-wicker-creek
+# Tutorial
+assistant_id: 20250829-145730-convoluted-coot
