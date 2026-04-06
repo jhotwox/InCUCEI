@@ -16,8 +16,9 @@ import Animated, { FadeInLeft, FadeInRight } from "react-native-reanimated"
 import { Background } from "../../../components"
 import { useAuth } from "../../../contexts/Auth.context"
 import { useMessages } from "../../../hooks/useMessages"
+import { createFileObjectFromUrl } from "../../../utils/generateFileObjectFromURL"
 
-const MessageItem = memo(({ item, theme, isOwn, index, mode }) => {
+const MessageItem = memo(({ item, theme, isOwn, index, myAvatarUri, otherAvatarUri, mode }) => {
   if (!item) return null
 
   const AnimatedView = Animated.createAnimatedComponent(View)
@@ -28,12 +29,16 @@ const MessageItem = memo(({ item, theme, isOwn, index, mode }) => {
       style={[styles.messageContainer, isOwn ? styles.userMessage : styles.commerceMessage]}
     >
       {!isOwn && (
-        <Avatar.Icon
-          size={32}
-          icon="store"
-          style={[styles.avatar, { backgroundColor: theme.colors.primaryContainer }]}
-          color={theme.colors.primary}
-        />
+        otherAvatarUri ? (
+          <Avatar.Image size={32} source={{ uri: otherAvatarUri }} style={styles.avatar} />
+        ) : (
+          <Avatar.Icon
+            size={32}
+            icon={mode === "commerce" ? "account" : "store"}
+            style={[styles.avatar, { backgroundColor: theme.colors.primaryContainer }]}
+            color={theme.colors.primary}
+          />
+        )
       )}
 
       <Surface
@@ -66,12 +71,16 @@ const MessageItem = memo(({ item, theme, isOwn, index, mode }) => {
       </Surface>
 
       {isOwn && (
-        <Avatar.Icon
-          size={32}
-          icon="account"
-          style={[styles.avatar, { backgroundColor: theme.colors.secondaryContainer }]}
-          color={theme.colors.secondary}
-        />
+        myAvatarUri ? (
+          <Avatar.Image size={32} source={{ uri: myAvatarUri }} style={styles.avatar} />
+        ) : (
+          <Avatar.Icon
+            size={32}
+            icon={mode === "commerce" ? "store" : "account"}
+            style={[styles.avatar, { backgroundColor: theme.colors.secondaryContainer }]}
+            color={theme.colors.secondary}
+          />
+        )
       )}
     </AnimatedView>
   )
@@ -81,10 +90,12 @@ export default function ChatScreen() {
   const {
     commerceId: commerceIdParam,
     commerceName,
+    commerceLogoUrl: commerceLogoUrlParam,
     mode: modeParam,
     chatUserId: chatUserIdParam,
     chatUserEmail,
     chatUserName,
+    chatUserProfileUrl: chatUserProfileUrlParam,
   } = useLocalSearchParams()
 
   const mode = useMemo(() => {
@@ -101,11 +112,22 @@ export default function ChatScreen() {
     [commerceIdParam]
   )
 
+  const commerceLogoUrl = useMemo(
+    () => (Array.isArray(commerceLogoUrlParam) ? commerceLogoUrlParam[0] : commerceLogoUrlParam),
+    [commerceLogoUrlParam]
+  )
+
+  const chatUserProfileUrl = useMemo(
+    () => (Array.isArray(chatUserProfileUrlParam) ? chatUserProfileUrlParam[0] : chatUserProfileUrlParam),
+    [chatUserProfileUrlParam]
+  )
+
   const [inputMessage, setInputMessage] = useState("")
+  const [profileImageKey, setProfileImageKey] = useState(Date.now())
   const flatListRef = useRef(null)
 
   const theme = useTheme()
-  const { user } = useAuth()
+  const { user, profileImageChanged, setProfileImageChanged } = useAuth()
   const {
     messages,
     sendMessage,
@@ -116,6 +138,34 @@ export default function ChatScreen() {
     loadConversation,
     loadCommerceConversation,
   } = useMessages()
+
+  useEffect(() => {
+    if (user?.profileUrl) {
+      setProfileImageKey(Date.now())
+      if (profileImageChanged) setProfileImageChanged(false)
+    }
+  }, [user?.profileUrl, profileImageChanged, setProfileImageChanged])
+
+  const commerceAvatarUri = useMemo(() => {
+    if (!commerceLogoUrl) return null
+    return createFileObjectFromUrl(commerceLogoUrl, "logo")?.uri || null
+  }, [commerceLogoUrl])
+
+  const userAvatarUri = useMemo(() => {
+    if (!user?.profileUrl) return null
+    const base = createFileObjectFromUrl(user.profileUrl, "profile")?.uri
+    if (!base) return null
+    const joiner = base.includes("?") ? "&" : "?"
+    return `${base}${joiner}t=${profileImageKey}`
+  }, [user?.profileUrl, profileImageKey])
+
+  const chatUserAvatarUri = useMemo(() => {
+    if (!chatUserProfileUrl) return null
+    return createFileObjectFromUrl(chatUserProfileUrl, "profile")?.uri || null
+  }, [chatUserProfileUrl])
+
+  const myAvatarUri = mode === "commerce" ? commerceAvatarUri : userAvatarUri
+  const otherAvatarUri = mode === "commerce" ? chatUserAvatarUri : commerceAvatarUri
 
   const roomUserId = mode === "commerce" ? chatUserId : user?.id
 
@@ -183,9 +233,19 @@ export default function ChatScreen() {
       const senderId = typeof item?.sender === "string" ? item.sender : item?.sender?._id
       const isOwn = senderId === user?.id
 
-      return <MessageItem item={item} theme={theme} isOwn={isOwn} index={index} />
+      return (
+        <MessageItem
+          item={item}
+          theme={theme}
+          isOwn={isOwn}
+          index={index}
+          myAvatarUri={myAvatarUri}
+          otherAvatarUri={otherAvatarUri}
+          mode={mode}
+        />
+      )
     },
-    [theme, user?.id]
+    [theme, user?.id, myAvatarUri, otherAvatarUri, mode]
   )
 
   const keyExtractor = useCallback((item, index) => item?._id?.toString?.() || `msg-${index}`, [])
@@ -226,12 +286,20 @@ export default function ChatScreen() {
       >
         <BlurView intensity={20} tint="light" style={styles.blurHeader}>
           <View style={styles.headerContent}>
-            <Avatar.Icon
-              size={40}
-              icon="store"
-              style={{ backgroundColor: "rgba(255,255,255,0.3)" }}
-              color="#fff"
-            />
+            {otherAvatarUri ? (
+              <Avatar.Image
+                size={40}
+                source={{ uri: otherAvatarUri }}
+                style={{ backgroundColor: "rgba(255,255,255,0.3)" }}
+              />
+            ) : (
+              <Avatar.Icon
+                size={40}
+                icon={mode === "commerce" ? "account" : "store"}
+                style={{ backgroundColor: "rgba(255,255,255,0.3)" }}
+                color="#fff"
+              />
+            )}
             <View style={styles.headerTextContainer}>
               <Text variant="titleLarge" style={styles.headerTitle} numberOfLines={1}>
                 { mode === "commerce" ?

@@ -74,6 +74,7 @@ export default () => {
       const commerce = item?.commerceInfo
       const commerceId = commerce?._id || item?._id
       const commerceName = commerce?.name
+      const commerceLogoUrl = commerce?.logoUrl
 
       return (
         <ChatItem
@@ -87,6 +88,7 @@ export default () => {
                 mode: "user",
                 commerceId: commerceId.toString(),
                 commerceName: commerceName || "Comercio",
+                commerceLogoUrl: commerceLogoUrl || "",
               },
             })
           }}

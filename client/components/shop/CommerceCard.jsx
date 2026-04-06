@@ -46,6 +46,7 @@ export const CommerceCard = ({ commerce, userId }) => {
         params: {
           commerceId: commerce.id,
           commerceName: commerce.name,
+          commerceLogoUrl: commerce.logoUrl || "",
           commerceUserId: commerce.userId,
         },
       })

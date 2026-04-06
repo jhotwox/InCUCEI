@@ -138,6 +138,7 @@ export default () => {
       const commerce = item?.commerceInfo
       const commerceId = commerce?._id
       const commerceName = commerce?.name
+      const commerceLogoUrl = commerce?.logoUrl
       const chatUserId = sender?._id
       const chatUserEmail = sender?.email
       const chatUserName = sender?.name
@@ -158,9 +159,11 @@ export default () => {
                 mode: "commerce",
                 commerceId: commerceId.toString(),
                 commerceName: commerceName || "Comercio",
+                commerceLogoUrl: commerceLogoUrl || "",
                 chatUserId: chatUserId.toString(),
                 chatUserEmail: chatUserEmail || "",
                 chatUserName: chatUserName || "",
+                chatUserProfileUrl: uri || "",
               },
             })
           }}
