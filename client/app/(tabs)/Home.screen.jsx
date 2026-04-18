@@ -19,19 +19,18 @@ import Animated, {
   withSequence,
 } from "react-native-reanimated"
 import { LinearGradient } from "expo-linear-gradient"
-import { BlurView } from "expo-blur"
 import { router } from "expo-router"
 import { Background, MarkdownText } from "../../components"
 import useChatbot from "../../hooks/useChatBot"
 import { useAuth } from "../../contexts/Auth.context"
 import { useToast } from "../../contexts/Toast.context"
 import { createFileObjectFromUrl } from "../../utils/generateFileObjectFromURL"
+import Header from "../../components/common/Header"
 
 const MessageItem = memo(({ item, theme, profileUrl, index, profileImageKey }) => {
   if (!item) return null
 
   const AnimatedView = Animated.createAnimatedComponent(View)
-  // const uri = item.isUser ? createFileObjectFromUrl(profileUrl, "profile")?.uri : null
   const uri = item.isUser && profileUrl
   ? `${createFileObjectFromUrl(profileUrl, "profile")?.uri}?t=${profileImageKey}`
   : null
@@ -258,31 +257,13 @@ export default () => {
     >
       <Background background={theme.colors.onPrimary} />
       
-      <LinearGradient
-        colors={[theme.colors.primary, theme.colors.secondary]}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={styles.header}
-      >
-        <BlurView intensity={20} tint="light" style={styles.blurHeader}>
-          <View style={styles.headerContent}>
-            <Avatar.Icon
-              size={40}
-              icon="robot-excited"
-              style={{ backgroundColor: "rgba(255,255,255,0.3)" }}
-              color="#fff"
-            />
-            <View style={styles.headerTextContainer}>
-              <Text variant="titleLarge" style={styles.headerTitle}>
-                Asistente CUCEI
-              </Text>
-              <Text variant="bodySmall" style={styles.headerSubtitle}>
-                Pregúntame lo que necesites
-              </Text>
-            </View>
-          </View>
-        </BlurView>
-      </LinearGradient>
+      <Header
+        title="Asistente CUCEI"
+        subtitle="Pregúntame lo que necesites"
+        theme={theme}
+        icon="robot-excited"
+        paddingTop={52}
+      />
 
       <FlatList
         ref={flatListRef}
@@ -344,11 +325,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "transparent",
   },
-  header: {
-    // paddingTop: Platform.OS === "ios" ? 44 : 32,
-    // paddingTop: 12,
-    // paddingBottom: 1,
-  },
+  header: {},
   blurHeader: {
     overflow: "hidden",
   },

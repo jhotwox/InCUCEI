@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react"
 import { FlatList, View } from "react-native"
 import { Text, useTheme } from "react-native-paper"
-import { Background, Input } from "../../../components"
+import { Background, SearchInput } from "../../../components"
 import { getAllComerces } from "../../../api/commerce.api"
 import { useToast } from "../../../contexts/Toast.context.jsx"
 import { CommerceCard } from "../../../components/shop/CommerceCard.jsx"
@@ -45,19 +45,19 @@ export default () => {
 
   const filteredCommerces = commerces.filter(
     (commerce) =>
-      commerce.name.toLowerCase().includes(search.toLowerCase()) ||
-      commerce.description.toLowerCase().includes(search.toLowerCase())
+      ["name", "description"].some((attr) => 
+        commerce[attr]?.toLowerCase().includes(search.toLowerCase())
+      )
   )
 
   return (
     <View style={{ flex: 1, padding: 16 }}>
       <Background background={theme.colors.onPrimary} />
       
-      <Input
+      <SearchInput
+        search={search}
+        setSearch={setSearch}
         placeholder="Buscar comercio"
-        rightIcon="magnify"
-        value={search}
-        onChangeText={setSearch}
       />
 
       <FlatList

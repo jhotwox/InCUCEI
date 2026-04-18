@@ -82,7 +82,7 @@ export default forwardRef(
           value={value}
           onChangeText={setValue}
           style={[{ borderTopLeftRadius: 12, borderTopRightRadius: 12 }, style]}
-          left={<TextInput.Icon icon={leftIcon} />}
+          left={leftIcon && <TextInput.Icon icon={leftIcon} />}
           right={
             isPassword ? (
               <TextInput.Icon

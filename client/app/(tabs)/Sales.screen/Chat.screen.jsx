@@ -1,8 +1,7 @@
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { FlatList, KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native"
-import { useLocalSearchParams } from "expo-router"
+import { router, useLocalSearchParams } from "expo-router"
 import { LinearGradient } from "expo-linear-gradient"
-import { BlurView } from "expo-blur"
 import {
   ActivityIndicator,
   Avatar,
@@ -17,6 +16,7 @@ import { Background } from "../../../components"
 import { useAuth } from "../../../contexts/Auth.context"
 import { useMessages } from "../../../hooks/useMessages"
 import { createFileObjectFromUrl } from "../../../utils/generateFileObjectFromURL"
+import Header from "../../../components/common/Header"
 
 const MessageItem = memo(({ item, theme, isOwn, index, myAvatarUri, otherAvatarUri, mode }) => {
   if (!item) return null
@@ -278,44 +278,20 @@ export default function ChatScreen() {
     >
       <Background background={theme.colors.onPrimary} />
 
-      <LinearGradient
-        colors={[theme.colors.primary, theme.colors.secondary]}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={styles.header}
-      >
-        <BlurView intensity={20} tint="light" style={styles.blurHeader}>
-          <View style={styles.headerContent}>
-            {otherAvatarUri ? (
-              <Avatar.Image
-                size={40}
-                source={{ uri: otherAvatarUri }}
-                style={{ backgroundColor: "rgba(255,255,255,0.3)" }}
-              />
-            ) : (
-              <Avatar.Icon
-                size={40}
-                icon={mode === "commerce" ? "account" : "store"}
-                style={{ backgroundColor: "rgba(255,255,255,0.3)" }}
-                color="#fff"
-              />
-            )}
-            <View style={styles.headerTextContainer}>
-              <Text variant="titleLarge" style={styles.headerTitle} numberOfLines={1}>
-                { mode === "commerce" ?
-                `${chatUserName || "usuario"}`
-                : commerceName || "Comercio"}
-              </Text>
-              <Text variant="bodySmall" style={styles.headerSubtitle}>
-                { mode === "commerce"
-                  ? chatUserEmail
-                  : "Chat"
-                }
-              </Text>
-            </View>
-          </View>
-        </BlurView>
-      </LinearGradient>
+      <Header
+        title={mode === "commerce" ? (chatUserName || "Usuario") : (commerceName || "Comercio")}
+        subtitle={mode === "commerce" ? chatUserEmail : "Chat"}
+        avatarUri={otherAvatarUri}
+        icon={mode === "commerce" ? "account" : "store"}
+        theme={theme}
+        paddingTop={12}
+        leftButton={{
+          icon: "arrow-left",
+          onPress: () => {
+            router.push({pathname: mode === "commerce" ? "/(tabs)/Sales.screen/CommerceChatList.screen" : "/(tabs)/Sales.screen/ChatList.screen"})
+          }
+        }}
+      />
 
       <FlatList
         ref={flatListRef}

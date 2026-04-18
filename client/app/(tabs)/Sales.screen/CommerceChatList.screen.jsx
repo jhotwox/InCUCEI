@@ -1,90 +1,18 @@
-import { memo, useCallback, useMemo, useState } from "react"
-import { Pressable, StyleSheet, View, FlatList } from "react-native"
+import { useCallback, useMemo, useState } from "react"
+import { StyleSheet, View, FlatList } from "react-native"
 import { router, useFocusEffect } from "expo-router"
-import { LinearGradient } from "expo-linear-gradient"
-import { BlurView } from "expo-blur"
 import {
   ActivityIndicator,
-  Avatar,
-  Badge,
-  Surface,
   Text,
   useTheme,
 } from "react-native-paper"
-import { Background } from "../../../components"
+import { Background, ChatItem, SearchInput } from "../../../components"
 import { useToast } from "../../../contexts/Toast.context"
 import { useMessages } from "../../../hooks/useMessages"
 import { getCommerce } from "../../../api/commerce.api"
 import { createFileObjectFromUrl } from "../../../utils/generateFileObjectFromURL"
+import Header from "../../../components/common/Header"
 
-const ChatItem = memo(({ item, onPress, theme }) => {
-  const sender = item?.senderInfo
-  const commerce = item?.commerceInfo
-  const lastMessage = item?.lastMessage
-
-  const title = sender?.name || "Usuario"
-  const subtitle = lastMessage?.content || ""
-  const dateText = lastMessage?.createdAt
-    ? new Date(lastMessage.createdAt).toLocaleString("es-MX")
-    : ""
-
-  const unreadCount = item?.unreadCount || 0
-
-  return (
-    <Pressable onPress={onPress} style={styles.itemPressable}>
-      <Surface elevation={2} style={styles.itemSurface}>
-        <View style={styles.itemRow}>
-          {sender?.profileUrl ? (
-            <Avatar.Image size={44} source={{ uri: sender.profileUrl }} />
-          ) : (
-            <Avatar.Icon
-              size={44}
-              icon="account"
-              style={{ backgroundColor: theme.colors.primaryContainer }}
-              color={theme.colors.primary}
-            />
-          )}
-
-          <View style={styles.itemTextCol}>
-            <View style={styles.itemTitleRow}>
-              <Text
-                variant="titleMedium"
-                numberOfLines={1}
-                style={styles.itemTitle}
-              >
-                {title}
-              </Text>
-              {!!unreadCount && <Badge size={20}>{unreadCount}</Badge>}
-            </View>
-            <Text
-              variant="bodySmall"
-              numberOfLines={1}
-              style={styles.itemSubtitle}
-            >
-              {subtitle}
-            </Text>
-            <Text
-              variant="labelSmall"
-              numberOfLines={1}
-              style={styles.itemDate}
-            >
-              {dateText}
-            </Text>
-            {!!commerce?.name && (
-              <Text
-                variant="labelSmall"
-                numberOfLines={1}
-                style={styles.itemCommerce}
-              >
-                {sender?.email}
-              </Text>
-            )}
-          </View>
-        </View>
-      </Surface>
-    </Pressable>
-  )
-})
 
 export default () => {
   const theme = useTheme()
@@ -93,6 +21,7 @@ export default () => {
 
   const [hasCommerce, setHasCommerce] = useState(true)
   const [checkingCommerce, setCheckingCommerce] = useState(true)
+  const [search, setSearch] = useState("")
 
   const verifyCommerceAndLoad = useCallback(async () => {
     try {
@@ -151,6 +80,7 @@ export default () => {
         <ChatItem
           item={newItem}
           theme={theme}
+          type="commerce"
           onPress={() => {
             if (!commerceId || !chatUserId) return
             router.push({
@@ -173,38 +103,34 @@ export default () => {
     [theme],
   )
 
+  const filteredListData = listData.filter(
+    (client) =>
+      ["email", "name"].some((attr) =>
+        client?.senderInfo[attr]?.toLowerCase().includes(search.toLowerCase())
+      )
+  )
+
   return (
     <View style={styles.container}>
       <Background background={theme.colors.onPrimary} />
 
-      <LinearGradient
-        colors={[theme.colors.primary, theme.colors.secondary]}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={styles.header}
-      >
-        <BlurView intensity={20} tint="light" style={styles.blurHeader}>
-          <View style={styles.headerContent}>
-            <Avatar.Icon
-              size={40}
-              icon="account-group"
-              style={{ backgroundColor: "rgba(255,255,255,0.3)" }}
-              color="#fff"
-            />
-            <View style={styles.headerTextContainer}>
-              <Text variant="titleLarge" style={styles.headerTitle}>
-                Clientes
-              </Text>
-              <Text variant="bodySmall" style={styles.headerSubtitle}>
-                Mensajes recibidos en tu comercio
-              </Text>
-            </View>
-          </View>
-        </BlurView>
-      </LinearGradient>
+      <Header
+        title="Mis Clientes"
+        subtitle="Mensajes recibidos en tu comercio"
+        icon="chat"
+        theme={theme}
+      />
+
+      <View style={{ paddingTop: 12, paddingHorizontal: 12 }}>
+        <SearchInput
+          search={search}
+          setSearch={setSearch}
+          placeholder="Buscar cliente"
+        />
+      </View>
 
       <FlatList
-        data={listData}
+        data={filteredListData}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
         refreshing={loading || checkingCommerce}

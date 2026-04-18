@@ -1,62 +1,16 @@
-import { memo, useCallback } from "react"
-import { Pressable, StyleSheet, View, FlatList } from "react-native"
+import { useCallback, useState } from "react"
+import { StyleSheet, View, FlatList } from "react-native"
 import { router, useFocusEffect } from "expo-router"
-import { LinearGradient } from "expo-linear-gradient"
-import { BlurView } from "expo-blur"
-import { Avatar, Badge, Surface, Text, useTheme } from "react-native-paper"
-import { Background } from "../../../components"
+import { Text, useTheme } from "react-native-paper"
+import { Background, ChatItem, SearchInput } from "../../../components"
 import { useMessages } from "../../../hooks/useMessages"
-
-const ChatItem = memo(({ item, onPress, theme }) => {
-  const commerce = item?.commerceInfo
-  const lastMessage = item?.lastMessage
-
-  const title = commerce?.name || "Comercio"
-  const subtitle = lastMessage?.content || ""
-  const dateText = lastMessage?.createdAt
-    ? new Date(lastMessage.createdAt).toLocaleString("es-MX")
-    : ""
-
-  const unreadCount = item?.unreadCount || 0
-
-  return (
-    <Pressable onPress={onPress} style={styles.itemPressable}>
-      <Surface elevation={2} style={styles.itemSurface}>
-        <View style={styles.itemRow}>
-          {commerce?.logoUrl ? (
-            <Avatar.Image size={44} source={{ uri: commerce.logoUrl }} />
-          ) : (
-            <Avatar.Icon
-              size={44}
-              icon="store"
-              style={{ backgroundColor: theme.colors.primaryContainer }}
-              color={theme.colors.primary}
-            />
-          )}
-
-          <View style={styles.itemTextCol}>
-            <View style={styles.itemTitleRow}>
-              <Text variant="titleMedium" numberOfLines={1} style={styles.itemTitle}>
-                {title}
-              </Text>
-              {!!unreadCount && <Badge size={20}>{unreadCount}</Badge>}
-            </View>
-            <Text variant="bodySmall" numberOfLines={1} style={styles.itemSubtitle}>
-              {subtitle}
-            </Text>
-            <Text variant="labelSmall" numberOfLines={1} style={styles.itemDate}>
-              {dateText}
-            </Text>
-          </View>
-        </View>
-      </Surface>
-    </Pressable>
-  )
-})
+import Header from "../../../components/common/Header"
 
 export default () => {
   const theme = useTheme()
   const { chats, loadChats, loading } = useMessages()
+
+  const [search, setSearch] = useState("")
 
   useFocusEffect(
     useCallback(() => {
@@ -80,6 +34,7 @@ export default () => {
         <ChatItem
           item={item}
           theme={theme}
+          type="client"
           onPress={() => {
             if (!commerceId) return
             router.push({
@@ -98,38 +53,34 @@ export default () => {
     [theme]
   )
 
+  const filteredChats = chats.filter(
+    (chat) =>
+      ["name"].some((attr) =>
+        chat?.commerceInfo[attr]?.toLowerCase().includes(search.toLowerCase())
+      )
+  )
+
   return (
     <View style={styles.container}>
       <Background background={theme.colors.onPrimary} />
 
-      <LinearGradient
-        colors={[theme.colors.primary, theme.colors.secondary]}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={styles.header}
-      >
-        <BlurView intensity={20} tint="light" style={styles.blurHeader}>
-          <View style={styles.headerContent}>
-            <Avatar.Icon
-              size={40}
-              icon="chat"
-              style={{ backgroundColor: "rgba(255,255,255,0.3)" }}
-              color="#fff"
-            />
-            <View style={styles.headerTextContainer}>
-              <Text variant="titleLarge" style={styles.headerTitle}>
-                Chats
-              </Text>
-              <Text variant="bodySmall" style={styles.headerSubtitle}>
-                Tus conversaciones con comercios
-              </Text>
-            </View>
-          </View>
-        </BlurView>
-      </LinearGradient>
+      <Header
+        title="Mis Chats"
+        subtitle="Tus conversaciones con comercios"
+        icon="chat"
+        theme={theme}
+      />
+
+      <View style={{ paddingTop: 12, paddingHorizontal: 12 }}>
+        <SearchInput
+          search={search}
+          setSearch={setSearch}
+          placeholder="Buscar comercio"
+        />
+      </View>
 
       <FlatList
-        data={chats}
+        data={filteredChats}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
         refreshing={loading}

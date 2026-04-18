@@ -1,5 +1,5 @@
 import { useEffect, useCallback, useRef } from "react"
-import { StyleSheet, View } from "react-native"
+import { StyleSheet } from "react-native"
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -8,7 +8,7 @@ import Animated, {
   runOnJS,
 } from "react-native-reanimated"
 import { Gesture, GestureDetector } from "react-native-gesture-handler"
-import { Text, useTheme, IconButton } from "react-native-paper"
+import { Text, useTheme } from "react-native-paper"
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons"
 
 const SWIPE_THRESHOLD = 40
@@ -103,10 +103,15 @@ export const Toast = ({ visible, message, type = "info", duration = 2500, onDism
 
   const tapGesture = Gesture.Tap()
     .onEnd(() => {
-      translateY.value = withTiming(120, { duration: 260 })
-      opacity.value    = withTiming(0,   { duration: 260 }, (finished) => {
-        if (finished) runOnJS(dismiss)()
-      })
+      if (onClick)  {
+        runOnJS(onClick)()
+        runOnJS(animateOutJS)()
+      } else {
+        translateY.value = withTiming(120, { duration: 260 })
+        opacity.value    = withTiming(0,   { duration: 260 }, (finished) => {
+          if (finished) runOnJS(dismiss)()
+        })
+      }
     })
 
   const composed = Gesture.Race(panGesture, tapGesture)
@@ -124,8 +129,6 @@ export const Toast = ({ visible, message, type = "info", duration = 2500, onDism
       <Animated.View
         style={[styles.container, { backgroundColor: colors.bg }, animatedStyle]}
       >
-        {/* Accent lateral slice */}
-        {/* <View style={[styles.leftStrip, { backgroundColor: colors.accent }]} /> */}
 
         {/* Type icon */}
         <MaterialCommunityIcons
@@ -143,22 +146,15 @@ export const Toast = ({ visible, message, type = "info", duration = 2500, onDism
           {message}
         </Text>
 
-        {onClick && (
+        {/* {onClick && (
           <IconButton
             icon="arrow-right"
             size={24}
             onPress={onClick}
             iconColor={theme.colors.onPrimary}
           />
-        )}
+        )} */}
 
-        {/* Close icon */}
-        {/* <MaterialCommunityIcons
-          name="close"
-          size={18}
-          color={colors.text}
-          style={styles.closeIcon}
-        /> */}
       </Animated.View>
     </GestureDetector>
   )
@@ -196,8 +192,4 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     paddingVertical: 14,
   },
-  // closeIcon: {
-  //   marginHorizontal: 14,
-  //   opacity: 0.85,
-  // },
 })
