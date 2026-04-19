@@ -12,16 +12,18 @@ import { useMessages } from "../../../hooks/useMessages"
 import { getCommerce } from "../../../api/commerce.api"
 import { createFileObjectFromUrl } from "../../../utils/generateFileObjectFromURL"
 import Header from "../../../components/common/Header"
+import { useLayout } from "../../../layout/providers.layout"
 
 
 export default () => {
-  const theme = useTheme()
-  const { commerceChats, loadCommerceChats, loading } = useMessages()
-  const { showToast } = useToast()
-
   const [hasCommerce, setHasCommerce] = useState(true)
   const [checkingCommerce, setCheckingCommerce] = useState(true)
   const [search, setSearch] = useState("")
+  
+  const theme = useTheme()
+  const { commerceChats, loadCommerceChats, loading } = useMessages()
+  const { showToast } = useToast()
+  const { tabBarHeight } = useLayout()
 
   const verifyCommerceAndLoad = useCallback(async () => {
     try {
@@ -157,6 +159,7 @@ export default () => {
             </View>
           ) : null
         }
+        style={{ marginBottom: tabBarHeight }}
       />
 
       {checkingCommerce && !loading && listData.length === 0 && (

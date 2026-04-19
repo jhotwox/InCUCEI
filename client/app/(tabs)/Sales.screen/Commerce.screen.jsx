@@ -10,6 +10,7 @@ import {
 } from "../../../api/commerce.api"
 import { useToast } from "../../../contexts/Toast.context"
 import { createFileObjectFromUrl } from "../../../utils/generateFileObjectFromURL"
+import { useLayout } from "../../../layout/providers.layout"
 
 export default () => {
   const [name, setName] = useState("")
@@ -23,11 +24,11 @@ export default () => {
   const logoUrlRef = useRef(null)
   const bannerRef = useRef(null)
 
-  const inputs = [nameRef, descriptionRef]
-
   const theme = useTheme()
   const { showToast } = useToast()
-
+  const { tabBarHeight } = useLayout()
+  
+  const inputs = [nameRef, descriptionRef]
 
   useEffect(() => {
     const fetchCommerce = async () => {
@@ -245,6 +246,7 @@ export default () => {
         delays={[0, 200, 400, 600]}
         // scrollProps={{ contentContainerStyle: { paddingBottom: 20 } }}
         // resetOnFocus
+        style={{ marginBottom: tabBarHeight }}
       >
         {[TitleSection, FormSection, FileInputsSection, ButtonsSection]}
       </AnimatedContainer>

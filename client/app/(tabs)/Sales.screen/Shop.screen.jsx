@@ -6,6 +6,7 @@ import { getAllComerces } from "../../../api/commerce.api"
 import { useToast } from "../../../contexts/Toast.context.jsx"
 import { CommerceCard } from "../../../components/shop/CommerceCard.jsx"
 import { useAuth } from "../../../contexts/Auth.context.jsx"
+import { useLayout } from "../../../layout/providers.layout.jsx"
 
 export default () => {
   const [search, setSearch] = useState("")
@@ -15,6 +16,7 @@ export default () => {
   const theme = useTheme()
   const { showToast } = useToast()
   const { user } = useAuth()
+  const { tabBarHeight } = useLayout()
 
   const fetchCommerces = useCallback(
     async ({ showErrorToast } = { showErrorToast: true }) => {
@@ -82,7 +84,7 @@ export default () => {
               : "No hay comercios disponibles"}
           </Text>
         )}
-        style={{ marginTop: 16 }}
+        style={{ marginTop: 16, marginBottom: tabBarHeight }}
         contentContainerStyle={{ gap: 16 }}
       />
     </View>

@@ -6,6 +6,7 @@ import { useAuth } from "../../contexts/Auth.context"
 import { useBackgroundAnimation } from "../../contexts/BackgroundAnimation.context"
 import WaveHand from "../../components/WaveHand"
 import { createFileObjectFromUrl } from "../../utils/generateFileObjectFromURL"
+import { useLayout } from "../../layout/providers.layout"
 
 export default () => {
   const [profileUrl, setProfileUrl] = useState(null)
@@ -14,7 +15,7 @@ export default () => {
   const theme = useTheme()
   const { loading, error, logout, user, updateUser } = useAuth()
   const { isAnimationEnabled, setIsAnimationEnabled } = useBackgroundAnimation()
-  
+  const { tabBarHeight } = useLayout()
 
   useEffect(() => {
     // console.log("url: ", user?.profileUrl)
@@ -45,7 +46,7 @@ export default () => {
   return (
     <View style={styles.container}>
       <Background />
-      <ScrollView style={styles.content} contentContainerStyle={styles.contentContainer}>
+      <ScrollView style={[styles.content, { marginBottom: tabBarHeight }]} contentContainerStyle={styles.contentContainer}>
         <View style={[styles.header, { borderColor: theme.colors.onSurface + "22", backgroundColor: theme.colors.errorContainer + "22" }]}>
           <View>
             <Text variant="headlineMedium" style={[styles.greeting, { color: theme.colors.title }]}>Hola {user?.name}</Text>

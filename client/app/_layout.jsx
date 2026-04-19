@@ -33,7 +33,7 @@ export default function App () {
             animation: 'fade',
             animationDuration: 200,
           }} 
-          initialRouteName='(auth)' 
+          initialRouteName='(auth)'
         >
           <Stack.Screen name="(auth)" />
           <Stack.Screen name="(tabs)" />

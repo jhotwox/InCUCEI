@@ -26,6 +26,7 @@ import { useAuth } from "../../contexts/Auth.context"
 import { useToast } from "../../contexts/Toast.context"
 import { createFileObjectFromUrl } from "../../utils/generateFileObjectFromURL"
 import Header from "../../components/common/Header"
+import { useLayout } from "../../layout/providers.layout"
 
 const MessageItem = memo(({ item, theme, profileUrl, index, profileImageKey }) => {
   if (!item) return null
@@ -189,6 +190,7 @@ export default () => {
   const theme = useTheme()
   const { user, profileImageChanged, setProfileImageChanged, loading: authLoading } = useAuth()
   const { showToast } = useToast()
+  const { tabBarHeight } = useLayout()
 
   const loading = chatLoading || authLoading
   const profileUrl = user?.profileUrl
@@ -281,7 +283,7 @@ export default () => {
         initialNumToRender={15}
       />
 
-      <View style={styles.inputContainer}>
+      <View style={[{ marginBottom: tabBarHeight }, styles.inputContainer]}>
         <Surface style={styles.inputWrapper} elevation={2}>
           <TextInput
             value={inputMessage}

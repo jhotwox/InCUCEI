@@ -5,12 +5,14 @@ import { Text, useTheme } from "react-native-paper"
 import { Background, ChatItem, SearchInput } from "../../../components"
 import { useMessages } from "../../../hooks/useMessages"
 import Header from "../../../components/common/Header"
+import { useLayout } from "../../../layout/providers.layout"
 
 export default () => {
+  const [search, setSearch] = useState("")
+  
   const theme = useTheme()
   const { chats, loadChats, loading } = useMessages()
-
-  const [search, setSearch] = useState("")
+  const { tabBarHeight } = useLayout()
 
   useFocusEffect(
     useCallback(() => {
@@ -101,6 +103,7 @@ export default () => {
             </View>
           ) : null
         }
+        style={{ marginBottom: tabBarHeight }}
       />
     </View>
   )

@@ -6,6 +6,14 @@ import { ToastProvider } from "../contexts/Toast.context"
 import { AuthProvider } from "../contexts/Auth.context"
 import { SocketProvider } from "../contexts/Socket.context"
 import { BackgroundAnimationProvider } from "../contexts/BackgroundAnimation.context"
+import { createContext, useContext } from "react"
+
+export const TAB_BAR_HEIGHT = 64
+export const LayoutContext = createContext({
+  tabBarHeight: TAB_BAR_HEIGHT,
+})
+
+export const useLayout = () => useContext(LayoutContext)
 
 const FONTFAMILY = "Lexend"
 // const FONTFAMILY = "PlusJakartaSans"
@@ -167,15 +175,17 @@ export const Providers = ({ children }) => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <PaperProvider theme={theme}>
-        <AuthProvider>
-          <BackgroundAnimationProvider>
-            <ToastProvider>
-              <SocketProvider>
-                {children}
-              </SocketProvider>
-            </ToastProvider>
-          </BackgroundAnimationProvider>
-        </AuthProvider>
+        <LayoutContext.Provider value={{ tabBarHeight: TAB_BAR_HEIGHT }}>
+          <AuthProvider>
+            <BackgroundAnimationProvider>
+              <ToastProvider>
+                <SocketProvider>
+                  {children}
+                </SocketProvider>
+              </ToastProvider>
+            </BackgroundAnimationProvider>
+          </AuthProvider>
+        </LayoutContext.Provider>
       </PaperProvider>
     </GestureHandlerRootView>
   )

@@ -6,6 +6,7 @@ import { useLocalSearchParams } from "expo-router";
 import * as Location from 'expo-location';
 import { PLACES } from '../../constants/places';
 import Mapbox from '@rnmapbox/maps';
+import { useLayout } from "../../layout/providers.layout";
 Mapbox.setAccessToken('pk.eyJ1IjoiZ2Vyc29uMzAiLCJhIjoiY21mZGZxZ3ppMDc2YzJxcHo2enQxbnNwayJ9.uvEc9toQvd04tBlJ6Ko5iA');
 
 const MapScreen = () => {
@@ -17,6 +18,7 @@ const MapScreen = () => {
 
   const cameraRef = useRef(null);
   const params = useLocalSearchParams();
+  const { tabBarHeight } = useLayout();
 
   const centerCampus = [-103.32473086798036, 20.657210257040575];
 
@@ -273,7 +275,7 @@ const MapScreen = () => {
       {locationPermission && userLocation && (
         <FAB
           icon="crosshairs-gps"
-          style={styles.fab}
+          style={[styles.fab, { bottom: tabBarHeight + 20 }]} // Ajustar margen inferior según altura del tab bar
           onPress={centerOnUserLocation}
           color="#fff"
         />

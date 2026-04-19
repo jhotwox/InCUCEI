@@ -17,6 +17,7 @@ import { useAuth } from "../../../contexts/Auth.context"
 import { useMessages } from "../../../hooks/useMessages"
 import { createFileObjectFromUrl } from "../../../utils/generateFileObjectFromURL"
 import Header from "../../../components/common/Header"
+import { useLayout } from "../../../layout/providers.layout"
 
 const MessageItem = memo(({ item, theme, isOwn, index, myAvatarUri, otherAvatarUri, mode }) => {
   if (!item) return null
@@ -97,6 +98,7 @@ export default function ChatScreen() {
     chatUserName,
     chatUserProfileUrl: chatUserProfileUrlParam,
   } = useLocalSearchParams()
+  const { tabBarHeight } = useLayout()
 
   const mode = useMemo(() => {
     const raw = Array.isArray(modeParam) ? modeParam[0] : modeParam
@@ -308,7 +310,7 @@ export default function ChatScreen() {
         initialNumToRender={15}
       />
 
-      <View style={styles.inputContainer}>
+      <View style={[styles.inputContainer, { marginBottom: tabBarHeight }]}>
         <Surface style={styles.inputWrapper} elevation={2}>
           <TextInput
             value={inputMessage}
