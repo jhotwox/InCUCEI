@@ -23,8 +23,25 @@ const MapScreen = () => {
   const centerCampus = [-103.32473086798036, 20.657210257040575];
 
   const searchResults = search
-    ? PLACES.filter(place => place.name.toLowerCase().includes(search.toLowerCase()))
+    ? PLACES.filter(place => {
+        // Asegurar que la búsqueda sea siempre texto
+        const textoEscrito = String(search).toLowerCase();
+        
+        // Verificar que 'place.name' exista antes de minúsculas
+        const coincideNombre = place.name 
+          ? String(place.name).toLowerCase().includes(textoEscrito)
+          : false; // Si no tiene nombre, no coincide
+        
+        // Filtrar apodos vacíos o undefined
+        const coincideAlias = place.alias?.some(apodo => {
+          if (!apodo) return false; // Si el apodo está vacío, lo ignoramos
+          return String(apodo).toLowerCase().includes(textoEscrito);
+        });
+
+        return coincideNombre || coincideAlias;
+      })
     : [];
+    
 
   const goToLocation = (coordinates) => {
     setSelectedPlace(coordinates);

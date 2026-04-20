@@ -75,11 +75,15 @@ export function handleShowLocationOnMap(locationName) {
   try {
     console.log(`[+] Searching for location: ${locationName}`)
 
-    // Buscar lugar que coincida con el nombre (búsqueda flexible)
-    const place = PLACES.find(p =>
-      p.name.toLowerCase().includes(locationName.toLowerCase()) ||
-      locationName.toLowerCase().includes(p.name.toLowerCase())
-    )
+    // Buscar lugar que coincida con el nombre o alias (búsqueda flexible)
+    const place = PLACES.find(p => {
+      const locationLower = locationName.toLowerCase();
+      const nameLower = p.name.toLowerCase();
+      const nameMatch = nameLower.includes(locationLower) || locationLower.includes(nameLower);
+      const aliasMatch = p.alias?.some(a => a.toLowerCase().includes(locationLower));
+
+      return nameMatch || aliasMatch;
+    });
 
     if (!place) {
       console.log(`[!] Location not found: ${locationName}`)
