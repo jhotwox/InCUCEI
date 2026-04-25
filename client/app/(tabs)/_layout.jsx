@@ -33,12 +33,20 @@ export default () => {
           bottom: 12,
           borderRadius,
           marginHorizontal: 8,
+          // I don't know why the height doesn't work but this makes it look better
+          height: "2px",
           borderWidth: 1,
           borderColor: theme.colors.surface + "88",
         },
+        tabBarLabelStyle: {
+          fontSize: 12,
+          fontWeight: "800",
+          backgroundColor: theme.colors.surface + "55",
+          paddingHorizontal: 4,
+          borderRadius: 12
+        },
         animation: 'shift',
         animationDuration: 200,
-        tabBarLabelStyle: { fontSize: 12, fontWeight: "800" },
         tabBarBackground: Background,
       }}
     >

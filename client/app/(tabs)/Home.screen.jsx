@@ -255,7 +255,7 @@ export default () => {
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      keyboardVerticalOffset={Platform.OS === "ios" ? 90 : 0}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 50 : -40}
     >
       <Background background={theme.colors.onPrimary} />
       
