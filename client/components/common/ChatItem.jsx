@@ -53,16 +53,15 @@ export default memo(({ item, onPress, theme, type }) => {
       flex: 1,
       flexDirection: "row",
     },
-    itemTitleRow: {
+    itemTitle: {},
+    itemSubtitle: {
+      flex: 1,
+      color: theme.colors.onSurfaceVariant,
+    },
+    itemSubtitleRow: {
       flexDirection: "row",
       alignItems: "center",
       gap: 8,
-    },
-    itemTitle: {
-      flex: 1,
-    },
-    itemSubtitle: {
-      color: theme.colors.onSurfaceVariant,
     },
     itemDate: {
       color: theme.colors.onSurfaceVariant,
@@ -120,23 +119,23 @@ export default memo(({ item, onPress, theme, type }) => {
 
           <View style={styles.itemTextCol}>
             <View style={{ backgroundColor: "transparent", flex: 1 }}>
-              <View style={styles.itemTitleRow}>
-                <Text
-                  variant="titleMedium"
-                  numberOfLines={1}
-                  style={styles.itemTitle}
-                >
-                  {title}
-                </Text>
-                {!!unreadCount && <Badge size={20}>{unreadCount}</Badge>}
-              </View>
               <Text
-                variant="bodySmall"
+                variant="titleMedium"
                 numberOfLines={1}
-                style={styles.itemSubtitle}
+                style={styles.itemTitle}
               >
-                {subtitle}
+                {title}
               </Text>
+              <View style={[styles.itemSubtitleRow]}>
+                <Text
+                  variant="bodySmall"
+                  numberOfLines={1}
+                  style={styles.itemSubtitle}
+                >
+                  {subtitle}
+                </Text>
+                {!!unreadCount && <Badge size={20} style={type === "commerce" && {position: "absolute", top: 0, right: 0, marginTop: 8 }}>{unreadCount}</Badge>}
+              </View>
               
               {(!!commerce?.name && type === "commerce") && (
                 <Text

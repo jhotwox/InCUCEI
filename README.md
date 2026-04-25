@@ -107,3 +107,14 @@ cd server
 npm i
 npm run dev
 ```
+
+---
+## Actualizar proyecto
+> En la rama main
+``` BASH
+git fetch origin
+```
+
+``` BASH
+git pull origin main
+```

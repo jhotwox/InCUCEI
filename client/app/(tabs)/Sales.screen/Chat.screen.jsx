@@ -19,7 +19,9 @@ import { createFileObjectFromUrl } from "../../../utils/generateFileObjectFromUR
 import Header from "../../../components/common/Header"
 import { useLayout } from "../../../layout/providers.layout"
 
-const MessageItem = memo(({ item, theme, isOwn, index, myAvatarUri, otherAvatarUri, mode }) => {
+let lastDate = null
+
+const MessageItem = memo(({ item, theme, isOwn, index, myAvatarUri, otherAvatarUri, mode, showDateSeparator, dateLabel }) => {
   if (!item) return null
 
   const AnimatedView = Animated.createAnimatedComponent(View)
@@ -27,67 +29,92 @@ const MessageItem = memo(({ item, theme, isOwn, index, myAvatarUri, otherAvatarU
   return (
     <AnimatedView
       entering={isOwn ? FadeInRight.delay(index * 40) : FadeInLeft.delay(index * 40)}
-      style={[styles.messageContainer, isOwn ? styles.userMessage : styles.commerceMessage]}
+      // style={[styles.messageContainer, isOwn ? styles.userMessage : styles.commerceMessage]}
     >
-      {!isOwn && (
-        otherAvatarUri ? (
-          <Avatar.Image size={32} source={{ uri: otherAvatarUri }} style={styles.avatar} />
-        ) : (
-          <Avatar.Icon
-            size={32}
-            icon={mode === "commerce" ? "account" : "store"}
-            style={[styles.avatar, { backgroundColor: theme.colors.primaryContainer }]}
-            color={theme.colors.primary}
-          />
-        )
+      {showDateSeparator && (
+        <View style={{ width: "100%", alignItems: "center", marginVertical: 8 }}>
+          <Surface
+            style={{
+              paddingHorizontal: 12,
+              paddingVertical: 4,
+              borderRadius: 12,
+              backgroundColor: theme.colors.surfaceVariant,
+            }}
+            elevation={1}
+          >
+            <Text style={{ fontSize: 12, color: theme.colors.onSurfaceVariant }}>
+              {dateLabel}
+            </Text>
+          </Surface>
+        </View>
       )}
 
-      <Surface
-        elevation={isOwn ? 2 : 1}
-        style={[
-          styles.messageCard,
-          isOwn ? styles.userCard : styles.commerceCard,
-        ]}
-      >
-        <LinearGradient
-          colors={
-            isOwn
-              ? [theme.colors.primary, theme.colors.secondary]
-              : ["#ffffff", "#f8f9fa"]
-          }
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
-          style={styles.gradientContainer}
+      <View style={[styles.messageContainer, isOwn ? styles.userMessage : styles.commerceMessage]}>
+        {!isOwn && (
+          otherAvatarUri ? (
+            <Avatar.Image size={32} source={{ uri: otherAvatarUri }} style={styles.avatar} />
+          ) : (
+            <Avatar.Icon
+              size={32}
+              icon={mode === "commerce" ? "account" : "store"}
+              style={[styles.avatar, { backgroundColor: theme.colors.primaryContainer }]}
+              color={theme.colors.primary}
+            />
+          )
+        )}
+
+        <Surface
+          elevation={isOwn ? 2 : 1}
+          style={[
+            styles.messageCard,
+            isOwn ? styles.userCard : styles.commerceCard,
+          ]}
         >
-          <Text style={[styles.messageText, isOwn ? styles.userText : styles.commerceText]}>
-            {item.content}
-          </Text>
-          <Text style={[styles.timestamp, isOwn && styles.myTimestamp]}>
-            {new Date(item.createdAt).toLocaleTimeString("es-MX", {
-              hour: "2-digit",
-              minute: "2-digit",
-            })}
-          </Text>
-        </LinearGradient>
-      </Surface>
+          <LinearGradient
+            colors={
+              isOwn
+                ? [theme.colors.primary, theme.colors.secondary]
+                : ["#ffffff", "#f8f9fa"]
+            }
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={styles.gradientContainer}
+          >
+            <Text style={[styles.messageText, isOwn ? styles.userText : styles.commerceText]}>
+              {item.content}
+            </Text>
+            <Text style={[styles.timestamp, isOwn && styles.myTimestamp]}>
+              {new Date(item.createdAt).toLocaleTimeString("es-MX", {
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
+            </Text>
+          </LinearGradient>
+        </Surface>
 
-      {isOwn && (
-        myAvatarUri ? (
-          <Avatar.Image size={32} source={{ uri: myAvatarUri }} style={styles.avatar} />
-        ) : (
-          <Avatar.Icon
-            size={32}
-            icon={mode === "commerce" ? "store" : "account"}
-            style={[styles.avatar, { backgroundColor: theme.colors.secondaryContainer }]}
-            color={theme.colors.secondary}
-          />
-        )
-      )}
+        {isOwn && (
+          myAvatarUri ? (
+            <Avatar.Image size={32} source={{ uri: myAvatarUri }} style={styles.avatar} />
+          ) : (
+            <Avatar.Icon
+              size={32}
+              icon={mode === "commerce" ? "store" : "account"}
+              style={[styles.avatar, { backgroundColor: theme.colors.secondaryContainer }]}
+              color={theme.colors.secondary}
+            />
+          )
+        )}
+      </View>
     </AnimatedView>
   )
 })
 
 export default function ChatScreen() {
+  const [inputMessage, setInputMessage] = useState("")
+  const [profileImageKey, setProfileImageKey] = useState(Date.now())
+  const flatListRef = useRef(null)
+  const lastMarkedMessageIdRef = useRef(null)
+  
   const {
     commerceId: commerceIdParam,
     commerceName,
@@ -99,6 +126,19 @@ export default function ChatScreen() {
     chatUserProfileUrl: chatUserProfileUrlParam,
   } = useLocalSearchParams()
   const { tabBarHeight } = useLayout()
+
+  const theme = useTheme()
+  const { user, profileImageChanged, setProfileImageChanged } = useAuth()
+  const {
+    messages,
+    sendMessage,
+    sendCommerceMessage,
+    loading,
+    markAsRead,
+    markCommerceAsRead,
+    loadConversation,
+    loadCommerceConversation,
+  } = useMessages()
 
   const mode = useMemo(() => {
     const raw = Array.isArray(modeParam) ? modeParam[0] : modeParam
@@ -124,22 +164,6 @@ export default function ChatScreen() {
     [chatUserProfileUrlParam]
   )
 
-  const [inputMessage, setInputMessage] = useState("")
-  const [profileImageKey, setProfileImageKey] = useState(Date.now())
-  const flatListRef = useRef(null)
-
-  const theme = useTheme()
-  const { user, profileImageChanged, setProfileImageChanged } = useAuth()
-  const {
-    messages,
-    sendMessage,
-    sendCommerceMessage,
-    loading,
-    markAsRead,
-    markCommerceAsRead,
-    loadConversation,
-    loadCommerceConversation,
-  } = useMessages()
 
   useEffect(() => {
     if (user?.profileUrl) {
@@ -199,6 +223,10 @@ export default function ChatScreen() {
     markCommerceAsRead,
   ])
 
+  useEffect(() => {
+    console.log("Messages: ", messages)
+  }, [messages])
+
   const orderedMessages = useMemo(() => {
     // API returns ascending; with inverted FlatList we want latest at bottom.
     return [...messages].reverse()
@@ -230,8 +258,67 @@ export default function ChatScreen() {
     sendCommerceMessage,
   ])
 
+  // Call markAsRead when messages change (a new message arrives)
+  useEffect(() => {
+    if (!roomId || !commerceId) return
+    if (!messages.length) return
+
+    const lastMsg = messages[messages.length - 1] // messages is in ascending order, so last item is the most recent message
+    if (!lastMsg) return
+    if (lastMsg.roomId !== roomId) return
+
+    const senderId = typeof lastMsg?.sender === "string" ? lastMsg.sender : lastMsg?.sender?._id
+    const isIncoming = senderId && senderId !== user?.id
+
+    if (!isIncoming) return
+    if (lastMsg.isRead === true) return
+
+    const lastId = lastMsg?._id?.toString?.()
+    if (lastId && lastMarkedMessageIdRef.current === lastId) return
+    lastMarkedMessageIdRef.current = lastId || Date.now().toString()
+
+    if (mode === "commerce") {
+      if (!chatUserId) return
+      markCommerceAsRead(commerceId, chatUserId)
+    } else {
+      markAsRead(commerceId)
+    }
+  }, [messages, roomId, commerceId, mode, chatUserId, user?.id, markAsRead, markCommerceAsRead])
+
+  // Helper to render each message item, determines if the message is sent by the user or commerce and styles accordingly
+  const dayKey = (iso) => {
+    const d = new Date(iso)
+    d.setHours(0, 0, 0, 0)
+    return d.getTime()
+  }
+
+  const formatDateLabel = (iso) => {
+    const date = new Date(iso)
+    const today = new Date()
+    const yesterday = new Date()
+    yesterday.setDate(yesterday.getDate() - 1)
+
+    const normalize = (x) => {
+      const n = new Date(x)
+      n.setHours(0, 0, 0, 0)
+      return n.getTime()
+    }
+
+    if (normalize(date) === normalize(today)) return "Hoy"
+    if (normalize(date) === normalize(yesterday)) return "Ayer"
+
+    return date.toLocaleDateString("es-MX", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    })
+  }
+
   const renderMessage = useCallback(
     ({ item, index }) => {
+      const nextOlder = orderedMessages[index + 1] // Up in the screen, is older
+      const showDateSeparator = !nextOlder || dayKey(item.createdAt) !== dayKey(nextOlder.createdAt)
+
       const senderId = typeof item?.sender === "string" ? item.sender : item?.sender?._id
       const isOwn = senderId === user?.id
 
@@ -244,10 +331,12 @@ export default function ChatScreen() {
           myAvatarUri={myAvatarUri}
           otherAvatarUri={otherAvatarUri}
           mode={mode}
+          showDateSeparator={showDateSeparator}
+          dateLabel={formatDateLabel(item.createdAt)}
         />
       )
     },
-    [theme, user?.id, myAvatarUri, otherAvatarUri, mode]
+    [orderedMessages, theme, user?.id, myAvatarUri, otherAvatarUri, mode]
   )
 
   const keyExtractor = useCallback((item, index) => item?._id?.toString?.() || `msg-${index}`, [])

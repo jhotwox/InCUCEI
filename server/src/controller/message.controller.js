@@ -137,7 +137,7 @@ export const getUserChats = async (req, res) => {
       {
         $lookup: {
           from: "commerces",
-          localField: "_id",
+          localField: "lastMessage.commerce",
           foreignField: "_id",
           as: "commerceInfo",
         },
@@ -179,13 +179,13 @@ export const getCommerceChats = async (req, res) => {
       {
         $match: {
           commerce: userCommerce._id,
-          sender: { $ne: userObjectId },
+          // sender: { $ne: userObjectId }, //Solo mostrar mensajes donde el sender no sea el dueño del comercio
         },
       },
       { $sort: { createdAt: -1 } },
       {
         $group: {
-          _id: "$sender",
+          _id: "$roomId",
           lastMessage: { $first: "$$ROOT" },
           unreadCount: {
             $sum: {
@@ -201,16 +201,34 @@ export const getCommerceChats = async (req, res) => {
               ],
             },
           },
+          roomId: { $first: "$roomId" }, // Obtener el roomId para luego extraer el userId del cliente
+        },
+      },
+      {
+        $addFields: {
+          chatUserIdStr: { $arrayElemAt: [{ $split: ["$roomId", "_"] }, 1] }, // Extraer el userId del cliente del roomId
         },
       },
       {
         $lookup: {
           from: "users",
-          localField: "_id",
-          foreignField: "_id",
+          let: { chatUserIdStr: "$chatUserIdStr" }, // Usar $let para pasar el chatUserIdStr al pipeline de $lookup
+          pipeline: [
+            {
+              $match: {
+                $expr: {
+                  $eq: [
+                    { $toString: "$_id" }, // Convertir _id a string para comparar con chatUserIdStr
+                    "$$chatUserIdStr",
+                  ],
+                },
+              },
+            },
+          ],
           as: "senderInfo",
         },
       },
+      { $unwind: "$senderInfo" },
       {
         $lookup: {
           from: "commerces",
@@ -219,12 +237,7 @@ export const getCommerceChats = async (req, res) => {
           as: "commerceInfo",
         },
       },
-      {
-        $unwind: "$senderInfo",
-      },
-      {
-        $unwind: "$commerceInfo",
-      },
+      { $unwind: "$commerceInfo" },
     ])
 
     return res.json({

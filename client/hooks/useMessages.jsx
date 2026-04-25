@@ -34,6 +34,7 @@ export const useMessages = () => {
       setError(null)
 
       const response = await getConversationRequest(commerceId)
+      console.log("[+] response: ", response)
       setMessages(response.data.data || [])
     } catch (err) {
       setError(err)
