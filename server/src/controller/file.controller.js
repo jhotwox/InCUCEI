@@ -1,26 +1,40 @@
 import { subjectsData } from "../data/subjects.data.js"
-import { getStudyPlan, getAllSubjects } from "../services/subjects.service.js"
+import { getStudyPlan, getAllSubjects, getCurriculumByCareer } from "../services/subjects.service.js"
 import { romanToArabic, IDontLikeTildesAnymore } from "../libs/string.utils.js"
 import User from "../models/user.model.js"
 import Commerce from "../models/commerce.model.js"
 import { isCloudinaryEnabled, uploadImageBuffer } from "../services/cloudinary.service.js"
 
+export const getCurriculum = async (req, res) => {
+  const { career } = req.params
+
+  try {
+    console.log("Career: ", career)
+    const response = getCurriculumByCareer(career)
+    return res.json({ data: response, status: true })
+  } catch (err) {
+    return res
+      .status(err.status || 500)
+      .json({ message: err.message || "Error interno del servidor", status: false })
+  }
+}
+
 export const getPlan = async (req, res) => {
   const { subject } = req.params
-  let fomattedSubject = subject.toLowerCase()
+  let formattedSubject = subject.toLowerCase()
   
   try {
     // Format subject
-    fomattedSubject = romanToArabic(fomattedSubject)
-    fomattedSubject = IDontLikeTildesAnymore(fomattedSubject)
+    formattedSubject = romanToArabic(formattedSubject)
+    formattedSubject = IDontLikeTildesAnymore(formattedSubject)
 
     // Get study plan
-    const response = getStudyPlan(fomattedSubject)
+    const response = getStudyPlan(formattedSubject)
     return res.json(response)
-  } catch (error) {
+  } catch (err) {
     return res
-      .status(error.status || 500)
-      .json({ message: error.message || "Error interno del servidor", status: false })
+      .status(err.status || 500)
+      .json({ message: err.message || "Error interno del servidor", status: false })
   }
 }
 

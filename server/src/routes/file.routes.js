@@ -7,6 +7,7 @@ import {
   getSubjects,
   uploadFile,
   ping,
+  getCurriculum,
 } from "../controller/file.controller.js"
 import { authRequired } from "../middlewares/validateToken.js"
 
@@ -18,6 +19,8 @@ const upload = multer({ storage: multer.memoryStorage() })
 // const upload = multer({ storage, limits })
 
 router.get("/find/:subject", authRequired, getPlan)
+
+router.get("/find/curriculum/:career", authRequired, getCurriculum)
 
 router.get("/subjects", authRequired, getSubjects)
 

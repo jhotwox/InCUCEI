@@ -34,6 +34,7 @@ export const CONTACT_RESOURCES = {
 export const ERROR_MESSAGES = {
   technical: "Disculpa, estoy teniendo problemas técnicos. Por favor intenta más tarde o contacta directamente a servicios escolares.",
   subjectNotFound: (subject) => `No se pudo encontrar la materia ${subject}. Por favor verifica el nombre e intenta de nuevo.`,
+  careerNotFound: (career) => `No se pudo encontrar la carrera ${career}. Por favor verifica el nombre e intenta de nuevo.`,
   studyPlanError: (subject) => `No se pudo encontrar el plan de estudios para la materia ${subject}`,
   materialError: (subject) => `No se pudo encontrar el material de estudio para la materia ${subject}`,
   unknownFunction: (name) => `Función ${name} no implementada`

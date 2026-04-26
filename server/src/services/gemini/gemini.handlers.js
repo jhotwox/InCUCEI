@@ -1,4 +1,4 @@
-import { getMaterial, getStudyPlan, getSubjectByName } from '../subjects.service.js'
+import { getCurriculumByCareer, getCurriculumByName, getMaterial, getStudyPlan, getSubjectByName } from '../subjects.service.js'
 import { formatSubjectName } from "../../libs/string.utils.js"
 import { ERROR_MESSAGES } from './gemini.config.js'
 import { PLACES } from '../../constants/places.js'
@@ -69,6 +69,37 @@ export function handleGetSubjectStudyPlan(subject) {
 }
 
 /**
+ * Handler para obtener la malla curricular de una carrera
+ */
+export function handleGetCurriculum(career) {
+  try {
+    const formattedCareer = career.toUpperCase()
+    const foundCareer = getCurriculumByName(formattedCareer)
+
+    if (!foundCareer) {
+      console.log(`[!] Career not found: ${career}`)
+      return ERROR_MESSAGES.careerNotFound(career)
+    }
+
+    console.log(`[+] Found Career: ${JSON.stringify(foundCareer)}`)
+    const curriculumResponse = getCurriculumByCareer(formattedCareer)
+
+    const result = JSON.stringify({
+      career: curriculumResponse.data.career,
+      file: curriculumResponse.data.file,
+      path: curriculumResponse.data.path
+    })
+
+    console.log(`[+] Curriculum Result: ${result}`)
+    return result
+
+  } catch (error) {
+    console.error("Error fetching curriculum: ", error)
+    return ERROR_MESSAGES.careerNotFound(career)
+  }
+}
+
+/**
  * Handler para mostrar ubicación en el mapa
  */
 export function handleShowLocationOnMap(locationName) {
@@ -130,6 +161,9 @@ export async function executeFunctionCall(functionCall) {
 
     case "get_subject_study_plan":
       return handleGetSubjectStudyPlan(args.subject)
+
+    case "get_curriculum":
+      return handleGetCurriculum(args.career)
 
     case "show_location_on_map":
       return handleShowLocationOnMap(args.locationName)

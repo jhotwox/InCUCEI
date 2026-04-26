@@ -32,9 +32,19 @@ export const getSubjectStudyPlanDeclaration = {
   },
 }
 
-export const getSubjectsDeclaration = {
-  name: "get_subjects",
-  description: "Get all subjects in CUCEI",
+export const getCurriculumDeclaration = {
+  name: "get_curriculum",
+  description: "Get curriculum for a given career in CUCEI",
+  parameters: {
+    type: Type.OBJECT,
+    properties: {
+      career: {
+        type: Type.STRING,
+        description: "The career name, e.g. INNI, INFO, INCE, ILOT, LILT, etc.",
+      },
+    },
+    required: ["career"],
+  },
 }
 
 export const showLocationOnMapDeclaration = {
@@ -56,6 +66,6 @@ export const showLocationOnMapDeclaration = {
 export const functionDeclarations = [
   getSubjectMaterialDeclaration,
   getSubjectStudyPlanDeclaration,
-  getSubjectsDeclaration,
+  getCurriculumDeclaration,
   showLocationOnMapDeclaration
 ]

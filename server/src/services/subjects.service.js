@@ -43,6 +43,48 @@ export const getSubjectByName = (name) => {
 console.log("Res: ", getSubjectByName("Admin base datos"))
  // For testing
 
+export const getCurriculumByName = (career) => {
+  const formattedCareer = career.toUpperCase()
+  const filePath = path.join(__dirname, "../files/Mallas", `${formattedCareer}.pdf`)
+
+  if (!fs.existsSync(filePath)) {
+    return null
+  }
+
+  return {
+    career: formattedCareer,
+    file: `${formattedCareer}.pdf`,
+  }
+}
+
+export const getCurriculumByCareer = (career) => {
+  const formattedCareer = career.toUpperCase()
+  const fileName = getCurriculumByName(formattedCareer)?.file
+  
+  if (!fileName) {
+    throw new Error("Carrera no encontrada", 404)
+    // return {
+    //   message: "Carrera no encontrada",
+    //   status: false
+    // }
+  }
+
+  const host = process.env.HOST || "localhost"
+  const port = process.env.PORT || "3000"
+  const protocol = process.env.NODE_ENV === "production" ? "https" : "http"
+
+  const serverUrl = `${protocol}://${host}${process.env.NODE_ENV === "development" ? `:${port}` : ""}/files/Mallas/${fileName}`
+
+  return {
+    data: {
+      career: formattedCareer,
+      file: fileName,
+      path: serverUrl
+    },
+    status: true
+  }
+}
+
 export const getStudyPlan = (subject, career = null) => {
   let subjectData = null
   
