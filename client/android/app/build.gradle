@@ -95,9 +95,9 @@ packagingOptions {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.jhotwox.client'
+    namespace 'com.jhotwox.client.production'
     defaultConfig {
-        applicationId 'com.jhotwox.client'
+        applicationId 'com.jhotwox.client.production'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

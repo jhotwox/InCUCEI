@@ -1,12 +1,13 @@
-import { PaperProvider, MD3LightTheme } from "react-native-paper"
+import { PaperProvider, MD3LightTheme, Text } from "react-native-paper"
 import { GestureHandlerRootView } from "react-native-gesture-handler"
 import { useFonts } from "expo-font"
-import { ActivityIndicator, View } from "react-native"
+import { ActivityIndicator, View, Image, ImageBackground, useColorScheme } from "react-native"
 import { ToastProvider } from "../contexts/Toast.context"
 import { AuthProvider } from "../contexts/Auth.context"
 import { SocketProvider } from "../contexts/Socket.context"
 import { BackgroundAnimationProvider } from "../contexts/BackgroundAnimation.context"
-import { createContext, useContext } from "react"
+import { createContext, useCallback, useContext, useEffect, useState } from "react"
+import * as SplashScreen from "expo-splash-screen"
 
 export const TAB_BAR_HEIGHT = 64
 export const LayoutContext = createContext({
@@ -19,19 +20,37 @@ const FONTFAMILY = "Lexend"
 // const FONTFAMILY = "PlusJakartaSans"
 
 export const Providers = ({ children }) => {
+  const scheme = useColorScheme()
+  const [rootLaidOut, setRootLaidOut] = useState(false)
   const [fontsLoaded] = useFonts({
     'Lexend': require('../assets/fonts/Lexend-VariableFont_wght.ttf'),
-    'PlusJakartaSans': require('../assets/fonts/PlusJakartaSans-VariableFont_wght.ttf'),
-    'PlusJakartaSans-Italic': require('../assets/fonts/PlusJakartaSans-Italic-VariableFont_wght.ttf')
+    // 'PlusJakartaSans': require('../assets/fonts/PlusJakartaSans-VariableFont_wght.ttf'),
+    // 'PlusJakartaSans-Italic': require('../assets/fonts/PlusJakartaSans-Italic-VariableFont_wght.ttf')
   })
+  
+  // const onLayoutRootView = useCallback(() => {
+  //   if (fontsLoaded)
+  //     SplashScreen.hideAsync().catch(() => {})
+    // }, [fontsLoaded])  
+    const onLayoutRootView = useCallback(() => {
+      setRootLaidOut(true)
+    }, [])
+    
+    useEffect(() => {
+      if (fontsLoaded && rootLaidOut)
+        SplashScreen.hideAsync().catch(() => {})
+    }, [fontsLoaded, rootLaidOut])
 
-  if (!fontsLoaded) {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size="large" />
-      </View>
-    )
-  }
+    // const bg = scheme === "dark" ? "#000000" : "#ffffff"
+    const bg = "#ffffff"
+
+
+  // if (!fontsLoaded)
+  //   return null
+  
+  // if (!fontsLoaded)
+  //   return <ActivityIndicator size="large" style={{ flex: 1, justifyContent: "center", alignItems: "center" }} />
+  
   const theme = {
     ...MD3LightTheme,
     fonts: {
@@ -173,7 +192,17 @@ export const Providers = ({ children }) => {
   }
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
+    <GestureHandlerRootView style={{ flex: 1, backgroundColor: bg }} onLayout={onLayoutRootView}>
+      {!fontsLoaded ? (
+        <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+          <Image
+            source={require('../assets/splash-icon.png')}
+            style={{ width: 200, height: 200, resizeMode: "contain", marginBottom: 24 }}
+            resizeMode="contain"
+          />
+          <ActivityIndicator size="large" color={"#000000"}/>
+        </View>
+      ) : null}
       <PaperProvider theme={theme}>
         <LayoutContext.Provider value={{ tabBarHeight: TAB_BAR_HEIGHT }}>
           <AuthProvider>

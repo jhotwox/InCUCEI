@@ -1,4 +1,4 @@
-package com.jhotwox.client
+package com.jhotwox.client.production
 
 import android.app.Application
 import android.content.res.Configuration

@@ -4,6 +4,9 @@ import { Text, TextInput } from "react-native"
 import { Providers } from "../layout/providers.layout"
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import Markdown from 'react-native-markdown-display'
+import * as SplashScreen from "expo-splash-screen"
+
+SplashScreen.preventAutoHideAsync().catch(() => {})
 
 const FONTFAMILY = "Lexend"
 // const FONTFAMILY = "PlusJakartaSans"
@@ -20,9 +23,7 @@ if (TextInput.defaultProps == null) {
 }
 TextInput.defaultProps.style = { fontFamily: FONTFAMILY }
 
-
 export default function App () {
-  
   return (
     <Providers>
       <GestureHandlerRootView style={{ flex: 1 }}>
