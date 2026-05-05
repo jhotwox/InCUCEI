@@ -8,8 +8,8 @@ InCUCEI is a platform for the CUCEI community (Universidad de Guadalajara), prov
 ## Key Architectural Patterns
 
 ### Technologies
-- **Backend**: Node.js/Express, MongoDB (Mongoose), Socket.IO, Zod, Gemini AI (Google Generative AI), Multer, dotenv
-- **Frontend**: React Native (Expo), React Navigation/Expo Router, Socket.IO Client, React Native Paper, AsyncStorage, Context API, Axios, FormData, Reanimated 4, Expo Blur, `react-native-gesture-handler` (GestureHandlerRootView, GestureDetector, Gesture)
+- **Backend**: Node.js/Express, MongoDB (Mongoose), Socket.IO, Zod, Gemini AI (Google Generative AI), Multer, dotenv, Expo Push (`expo-server-sdk`)
+- **Frontend**: React Native (Expo), React Navigation/Expo Router, Socket.IO Client, React Native Paper, AsyncStorage, Context API, Axios, FormData, Reanimated 4, Expo Blur, `react-native-gesture-handler` (GestureHandlerRootView, GestureDetector, Gesture), Push (`expo-notifications`)
 
 ## Performance Best Practices
 - **Memoization**: Use `React.memo()` for components, `useCallback()` for functions, and `useMemo()` for expensive computations
@@ -32,12 +32,36 @@ InCUCEI is a platform for the CUCEI community (Universidad de Guadalajara), prov
 - **Chatbot**: Gemini AI integration via backend proxy.
 - **Theme**: Material Design 3 with custom color palette optimized for accessibility (WCAG AA compliance). Custom colors include `update`, `delete` for action buttons.
 
+#### Push Notifications (Expo + FCM/APNs)
+- **Goal**: Send a push notification when a new message arrives **only if the recipient is background/offline** (avoid duplicates while user is actively chatting).
+- **Client registration**:
+  - Token hook: `client/hooks/usePushNotifications.jsx`
+    - Stores token per user in AsyncStorage (`expoPushToken:<userId>`) so multiple accounts on one device work correctly.
+    - Uses `requireOptionalNativeModule('ExpoPushTokenManager')` to avoid crashing when the dev-client hasn't been rebuilt after installing `expo-notifications`.
+  - Socket presence updates via `AppState`: `client/contexts/Socket.context.jsx` emits `appState`.
+  - API call: `client/api/auth.api.js` → `registerPushTokenRequest()`
+- **Server registration**:
+  - Endpoint: `POST /api/push-token` (auth required) in `server/src/routes/auth.routes.js`
+  - Controller: `server/src/controller/auth.controller.js` validates token with `Expo.isExpoPushToken()`
+  - User schema: `expoPushTokens: [String]` in `server/src/models/user.model.js`
+- **Presence gating**:
+  - In-memory store in `server/src/app.js` under `app.set('presence', new Map())` keyed by userId
+  - Message send endpoints in `server/src/controller/message.controller.js` decide whether to push based on presence state
+- **Expo push sending**:
+  - `server/src/services/push/expoPush.service.js` chunks and sends via `expo-server-sdk`
+
+#### EAS / Native Credentials Notes
+- Android delivery requires **FCM V1** configured in EAS Credentials (Google service account key uploaded to EAS).
+- iOS delivery requires APNs setup (via EAS credentials); background/offline push testing needs a real device.
+- If `client/android/` exists, native config takes precedence (prebuild/app.json values may not apply in the same way).
+
 ## Project-Specific Conventions
 
 ### Modules & Features
 1. **Auth/Users**: JWT, Zod validation, institutional email (@udg.mx). Supports profile photo upload via `PATCH /api/auth/profile` (imageType `profile`). `profileUrl` stored in user model and in Auth context.
 2. **Commerces**: One commerce per user, file uploads (logo/banner via imageType `logo`/`banner`)
 3. **Messaging**: Real-time user↔commerce, persistent chats, Socket.IO
+  - **Push notifications**: sent only when recipient is background/offline (presence-aware via Socket.IO + AppState)
 4. **Chatbot (Gemini)**: Contextual conversation, resource delivery, map integration
 5. **UI/UX**: Tabs/stacks navigation, theming, reusable components, error feedback
    - **Toast**: Custom animated toast (`client/components/Toast.jsx`) renders via Paper `<Portal>` from `Toast.context.jsx`. Supports `success`, `error`, `info` types matching the app theme. Dismissable by swipe-down or tap. Uses Reanimated (`withSpring`/`withTiming`) for enter/exit animations and `react-native-gesture-handler` for gesture detection. **Always call `showToast` from `useToast()` — never use Paper's `<Snackbar>` directly.**
@@ -64,6 +88,8 @@ InCUCEI is a platform for the CUCEI community (Universidad de Guadalajara), prov
 ## Security & Agent Notes
 - Never expose secrets or sensitive logic in the frontend.
 - All AI/resource logic must go through the backend.
+- **Never commit private keys** (e.g., Google/Firebase service account JSON). Use EAS Credentials / secrets instead.
+- `google-services.json` is typically safe to commit for Android apps (not a private key), but treat it as sensitive: Added to .gitignore and only include in native builds.
 - Performance is critical: always memoize components and callbacks, optimize FlatLists, and use refs to prevent unnecessary re-fetches.
 - **Avoid unnecessary re-renders**: update derived state (e.g., image cache-bust keys) only when the source value actually changes — use `useEffect` with the specific dependency, not `useFocusEffect` unconditionally.
 - Animations should be smooth (60fps): use Reanimated's `useSharedValue` and `useAnimatedStyle`.

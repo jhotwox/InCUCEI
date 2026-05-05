@@ -1,6 +1,8 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react"
+import { AppState } from "react-native"
 import { io } from "socket.io-client"
 import { useAuth } from "./Auth.context"
+import { usePushNotifications } from "../hooks/usePushNotifications"
 
 
 
@@ -15,6 +17,8 @@ export const SocketProvider = ({ children }) => {
 
   const { token, user } = useAuth()
   const socketRef = useRef(null)
+
+  usePushNotifications({ enabled: Boolean(token && user), userId: user?.id })
 
   useEffect(() => {
     if (token && user) {
@@ -59,6 +63,23 @@ export const SocketProvider = ({ children }) => {
       }
     }
   }, [token, user])
+
+  useEffect(() => {
+    if (!socket || !connected || !user?.id) return
+
+    const sendState = (nextState) => {
+      const state = nextState === "active" ? "active" : "background"
+      socket.emit("appState", { state })
+    }
+
+    // Send initial state
+    sendState(AppState.currentState)
+
+    const subscription = AppState.addEventListener("change", sendState)
+    return () => {
+      subscription?.remove?.()
+    }
+  }, [socket, connected, user?.id])
 
   const joinRoom = (roomId) => {
     if (socket) {

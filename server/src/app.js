@@ -19,6 +19,9 @@ const __dirname = path.dirname(__filename)
 
 const app = express()
 
+// In-memory presence store: userId -> { sockets: Set<string>, state: 'active'|'background', updatedAt: Date }
+const presence = new Map()
+
 // Socket.io setup
 const server = http.createServer(app)
 
@@ -38,6 +41,7 @@ app.use(express.json())
 app.use(cookieParser())
 
 app.set("io", io)
+app.set("presence", presence)
 
 // Routes
 app.use("/files", express.static(path.join(__dirname, "files")))
@@ -64,10 +68,39 @@ io.on("connection", (socket) => {
   // #region Commerce messsages
   console.log("a user connected:", socket.id)
 
+  const upsertPresence = (userId, updater) => {
+    const existing = presence.get(userId) || {
+      sockets: new Set(),
+      state: "active",
+      updatedAt: new Date(),
+    }
+
+    updater(existing)
+    existing.updatedAt = new Date()
+    presence.set(userId, existing)
+  }
+
   // User
   socket.on("joinUser", (userId) => {
     socket.join(userId)
+    socket.data.userId = userId
+
+    upsertPresence(userId, (p) => {
+      p.sockets.add(socket.id)
+    })
     console.log(`🏠 User ${userId} joined personal room`)
+  })
+
+  socket.on("appState", (data) => {
+    const userId = socket.data.userId
+    if (!userId) return
+
+    const rawState = typeof data?.state === "string" ? data.state : "active"
+    const state = rawState === "active" ? "active" : "background"
+
+    upsertPresence(userId, (p) => {
+      p.state = state
+    })
   })
 
   // Room
@@ -95,6 +128,18 @@ io.on("connection", (socket) => {
   })
 
   socket.on("disconnect", () => {
+    const userId = socket.data.userId
+    if (userId && presence.has(userId)) {
+      const entry = presence.get(userId)
+      entry.sockets.delete(socket.id)
+      entry.updatedAt = new Date()
+
+      if (entry.sockets.size === 0) {
+        presence.delete(userId)
+      } else {
+        presence.set(userId, entry)
+      }
+    }
     console.log("❌ User disconnected:", socket.id)
   })
 })

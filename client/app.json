@@ -36,6 +36,7 @@
       [
         "expo-font"
       ],
+      "expo-notifications",
       [
         "@rnmapbox/maps",
         {

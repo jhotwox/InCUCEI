@@ -45,6 +45,39 @@ InCUCEI es una plataforma integral para la comunidad del Centro Universitario de
 - Chats persistentes en MongoDB.
 - Notificaciones y actualización instantánea vía Socket.IO.
 
+### 3.1. Notificaciones push (Expo + FCM/APNs)
+- Push remoto (Android/iOS) para nuevos mensajes **solo cuando el destinatario está en background u offline**.
+- Cliente registra su `ExpoPushToken[...]` en el backend tras iniciar sesión.
+- Backend decide si envía push usando presencia (Socket.IO + `AppState`).
+
+**Cliente (client/)**
+- Registro de token: [client/hooks/usePushNotifications.jsx](client/hooks/usePushNotifications.jsx)
+	- Usa `expo-notifications`.
+	- Guarda token por usuario en AsyncStorage: `expoPushToken:<userId>` (evita que una cuenta bloquee a otra en el mismo dispositivo).
+	- Protección para dev-client sin rebuild: si falta el módulo nativo, hace no-op.
+- Envío de estado de app: [client/contexts/Socket.context.jsx](client/contexts/Socket.context.jsx)
+	- Emite `appState: { state: 'active' | 'background' }` al socket.
+- Endpoint de registro: [client/api/auth.api.js](client/api/auth.api.js) → `POST /push-token`.
+
+**Backend (server/)**
+- Almacenamiento de tokens: `User.expoPushTokens[]` en [server/src/models/user.model.js](server/src/models/user.model.js).
+- Endpoint: `POST /api/push-token` (auth) en [server/src/routes/auth.routes.js](server/src/routes/auth.routes.js) / [server/src/controller/auth.controller.js](server/src/controller/auth.controller.js).
+- Presencia en memoria: [server/src/app.js](server/src/app.js)
+	- `app.set('presence', new Map())` con `{ sockets, state, updatedAt }` por usuario.
+- Envío de push al crear mensajes (REST): [server/src/controller/message.controller.js](server/src/controller/message.controller.js)
+	- Se integra a `sendMessage` y `sendCommerceMessage`.
+	- Solo envía push si el destinatario está offline o `background`.
+- Envío por Expo: [server/src/services/push/expoPush.service.js](server/src/services/push/expoPush.service.js) usando `expo-server-sdk`.
+
+**Configuración requerida (Android)**
+- FCM V1 en Expo/EAS: en `eas credentials -p android` configurar **Google Service Account Key for FCM V1**.
+- `google-services.json` en proyecto Android y Gradle Google Services habilitado (para builds nativos/dev-client).
+- Nota: si existe directorio `client/android/`, Expo/EAS usa la config nativa; algunos valores de `app.json/app.config.js` se ignoran.
+
+**Variables y flags útiles**
+- `PUSH_DEBUG_RECEIPTS=true` (server): habilita diagnóstico de receipts (si se implementa/usa).
+- `EXPO_PUBLIC_DEBUG_FOREGROUND_NOTIFICATIONS=true` (client, DEV): opcional para mostrar alertas en foreground durante pruebas.
+
 ### 4. Chatbot Escolar (Gemini)
 - Asistente escolar basado en Gemini Pro.
 - Conversación contextual: historial de mensajes guardado y usado como contexto.
@@ -110,6 +143,10 @@ InCUCEI es una plataforma integral para la comunidad del Centro Universitario de
 - Validación de archivos y tipos MIME en uploads.
 - Claves de API y secretos solo en el backend.
 
+**Nota crítica (push credentials)**
+- No versionar llaves privadas de Google/Firebase (service accounts tipo `firebase-adminsdk-*.json`).
+- Para FCM V1 se sube el JSON a EAS Credentials; el archivo debe mantenerse local y fuera del repo.
+
 ---
 
 ## Notas para Agentes y Colaboradores
@@ -122,15 +159,16 @@ InCUCEI es una plataforma integral para la comunidad del Centro Universitario de
 
 ##  Ubicaciones Clave
 ### Frontend (client/)
-- `layout/Providers.layout.jsx`: Tema de colores de la app.
-- 
+- [client/layout/providers.layout.jsx](client/layout/providers.layout.jsx): Provider tree, tema (React Native Paper) y `GestureHandlerRootView`.
+- [client/components/Toast.jsx](client/components/Toast.jsx): Toast custom (Portal + gestures).
 
 ---
 
 ## Lista de contextos
-- `contexts/Snackbar.context.jsx`: Manejo de notificaciones tipo snackbar.
-- `contexts/Auth.context.jsx`: Manejo de autenticación y estado del usuario.
-- `contexts/Socket.context.jsx`: Conexión y manejo de Socket.IO.
+- [client/contexts/Toast.context.jsx](client/contexts/Toast.context.jsx): Manejo global del toast (`showToast`).
+- [client/contexts/Auth.context.jsx](client/contexts/Auth.context.jsx): Manejo de autenticación y estado del usuario.
+- [client/contexts/Socket.context.jsx](client/contexts/Socket.context.jsx): Conexión y manejo de Socket.IO (presencia + mensajería).
+- [client/contexts/BackgroundAnimation.context.jsx](client/contexts/BackgroundAnimation.context.jsx): Estado global de animación del fondo.
 
 ---
 
@@ -141,4 +179,4 @@ InCUCEI es una plataforma integral para la comunidad del Centro Universitario de
 
 ---
 
-**Última actualización:** 18 de diciembre de 2025
+**Última actualización:** 5 de mayo de 2026

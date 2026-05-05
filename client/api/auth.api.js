@@ -81,3 +81,10 @@ export const logoutRequest = async () => {
   await AsyncStorage.removeItem('token').catch(err => console.error("AsyncStorage remove token: ", err))
   router.replace("Login.screen")
 }
+
+export const registerPushTokenRequest = async (token) => {
+  return await axios.post("/push-token", { token }).catch((err) => {
+    console.log("[-] Register push token error: ", err)
+    throw err
+  })
+}

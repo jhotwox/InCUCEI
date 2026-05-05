@@ -2,6 +2,22 @@ import mongoose from "mongoose"
 import Message from "../models/message.model.js"
 import User from "../models/user.model.js"
 import Commerce from "../models/commerce.model.js"
+import {
+  sendExpoPushNotifications,
+  toExpoMessages,
+} from "../services/push/expoPush.service.js"
+
+const shouldSendPushForUser = (presenceStore, userId) => {
+  if (!presenceStore || !userId) return true
+  const entry = presenceStore.get(userId)
+  if (!entry) return true // offline
+  return entry.state === "background"
+}
+
+const pushBodyForMessage = ({ messageType, content }) => {
+  if (messageType === "text") return content
+  return "Nuevo mensaje"
+}
 
 // Send a message
 export const sendMessage = async (req, res) => {
@@ -55,6 +71,56 @@ export const sendMessage = async (req, res) => {
 
     if (receiverId) {
       io.to(receiverId).emit("receiveMessage", payload)
+
+      const presenceStore = req.app.get("presence")
+      const presenceEntry = presenceStore?.get?.(receiverId)
+      const shouldPush =
+        receiverId.toString() !== senderId.toString() &&
+        shouldSendPushForUser(presenceStore, receiverId)
+
+      if (shouldPush) {
+        const receiverUser = await User.findById(receiverId)
+          .select("expoPushTokens")
+          .lean()
+
+        const tokens = receiverUser?.expoPushTokens || []
+        console.log("[push] sendMessage -> receiver", {
+          receiverId,
+          roomId,
+          tokenCount: tokens.length,
+          presence: presenceEntry
+            ? {
+                state: presenceEntry.state,
+                sockets: presenceEntry.sockets?.size,
+                updatedAt: presenceEntry.updatedAt,
+              }
+            : null,
+        })
+        const messages = toExpoMessages({
+          tokens,
+          title: message?.sender?.name || "Nuevo mensaje",
+          body: pushBodyForMessage({ messageType, content }),
+          data: {
+            type: "message",
+            roomId,
+            commerceId,
+            senderId,
+          },
+        })
+
+        const tickets = await sendExpoPushNotifications(messages)
+        if (Array.isArray(tickets)) {
+          const ok = tickets.filter((t) => t?.status === "ok").length
+          const err = tickets.filter((t) => t?.status === "error").length
+          console.log("[push] tickets summary", { ok, err })
+        }
+      } else {
+        console.log("[push] skipped sendMessage", {
+          receiverId,
+          roomId,
+          reason: presenceEntry ? `presence:${presenceEntry.state}` : "offline?",
+        })
+      }
     }
 
     return res.status(201).json({
@@ -341,6 +407,56 @@ export const sendCommerceMessage = async (req, res) => {
       createdAt: message.createdAt,
       updatedAt: message.updatedAt,
     })
+
+    const presenceStore = req.app.get("presence")
+    const presenceEntry = presenceStore?.get?.(userId)
+    const shouldPush =
+      userId.toString() !== senderId.toString() &&
+      shouldSendPushForUser(presenceStore, userId)
+
+    if (shouldPush) {
+      const receiverUser = await User.findById(userId)
+        .select("expoPushTokens")
+        .lean()
+
+      const tokens = receiverUser?.expoPushTokens || []
+      console.log("[push] sendCommerceMessage -> receiver", {
+        userId,
+        roomId,
+        tokenCount: tokens.length,
+        presence: presenceEntry
+          ? {
+              state: presenceEntry.state,
+              sockets: presenceEntry.sockets?.size,
+              updatedAt: presenceEntry.updatedAt,
+            }
+          : null,
+      })
+      const messages = toExpoMessages({
+        tokens,
+        title: commerce?.name || "Nuevo mensaje",
+        body: pushBodyForMessage({ messageType, content }),
+        data: {
+          type: "message",
+          roomId,
+          commerceId,
+          senderId,
+        },
+      })
+
+      const tickets = await sendExpoPushNotifications(messages)
+      if (Array.isArray(tickets)) {
+        const ok = tickets.filter((t) => t?.status === "ok").length
+        const err = tickets.filter((t) => t?.status === "error").length
+        console.log("[push] tickets summary", { ok, err })
+      }
+    } else {
+      console.log("[push] skipped sendCommerceMessage", {
+        userId,
+        roomId,
+        reason: presenceEntry ? `presence:${presenceEntry.state}` : "offline?",
+      })
+    }
 
     return res.status(201).json({
       message: "Message sent successfully",

@@ -1,8 +1,8 @@
 import { Router } from 'express'
 
-import { loginSchema, registerSchema } from '../schemas/auth.schema.js'
+import { loginSchema, registerSchema, pushTokenSchema } from '../schemas/auth.schema.js'
 import { validatorSchema } from '../middlewares/validator.middleware.js'
-import { login, register, profile, ping, deleteUser } from '../controller/auth.controller.js'
+import { login, register, profile, ping, deleteUser, registerPushToken } from '../controller/auth.controller.js'
 import { authRequired } from '../middlewares/validateToken.js'
 
 const router = Router()
@@ -18,6 +18,13 @@ router.post("/profile", authRequired, profile)
 router.patch("/profile", authRequired, profile)
 
 router.post("/ping", ping)
+
+router.post(
+	"/push-token",
+	authRequired,
+	validatorSchema(pushTokenSchema),
+	registerPushToken
+)
 
 router.delete("/delete", authRequired, deleteUser)
 

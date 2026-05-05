@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs"
 import User from "../models/user.model.js"
 import { createAccessToken } from "../libs/jwt.js"
+import { Expo } from "expo-server-sdk"
 
 export const register = async (req, res) => {
   const { name, email, password } = req.body
@@ -140,4 +141,37 @@ export const deleteUser = async (req, res) => {
 
 export const ping = async (req, res) => {
   return await res.status(200).json({ message: "Servidor vivo!", status: true })
+}
+
+export const registerPushToken = async (req, res) => {
+  try {
+    const userId = req.user.id
+    const { token } = req.body
+
+    if (!Expo.isExpoPushToken(token)) {
+      return res.status(400).json({
+        message: "Token de notificación inválido",
+        status: false,
+      })
+    }
+
+    await User.updateOne(
+      { _id: userId },
+      {
+        $addToSet: { expoPushTokens: token },
+      }
+    )
+
+    return res.json({
+      message: "Push token registrado",
+      status: true,
+    })
+  } catch (err) {
+    console.error("[-] Register push token error: ", err)
+    return res.status(500).json({
+      message: "Internal server error",
+      err: err.message,
+      status: false,
+    })
+  }
 }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "59242085813",
+    "project_id": "incucei",
+    "storage_bucket": "incucei.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:59242085813:android:2d4e909e8ac2b1217badfc",
+        "android_client_info": {
+          "package_name": "com.jhotwox.client.production"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAerTgQk6QVooQljKOfiRbHX1v0xzkXGMw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
