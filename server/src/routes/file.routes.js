@@ -5,6 +5,7 @@ import "../config.js"
 import {
   getPlan,
   getSubjects,
+  getMaterialBySubject,
   uploadFile,
   ping,
   getCurriculum,
@@ -19,6 +20,8 @@ const upload = multer({ storage: multer.memoryStorage() })
 // const upload = multer({ storage, limits })
 
 router.get("/find/:subject", authRequired, getPlan)
+
+router.get("/find/material/:subject", authRequired, getMaterialBySubject)
 
 router.get("/find/curriculum/:career", authRequired, getCurriculum)
 

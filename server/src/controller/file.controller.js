@@ -1,6 +1,6 @@
 import { subjectsData } from "../data/subjects.data.js"
-import { getStudyPlan, getAllSubjects, getCurriculumByCareer } from "../services/subjects.service.js"
-import { romanToArabic, IDontLikeTildesAnymore } from "../libs/string.utils.js"
+import { getStudyPlan, getMaterial, getAllSubjects, getCurriculumByCareer } from "../services/subjects.service.js"
+import { romanToArabic, IDontLikeTildesAnymore, formatSubjectName } from "../libs/string.utils.js"
 import User from "../models/user.model.js"
 import Commerce from "../models/commerce.model.js"
 import { isCloudinaryEnabled, uploadImageBuffer } from "../services/cloudinary.service.js"
@@ -25,11 +25,30 @@ export const getPlan = async (req, res) => {
   
   try {
     // Format subject
-    formattedSubject = romanToArabic(formattedSubject)
-    formattedSubject = IDontLikeTildesAnymore(formattedSubject)
+    formattedSubject = formatSubjectName(formattedSubject)
 
     // Get study plan
     const response = getStudyPlan(formattedSubject)
+    return res.json(response)
+  } catch (err) {
+    return res
+      .status(err.status || 500)
+      .json({ message: err.message || "Error interno del servidor", status: false })
+  }
+}
+
+export const getMaterialBySubject = async (req, res) => {
+  const { subject } = req.params
+  let formattedSubject = subject.toLowerCase()
+  
+  try {
+    // Format subject
+    // formattedSubject = romanToArabic(formattedSubject)
+    // formattedSubject = IDontLikeTildesAnymore(formattedSubject)
+    formattedSubject = formatSubjectName(formattedSubject)
+
+    // Get material
+    const response = getMaterial(formattedSubject)
     return res.json(response)
   } catch (err) {
     return res
@@ -44,26 +63,7 @@ export const getSubjects = async (req, res) => {
   return res.json({ data: subjects, status: true })
 }
 
-// Not used currently
-export const getSubjectsByCarrer = async (req, res) => {
-  const career = req.params.career.toUpperCase()
-  if (!subjectsData[career]) {
-    return res
-      .status(404)
-      .json({ message: "Carrera no encontrada", status: false })
-  }
-
-  const subjects = Object.entries(subjectsData[career]).map(
-    ([key, subject]) => ({
-      key,
-      names: subject.names,
-      code: subject.code,
-    })
-  )
-
-  return res.json({ data: subjects, status: true })
-}
-
+// profile, logo and banner upload handler
 export const uploadFile = async (req, res) => {
   const { imageType } = req.query
   const userId = req.user?.id

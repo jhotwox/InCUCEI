@@ -1,0 +1,335 @@
+{
+  "fundamentos_programacion": {
+    "name": "fundamentos de la programacion",
+    "code": "I5288",
+    "files": {
+      "study_plan": "fundamentosdelaprogramacion.pdf",
+      "material": "fundamentosdelaprogramacion.pdf"
+    },
+    "career": "INFO"
+  },
+  "logica_matematica": {
+    "name": "logica matematica",
+    "code": "I5247",
+    "files": {
+      "study_plan": "logicamatematica.pdf",
+      "material": "logicamatematica.pdf"
+    },
+    "career": "INFO"
+  },
+  "precalculo": {
+    "name": "precalculo",
+    "code": "IG738",
+    "files": {
+      "study_plan": "precalculo.pdf",
+      "material": "precalculo.pdf"
+    },
+    "career": "INFO"
+  },
+  "fundamentos_fisica": {
+    "name": "fundamentos de fisica",
+    "code": "IL340",
+    "files": {
+      "study_plan": "fundamentosfisica.pdf",
+      "material": "fundamentosfisica.pdf"
+    },
+    "career": "INFO"
+  },
+  "induccion_ingenieria": {
+    "name": "induccion a la ingenieria",
+    "code": "V0709",
+    "files": {
+      "study_plan": "induccioningenieria.pdf",
+      "material": "induccioningenieria.pdf"
+    },
+    "career": "INFO"
+  },
+  "historia_tecnologia": {
+    "name": "historia de la tecnologia, el arte y la sociedad",
+    "code": "V0714",
+    "files": {
+      "study_plan": "historiatecnologia.pdf",
+      "material": "historiatecnologia.pdf"
+    },
+    "career": "INFO"
+  },
+  "programacion_estructurada": {
+    "name": "programacion estructurada",
+    "code": "V0716",
+    "files": {
+      "study_plan": "programacionestructurada.pdf",
+      "material": "programacionestructurada.pdf"
+    },
+    "career": "INFO"
+  },
+  "matematicas_discretas": {
+    "name": "matematicas discretas",
+    "code": "V0711",
+    "files": {
+      "study_plan": "matematicasdiscretas.pdf",
+      "material": "matematicasdiscretas.pdf"
+    },
+    "career": "INFO"
+  },
+  "calculo_integral": {
+    "name": "calculo diferencial e integral",
+    "code": "V0710",
+    "files": {
+      "study_plan": "calculointegral.pdf",
+      "material": "calculointegral.pdf"
+    },
+    "career": "INFO"
+  },
+  "mecanica": {
+    "name": "mecanica",
+    "code": "V0713",
+    "files": {
+      "study_plan": "mecanica.pdf",
+      "material": "mecanica.pdf"
+    },
+    "career": "INFO"
+  },
+  "tecnologias_retos_sociedad": {
+    "name": "tecnologia y retos de la sociedad",
+    "code": "V0715",
+    "files": {
+      "study_plan": "tecnologiasyretossociedad.pdf",
+      "material": "tecnologiasyretossociedad.pdf"
+    },
+    "career": "INFO"
+  },
+  "poo": {
+    "name": "programacion orientada a objetos",
+    "code": "I5289",
+    "files": {
+      "study_plan": "poo.pdf",
+      "material": "poo.pdf"
+    },
+    "career": "INFO"
+  },
+  "algebra_lineal": {
+    "name": "algebra lineal",
+    "code": "IB059",
+    "files": {
+      "study_plan": "algebralineal.pdf",
+      "material": "algebralineal.pdf"
+    },
+    "career": "INFO"
+  },
+  "ecuaciones_diferenciales": {
+    "name": "ecuaciones diferenciales",
+    "code": "V0712",
+    "files": {
+      "study_plan": "ecuacionesdiferenciales.pdf",
+      "material": "ecuacionesdiferenciales.pdf"
+    },
+    "career": "INFO"
+  },
+  "electromagnetismo": {
+    "name": "electromagnetismo",
+    "code": "IC591",
+    "files": {
+      "study_plan": "electromagnetismo.pdf",
+      "material": "electromagnetismo.pdf"
+    },
+    "career": "INFO"
+  },
+  "sustentabilidad": {
+    "name": "ingenieria y sustentabilidad",
+    "code": "V0717",
+    "files": {
+      "study_plan": "sustentabilidad.pdf",
+      "material": "sustentabilidad.pdf"
+    },
+    "career": "INFO"
+  },
+  "estructura_datos": {
+    "name": "estructura de datos",
+    "code": "V0731",
+    "files": {
+      "study_plan": "estructuradedatos.pdf",
+      "material": "estructuradedatos.pdf"
+    },
+    "career": "INFO"
+  },
+  "probabilidad_estadistica": {
+    "name": "probabilidad y estadistica",
+    "code": "IB067",
+    "files": {
+      "study_plan": "probabilidadyestadistica.pdf",
+      "material": "probabilidadyestadistica.pdf"
+    },
+    "career": "INFO"
+  },
+  "metodos_numericos": {
+    "name": "metodos numericos",
+    "code": "V0713",
+    "files": {
+      "study_plan": "metodosnumericos.pdf",
+      "material": "metodosnumericos.pdf"
+    },
+    "career": "INFO"
+  },
+  "info_administrativa": {
+    "name": "informatica administrativa",
+    "code": "V0730",
+    "files": {
+      "study_plan": "infoadministrativa.pdf",
+      "material": "infoadministrativa.pdf"
+    },
+    "career": "INFO"
+  },
+  "arquitectura_computadoras": {
+    "name": "arquitectura de computadoras",
+    "code": "I5629",
+    "files": {
+      "study_plan": "arquitecturadecomputadoras.pdf",
+      "material": "arquitecturadecomputadoras.pdf"
+    },
+    "career": "INFO"
+  },
+  "ingenieria_software": {
+    "name": "ingenieria de software",
+    "code": "CB224",
+    "files": {
+      "study_plan": "ingenieriadesoftware.pdf",
+      "material": "ingenieriadesoftware.pdf"
+    },
+    "career": "INFO"
+  },
+  "mineria_datos": {
+    "name": "mineria de datos",
+    "code": "CU206",
+    "files": {
+      "study_plan": "mineriadedatos.pdf",
+      "material": "mineriadedatos.pdf"
+    },
+    "career": "INFO"
+  },
+  "fundamentos_ia": {
+    "name": "fundamentos de inteligencia artificial",
+    "code": "IL361",
+    "files": {
+      "study_plan": "fundamentosia.pdf",
+      "material": "fundamentosia.pdf"
+    },
+    "career": "INFO"
+  },
+  "innovacion_emprendimiento": {
+    "name": "innovacion tecnologica y emprendimiento",
+    "code": "V0719",
+    "files": {
+      "study_plan": "innovacionyemprendimiento.pdf",
+      "material": "innovacionyemprendimiento.pdf"
+    },
+    "career": "INFO"
+  },
+  "redes_computadoras": {
+    "name": "redes de computadoras",
+    "code": "V0719",
+    "files": {
+      "study_plan": "redesdecomputadora.pdf",
+      "material": "redesdecomputadora.pdf"
+    },
+    "career": "INFO"
+  },
+  "seminario_integracion_protocolo": {
+    "name": "seminario de integracion protocolo",
+    "code": "V0733",
+    "files": {
+      "study_plan": "seminariointegracionprotocolo.pdf",
+      "material": "seminariointegracionprotocolo.pdf"
+    },
+    "career": "INFO"
+  },
+  "calidad_software": {
+    "name": "calidad de software",
+    "code": "V0732",
+    "files": {
+      "study_plan": "calidadsoftware.pdf",
+      "material": "calidadsoftware.pdf"
+    },
+    "career": "INFO"
+  },
+  "base_datos": {
+    "name": "base de datos",
+    "code": "V0718",
+    "files": {
+      "study_plan": "basesdatos.pdf",
+      "material": "basesdatos.pdf"
+    },
+    "career": "INFO"
+  },
+  "algoritmos_metaheuristicos": {
+    "name": "algoritmos metaheuristicos",
+    "code": "V0723",
+    "files": {
+      "study_plan": "algoritmosmeta.pdf",
+      "material": "algoritmosmeta.pdf"
+    },
+    "career": "INFO"
+  },
+  "administracion_base_datos": {
+    "name": "administracion de base de datos",
+    "code": "V0724",
+    "files": {
+      "study_plan": "adminbasesdatos.pdf",
+      "material": "adminbasesdatos.pdf"
+    },
+    "career": "INFO"
+  },
+  "seminario_integracion_desarrollo": {
+    "name": "seminario de integracion desarrollo",
+    "code": "V0734",
+    "files": {
+      "study_plan": "seminariointegraciondesarrollo.pdf",
+      "material": "seminariointegraciondesarrollo.pdf"
+    },
+    "career": "INFO"
+  },
+  "analisis_visualizacion_informacion": {
+    "name": "analisis y visualizacion de la informacion",
+    "code": "V0725",
+    "files": {
+      "study_plan": "analisisinformacion.pdf",
+      "material": "analisisinformacion.pdf"
+    },
+    "career": "INFO"
+  },
+  "sistemas_inteligentes": {
+    "name": "sistemas inteligentes",
+    "code": "V0726",
+    "files": {
+      "study_plan": "",
+      "material": "sistemasinteligentes.pdf"
+    },
+    "career": "INFO"
+  },
+  "control_proyectos": {
+    "name": "control de proyectos",
+    "code": "V0727",
+    "files": {
+      "study_plan": "controldeproyectos.pdf",
+      "material": "controldeproyectos.pdf"
+    },
+    "career": "INFO"
+  },
+  "seminario_integracion_comunicacion": {
+    "name": "seminario de integracion comunicacion",
+    "code": "V0735",
+    "files": {
+      "study_plan": "",
+      "material": "seminariointegracioncomunicacion.pdf"
+    },
+    "career": "INFO"
+  },
+  "tecnologias_ia": {
+    "name": "tecnologias de inteligencia artificial",
+    "code": "V0728",
+    "files": {
+      "study_plan": "tecnologiasia.pdf",
+      "material": "tecnologiasia.pdf"
+    },
+    "career": "INFO"
+  }
+}

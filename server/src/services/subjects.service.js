@@ -3,45 +3,16 @@ import { fileURLToPath } from "url"
 import fs from "fs"
 import { subjectsData } from "../data/subjects.data.js"
 
+import {
+  getAllSubjects,
+  getSubjectByName,
+  resolveSubject,
+} from "./subjects.search.js"
+
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-export const getAllSubjects = () => {
-  const subjects = Object.entries(subjectsData).flatMap(
-    ([_, career]) => Object.entries(career).map(
-      ([key, subject]) => ({
-        key,
-        names: subject.names,
-        code: subject.code,
-        career: subject.career
-      })
-    )
-  )
-
-  return subjects
-}
-
-export const getSubjectByName = (name) => {
-  const formattedName = name.toLowerCase()
-  for (const careerKey in subjectsData) {
-    const career = subjectsData[careerKey]
-    for (const subjectKey in career) {
-      const subject = career[subjectKey]
-      if (subject.names.some(n => n.toLowerCase() === formattedName)) {
-        return {
-          key: subjectKey,
-          // names: subject.names,
-          code: subject.code,
-          career: subject.career
-        }
-      }
-    }
-  }
-  return null
-}
-
-console.log("Res: ", getSubjectByName("Admin base datos"))
- // For testing
+export { getAllSubjects, getSubjectByName, resolveSubject }
 
 export const getCurriculumByName = (career) => {
   const formattedCareer = career.toUpperCase()
@@ -87,21 +58,22 @@ export const getCurriculumByCareer = (career) => {
 
 export const getStudyPlan = (subject, career = null) => {
   let subjectData = null
+  const raw = String(subject || "")
+  const formattedCareer = career ? String(career).toUpperCase() : null
+  const candidateKey = raw.toLowerCase()
   
-  if (career) {
-    subjectData = subjectsData[career][subject.toLowerCase()]
+  if (formattedCareer && subjectsData[formattedCareer]?.[candidateKey]) {
+    subjectData = subjectsData[formattedCareer][candidateKey]
   } else {
-    // Search in all careers
-    const foundSubject = getAllSubjects().find((subj) => subj.key === subject.toLowerCase())
-    
-    if (foundSubject)
-      subjectData = subjectsData[foundSubject.career][subject.toLowerCase()]
+    const resolved = resolveSubject(raw, { career: formattedCareer, limit: 1 })
+    const best = resolved[0]?.item
+    if (best && subjectsData[best.career]?.[best.key]) {
+      subjectData = subjectsData[best.career][best.key]
+    }
   }
-  
+
   if (!subjectData)
     throw new Error("Materia no encontrada", 404)
-
-  // console.log("Final Subject: ", subjectData)
 
   const filePath = path.join(__dirname, "../files/study_plan",subjectData.career, subjectData.files.study_plan)  
 
@@ -118,7 +90,7 @@ export const getStudyPlan = (subject, career = null) => {
 
   return {
     data: {
-      subject: subjectData.names ? subjectData.names[0] : subjectData.name,
+      subject: subjectData.name,
       code: subjectData.code,
       file: subjectData.files.study_plan,
       path: serverUrl,
@@ -128,21 +100,25 @@ export const getStudyPlan = (subject, career = null) => {
 }
 
 export const getMaterial = (subject, career = null) => {
-  let subjectData = null;
+  let subjectData = null
+  const raw = String(subject || "")
+  const formattedCareer = career ? String(career).toUpperCase() : null
+  const candidateKey = raw.toLowerCase()
 
-  if (career) {
-    subjectData = subjectsData[career][subject.toLowerCase()]
+  if (formattedCareer && subjectsData[formattedCareer]?.[candidateKey]) {
+    subjectData = subjectsData[formattedCareer][candidateKey]
   } else {
-    const foundSubject = getAllSubjects().find((subj) => subj.key === subject.toLowerCase())
-
-    if (foundSubject)
-      subjectData = subjectsData[foundSubject.career][subject.toLowerCase()]
+    const resolved = resolveSubject(raw, { career: formattedCareer, limit: 1 })
+    const best = resolved[0]?.item
+    if (best && subjectsData[best.career]?.[best.key]) {
+      subjectData = subjectsData[best.career][best.key]
+    }
   }
 
   if (!subjectData)
     throw new Error("Material no encontrado", 404)
 
-  const filePath = path.join(__dirname, '../files/material', subjectData.files.material);
+  const filePath = path.join(__dirname, '../files/material/', subjectData.career, subjectData.files.material);
 
   if (!fs.existsSync(filePath))
     throw new Error("Archivo no encontrado", 404);
@@ -151,11 +127,11 @@ export const getMaterial = (subject, career = null) => {
   const port = process.env.PORT || "3000"
   const protocol = process.env.NODE_ENV === "production" ? "https" : "http"  
 
-  const serverUrl = `${protocol}://${host}${process.env.NODE_ENV === "development" ? `:${port}` : ""}/files/material/${subjectData.files.material}`;
+  const serverUrl = `${protocol}://${host}${process.env.NODE_ENV === "development" ? `:${port}` : ""}/files/material/${subjectData.career}/${subjectData.files.material}`;
 
   return {
     data: {
-      subject: subjectData.names ? subjectData.names[0] : subject,
+      subject: subjectData.name,
       code: subjectData.code,
       file: subjectData.files.material,
       path: serverUrl,

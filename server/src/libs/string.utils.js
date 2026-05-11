@@ -24,6 +24,12 @@ export const romanToArabic = (text) => {
   return words.join(' ');
 }
 
+const stripPunctuationToSpaces = (text) =>
+  String(text || "")
+    .replace(/[^\p{L}\p{N}\s]/gu, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+
 export const IDontLikeTildesAnymore = (text) => {
   const accentsMap = {
     'á': 'a',
@@ -42,8 +48,11 @@ export const IDontLikeTildesAnymore = (text) => {
 }
 
 export const formatSubjectName = (name) => {
-  let formattedName = name.toLowerCase()
+  let formattedName = String(name || "").toLowerCase()
+  // Important: strip punctuation BEFORE roman conversion so inputs like "S.I" become "s i".
+  formattedName = stripPunctuationToSpaces(formattedName)
   formattedName = romanToArabic(formattedName)
   formattedName = IDontLikeTildesAnymore(formattedName)
+  formattedName = formattedName.replace(/\s+/g, " ").trim()
   return formattedName
 }

@@ -1,0 +1,308 @@
+{
+  "programacion": {
+    "name": "programacion",
+    "code": "I5882",
+    "files": {
+      "study_plan": "programacion.pdf",
+      "material": "programacion.pdf"
+    },
+    "career": "INNI"
+  },
+  "seminario_de_programacion": {
+    "name": "seminario de solucion de problemas de programacion",
+    "code": "I5883",
+    "files": {
+      "study_plan": "seminarioprogramacion.pdf",
+      "material": "seminarioprogramacion.pdf"
+    },
+    "career": "INNI"
+  },
+  "matematica_discreta": {
+    "name": "matematica discreta",
+    "code": "I5892",
+    "files": {
+      "study_plan": "matematicadiscreta.pdf",
+      "material": "matematicadiscreta.pdf"
+    },
+    "career": "INNI"
+  },
+  "metodos_matematicos_i": {
+    "name": "metodos matematicos i",
+    "code": "I5893",
+    "files": {
+      "study_plan": "metodosmatematicosi.pdf",
+      "material": "metodosmatematicosi.pdf"
+    },
+    "career": "INNI"
+  },
+  "seminario_metodos_matematicos_i": {
+    "name": "seminario de solucion de problemas de metodos matematicos i",
+    "code": "I5894",
+    "files": {
+      "study_plan": "seminariometodosmatematicosi.pdf",
+      "material": "seminariometodosmatematicosi.pdf"
+    },
+    "career": "INNI"
+  },
+  "estructuras_de_datos_i": {
+    "name": "estructuras de datos i",
+    "code": "I5886",
+    "files": {
+      "study_plan": "estructurasdatosi.pdf",
+      "material": "estructurasdatosi.pdf"
+    },
+    "career": "INNI"
+  },
+  "seminario_estructuras_de_datos_i": {
+    "name": "seminario de solucion de problemas de estructuras de datos i",
+    "code": "I5887",
+    "files": {
+      "study_plan": "seminarioestructurasdatosi.pdf",
+      "material": "seminarioestructurasdatosi.pdf"
+    },
+    "career": "INNI"
+  },
+  "teoria_de_la_computacion": {
+    "name": "teoria de la computacion",
+    "code": "I5915",
+    "files": {
+      "study_plan": "teoriacomputacion.pdf",
+      "material": "teoriacomputacion.pdf"
+    },
+    "career": "INNI"
+  },
+  "metodos_matematicos_ii": {
+    "name": "metodos matematicos ii",
+    "code": "I5895",
+    "files": {
+      "study_plan": "metodosmatematicosii.pdf",
+      "material": "metodosmatematicosii.pdf"
+    },
+    "career": "INNI"
+  },
+  "seminario_metodos_matematicos_ii": {
+    "name": "seminario de solucion de problemas de metodos matematicos ii",
+    "code": "I5896",
+    "files": {
+      "study_plan": "seminariometodosmatematicosii.pdf",
+      "material": "seminariometodosmatematicosii.pdf"
+    },
+    "career": "INNI"
+  },
+  "estructuras_de_datos_ii": {
+    "name": "estructuras de datos ii",
+    "code": "I5888",
+    "files": {
+      "study_plan": "estructurasdatosii.pdf",
+      "material": "estructurasdatosii.pdf"
+    },
+    "career": "INNI"
+  },
+  "seminario_estructuras_de_datos_ii": {
+    "name": "seminario de solucion de problemas de estructuras de datos ii",
+    "code": "I5889",
+    "files": {
+      "study_plan": "seminarioestructurasdatosii.pdf",
+      "material": "seminarioestructurasdatosii.pdf"
+    },
+    "career": "INNI"
+  },
+  "administracion_de_redes": {
+    "name": "administracion de redes",
+    "code": "I5907", 
+    "files": {
+      "study_plan": "administracionredes.pdf",
+      "material": "administracionredes.pdf"
+    },
+    "career": "INNI"
+  },
+  "algoritmia": {
+    "name": "algoritmia",
+    "code": "I5884",
+    "files": {
+      "study_plan": "algoritmia.pdf",
+      "material": "algoritmia.pdf"
+    },
+    "career": "INNI"
+  },
+  "seminario_algoritmia": {
+    "name": "seminario de solucion de problemas de algoritmia",
+    "code": "I5885",
+    "files": {
+      "study_plan": "seminarioalgoritmia.pdf",
+      "material": "seminarioalgoritmia.pdf"
+    },
+    "career": "INNI"
+  },
+  "estadistica_y_procesos_estocasticos": {
+    "name": "estadistica y procesos estocasticos",
+    "code": "I5897",
+    "files": {
+      "study_plan": "estadistica.pdf",
+      "material": "estadistica.pdf"
+    },
+    "career": "INNI"
+  },
+  "bases_datos": {
+    "name": "bases de datos",
+    "code": "I5890",
+    "files": {
+      "study_plan": "basesdatos.pdf",
+      "material": "basesdatos.pdf"
+    },
+    "career": "INNI"
+  },
+  "seminario_bases_datos": {
+    "name": "seminario de solucion de problemas de bases de datos",
+    "code": "I5891",
+    "files": {
+      "study_plan": "seminariobasesdatos.pdf",
+      "material": "seminariobasesdatos.pdf"
+    },
+    "career": "INNI"
+  },
+  "administracion_de_servidores": {
+    "name": "administracion de servidores",
+    "code": "I5908",
+    "files": {
+      "study_plan": "administracionservidores.pdf",
+      "material": "administracionservidores.pdf"
+    },
+    "career": "INNI"
+  },
+  "hipermedia": {
+    "name": "hipermedia",
+    "code": "I5910",
+    "files": {
+      "study_plan": "hipermedia.pdf",
+      "material": "hipermedia.pdf"
+    },
+    "career": "INNI"
+  },
+  "ingenieria_de_software_i": {
+    "name": "ingenieria de software i",
+    "code": "I5898",
+    "files": {
+      "study_plan": "ingenieriasoftwarei.pdf",
+      "material": "ingenieriasoftwarei.pdf"
+    },
+    "career": "INNI"
+  },
+  "control_de_proyectos": {
+    "name": "control de proyectos",
+    "code": "I5901",
+    "files": {
+      "study_plan": "controlproyectos.pdf",
+      "material": "controlproyectos.pdf"
+    },
+    "career": "INNI"
+  },
+  "seguridad_de_la_informacion": {
+    "name": "seguridad de la informacion",
+    "code": "I5905",
+    "files": {
+      "study_plan": "seguridad.pdf",
+      "material": "seguridad.pdf"
+    },
+    "career": "INNI"
+  },
+  "programacion_para_internet": {
+    "name": "programacion para internet",
+    "code": "I5909",
+    "files": {
+      "study_plan": "programacioninternet.pdf",
+      "material": "programacioninternet.pdf"
+    },
+    "career": "INNI"
+  },
+  "ingeneria_de_software_ii": {
+    "name": "ingenieria de software ii",
+    "code": "I5900",
+    "files": {
+      "study_plan": "ingenieriasoftwareii.pdf",
+      "material": "ingenieriasoftwareii.pdf"
+    },
+    "career": "INNI"
+  },
+  "seminario_ingenieria_de_software_i": {
+    "name": "seminario de solucion de problemas de ingenieria de software i",
+    "code": "I5899",
+    "files": {
+      "study_plan": "seminarioingenieriasoftwarei.pdf",
+      "material": "seminarioingenieriasoftwarei.pdf"
+    },
+    "career": "INNI"
+  },
+  "sistemas_operativos": {
+    "name": "uso, adaptacion y explotacion de sistemas operativos",
+    "code": "I5903",
+    "files": {
+      "study_plan": "so.pdf",
+      "material": "so.pdf"
+    },
+    "career": "INNI"
+  },
+  "seminario_sistemas_operativos": {
+    "name": "seminario de solucion de problemas de uso, adaptacion y explotacion de sistemas operativos",
+    "code": "I5904",
+    "files": {
+      "study_plan": "seminarioso.pdf",
+      "material": "seminarioso.pdf"
+    },
+    "career": "INNI"
+  },
+  "almacenes": {
+    "name": "almacenes de datos",
+    "code": "I5906",
+    "files": {
+      "study_plan": "almacenesdatos.pdf",
+      "material": "almacenesdatos.pdf"
+    },
+    "career": "INNI"
+  },
+  "administracion_bases_datos": {
+    "name": "administracion de bases de datos",
+    "code": "I5902",
+    "files": {
+      "study_plan": "administracionbasesdatos.pdf",
+      "material": "administracionbasesdatos.pdf"
+    },
+    "career": "INNI"
+  },
+  "mineria_de_datos": {
+    "name": "mineria de datos",
+    "code": "I5911",
+    "files": {
+      "study_plan": "mineriadedatos.pdf",
+      "material": "mineriadedatos.pdf"
+    },
+    "career": "INNI"
+  },
+  "sistemas_basados_conocimientos": {
+    "name": "sistemas basados en conocimientos",
+    "code": "I5913",
+    "files": {
+      "study_plan": "sistemasbasadosenconocimientos.pdf",
+      "material": "sistemasbasadosenconocimientos.pdf"
+    },
+    "career": "INNI"
+  },
+  "seminario_sistemas_basados_conocimientos": {
+    "name": "seminario de solucion de problemas de sistemas basados en conocimientos",
+    "code": "I5914",
+    "files": {
+      "study_plan": "seminariosistemasbasadosenconocimientos.pdf",
+      "material": "seminariosistemasbasadosenconocimientos.pdf"
+    },
+    "career": "INNI"
+  },
+  "clasificacion_inteligente_datos": {
+    "name": "clasificacion inteligente de datos",
+    "code": "I5912",
+    "files": {
+      "study_plan": "clasificacioninteligentedatos.pdf",
+      "material": "clasificacioninteligentedatos.pdf"
+    },
+    "career": "INNI"
+  }
+}
