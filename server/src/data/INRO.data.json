@@ -1,0 +1,392 @@
+{
+  "programacion": {
+    "name": "programacion",
+    "code": "I9887",
+    "files": {
+      "study_plan": "i9887_programacion_0.pdf",
+      "material": "i9887_programacion_0.pdf"
+    },
+    "career": "INRO",
+    "semester": 1
+  },
+  "seminario_problemas_programacion": {
+    "name": "seminario de problemas de programacion",
+    "code": "I9888",
+    "files": {
+      "study_plan": "i9888_seminario_de_problemas_de_programacion_0.pdf",
+      "material": "i9888_seminario_de_problemas_de_programacion_0.pdf"
+    },
+    "career": "INRO",
+    "semester": 1
+  },
+  "metodos_matematicos_i": {
+    "name": "metodos matematicos i",
+    "code": "I9881",
+    "files": {
+      "study_plan": "inro-metodos-matematicos-i.pdf",
+      "material": "inro-metodos-matematicos-i.pdf"
+    },
+    "career": "INRO",
+    "semester": 1
+  },
+  "seminario_problemas_metodos_matematicos_i": {
+    "name": "seminario de problemas de metodos matematicos i",
+    "code": "I9882",
+    "files": {
+      "study_plan": "i9882_seminario_de_solucion_de_problemas_de_metodos_matematicos_i.pdf",
+      "material": "i9882_seminario_de_solucion_de_problemas_de_metodos_matematicos_i.pdf"
+    },
+    "career": "INRO",
+    "semester": 1
+  },
+  "algoritmia": {
+    "name": "algoritmia",
+    "code": "I9878",
+    "files": {
+      "study_plan": "i9878_algoritmia_0.pdf",
+      "material": "i9878_algoritmia_0.pdf"
+    },
+    "career": "INRO",
+    "semester": 2
+  },
+  "seminario_problemas_algoritmia": {
+    "name": "seminario de problemas de algoritmia",
+    "code": "I9879",
+    "files": {
+      "study_plan": "i9879_seminario_de_problemas_de_algoritmia_0.pdf",
+      "material": "i9879_seminario_de_problemas_de_algoritmia_0.pdf"
+    },
+    "career": "INRO",
+    "semester": 2
+  },
+  "metodos_matematicos_ii": {
+    "name": "metodos matematicos ii",
+    "code": "I9883",
+    "files": {
+      "study_plan": "i9883_metodos_matematicos_ii.pdf",
+      "material": "i9883_metodos_matematicos_ii.pdf"
+    },
+    "career": "INRO",
+    "semester": 2
+  },
+  "seminario_problemas_metodos_matematicos_ii": {
+    "name": "seminario de problemas de metodos matematicos ii",
+    "code": "I9884",
+    "files": {
+      "study_plan": "i9884_seminario_de_problemas_de_metodos_matematicos_ii.pdf",
+      "material": "i9884_seminario_de_problemas_de_metodos_matematicos_ii.pdf"
+    },
+    "career": "INRO",
+    "semester": 2
+  },
+  "teoria_sistemas_i": {
+    "name": "teoria de sistemas i",
+    "code": "I9907",
+    "files": {
+      "study_plan": "i9907_teoria_sistemas_i_formatoextenso.pdf",
+      "material": "i9907_teoria_sistemas_i_formatoextenso.pdf"
+    },
+    "career": "INRO",
+    "semester": 3
+  },
+  "estadistica_procesos_estocasticos": {
+    "name": "estadistica y procesos estocasticos",
+    "code": "I9880",
+    "files": {
+      "study_plan": "i9880_estadistica_de_procesos_estocasticos_-_sintetico.pdf",
+      "material": "i9880_estadistica_de_procesos_estocasticos_-_sintetico.pdf"
+    },
+    "career": "INRO",
+    "semester": 3
+  },
+  "metodos_matematicos_iii": {
+    "name": "metodos matematicos iii",
+    "code": "I9885",
+    "files": {
+      "study_plan": "programa_metodos_matematicos_iii_0.pdf",
+      "material": "programa_metodos_matematicos_iii_0.pdf"
+    },
+    "career": "INRO",
+    "semester": 3
+  },
+  "seminario_problemas_metodos_matematicos_iii": {
+    "name": "seminario de problemas de metodos matematicos iii",
+    "code": "I9886",
+    "files": {
+      "study_plan": "i9886_seminario_de_problemas_de_metodos_matematicos_iii_sintetico.pdf",
+      "material": "i9886_seminario_de_problemas_de_metodos_matematicos_iii_sintetico.pdf"
+    },
+    "career": "INRO",
+    "semester": 3
+  },
+  "redes_circuitos_electronicos": {
+    "name": "redes para circuitos electronicos",
+    "code": "I9896",
+    "files": {
+      "study_plan": "inro-redes-para-circuitos-electronicos.pdf",
+      "material": "inro-redes-para-circuitos-electronicos.pdf"
+    },
+    "career": "INRO",
+    "semester": 3
+  },
+  "teoria_sistemas_ii": {
+    "name": "teoria de sistemas ii",
+    "code": "I9908",
+    "files": {
+      "study_plan": "i9908_teoria_sistemas_ii_formatoextenso.pdf",
+      "material": "i9908_teoria_sistemas_ii_formatoextenso.pdf"
+    },
+    "career": "INRO",
+    "semester": 4
+  },
+  "modelado_simulacion_sistemas": {
+    "name": "modelado y simulacion de sistemas",
+    "code": "I9905",
+    "files": {
+      "study_plan": "i9905_modelado_y_simulacion_de_sistemas_0.pdf",
+      "material": "i9905_modelado_y_simulacion_de_sistemas_0.pdf"
+    },
+    "career": "INRO",
+    "semester": 4
+  },
+  "seminario_problemas_modelado_simulacion_sistemas": {
+    "name": "seminario de problemas de modelado y simulacion de sistemas",
+    "code": "I9906",
+    "files": {
+      "study_plan": "i9906_spmss.pdf",
+      "material": "i9906_spmss.pdf"
+    },
+    "career": "INRO",
+    "semester": 4
+  },
+  "seminario_problemas_redes_circuitos_electronicos": {
+    "name": "seminario de problemas de redes para circuitos electronicos",
+    "code": "I9897",
+    "files": {
+      "study_plan": "inro-seminario-de-resolucion-de-problemas-de-redes-para-circuitos-electronicos.pdf",
+      "material": "inro-seminario-de-resolucion-de-problemas-de-redes-para-circuitos-electronicos.pdf"
+    },
+    "career": "INRO",
+    "semester": 4
+  },
+  "vision_robotica": {
+    "name": "vision robotica",
+    "code": "I9917",
+    "files": {
+      "study_plan": "i9917_vision_robotica.pdf",
+      "material": "i9917_vision_robotica.pdf"
+    },
+    "career": "INRO",
+    "semester": 4
+  },
+  "sistemas_inteligentes_i": {
+    "name": "sistemas inteligentes i",
+    "code": "I9913",
+    "files": {
+      "study_plan": "i9913_sistemas_inteligentes_i.pdf",
+      "material": "i9913_sistemas_inteligentes_i.pdf"
+    },
+    "career": "INRO",
+    "semester": 4
+  },
+  "control_i": {
+    "name": "control i",
+    "code": "I9900",
+    "files": {
+      "study_plan": "i9900_control_i_1.pdf",
+      "material": "i9900_control_i_1.pdf"
+    },
+    "career": "INRO",
+    "semester": 5
+  },
+  "seminario_control_i": {
+    "name": "seminario de problemas de control i",
+    "code": "I9901",
+    "files": {
+      "study_plan": "i9901_seminario_de_control_0.pdf",
+      "material": "i9901_seminario_de_control_0.pdf"
+    },
+    "career": "INRO",
+    "semester": 5
+  },
+  "programacion_sistemas_embebidos": {
+    "name": "programacion de sistemas embebidos",
+    "code": "I9892",
+    "files": {
+      "study_plan": "inro-programacion-sistemas-embebidos.pdf",
+      "material": "inro-programacion-sistemas-embebidos.pdf"
+    },
+    "career": "INRO",
+    "semester": 5
+  },
+  "seminario_problemas_programacion_sistemas_embebidos": {
+    "name": "seminario de problemas de programacion de sistemas embebidos",
+    "code": "I9893",
+    "files": {
+      "study_plan": "inro-seminario-de-resolucion-de-problemas-de-programacion-de-sistemas-embebidos.pdf",
+      "material": "inro-seminario-de-resolucion-de-problemas-de-programacion-de-sistemas-embebidos.pdf"
+    },
+    "career": "INRO",
+    "semester": 5
+  },
+  "sistemas_roboticos_i": {
+    "name": "sistemas roboticos i",
+    "code": "I9911",
+    "files": {
+      "study_plan": "i9911_sistemas_roboticos_i.pdf",
+      "material": "i9911_sistemas_roboticos_i.pdf"
+    },
+    "career": "INRO",
+    "semester": 5
+  },
+  "sistemas_inteligentes_ii": {
+    "name": "sistemas inteligentes ii",
+    "code": "I9914",
+    "files": {
+      "study_plan": "i9914_sistemas_inteligentes_ii.pdf",
+      "material": "i9914_sistemas_inteligentes_ii.pdf"
+    },
+    "career": "INRO",
+    "semester": 5
+  },
+  "control_ii": {
+    "name": "control ii",
+    "code": "I9902",
+    "files": {
+      "study_plan": "i9902_control_ii_0.pdf",
+      "material": "i9902_control_ii_0.pdf"
+    },
+    "career": "INRO",
+    "semester": 6
+  },
+  "procesamiento_digital_senales": {
+    "name": "procesamiento digital de señales",
+    "code": "I9891",
+    "files": {
+      "study_plan": "inro-procesamiento-digital-de-senales.pdf",
+      "material": "inro-procesamiento-digital-de-senales.pdf"
+    },
+    "career": "INRO",
+    "semester": 6
+  },
+  "programacion_sistemas_reconfigurables": {
+    "name": "programacion de sistemas reconfigurables",
+    "code": "I9894",
+    "files": {
+      "study_plan": "inro-i9894-programacion-sistemas-reconfigurables.pdf",
+      "material": "inro-i9894-programacion-sistemas-reconfigurables.pdf"
+    },
+    "career": "INRO",
+    "semester": 6
+  },
+  "sistemas_roboticos_ii": {
+    "name": "sistemas roboticos ii",
+    "code": "I9912",
+    "files": {
+      "study_plan": "i9912_sistemas_roboticos_ii.pdf",
+      "material": "i9912_sistemas_roboticos_ii.pdf"
+    },
+    "career": "INRO",
+    "semester": 6
+  },
+  "sistemas_inteligentes_iii": {
+    "name": "sistemas inteligentes iii",
+    "code": "I9915",
+    "files": {
+      "study_plan": "i9915_sistemas_inteligentes_iii.pdf",
+      "material": "i9915_sistemas_inteligentes_iii.pdf"
+    },
+    "career": "INRO",
+    "semester": 6
+  },
+  "control_iii": {
+    "name": "control iii",
+    "code": "I9903",
+    "files": {
+      "study_plan": "i9903_control_iii_0.pdf",
+      "material": "i9903_control_iii_0.pdf"
+    },
+    "career": "INRO",
+    "semester": 7
+  },
+  "electronica_potencia": {
+    "name": "electronica de potencia",
+    "code": "I9890",
+    "files": {
+      "study_plan": "inro-electronica-de-potencia.pdf",
+      "material": "inro-electronica-de-potencia.pdf"
+    },
+    "career": "INRO",
+    "semester": 7
+  },
+  "sensores_acondicionamiento_senales": {
+    "name": "sensores y acondicionamiento de señales",
+    "code": "I9898",
+    "files": {
+      "study_plan": "inro-sensores-y-acondicionamiento-de-senales.pdf",
+      "material": "inro-sensores-y-acondicionamiento-de-senales.pdf"
+    },
+    "career": "INRO",
+    "semester": 7
+  },
+  "seminario_problemas_sensores_acondicionamiento_senales": {
+    "name": "seminario de problemas de sensores y acondicionamiento de señales",
+    "code": "I9899",
+    "files": {
+      "study_plan": "inro-seminario-de-resolucion-de-problemas-de-sensores-y-acondicionamiento-de-senales.pdf",
+      "material": "inro-seminario-de-resolucion-de-problemas-de-sensores-y-acondicionamiento-de-senales.pdf"
+    },
+    "career": "INRO",
+    "semester": 7
+  },
+  "robotica_movil": {
+    "name": "robotica movil",
+    "code": "I9910",
+    "files": {
+      "study_plan": "i9910_robotica_movil_formatoextenso.pdf",
+      "material": "i9910_robotica_movil_formatoextenso.pdf"
+    },
+    "career": "INRO",
+    "semester": 7
+  },
+  "sistemas_inteligentes_iv": {
+    "name": "sistemas inteligentes iv",
+    "code": "I9916",
+    "files": {
+      "study_plan": "i9916_sistemas_inteligentes_iv.pdf",
+      "material": "i9916_sistemas_inteligentes_iv.pdf"
+    },
+    "career": "INRO",
+    "semester": 7
+  },
+  "control_iv": {
+    "name": "control iv",
+    "code": "I9904",
+    "files": {
+      "study_plan": "i9904_control_iv.pdf",
+      "material": "i9904_control_iv.pdf"
+    },
+    "career": "INRO",
+    "semester": 8
+  },
+  "actuadores": {
+    "name": "actuadores",
+    "code": "I9909",
+    "files": {
+      "study_plan": "inro-actuadores.pdf",
+      "material": "inro-actuadores.pdf"
+    },
+    "career": "INRO",
+    "semester": 8
+  },
+  "diseno_interfaces": {
+    "name": "diseño de interfaces",
+    "code": "I9889",
+    "files": {
+      "study_plan": "inro-diseno-de-interfaces.pdf",
+      "material": "inro-diseno-de-interfaces.pdf"
+    },
+    "career": "INRO",
+    "semester": 8
+  }
+}

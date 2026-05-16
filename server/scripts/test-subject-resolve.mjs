@@ -91,8 +91,7 @@ const allSubjects = [
   {subject: "administracion de servidores", names: AS },
   {subject: "algoritmia", names: Algoritmia },
   {subject: "bases de datos", names: BD },
-  {subject: "ingenieria de software i", names: ISI },
-  {subject: "calculo diferencial", names: CD },
+  {subject: "ingenieria de software i", names: ISI }
 ]
 
 const testDatasetSubjects = () => {
@@ -191,9 +190,9 @@ const testSyncFiles = (career, { studyPlan = false, material = false }) => {
 }
 
 
-defaultTest()
+// defaultTest()
 console.log("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-")
-// testDatasetSubjects()
+testDatasetSubjects()
 console.log("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-")
 // AllSubjectsTest()
 console.log("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-")

@@ -1,0 +1,372 @@
+{
+  "programacion": {
+    "name": "programación",
+    "code": "I5882",
+    "semester": 1,
+    "files": {
+      "study_plan": "programacion_i5882_2018.pdf",
+      "material": "programacion_i5882_2018.pdf"
+    },
+    "career": "INCE"
+  },
+  "seminario_solucion_problemas_programacion": {
+    "name": "seminario de solución de problemas de programación",
+    "code": "I5883",
+    "semester": 1,
+    "files": {
+      "study_plan": "ssp_de_programacion_i5883_2018.pdf",
+      "material": "ssp_de_programacion_i5883_2018.pdf"
+    },
+    "career": "INCE"
+  },
+  "metodos_matematicos_i": {
+    "name": "métodos matemáticos i",
+    "code": "I5893",
+    "semester": 1,
+    "files": {
+      "study_plan": "metodos_matematicos_i_i5893_2017.pdf",
+      "material": "metodos_matematicos_i_i5893_2017.pdf"
+    },
+    "career": "INCE"
+  },
+  "ssp_metodos_matematicos_i": {
+    "name": "seminario de solución de problemas de métodos matemáticos i",
+    "code": "I5894",
+    "semester": 1,
+    "files": {
+      "study_plan": "ssp_de_metodos_matematicos_i_i5894_2017.pdf",
+      "material": "ssp_de_metodos_matematicos_i_i5894_2017.pdf"
+    },
+    "career": "INCE"
+  },
+  "circuitos_electricos": {
+    "name": "circuitos eléctricos",
+    "code": "I7587",
+    "semester": 1,
+    "files": {
+      "study_plan": "circuitos_electricos_i7587_2023.pdf",
+      "material": "circuitos_electricos_i7587_2023.pdf"
+    },
+    "career": "INCE"
+  },
+  "sistemas_medicion": {
+    "name": "sistemas de medición",
+    "code": "I7292",
+    "semester": 2,
+    "files": {
+      "study_plan": "sistemas_de_medicion_i7292_2023.pdf",
+      "material": "sistemas_de_medicion_i7292_2023.pdf"
+    },
+    "career": "INCE"
+  },
+  "metodos_matematicos_ii": {
+    "name": "métodos matemáticos ii",
+    "code": "I5895",
+    "semester": 2,
+    "files": {
+      "study_plan": "metodos_matematicos_ii_i5895_2017.pdf",
+      "material": "metodos_matematicos_ii_i5895_2017.pdf"
+    },
+    "career": "INCE"
+  },
+  "ssp_metodos_matematicos_ii": {
+    "name": "seminario de solución de problemas de métodos matemáticos ii",
+    "code": "I5896",
+    "semester": 2,
+    "files": {
+      "study_plan": "ssp_de_metodos_matematicos_ii_i5896_2017.pdf",
+      "material": "ssp_de_metodos_matematicos_ii_i5896_2017.pdf"
+    },
+    "career": "INCE"
+  },
+  "circuitos_analogicos_i": {
+    "name": "circuitos analógicos i",
+    "code": "I7277",
+    "semester": 2,
+    "files": {
+      "study_plan": "circuitos_analogicos_i_i7277_2023.pdf",
+      "material": "circuitos_analogicos_i_i7277_2023.pdf"
+    },
+    "career": "INCE"
+  },
+  "ssp_circuitos_analogicos_i": {
+    "name": "seminario de solución de problemas de circuitos analógicos i",
+    "code": "I7278",
+    "semester": 2,
+    "files": {
+      "study_plan": "ssp_de_circuitos_analogicos_i_i7278_2023.pdf",
+      "material": "ssp_de_circuitos_analogicos_i_i7278_2023.pdf"
+    },
+    "career": "INCE"
+  },
+  "redes_circuitos_electronicos": {
+    "name": "redes para circuitos electrónicos",
+    "code": "I7270",
+    "semester": 2,
+    "files": {
+      "study_plan": "redes_para_circuitos_electronicos_i7270_2023.pdf",
+      "material": "redes_para_circuitos_electronicos_i7270_2023.pdf"
+    },
+    "career": "INCE"
+  },
+  "teoria_electromagnetica": {
+    "name": "teoría electromagnética",
+    "code": "I7293",
+    "semester": 3,
+    "files": {
+      "study_plan": "teoria_electromagnetica_i7293_2017.pdf",
+      "material": "teoria_electromagnetica_i7293_2017.pdf"
+    },
+    "career": "INCE"
+  },
+  "metodos_matematicos_iii": {
+    "name": "métodos matemáticos iii",
+    "code": "I7020",
+    "semester": 3,
+    "files": {
+      "study_plan": "metodos_matematicos_iii_i7020_2017.pdf",
+      "material": "metodos_matematicos_iii_i7020_2017.pdf"
+    },
+    "career": "INCE"
+  },
+  "ssp_metodos_matematicos_iii": {
+    "name": "seminario de solución de problemas de métodos matemáticos iii",
+    "code": "I7021",
+    "semester": 3,
+    "files": {
+      "study_plan": "ssp_de_metodos_matematicos_iii_i7021_2017.pdf",
+      "material": "ssp_de_metodos_matematicos_iii_i7021_2017.pdf"
+    },
+    "career": "INCE"
+  },
+  "circuitos_analogicos_ii": {
+    "name": "circuitos analógicos ii",
+    "code": "I7279",
+    "semester": 3,
+    "files": {
+      "study_plan": "circuitos-analogicos-ii.pdf",
+      "material": "circuitos-analogicos-ii.pdf"
+    },
+    "career": "INCE"
+  },
+  "ssp_redes_circuitos": {
+    "name": "seminario de solución de problemas de redes para circuitos electrónicos",
+    "code": "I7271",
+    "semester": 3,
+    "files": {
+      "study_plan": "ssp_de_redes_para_circuitos.pdf",
+      "material": "ssp_de_redes_para_circuitos.pdf"
+    },
+    "career": "INCE"
+  },
+  "circuitos_electronicos_comunicaciones": {
+    "name": "circuitos electrónicos para comunicaciones",
+    "code": "I7282",
+    "semester": 4,
+    "files": {
+      "study_plan": "circuitos_electronicos_para_comunicaciones_i7282_2023.pdf",
+      "material": "circuitos_electronicos_para_comunicaciones_i7282_2023.pdf"
+    },
+    "career": "INCE"
+  },
+  "programacion_sistemas_reconfigurables": {
+    "name": "programación de sistemas reconfigurables",
+    "code": "I7268",
+    "semester": 4,
+    "files": {
+      "study_plan": "programacion_de_sistemas_reconfigurables_i7268_2023.pdf",
+      "material": "programacion_de_sistemas_reconfigurables_i7268_2023.pdf"
+    },
+    "career": "INCE"
+  },
+  "ssp_programacion_sistemas_reconfigurables": {
+    "name": "seminario de solución de problemas de sistemas reconfigurables",
+    "code": "I7269",
+    "semester": 4,
+    "files": {
+      "study_plan": "ssp_de_programacion_de_sistemas_reconfigurables_i7269_2023.pdf",
+      "material": "ssp_de_programacion_de_sistemas_reconfigurables_i7269_2023.pdf"
+    },
+    "career": "INCE"
+  },
+  "programacion_sistemas_embebidos": {
+    "name": "programación de sistemas embebidos",
+    "code": "I7266",
+    "semester": 4,
+    "files": {
+      "study_plan": "programacion_de_sistemas_embebidos_i7266_2023.pdf",
+      "material": "programacion_de_sistemas_embebidos_i7266_2023.pdf"
+    },
+    "career": "INCE"
+  },
+  "electronica_potencia": {
+    "name": "electrónica de potencia",
+    "code": "I7263",
+    "semester": 4,
+    "files": {
+      "study_plan": "electronica_de_potencia.pdf",
+      "material": "electronica_de_potencia.pdf"
+    },
+    "career": "INCE"
+  },
+  "estadistica_procesos_estocasticos": {
+    "name": "estadística y procesos estocásticos",
+    "code": "I15897",
+    "semester": 4,
+    "files": {
+      "study_plan": "estadistica_y_procesos_estocasticos_i5897_2012.pdf",
+      "material": "estadistica_y_procesos_estocasticos_i5897_2012.pdf"
+    },
+    "career": "INCE"
+  },
+  "sistemas_comunicaciones_i": {
+    "name": "sistemas de comunicaciones i",
+    "code": "I7289",
+    "semester": 5,
+    "files": {
+      "study_plan": "sistemas_de_comunicaciones_i_i7289_2023.pdf",
+      "material": "sistemas_de_comunicaciones_i_i7289_2023.pdf"
+    },
+    "career": "INCE"
+  },
+  "ssp_sistemas_comunicaciones_i": {
+    "name": "seminario de solución de problemas de sistemas de comunicaciones i",
+    "code": "I7290",
+    "semester": 5,
+    "files": {
+      "study_plan": "ssp_de_sistemas_de_comunicaciones_i_i7290_2023.pdf",
+      "material": "ssp_de_sistemas_de_comunicaciones_i_i7290_2023.pdf"
+    },
+    "career": "INCE"
+  },
+  "ssp_programacion_sistemas_embebidos": {
+    "name": "seminario de solución de problemas de programación de sistemas embebidos",
+    "code": "I7267",
+    "semester": 5,
+    "files": {
+      "study_plan": "ssp_de_programacion_de_sistemas_embebidos_i7267_2023.pdf",
+      "material": "ssp_de_programacion_de_sistemas_embebidos_i7267_2023.pdf"
+    },
+    "career": "INCE"
+  },
+  "ingenieria_control": {
+    "name": "ingeniería de control",
+    "code": "I7285",
+    "semester": 5,
+    "files": {
+      "study_plan": "ingenieria_de_control_i7285.pdf",
+      "material": "ingenieria_de_control_i7285.pdf"
+    },
+    "career": "INCE"
+  },
+  "automatizacion": {
+    "name": "automatización",
+    "code": "I7274",
+    "semester": 5,
+    "files": {
+      "study_plan": "automatizacion_i7274_2023.pdf",
+      "material": "automatizacion_i7274_2023.pdf"
+    },
+    "career": "INCE"
+  },
+  "sensores_acondicionamiento_senales": {
+    "name": "sensores y acondicionamiento de señales",
+    "code": "I7272",
+    "semester": 5,
+    "files": {
+      "study_plan": "sensores_y_acondicionamiento_de_senales.pdf",
+      "material": "sensores_y_acondicionamiento_de_senales.pdf"
+    },
+    "career": "INCE"
+  },
+  "sistemas_comunicaciones_ii": {
+    "name": "sistemas de comunicaciones ii",
+    "code": "I7291",
+    "semester": 6,
+    "files": {
+      "study_plan": "sistemas_de_comunicaciones_ii.pdf",
+      "material": "sistemas_de_comunicaciones_ii.pdf"
+    },
+    "career": "INCE"
+  },
+  "procesamiento_digital_senales": {
+    "name": "procesamiento digital de señales",
+    "code": "I7265",
+    "semester": 6,
+    "files": {
+      "study_plan": "procesamiento_digital_de_senales_i7265_2023_dic_11.pdf",
+      "material": "procesamiento_digital_de_senales_i7265_2023_dic_11.pdf"
+    },
+    "career": "INCE"
+  },
+  "ssp_ingenieria_control": {
+    "name": "seminario de solución de problemas de ingeniería de control",
+    "code": "I7286",
+    "semester": 6,
+    "files": {
+      "study_plan": "seminario_de_solucion_de_problemas_de_ingenieria_de_control.pdf",
+      "material": "seminario_de_solucion_de_problemas_de_ingenieria_de_control.pdf"
+    },
+    "career": "INCE"
+  },
+  "ssp_sensores_acondicionamiento_senales": {
+    "name": "seminario de solución de problemas de sensores y acondicionamiento de señales",
+    "code": "I7273",
+    "semester": 6,
+    "files": {
+      "study_plan": "ssp_de_sensores_y_acondicionamiento_de_senales_i7273_2023.pdf",
+      "material": "ssp_de_sensores_y_acondicionamiento_de_senales_i7273_2023.pdf"
+    },
+    "career": "INCE"
+  },
+  "protocolos_comunicaciones": {
+    "name": "protocolos de comunicaciones",
+    "code": "I7288",
+    "semester": 7,
+    "files": {
+      "study_plan": "protocolos_de_comunicaciones_i7288_2023_dic_11.pdf",
+      "material": "protocolos_de_comunicaciones_i7288_2023_dic_11.pdf"
+    },
+    "career": "INCE"
+  },
+  "diseno_interfaces": {
+    "name": "diseño de interfaces",
+    "code": "I7262",
+    "semester": 7,
+    "files": {
+      "study_plan": "diseno_de_interfaces.pdf",
+      "material": "diseno_de_interfaces.pdf"
+    },
+    "career": "INCE"
+  },
+  "diseno_transceptores": {
+    "name": "diseño de transceptores",
+    "code": "I7284",
+    "semester": 8,
+    "files": {
+      "study_plan": "diseno_de_transceptores_i7284_2023_dic_11.pdf",
+      "material": "diseno_de_transceptores_i7284_2023_dic_11.pdf"
+    },
+    "career": "INCE"
+  },
+  "diseno_tarjetas_evaluacion": {
+    "name": "diseño de tarjetas de evaluación",
+    "code": "I7283",
+    "semester": 8,
+    "files": {
+      "study_plan": "diseno_de_tarjetas_de_evaluacion.pdf",
+      "material": "diseno_de_tarjetas_de_evaluacion.pdf"
+    },
+    "career": "INCE"
+  },
+  "instrumentacion": {
+    "name": "instrumentación",
+    "code": "I7287",
+    "semester": 8,
+    "files": {
+      "study_plan": "instrumentacion_i7287_2023.pdf",
+      "material": "instrumentacion_i7287_2023.pdf"
+    },
+    "career": "INCE"
+  }
+}

@@ -6,7 +6,8 @@
       "study_plan": "programacion.pdf",
       "material": "programacion.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 1
   },
   "seminario_de_programacion": {
     "name": "seminario de solucion de problemas de programacion",
@@ -15,7 +16,8 @@
       "study_plan": "seminarioprogramacion.pdf",
       "material": "seminarioprogramacion.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 1
   },
   "matematica_discreta": {
     "name": "matematica discreta",
@@ -24,7 +26,8 @@
       "study_plan": "matematicadiscreta.pdf",
       "material": "matematicadiscreta.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 1
   },
   "metodos_matematicos_i": {
     "name": "metodos matematicos i",
@@ -33,7 +36,8 @@
       "study_plan": "metodosmatematicosi.pdf",
       "material": "metodosmatematicosi.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 1
   },
   "seminario_metodos_matematicos_i": {
     "name": "seminario de solucion de problemas de metodos matematicos i",
@@ -42,7 +46,8 @@
       "study_plan": "seminariometodosmatematicosi.pdf",
       "material": "seminariometodosmatematicosi.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 1
   },
   "estructuras_de_datos_i": {
     "name": "estructuras de datos i",
@@ -51,7 +56,8 @@
       "study_plan": "estructurasdatosi.pdf",
       "material": "estructurasdatosi.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 2
   },
   "seminario_estructuras_de_datos_i": {
     "name": "seminario de solucion de problemas de estructuras de datos i",
@@ -60,7 +66,8 @@
       "study_plan": "seminarioestructurasdatosi.pdf",
       "material": "seminarioestructurasdatosi.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 2
   },
   "teoria_de_la_computacion": {
     "name": "teoria de la computacion",
@@ -69,7 +76,8 @@
       "study_plan": "teoriacomputacion.pdf",
       "material": "teoriacomputacion.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 2
   },
   "metodos_matematicos_ii": {
     "name": "metodos matematicos ii",
@@ -78,7 +86,8 @@
       "study_plan": "metodosmatematicosii.pdf",
       "material": "metodosmatematicosii.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 2
   },
   "seminario_metodos_matematicos_ii": {
     "name": "seminario de solucion de problemas de metodos matematicos ii",
@@ -87,7 +96,8 @@
       "study_plan": "seminariometodosmatematicosii.pdf",
       "material": "seminariometodosmatematicosii.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 2
   },
   "estructuras_de_datos_ii": {
     "name": "estructuras de datos ii",
@@ -96,7 +106,8 @@
       "study_plan": "estructurasdatosii.pdf",
       "material": "estructurasdatosii.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 3
   },
   "seminario_estructuras_de_datos_ii": {
     "name": "seminario de solucion de problemas de estructuras de datos ii",
@@ -105,7 +116,8 @@
       "study_plan": "seminarioestructurasdatosii.pdf",
       "material": "seminarioestructurasdatosii.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 3
   },
   "administracion_de_redes": {
     "name": "administracion de redes",
@@ -114,7 +126,8 @@
       "study_plan": "administracionredes.pdf",
       "material": "administracionredes.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 3
   },
   "algoritmia": {
     "name": "algoritmia",
@@ -123,7 +136,8 @@
       "study_plan": "algoritmia.pdf",
       "material": "algoritmia.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 3
   },
   "seminario_algoritmia": {
     "name": "seminario de solucion de problemas de algoritmia",
@@ -132,7 +146,8 @@
       "study_plan": "seminarioalgoritmia.pdf",
       "material": "seminarioalgoritmia.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 3
   },
   "estadistica_y_procesos_estocasticos": {
     "name": "estadistica y procesos estocasticos",
@@ -141,7 +156,8 @@
       "study_plan": "estadistica.pdf",
       "material": "estadistica.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 3
   },
   "bases_datos": {
     "name": "bases de datos",
@@ -150,7 +166,8 @@
       "study_plan": "basesdatos.pdf",
       "material": "basesdatos.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 4
   },
   "seminario_bases_datos": {
     "name": "seminario de solucion de problemas de bases de datos",
@@ -159,7 +176,8 @@
       "study_plan": "seminariobasesdatos.pdf",
       "material": "seminariobasesdatos.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 4
   },
   "administracion_de_servidores": {
     "name": "administracion de servidores",
@@ -168,7 +186,8 @@
       "study_plan": "administracionservidores.pdf",
       "material": "administracionservidores.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 4
   },
   "hipermedia": {
     "name": "hipermedia",
@@ -177,7 +196,8 @@
       "study_plan": "hipermedia.pdf",
       "material": "hipermedia.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 4
   },
   "ingenieria_de_software_i": {
     "name": "ingenieria de software i",
@@ -186,7 +206,8 @@
       "study_plan": "ingenieriasoftwarei.pdf",
       "material": "ingenieriasoftwarei.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 4
   },
   "control_de_proyectos": {
     "name": "control de proyectos",
@@ -195,7 +216,8 @@
       "study_plan": "controlproyectos.pdf",
       "material": "controlproyectos.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 5
   },
   "seguridad_de_la_informacion": {
     "name": "seguridad de la informacion",
@@ -204,7 +226,8 @@
       "study_plan": "seguridad.pdf",
       "material": "seguridad.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 5
   },
   "programacion_para_internet": {
     "name": "programacion para internet",
@@ -213,7 +236,8 @@
       "study_plan": "programacioninternet.pdf",
       "material": "programacioninternet.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 5
   },
   "ingeneria_de_software_ii": {
     "name": "ingenieria de software ii",
@@ -222,7 +246,8 @@
       "study_plan": "ingenieriasoftwareii.pdf",
       "material": "ingenieriasoftwareii.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 5
   },
   "seminario_ingenieria_de_software_i": {
     "name": "seminario de solucion de problemas de ingenieria de software i",
@@ -231,7 +256,8 @@
       "study_plan": "seminarioingenieriasoftwarei.pdf",
       "material": "seminarioingenieriasoftwarei.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 5
   },
   "sistemas_operativos": {
     "name": "uso, adaptacion y explotacion de sistemas operativos",
@@ -240,7 +266,8 @@
       "study_plan": "so.pdf",
       "material": "so.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 6
   },
   "seminario_sistemas_operativos": {
     "name": "seminario de solucion de problemas de uso, adaptacion y explotacion de sistemas operativos",
@@ -249,7 +276,8 @@
       "study_plan": "seminarioso.pdf",
       "material": "seminarioso.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 6
   },
   "almacenes": {
     "name": "almacenes de datos",
@@ -258,7 +286,8 @@
       "study_plan": "almacenesdatos.pdf",
       "material": "almacenesdatos.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 7
   },
   "administracion_bases_datos": {
     "name": "administracion de bases de datos",
@@ -267,7 +296,8 @@
       "study_plan": "administracionbasesdatos.pdf",
       "material": "administracionbasesdatos.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 7
   },
   "mineria_de_datos": {
     "name": "mineria de datos",
@@ -276,7 +306,8 @@
       "study_plan": "mineriadedatos.pdf",
       "material": "mineriadedatos.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 7
   },
   "sistemas_basados_conocimientos": {
     "name": "sistemas basados en conocimientos",
@@ -285,7 +316,8 @@
       "study_plan": "sistemasbasadosenconocimientos.pdf",
       "material": "sistemasbasadosenconocimientos.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 8
   },
   "seminario_sistemas_basados_conocimientos": {
     "name": "seminario de solucion de problemas de sistemas basados en conocimientos",
@@ -294,7 +326,8 @@
       "study_plan": "seminariosistemasbasadosenconocimientos.pdf",
       "material": "seminariosistemasbasadosenconocimientos.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 8
   },
   "clasificacion_inteligente_datos": {
     "name": "clasificacion inteligente de datos",
@@ -303,6 +336,7 @@
       "study_plan": "clasificacioninteligentedatos.pdf",
       "material": "clasificacioninteligentedatos.pdf"
     },
-    "career": "INNI"
+    "career": "INNI",
+    "semester": 8
   }
 }

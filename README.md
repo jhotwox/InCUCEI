@@ -35,13 +35,6 @@ deactivate
 
 ---
 
-## Lista de contextos
-- `contexts/Snackbar.context.jsx`: Manejo de notificaciones tipo snackbar.
-- `contexts/Auth.context.jsx`: Manejo de autenticación y estado del usuario.
-- `contexts/Socket.context.jsx`: Conexión y manejo de Socket.IO.
-
----
-
 ## Contacto y Recursos
 - Documentación técnica: consultar los archivos README.md y los esquemas en `/server/src/schemas/`.
 - Para dudas sobre integración de Gemini, revisar `/server/src/services/gemini.service.js`.
@@ -56,24 +49,6 @@ EN EL README DEL CHATBOT
 Carpeta chatbot solo es un tutorial
 Carpeta chatbot-cucei-assistant es el de verdad 
 
-
-## TODO LIST
-### FRONT
-- [ ] focus en el input incompleto cuando presionas el boton de iniciar sesion o registrar
-- [x] Crear mapa
-- [x] Dar funcionalidad al mapa
-- [x] Crear chatbot
-- [x] Conectar el chatbot
-- [x] Crear sistema de ventas
-- [x] Crear chat entre usuario y vendedor
-- [ ] Comunicar la ubicacion del vendedor con el mapa
-
-### CHATBOT
-- [ ] Arreglar que casi siempre termina con utter_can_do_something_else y variar la respuesta de este utter
-- [ ] Pasar URL por .env o alguna solucion
-- [ ] Hacer que entregue material conectandose al backend
-- [ ] Agregar informacion de contacto real para cada departamento, division, etc
-- [ ] Limitar lo que dice que es capas de hacer cuando preguntas quien es
 
 ## Instalación del proyecto
 ``` BASH
@@ -117,4 +92,30 @@ git fetch origin
 
 ``` BASH
 git pull origin main
+```
+
+## Instalación de la APP en dispositivos moviles
+### Desarrollo
+> En caso de ser necesario recrear android e ios
+``` BASH
+npx expo prebuild --clean
+```
+
+> Crear apk desarrollo e instalar al dispositivo conectado
+``` BASH
+npx expo run:android
+```
+
+El resultado esta disponible en la siguiente ruta:
+`/client/android/app/build/outputs/apk/debug/app-debug.apk`
+
+### Producción
+> En caso de ser necesario recrear android e ios
+``` BASH
+npx expo prebuild --clean
+```
+
+> Crear APK producción para verlo en EAS dashboard
+``` BASH
+eas build --profile production --platform android
 ```

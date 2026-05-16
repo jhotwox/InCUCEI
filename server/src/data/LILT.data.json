@@ -1,0 +1,142 @@
+{
+  "introduccion_ingenieria_logistica": {
+    "name": "ingeniería en logística y transporte",
+    "code": "GUM.108",
+    "files": {
+      "study_plan": "introduccion_a_la_ingenieria_logistica.pdf",
+      "material": "introduccion_a_la_ingenieria_logistica.pdf"
+    },
+    "career": "LILT",
+    "semester": 1
+  },
+  "fundamentos_fisica": {
+    "name": "fundamentos de física",
+    "code": "IL340",
+    "files": {
+      "study_plan": "introduccion_a_la_fisica.pdf",
+      "material": "introduccion_a_la_fisica.pdf"
+    },
+    "career": "LILT",
+    "semester": 1
+  },
+  "calculo_diferencial_integral": {
+    "name": "cálculo diferencial e integral",
+    "code": "V0710",
+    "files": {
+      "study_plan": "calculo_diferencial_e_integral.pdf",
+      "material": "calculo_diferencial_e_integral.pdf"
+    },
+    "career": "LILT",
+    "semester": 2
+  },
+  "mecánica": {
+    "name": "mecánica",
+    "code": "IL343",
+    "files": {
+      "study_plan": "mecanica.pdf",
+      "material": "mecanica.pdf"
+    },
+    "career": "LILT",
+    "semester": 2
+  },
+  "fundamentos_programacion": {
+    "name": "fundamentos de la programación",
+    "code": "15288",
+    "files": {
+      "study_plan": "introduccion_a_la_programacion.pdf",
+      "material": "introduccion_a_la_programacion.pdf"
+    },
+    "career": "LILT",
+    "semester": 3
+  },
+  "ecuaciones_diferenciales": {
+    "name": "ecuaciones diferenciales",
+    "code": "V0712",
+    "files": {
+      "study_plan": "ecuaciones_diferenciales_0.pdf",
+      "material": "ecuaciones_diferenciales_0.pdf"
+    },
+    "career": "LILT",
+    "semester": 3
+  },
+  "probabilidad_estadistica": {
+    "name": "probabilidad y estadística",
+    "code": "18067",
+    "files": {
+      "study_plan": "probabilidad.pdf",
+      "material": "estadistica.pdf"
+    },
+    "career": "LILT",
+    "semester": 4
+  },
+  "metodos_numericos": {
+    "name": "métodos numéricos",
+    "code": "V0713",
+    "files": {
+      "study_plan": "metodos_numericos.pdf",
+      "material": "metodos_numericos.pdf"
+    },
+    "career": "LILT",
+    "semester": 4
+  },
+  "algebra_lineal": {
+    "name": "álgebra lineal",
+    "code": "V0715",
+    "files": {
+      "study_plan": "algebra_lineal.pdf",
+      "material": "algebra_lineal.pdf"
+    },
+    "career": "LILT",
+    "semester": 2
+  },
+  "planeacion_direccion_estrategica": {
+    "name": "planeación y dirección estratégica",
+    "code": "GUM.76",
+    "files": {
+      "study_plan": "planeacion_y_direccion_estrategica.pdf",
+      "material": "planeacion_y_direccion_estrategica.pdf"
+    },
+    "career": "LILT",
+    "semester": 6
+  },
+  "administracion_financiera": {
+    "name": "administración financiera",
+    "code": "NES.120",
+    "files": {
+      "study_plan": "finanzas.pdf",
+      "material": "finanzas.pdf"
+    },
+    "career": "LILT",
+    "semester": 6
+  },
+  "administracion_cadena_suministro": {
+    "name": "administración de la cadena de suministro",
+    "code": "ILM.55",
+    "files": {
+      "study_plan": "administracion_de_la_cadena_de_suministros.pdf",
+      "material": "administracion_de_la_cadena_de_suministros.pdf"
+    },
+    "career": "LILT",
+    "semester": 7
+  },
+  "logistica_internacional": {
+    "name": "logística internacional",
+    "code": "INT.115",
+    "files": {
+      "study_plan": "logistica_internacional.pdf",
+      "material": "logistica_internacional.pdf"
+    },
+    "career": "LILT",
+    "semester": 4
+  },
+  "simulacion_transporte": {
+    "name": "simulación de sistemas de transporte",
+    "code": "INT.133",
+    "files": {
+      "study_plan": "lab._simulacion_transporte.pdf",
+      "material": "lab._simulacion_transporte.pdf"
+    },
+    "career": "LILT",
+    "semester": 8
+  }
+}

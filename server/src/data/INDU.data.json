@@ -1,0 +1,612 @@
+{
+  "psicologia_industrial": {
+    "name": "psicologia industrial",
+    "code": "I7365",
+    "semester": 1,
+    "files": {
+      "study_plan": "i7365_psicologia_industrial_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "taller_redaccion_tecnica": {
+    "name": "taller de redaccion tecnica",
+    "code": "I7367",
+    "semester": 1,
+    "files": {
+      "study_plan": "i7367_taller_de_redaccion_tecnica_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "quimica_basica": {
+    "name": "quimica basica",
+    "code": "I7356",
+    "semester": 1,
+    "files": {
+      "study_plan": "i7356_quimica_basica_3.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "diseno_asistido_computadora": {
+    "name": "diseño asistido por computadora",
+    "code": "I7391",
+    "semester": 1,
+    "files": {
+      "study_plan": "i7391_diseno_asistido_por_computadora_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "gestion_ambiental": {
+    "name": "gestion ambiental",
+    "code": "I7393",
+    "semester": 1,
+    "files": {
+      "study_plan": "i7393_gestion_ambiental_1.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "administracion": {
+    "name": "administracion",
+    "code": "I7370",
+    "semester": 1,
+    "files": {
+      "study_plan": "i7370_administracion_13.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "introduccion_ingenieria_industrial": {
+    "name": "introduccion a la ingenieria industrial",
+    "code": "I7340",
+    "semester": 1,
+    "files": {
+      "study_plan": "i7340_introduccion_a_la_ingenieria_industrial_4.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "calculo_diferencial": {
+    "name": "calculo diferencial",
+    "code": "I7344",
+    "semester": 1,
+    "files": {
+      "study_plan": "i7344_calculo_diferencial_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "introduccion_matematicas_discretas": {
+    "name": "introduccion a las matematicas discretas",
+    "code": "I7349",
+    "semester": 1,
+    "files": {
+      "study_plan": "i7349_introduccion_a_las_matematicas_discretas_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "administracion_personal": {
+    "name": "administracion de personal",
+    "code": "I7357",
+    "semester": 2,
+    "files": {
+      "study_plan": "i7357_administracion_de_personal_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "termodinamica": {
+    "name": "termodinamica",
+    "code": "I7368",
+    "semester": 2,
+    "files": {
+      "study_plan": "i7368_termodinamica_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "ingenieria_materiales": {
+    "name": "ingenieria de los materiales",
+    "code": "I7390",
+    "semester": 2,
+    "files": {
+      "study_plan": "i7390_ingenieria_de_los_materiales_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "mecanica": {
+    "name": "mecanica",
+    "code": "I7353",
+    "semester": 2,
+    "files": {
+      "study_plan": "i7353_mecanica_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "laboratorio_mecanica": {
+    "name": "laboratorio de mecanica",
+    "code": "I7354",
+    "semester": 2,
+    "files": {
+      "study_plan": "i7354_laboratorio_de_mecanica_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "ssp_mecanica": {
+    "name": "taller de resolucion de problemas de mecanica",
+    "code": "I7355",
+    "semester": 2,
+    "files": {
+      "study_plan": "i7355_taller_de_resolucion_de_problemas_de_mecanica_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "algebra_lineal": {
+    "name": "algebra lineal",
+    "code": "I5802",
+    "semester": 2,
+    "files": {
+      "study_plan": "i5802_algebra_lineal_3.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "calculo_integral": {
+    "name": "calculo integral",
+    "code": "I7345",
+    "semester": 2,
+    "files": {
+      "study_plan": "i7345_calculo_integral_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "probabilidad": {
+    "name": "probabilidad",
+    "code": "I7348",
+    "semester": 2,
+    "files": {
+      "study_plan": "i7348_probabilidad_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "desarrollo_organizacional": {
+    "name": "desarrollo organizacional",
+    "code": "I6494",
+    "semester": 3,
+    "files": {
+      "study_plan": "i6494_desarrollo_organizacional_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "taller_investigacion": {
+    "name": "taller de investigacion",
+    "code": "I7395",
+    "semester": 3,
+    "files": {
+      "study_plan": "i7395_taller_de_investigacion_3.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "problemas_mexico": {
+    "name": "problemas socioeconomicos y politicos de mexico",
+    "code": "I6493",
+    "semester": 3,
+    "files": {
+      "study_plan": "i6493_problemas_socioeconomicos_y_politicos_de_mexico_1.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "electromagnetismo": {
+    "name": "electromagnetismo",
+    "code": "I7350",
+    "semester": 3,
+    "files": {
+      "study_plan": "i7350_electromagnetismo_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "procesos_manufactura": {
+    "name": "procesos de manufactura",
+    "code": "I7378",
+    "semester": 3,
+    "files": {
+      "study_plan": "i7378_procesos_de_manufactura_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "metodos_numericos": {
+    "name": "metodos numericos",
+    "code": "I7343",
+    "semester": 3,
+    "files": {
+      "study_plan": "i7343_metodos_numericos_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "ecuaciones_diferenciales_ordinarias": {
+    "name": "ecuaciones diferenciales ordinarias",
+    "code": "I7346",
+    "semester": 3,
+    "files": {
+      "study_plan": "i7346_ecuaciones_diferenciales_ordinarias_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "estadistica": {
+    "name": "estadistica",
+    "code": "I7347",
+    "semester": 3,
+    "files": {
+      "study_plan": "i7347_estadistica_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "seguridad_higiene_industrial": {
+    "name": "seguridad e higiene industrial",
+    "code": "I7366",
+    "semester": 4,
+    "files": {
+      "study_plan": "i7366_seguridad_e_higiene_industrial_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "diseno_sistemas_produccion": {
+    "name": "diseño de sistemas de produccion",
+    "code": "I7358",
+    "semester": 4,
+    "files": {
+      "study_plan": "i7358_diseno_de_sistemas_de_produccion_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "ingenieria_metodos": {
+    "name": "ingenieria de metodos",
+    "code": "I7361",
+    "semester": 4,
+    "files": {
+      "study_plan": "i7361_ingenieria_de_metodos_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "lab_electromagnetismo": {
+    "name": "laboratorio de electromagnetismo",
+    "code": "I7351",
+    "semester": 4,
+    "files": {
+      "study_plan": "i7351_laboratorio_de_electromagnetismo_1.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "elementos_neumatica_hidraulica": {
+    "name": "elementos de neumatica e hidraulica",
+    "code": "I7373",
+    "semester": 4,
+    "files": {
+      "study_plan": "i7373_elementos_de_neumatica_e_hidraulica_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "investigacion_operaciones_i": {
+    "name": "investigacion de operaciones i",
+    "code": "I7386",
+    "semester": 4,
+    "files": {
+      "study_plan": "i7386_investigacion_de_operaciones_i_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "diseno_experimentos": {
+    "name": "diseño de experimentos",
+    "code": "I7342",
+    "semester": 4,
+    "files": {
+      "study_plan": "i7342_diseno_de_experimentos_1.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "ergonomia": {
+    "name": "ergonomia",
+    "code": "I7359",
+    "semester": 5,
+    "files": {
+      "study_plan": "i7359_ergonomia_1.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "legislacion": {
+    "name": "legislacion",
+    "code": "I7364",
+    "semester": 5,
+    "files": {
+      "study_plan": "i7364_legislacion_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "ingenieria_estandares": {
+    "name": "ingenieria de estandares",
+    "code": "I7360",
+    "semester": 5,
+    "files": {
+      "study_plan": "i7360_ingenieria_de_estandares_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "ingenieria_economica": {
+    "name": "ingenieria económica",
+    "code": "I7394",
+    "semester": 5,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "introduccion_circuitos_electricos": {
+    "name": "introduccion de circuitos electricos",
+    "code": "I7341",
+    "semester": 5,
+    "files": {
+      "study_plan": "i7341_introduccion_de_circuitos_electricos_4.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "control_almacenes_inventarios": {
+    "name": "control de almacenes e inventarios",
+    "code": "I7371",
+    "semester": 5,
+    "files": {
+      "study_plan": "i7371_control_de_almacenes_e_inventarios_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "logistica_cadena_suministro": {
+    "name": "logistica y cadena de suministro",
+    "code": "I7375",
+    "semester": 5,
+    "files": {
+      "study_plan": "i7375_logistica_y_cadena_de_suministro_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "investigacion_operaciones_ii": {
+    "name": "investigacion de operaciones ii",
+    "code": "I7387",
+    "semester": 5,
+    "files": {
+      "study_plan": "i7387_investigacion_de_operaciones_ii_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "lab_ergonomia": {
+    "name": "laboratorio de ergonomia",
+    "code": "I7362",
+    "semester": 6,
+    "files": {
+      "study_plan": "i7362_laboratorio_de_ergonomia_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "lab_ingenieria_metodos": {
+    "name": "laboratorio de ingenieria de metodos",
+    "code": "I7363",
+    "semester": 6,
+    "files": {
+      "study_plan": "i7363_laboratorio_de_ingenieria_de_metodos_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "evaluacion_economica": {
+    "name": "evaluacion economica",
+    "code": "I7392",
+    "semester": 6,
+    "files": {
+      "study_plan": "i7392_evaluacion_economica_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "electronica_industrial": {
+    "name": "electronica industrial",
+    "code": "I7372",
+    "semester": 6,
+    "files": {
+      "study_plan": "i7372_electronica_industrial_7.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "planeacion_control_produccion_i": {
+    "name": "planeacion y control de la produccion i",
+    "code": "I7376",
+    "semester": 6,
+    "files": {
+      "study_plan": "i7376_planeacion_y_control_de_la_produccion_i_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "lab_simulacion": {
+    "name": "laboratorio de simulacion",
+    "code": "I7388",
+    "semester": 6,
+    "files": {
+      "study_plan": "i7388_laboratorio_de_simulacion_3.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "analisis_decisiones": {
+    "name": "analisis de decisiones",
+    "code": "I7385",
+    "semester": 6,
+    "files": {
+      "study_plan": "i7385_analisis_de_decisiones_3.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "calidad_total": {
+    "name": "calidad total",
+    "code": "I6488",
+    "semester": 6,
+    "files": {
+      "study_plan": "i6488_calidad_total_3.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "lab_metrologia": {
+    "name": "laboratorio de metrologia",
+    "code": "I7383",
+    "semester": 6,
+    "files": {
+      "study_plan": "i7383_laboratorio_de_metrologia_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "seminario_estudio_trabajo": {
+    "name": "seminario de estudio del trabajo",
+    "code": "I7369",
+    "semester": 7,
+    "files": {
+      "study_plan": "i7369_seminario_del_estudio_del_trabajo_1.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "finanza": {
+    "name": "finanza",
+    "code": "I6491",
+    "semester": 7,
+    "files": {
+      "study_plan": "i6491_finanza_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "lab_automatizacion_robotica": {
+    "name": "laboratorio de automatizacion y robotica",
+    "code": "I7374",
+    "semester": 7,
+    "files": {
+      "study_plan": "i7374_laboratorio_de_automatizacion_y_robotica_1.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "planeacion_control_produccion_ii": {
+    "name": "planeacion y control de la produccion ii",
+    "code": "I7377",
+    "semester": 7,
+    "files": {
+      "study_plan": "i7377_planeacion_y_control_de_la_produccion_ii_1.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "seminario_optimizacion": {
+    "name": "seminario de optimizacion",
+    "code": "I7389",
+    "semester": 7,
+    "files": {
+      "study_plan": "i7389_seminario_de_optimizacion_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "etica_profesional": {
+    "name": "etica profesional",
+    "code": "I7381",
+    "semester": 7,
+    "files": {
+      "study_plan": "i7381_etica_profesional_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "administracion_calidad": {
+    "name": "aseguramiento y administracion de la calidad",
+    "code": "I7380",
+    "semester": 7,
+    "files": {
+      "study_plan": "i7380_aseguramiento_y_administracion_de_la_calidad_1.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "lab_control_estadistico": {
+    "name": "laboratorio de control estadistico",
+    "code": "I7382",
+    "semester": 7,
+    "files": {
+      "study_plan": "i7382_laboratorio_de_control_estadistico_1.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "seminario_evaluacion_proyectos": {
+    "name": "seminario de evaluacion de proyectos",
+    "code": "I7396",
+    "semester": 8,
+    "files": {
+      "study_plan": "i7396_seminario_de_evaluacion_de_proyectos_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "seminario_ingenieria_produccion": {
+    "name": "seminario de ingenieria en produccion y manufactura",
+    "code": "I7379",
+    "semester": 8,
+    "files": {
+      "study_plan": "i7379_seminario_de_ingenieria_en_produccion_y_manufactura_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  },
+  "seminario_administracion_calidad": {
+    "name": "seminario de administracion de la calidad",
+    "code": "I7384",
+    "semester": 8,
+    "files": {
+      "study_plan": "i7384_seminario_de_administracion_de_la_calidad_2.pdf",
+      "material": ""
+    },
+    "career": "INDU"
+  }
+}

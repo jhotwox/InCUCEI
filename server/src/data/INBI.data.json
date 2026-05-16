@@ -1,0 +1,342 @@
+{
+  "metodos_matematicos_i": {
+    "name": "metodos matematicos i",
+    "code": "I5893",
+    "semester": 1,
+    "files": {
+      "study_plan": "i5893-mm-i.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "ssp_metodos_matematicos_i": {
+    "name": "seminario de solucion de problemas de metodos matematicos i",
+    "code": "I5894",
+    "semester": 1,
+    "files": {
+      "study_plan": "i5894-smm-i.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "anatomia_mecanica_i": {
+    "name": "anatomia mecanica i",
+    "code": "I7590",
+    "semester": 1,
+    "files": {
+      "study_plan": "i7590_anatomia_mecanica.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "programacion": {
+    "name": "programacion",
+    "code": "I5882",
+    "semester": 1,
+    "files": {
+      "study_plan": "i5882_programacion.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "ssp_programacion": {
+    "name": "seminario de solucion de problemas de programacion",
+    "code": "I5883",
+    "semester": 1,
+    "files": {
+      "study_plan": "i5883_sspde_programacion.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "metodos_matematicos_ii": {
+    "name": "metodos matematicos ii",
+    "code": "I5895",
+    "semester": 2,
+    "files": {
+      "study_plan": "i5895-mm-ii.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "ssp_metodos_matematicos_ii": {
+    "name": "seminario de solucion de problemas de metodos matematicos ii",
+    "code": "I5896",
+    "semester": 2,
+    "files": {
+      "study_plan": "i5896-smm-ii.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "anatomia_mecanica_ii": {
+    "name": "anatomia mecanica ii",
+    "code": "I7592",
+    "semester": 2,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "ssp_anatomia_mecanica": {
+    "name": "seminario de solucion de problemas de anatomia mecanica ii",
+    "code": "I7593",
+    "semester": 2,
+    "files": {
+      "study_plan": "i7593_seminario_de_anatomia_mecanica_ii.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "instrumentacion_hospitalaria": {
+    "name": "instrumentacion e instalacion hospitalaria",
+    "code": "I7603",
+    "semester": 2,
+    "files": {
+      "study_plan": "instalacion_e_instrumentacion_hospitalaria.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "circuitos_electricos": {
+    "name": "circuitos electricos",
+    "code": "I7587",
+    "semester": 2,
+    "files": {
+      "study_plan": "circuitos_electricos.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "metodos_matematicos_iii": {
+    "name": "metodos matematicos iii",
+    "code": "I7020",
+    "semester": 3,
+    "files": {
+      "study_plan": "i7020_mm-iii.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "ssp_metodos_matematicos_iii": {
+    "name": "seminario de solucion de problemas de metodos matematicos iii",
+    "code": "I7021",
+    "semester": 3,
+    "files": {
+      "study_plan": "i7021-smm-iii.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "instrumentacion_diagnostica_terapeutica": {
+    "name": "instrumentacion diagnostica y terapeutica",
+    "code": "I7605",
+    "semester": 3,
+    "files": {
+      "study_plan": "i7605_instrumentacion_diagnostica_y_terapeutica.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "instrumentacion_quirurgica": {
+    "name": "instrumentacion e instalacion quirurgica",
+    "code": "I7604",
+    "semester": 3,
+    "files": {
+      "study_plan": "i7604_intrumencion_e_instralacion_quirurgica.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "dispositivos_electronicos": {
+    "name": "dispositivos electronicos",
+    "code": "I7598",
+    "semester": 3,
+    "files": {
+      "study_plan": "i7598_dispositivos_electronicos.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "estadistica_procesos_estocasticos": {
+    "name": "estadistica y procesos estocasticos",
+    "code": "I5897",
+    "semester": 4,
+    "files": {
+      "study_plan": "i5897_estadistica_y_procesos_estocasticos.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "analisis_movimiento": {
+    "name": "analisis del movimiento",
+    "code": "I7588",
+    "semester": 4,
+    "files": {
+      "study_plan": "analis_del_movimiento.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "electronica_integrada": {
+    "name": "electronica integrada",
+    "code": "I7599",
+    "semester": 4,
+    "files": {
+      "study_plan": "electronica_integrada.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "instalaciones_seguridad_radiologica": {
+    "name": "instalaciones y seguridad radiologica",
+    "code": "I7602",
+    "semester": 4,
+    "files": {
+      "study_plan": "instrumentacion_y_seguridad_radiologica.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "programacion_sistemas_embebidos": {
+    "name": "programacion de sistemas embebidos",
+    "code": "I7266",
+    "semester": 4,
+    "files": {
+      "study_plan": "programacion_de_sistemas_embebidos.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "biosensores_transductores": {
+    "name": "biosensores y transductores",
+    "code": "I7595",
+    "semester": 5,
+    "files": {
+      "study_plan": "biosensores_y_transductores.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "ssp_analisis_movimiento": {
+    "name": "seminario de solucion de problemas de analisis del movimiento",
+    "code": "I7589",
+    "semester": 5,
+    "files": {
+      "study_plan": "i7589_seminario_de_solucion_de_problemas_de_analisis_del_movimiento.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "protesis_y_ortesis": {
+    "name": "protesis y ortesis",
+    "code": "I7610",
+    "semester": 5,
+    "files": {
+      "study_plan": "protesis_y_ortesis.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "instrumentacion_tecnicas_rehabilitacion": {
+    "name": "instrumentacion y tecnicas de rehabilitacion",
+    "code": "I7606",
+    "semester": 5,
+    "files": {
+      "study_plan": "instrumentacion_y_tecnicas_de_rehabilitacion.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "ssp_programacion_sistemas_embebidos": {
+    "name": "seminario de solucion de problemas de programacion de sistemas embebidos",
+    "code": "I7267",
+    "semester": 5,
+    "files": {
+      "study_plan": "seminario_de_solucion_de_problemas_de_programacion_de_sistemas_embebidos.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "electrofisiologia_molecular_i": {
+    "name": "electrofisiologia molecular i",
+    "code": "I7596",
+    "semester": 6,
+    "files": {
+      "study_plan": "electrofisiologia_molecular_i.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "biomateriales": {
+    "name": "biomateriales",
+    "code": "I7594",
+    "semester": 6,
+    "files": {
+      "study_plan": "i7594_biomateriales.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "imagenologia_medica": {
+    "name": "imagenologia medica",
+    "code": "I7601",
+    "semester": 6,
+    "files": {
+      "study_plan": "i7601_imagenologia-medica.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "sistemas_electronicos": {
+    "name": "sistemas electronicos",
+    "code": "I7600",
+    "semester": 6,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "electrofisiologia_molecular_ii": {
+    "name": "electrofisiologia molecular ii",
+    "code": "I7597",
+    "semester": 7,
+    "files": {
+      "study_plan": "i7597_electrofisiolofia_molecular_ii.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "acondicionamiento_biosenales_bioimagenes": {
+    "name": "acondicionamiento de bioseñales y bioimagenes",
+    "code": "I7607",
+    "semester": 7,
+    "files": {
+      "study_plan": "acondicionamiento_de_biosenales_y_bioimagenes.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "procesamiento_bioseñales": {
+    "name": "procesamiento de bioseñales",
+    "code": "I7608",
+    "semester": 8,
+    "files": {
+      "study_plan": "procesamiento_de_biosenales.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  },
+  "procesamiento_bioimagenes": {
+    "name": "procesamiento de bioimagenes",
+    "code": "I7609",
+    "semester": 8,
+    "files": {
+      "study_plan": "procesamiento_de_bioimagenes.pdf",
+      "material": ""
+    },
+    "career": "INBI"
+  }
+}

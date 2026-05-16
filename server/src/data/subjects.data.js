@@ -4,19 +4,26 @@
 
 import INNI from './INNI.data.json' with { type: "json" }
 import INFO from './INFO.data.json' with { type: "json" }
+import LILT from './LILT.data.json' with { type: "json" }
+import ILOT from './ILOT.data.json' with { type: "json" }
+import INRO from './INRO.data.json' with { type: "json" }
+import INCE from './INCE.data.json' with { type: "json" }
+import INEA from './INEA.data.json' with { type: "json" }
+// ICOM is not included because we couldn't find study plans for it
+import INBI from './INBI.data.json' with { type: "json" }
+import INME from './INME.data.json' with { type: "json" }
+import INDU from './INDU.data.json' with { type: "json" }
+
 
 export const subjectsData = {
   INNI: INNI,
   INFO: INFO,
-  IC: {
-    "calculo_diferencial": {
-      name: "calculo diferencial",
-      code: "MA101",
-      files: {
-        "study_plan": "calculodiferencial.pdf",
-        "material": "calculodiferencial_material.pdf"
-      },
-      career: "IC"
-    },
-  }
+  LILT: LILT,
+  ILOT: ILOT,
+  INRO: INRO,
+  INCE: INCE,
+  INEA: INEA,
+  INBI: INBI,
+  INME: INME,
+  INDU: INDU,
 }

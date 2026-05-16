@@ -16,6 +16,9 @@ const TOKEN_EQUIVALENTS = new Map([
   ["dato", "datos"],
   ["servidor", "servidores"],
   ["red", "redes"],
+  ["sim", "simulacion"],
+  ["sis", "sistemas"],
+  ["lab", "laboratorio"],
 
   //* manual singular/plural that aren't just adding 's'
   // ["fundamento", "fundamentos"],
@@ -417,4 +420,4 @@ export const getSubjectByName = (name) => {
   }
 }
 
-console.log("Subjects index: ", SUBJECTS_INDEX)
+// console.log("Subjects index: ", SUBJECTS_INDEX)

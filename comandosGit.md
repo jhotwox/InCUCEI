@@ -72,3 +72,16 @@ Presiona `ctrl + shift + V` para visusalizar el documento
 ### Para volver a tu rama:
 `git checkout gerson               # Cambiar a tu rama `
 `git merge origin/main               #Merge del main remoto en tu rama (deberia de decir que son la misma rama)`
+
+## Guardar localmente cambios sin commit
+>Add to the queue (Add -u to add untracked files)
+`git stash -m "message"`
+
+> List stash queue
+`git stash list`
+
+> Apply selected stash
+`git stash apply stash@{0}`
+
+> Delete selected stash
+`git stash drop stash@{0}`

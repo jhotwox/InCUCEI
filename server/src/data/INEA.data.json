@@ -1,0 +1,472 @@
+{
+  "fundamentos_electronica": {
+    "name": "fundamentos de electronica",
+    "code": "V3690",
+    "semester": 1,
+    "files": {
+      "study_plan": "v3690_fundamentos_de_electronica_planeacion.pdf",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "fundamentos_programacion": {
+    "name": "fundamentos de la programación",
+    "code": "I5288",
+    "semester": 1,
+    "files": {
+      "study_plan": "",
+      "material": "i5288_fundamentos_de_programacion.pdf"
+    },
+    "career": "INEA"
+  },
+  "precalculo": {
+    "name": "precalculo",
+    "code": "IG738",
+    "semester": 1,
+    "files": {
+      "study_plan": "ig738_precalculo_planeacion.pdf",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "induccion_universitaria": {
+    "name": "induccion universitaria",
+    "code": "V3684",
+    "semester": 1,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "fundamentos_fisica": {
+    "name": "fundamentos de fisica",
+    "code": "IL340",
+    "semester": 1,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "analisis_problemas_globales": {
+    "name": "analisis de problemas globales del siglo xxi",
+    "code": "V2455",
+    "semester": 1,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "electronica_analogica_digital": {
+    "name": "electronica analogica y digital",
+    "code": "V3636",
+    "semester": 2,
+    "files": {
+      "study_plan": "v3636_electronica_analogica_y_digital_planeacion.pdf",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "programacion_estructurada": {
+    "name": "programacion estructurada",
+    "code": "V0716",
+    "semester": 2,
+    "files": {
+      "study_plan": "v3634_programacion_estructurada_planeacion.pdf",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "calculo_diferencial_integral": {
+    "name": "calculo diferencial e integral",
+    "code": "V0710",
+    "semester": 2,
+    "files": {
+      "study_plan": "v0710_calculo_diferencial_e_integral_planeacion.pdf",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "algebra_lineal": {
+    "name": "algebra lineal",
+    "code": "IB056",
+    "semester": 2,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "mecanica": {
+    "name": "mecanica",
+    "code": "IL343",
+    "semester": 2,
+    "files": {
+      "study_plan": "il343_mecanica_planeacion.pdf",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "historia_tecnologia": {
+    "name": "historia de la tecnologia el arte y la sociedad",
+    "code": "V3686",
+    "semester": 2,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "maquinas_electricas": {
+    "name": "maquinas electricas",
+    "code": "V3642",
+    "semester": 3,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "probabilidad_estadistica": {
+    "name": "probabilidad y estadistica",
+    "code": "IB067",
+    "semester": 3,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "ecuaciones_diferenciales": {
+    "name": "ecuaciones diferenciales",
+    "code": "V0712",
+    "semester": 3,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "electromagnetismo": {
+    "name": "electromagnetismo",
+    "code": "IC591",
+    "semester": 3,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "instalaciones_electricas": {
+    "name": "instalaciones electricas de baja y media tension",
+    "code": "V3640",
+    "semester": 3,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "ciencia_sustentabilidad": {
+    "name": "ciencia y sustentabilidad",
+    "code": "V3688",
+    "semester": 3,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "sistemas_embebidos_automotrices": {
+    "name": "sistemas embebidos automotrices",
+    "code": "V3665",
+    "semester": 4,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "ingenieria_control": {
+    "name": "ingenieria de control",
+    "code": "V3639",
+    "semester": 4,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "metodos_numericos": {
+    "name": "metodos numericos",
+    "code": "V0713",
+    "semester": 4,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "fundamentos_comunicaciones": {
+    "name": "fundamentos de comunicaciones",
+    "code": "V3637",
+    "semester": 4,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "electronica_potencia": {
+    "name": "electronica de potencia",
+    "code": "V3650",
+    "semester": 4,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "administracion_negocios": {
+    "name": "administracion de negocios",
+    "code": "V3635",
+    "semester": 4,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "mantenimiento_automotriz": {
+    "name": "mantenimiento automotriz",
+    "code": "V3641",
+    "semester": 5,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "sistemas_propulsion_energia": {
+    "name": "sistemas de propulsion y energia",
+    "code": "V3664",
+    "semester": 5,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "sistemas_ciberfisicos": {
+    "name": "sistemas ciberfisicos",
+    "code": "V3661",
+    "semester": 5,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "seminario_integracion_protocolo": {
+    "name": "seminario de integracion protocolo",
+    "code": "V0733",
+    "semester": 5,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "control_circuitos_potencia": {
+    "name": "control de circuitos de potencia",
+    "code": "V3645",
+    "semester": 5,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "innovacion_tecnologica_emprendimiento": {
+    "name": "innovacion tecnologica emprendimiento",
+    "code": "V3633",
+    "semester": 5,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "desarrollo_sistemas_inteligentes": {
+    "name": "desarrollo de sistemas inteligentes",
+    "code": "V3648",
+    "semester": 6,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "sistemas_electromovilidad": {
+    "name": "sistemas de electromovilidad",
+    "code": "V3663",
+    "semester": 6,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "convertidores_electronicos_potencia": {
+    "name": "convertidores electronicos de potencia",
+    "code": "V3647",
+    "semester": 6,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "comunicacion_automotriz": {
+    "name": "comunicacion automotriz",
+    "code": "V3662",
+    "semester": 6,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "sistemas_electricos": {
+    "name": "sistemas electricos",
+    "code": "V3643",
+    "semester": 7,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "seminario_integracion_desarrollo": {
+    "name": "seminario de integracion desarrollo",
+    "code": "V0734",
+    "semester": 7,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "laboratorio_abierto_diseno": {
+    "name": "laboratorio abierto diseño",
+    "code": "V3652",
+    "semester": 7,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "protocolos_interfaces_comunicacion": {
+    "name": "protocolos e interfaces de comunicacion",
+    "code": "V3655",
+    "semester": 7,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "navegacion_autonoma": {
+    "name": "navegacion autonoma",
+    "code": "V3654",
+    "semester": 8,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "seguridad_electromovilidad": {
+    "name": "seguridad en electromovilidad",
+    "code": "V3657",
+    "semester": 8,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "laboratorio_abierto_construccion": {
+    "name": "laboratorio abierto construccion",
+    "code": "V3651",
+    "semester": 8,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "autotronica_alto_voltaje": {
+    "name": "autotronica de alto voltaje",
+    "code": "V3644",
+    "semester": 9,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "electromovilidad_sustentable": {
+    "name": "electromovilidad sustentable",
+    "code": "V3649",
+    "semester": 9,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "laboratorio_abierto_pruebas": {
+    "name": "laboratorio abierto pruebas",
+    "code": "V3653",
+    "semester": 9,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "seminario_integracion_comunicacion": {
+    "name": "seminario de integracion comunicacion",
+    "code": "V0735",
+    "semester": 9,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "conversion_energia": {
+    "name": "conversion de energia",
+    "code": "V3646",
+    "semester": 9,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  },
+  "radionavegacion_posicionamiento": {
+    "name": "radionavegacion y posicionamiento",
+    "code": "V3656",
+    "semester": 9,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INEA"
+  }
+}

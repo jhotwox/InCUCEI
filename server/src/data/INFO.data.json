@@ -6,7 +6,8 @@
       "study_plan": "fundamentosdelaprogramacion.pdf",
       "material": "fundamentosdelaprogramacion.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 1
   },
   "logica_matematica": {
     "name": "logica matematica",
@@ -15,7 +16,8 @@
       "study_plan": "logicamatematica.pdf",
       "material": "logicamatematica.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 1
   },
   "precalculo": {
     "name": "precalculo",
@@ -24,7 +26,8 @@
       "study_plan": "precalculo.pdf",
       "material": "precalculo.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 1
   },
   "fundamentos_fisica": {
     "name": "fundamentos de fisica",
@@ -33,7 +36,8 @@
       "study_plan": "fundamentosfisica.pdf",
       "material": "fundamentosfisica.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 1
   },
   "induccion_ingenieria": {
     "name": "induccion a la ingenieria",
@@ -42,7 +46,8 @@
       "study_plan": "induccioningenieria.pdf",
       "material": "induccioningenieria.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 1
   },
   "historia_tecnologia": {
     "name": "historia de la tecnologia, el arte y la sociedad",
@@ -51,7 +56,8 @@
       "study_plan": "historiatecnologia.pdf",
       "material": "historiatecnologia.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 1
   },
   "programacion_estructurada": {
     "name": "programacion estructurada",
@@ -60,7 +66,8 @@
       "study_plan": "programacionestructurada.pdf",
       "material": "programacionestructurada.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 2
   },
   "matematicas_discretas": {
     "name": "matematicas discretas",
@@ -69,7 +76,8 @@
       "study_plan": "matematicasdiscretas.pdf",
       "material": "matematicasdiscretas.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 2
   },
   "calculo_integral": {
     "name": "calculo diferencial e integral",
@@ -78,7 +86,8 @@
       "study_plan": "calculointegral.pdf",
       "material": "calculointegral.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 2
   },
   "mecanica": {
     "name": "mecanica",
@@ -87,7 +96,8 @@
       "study_plan": "mecanica.pdf",
       "material": "mecanica.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 2
   },
   "tecnologias_retos_sociedad": {
     "name": "tecnologia y retos de la sociedad",
@@ -96,7 +106,8 @@
       "study_plan": "tecnologiasyretossociedad.pdf",
       "material": "tecnologiasyretossociedad.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 2
   },
   "poo": {
     "name": "programacion orientada a objetos",
@@ -105,7 +116,8 @@
       "study_plan": "poo.pdf",
       "material": "poo.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 3
   },
   "algebra_lineal": {
     "name": "algebra lineal",
@@ -114,7 +126,8 @@
       "study_plan": "algebralineal.pdf",
       "material": "algebralineal.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 3
   },
   "ecuaciones_diferenciales": {
     "name": "ecuaciones diferenciales",
@@ -123,7 +136,8 @@
       "study_plan": "ecuacionesdiferenciales.pdf",
       "material": "ecuacionesdiferenciales.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 3
   },
   "electromagnetismo": {
     "name": "electromagnetismo",
@@ -132,7 +146,8 @@
       "study_plan": "electromagnetismo.pdf",
       "material": "electromagnetismo.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 3
   },
   "sustentabilidad": {
     "name": "ingenieria y sustentabilidad",
@@ -141,7 +156,8 @@
       "study_plan": "sustentabilidad.pdf",
       "material": "sustentabilidad.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 3
   },
   "estructura_datos": {
     "name": "estructura de datos",
@@ -150,7 +166,8 @@
       "study_plan": "estructuradedatos.pdf",
       "material": "estructuradedatos.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 4
   },
   "probabilidad_estadistica": {
     "name": "probabilidad y estadistica",
@@ -159,7 +176,8 @@
       "study_plan": "probabilidadyestadistica.pdf",
       "material": "probabilidadyestadistica.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 4
   },
   "metodos_numericos": {
     "name": "metodos numericos",
@@ -168,7 +186,8 @@
       "study_plan": "metodosnumericos.pdf",
       "material": "metodosnumericos.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 4
   },
   "info_administrativa": {
     "name": "informatica administrativa",
@@ -177,7 +196,8 @@
       "study_plan": "infoadministrativa.pdf",
       "material": "infoadministrativa.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 4
   },
   "arquitectura_computadoras": {
     "name": "arquitectura de computadoras",
@@ -186,7 +206,8 @@
       "study_plan": "arquitecturadecomputadoras.pdf",
       "material": "arquitecturadecomputadoras.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 4
   },
   "ingenieria_software": {
     "name": "ingenieria de software",
@@ -195,7 +216,8 @@
       "study_plan": "ingenieriadesoftware.pdf",
       "material": "ingenieriadesoftware.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 5
   },
   "mineria_datos": {
     "name": "mineria de datos",
@@ -204,7 +226,8 @@
       "study_plan": "mineriadedatos.pdf",
       "material": "mineriadedatos.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 5
   },
   "fundamentos_ia": {
     "name": "fundamentos de inteligencia artificial",
@@ -213,7 +236,8 @@
       "study_plan": "fundamentosia.pdf",
       "material": "fundamentosia.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 5
   },
   "innovacion_emprendimiento": {
     "name": "innovacion tecnologica y emprendimiento",
@@ -222,7 +246,8 @@
       "study_plan": "innovacionyemprendimiento.pdf",
       "material": "innovacionyemprendimiento.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 5
   },
   "redes_computadoras": {
     "name": "redes de computadoras",
@@ -231,7 +256,8 @@
       "study_plan": "redesdecomputadora.pdf",
       "material": "redesdecomputadora.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 5
   },
   "seminario_integracion_protocolo": {
     "name": "seminario de integracion protocolo",
@@ -240,7 +266,8 @@
       "study_plan": "seminariointegracionprotocolo.pdf",
       "material": "seminariointegracionprotocolo.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 5
   },
   "calidad_software": {
     "name": "calidad de software",
@@ -249,7 +276,8 @@
       "study_plan": "calidadsoftware.pdf",
       "material": "calidadsoftware.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 6
   },
   "base_datos": {
     "name": "base de datos",
@@ -258,7 +286,8 @@
       "study_plan": "basesdatos.pdf",
       "material": "basesdatos.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 6
   },
   "algoritmos_metaheuristicos": {
     "name": "algoritmos metaheuristicos",
@@ -267,7 +296,8 @@
       "study_plan": "algoritmosmeta.pdf",
       "material": "algoritmosmeta.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 6
   },
   "administracion_base_datos": {
     "name": "administracion de base de datos",
@@ -276,7 +306,8 @@
       "study_plan": "adminbasesdatos.pdf",
       "material": "adminbasesdatos.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 7
   },
   "seminario_integracion_desarrollo": {
     "name": "seminario de integracion desarrollo",
@@ -285,7 +316,8 @@
       "study_plan": "seminariointegraciondesarrollo.pdf",
       "material": "seminariointegraciondesarrollo.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 7
   },
   "analisis_visualizacion_informacion": {
     "name": "analisis y visualizacion de la informacion",
@@ -294,7 +326,8 @@
       "study_plan": "analisisinformacion.pdf",
       "material": "analisisinformacion.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 8
   },
   "sistemas_inteligentes": {
     "name": "sistemas inteligentes",
@@ -303,7 +336,8 @@
       "study_plan": "",
       "material": "sistemasinteligentes.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 8
   },
   "control_proyectos": {
     "name": "control de proyectos",
@@ -312,7 +346,8 @@
       "study_plan": "controldeproyectos.pdf",
       "material": "controldeproyectos.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 9
   },
   "seminario_integracion_comunicacion": {
     "name": "seminario de integracion comunicacion",
@@ -321,7 +356,8 @@
       "study_plan": "",
       "material": "seminariointegracioncomunicacion.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 9
   },
   "tecnologias_ia": {
     "name": "tecnologias de inteligencia artificial",
@@ -330,6 +366,7 @@
       "study_plan": "tecnologiasia.pdf",
       "material": "tecnologiasia.pdf"
     },
-    "career": "INFO"
+    "career": "INFO",
+    "semester": 9
   }
 }
