@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react"
 import { FlatList, KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native"
 import { router, useLocalSearchParams } from "expo-router"
 import { LinearGradient } from "expo-linear-gradient"
@@ -19,18 +19,11 @@ import { createFileObjectFromUrl } from "../../../utils/generateFileObjectFromUR
 import Header from "../../../components/common/Header"
 import { useLayout } from "../../../layout/providers.layout"
 
-let lastDate = null
-
-const MessageItem = memo(({ item, theme, isOwn, index, myAvatarUri, otherAvatarUri, mode, showDateSeparator, dateLabel }) => {
+const MessageItem = memo(({ item, theme, isOwn, myAvatarUri, otherAvatarUri, mode, showDateSeparator, dateLabel, animateIn }) => {
   if (!item) return null
 
-  const AnimatedView = Animated.createAnimatedComponent(View)
-
   return (
-    <AnimatedView
-      entering={isOwn ? FadeInRight.delay(index * 40) : FadeInLeft.delay(index * 40)}
-      // style={[styles.messageContainer, isOwn ? styles.userMessage : styles.commerceMessage]}
-    >
+    <Animated.View entering={animateIn ? (isOwn ? FadeInRight : FadeInLeft) : undefined}>
       {showDateSeparator && (
         <View style={{ width: "100%", alignItems: "center", marginVertical: 8 }}>
           <Surface
@@ -105,15 +98,17 @@ const MessageItem = memo(({ item, theme, isOwn, index, myAvatarUri, otherAvatarU
           )
         )}
       </View>
-    </AnimatedView>
+    </Animated.View>
   )
 })
 
 export default function ChatScreen() {
   const [inputMessage, setInputMessage] = useState("")
   const [profileImageKey, setProfileImageKey] = useState(Date.now())
+  const [isSwitchingConversation, setIsSwitchingConversation] = useState(false)
   const flatListRef = useRef(null)
   const lastMarkedMessageIdRef = useRef(null)
+  const wasLoadingRef = useRef(false)
   
   const {
     commerceId: commerceIdParam,
@@ -138,6 +133,7 @@ export default function ChatScreen() {
     markCommerceAsRead,
     loadConversation,
     loadCommerceConversation,
+    clearMessages,
   } = useMessages()
 
   const mode = useMemo(() => {
@@ -200,6 +196,25 @@ export default function ChatScreen() {
     return `user_${roomUserId}_commerce_${commerceId}`
   }, [roomUserId, commerceId])
 
+  useLayoutEffect(() => {
+    if (!roomId) return
+    clearMessages()
+    lastMarkedMessageIdRef.current = null
+    setIsSwitchingConversation(true)
+  }, [roomId, clearMessages])
+
+  useEffect(() => {
+    if (loading) {
+      wasLoadingRef.current = true
+      return
+    }
+
+    if (wasLoadingRef.current) {
+      wasLoadingRef.current = false
+      setIsSwitchingConversation(false)
+    }
+  }, [loading])
+
   useEffect(() => {
     if (!commerceId || !roomId) return
 
@@ -223,9 +238,6 @@ export default function ChatScreen() {
     markCommerceAsRead,
   ])
 
-  useEffect(() => {
-    console.log("Messages: ", messages)
-  }, [messages])
 
   const orderedMessages = useMemo(() => {
     // API returns ascending; with inverted FlatList we want latest at bottom.
@@ -327,19 +339,30 @@ export default function ChatScreen() {
           item={item}
           theme={theme}
           isOwn={isOwn}
-          index={index}
           myAvatarUri={myAvatarUri}
           otherAvatarUri={otherAvatarUri}
           mode={mode}
           showDateSeparator={showDateSeparator}
           dateLabel={formatDateLabel(item.createdAt)}
+          animateIn={index === 0}
         />
       )
     },
     [orderedMessages, theme, user?.id, myAvatarUri, otherAvatarUri, mode]
   )
 
-  const keyExtractor = useCallback((item, index) => item?._id?.toString?.() || `msg-${index}`, [])
+  const keyExtractor = useCallback((item, index) => {
+    const id = item?._id?.toString?.()
+    if (id) return id
+
+    const createdAt = item?.createdAt != null ? String(item.createdAt) : ""
+    const senderId = typeof item?.sender === "string" ? item.sender : item?.sender?._id
+    const room = item?.roomId || "room"
+    const content = item?.content != null ? String(item.content) : ""
+
+    // Deterministic fallback to avoid index-based remount flicker.
+    return `tmp-${room}-${senderId || "unknown"}-${createdAt}-${content}` || `msg-${index}`
+  }, [])
 
   if (!commerceId) {
     return (
@@ -355,10 +378,6 @@ export default function ChatScreen() {
         <Text>No se encontró el usuario del chat.</Text>
       </View>
     )
-  }
-
-  if (loading && messages.length === 0) {
-    return <ActivityIndicator style={{ flex: 1 }} size="large" />
   }
 
   return (
@@ -392,6 +411,13 @@ export default function ChatScreen() {
         inverted={true}
         style={styles.messagesList}
         contentContainerStyle={styles.messagesContent}
+        ListEmptyComponent={
+          loading || isSwitchingConversation ? (
+            <View style={styles.emptyState}>
+              <ActivityIndicator size="large" />
+            </View>
+          ) : null
+        }
         showsVerticalScrollIndicator={false}
         removeClippedSubviews={true}
         maxToRenderPerBatch={10}
@@ -469,6 +495,13 @@ const styles = StyleSheet.create({
   messagesContent: {
     paddingBottom: 16,
     paddingTop: 8,
+    flexGrow: 1,
+  },
+  emptyState: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 24,
   },
   messageContainer: {
     marginVertical: 6,

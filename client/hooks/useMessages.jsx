@@ -22,6 +22,10 @@ export const useMessages = () => {
   const { socket } = useSocket()
   const { user } = useAuth()
 
+  const clearMessages = useCallback(() => {
+    setMessages([])
+  }, [])
+
   // const getRoomId = useCallback((userId1, userId2) => {
   //   return [userId1, userId2].sort().join("_")
   // }, [])
@@ -34,7 +38,6 @@ export const useMessages = () => {
       setError(null)
 
       const response = await getConversationRequest(commerceId)
-      console.log("[+] response: ", response)
       setMessages(response.data.data || [])
     } catch (err) {
       setError(err)
@@ -115,28 +118,41 @@ export const useMessages = () => {
       try {
         await markAsReadRequest(commerceId)
 
-        setMessages((prev) =>
-          prev.map((msg) => {
+        setMessages((prev) => {
+          let changed = false
+          const next = prev.map((msg) => {
             const msgCommerceId =
               typeof msg?.commerce === "string" ? msg.commerce : msg?.commerce?._id
 
             if (msgCommerceId !== commerceId) return msg
+            if (msg?.isRead === true) return msg
 
+            changed = true
             return { ...msg, isRead: true }
           })
-        )
+
+          return changed ? next : prev
+        })
       } catch (err) {
         console.error("Err markAsRead: ", err)
       }
     },
-    [user]
+    []
   )
 
   const markCommerceAsRead = useCallback(async (commerceId, userId) => {
     try {
       await markCommerceAsReadRequest(commerceId, userId)
 
-      setMessages((prev) => prev.map((msg) => ({ ...msg, isRead: true })))
+      setMessages((prev) => {
+        let changed = false
+        const next = prev.map((msg) => {
+          if (msg?.isRead === true) return msg
+          changed = true
+          return { ...msg, isRead: true }
+        })
+        return changed ? next : prev
+      })
     } catch (err) {
       console.error("Err markCommerceAsRead: ", err)
     }
@@ -164,7 +180,6 @@ export const useMessages = () => {
 
       const response = await getCommerceChatsRequest()
       setCommerceChats(response.data.data || [])
-      console.log("[+] commerceChats: ", response.data.data)
     } catch (err) {
       setError(err)
       console.error("Err loadCommerceChats: ", err)
@@ -177,7 +192,6 @@ export const useMessages = () => {
     if (!socket) return
 
     const handleReceiveMessage = (message) => {
-      console.log("Received message: ", message)
       setMessages((prev) => {
         const incomingId = message?._id != null ? String(message._id) : null
         const exists = prev.find((msg) => {
@@ -217,6 +231,7 @@ export const useMessages = () => {
     commerceChats,
     loading,
     error,
+    clearMessages,
     sendMessage,
     sendCommerceMessage,
     loadConversation,
