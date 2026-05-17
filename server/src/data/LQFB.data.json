@@ -1,0 +1,592 @@
+{
+  "calculo_diferencial_integral": {
+    "name": "calculo diferencial e integral",
+    "code": "I6121",
+    "semester": 1,
+    "files": {
+      "study_plan": "calculo_diferencial_integral_1.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "bioetica_deontologia": {
+    "name": "bioetica y deontologia",
+    "code": "I6156",
+    "semester": 1,
+    "files": {
+      "study_plan": "bioetica_y_deontologia.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "quimica_general_i": {
+    "name": "quimica general i",
+    "code": "I6122",
+    "semester": 1,
+    "files": {
+      "study_plan": "quimica_general_i_qfb_0.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "introduccion_fisica": {
+    "name": "introduccion a la fisica",
+    "code": "I6123",
+    "semester": 1,
+    "files": {
+      "study_plan": "introduccion_a_la_fisica_0.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "bases_biologia_celular": {
+    "name": "bases de biologia celular",
+    "code": "I6134",
+    "semester": 1,
+    "files": {
+      "study_plan": "bases_de_biologia_celular_0.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "metodologia_investigacion": {
+    "name": "metodologia de la investigacion",
+    "code": "I6157",
+    "semester": 1,
+    "files": {
+      "study_plan": "i6157_metodologia_de_la_investigacion.docx.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "seminario_tutoria_inicial_i": {
+    "name": "seminario de tutoria inicial i",
+    "code": "I6159",
+    "semester": 1,
+    "files": {
+      "study_plan": "seminario_de_tutoria_inicial_i.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "salud_sociedad": {
+    "name": "salud y sociedad",
+    "code": "I6136",
+    "semester": 2,
+    "files": {
+      "study_plan": "salud_y_sociedad.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "quimica_organica_i": {
+    "name": "quimica organica i",
+    "code": "I6124",
+    "semester": 2,
+    "files": {
+      "study_plan": "quimica_organica_i_lqfb_0.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "bioestadistica": {
+    "name": "bioestadistica",
+    "code": "I6125",
+    "semester": 2,
+    "files": {
+      "study_plan": "bioestadistica_0.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "morfologia": {
+    "name": "morfologia",
+    "code": "I6135",
+    "semester": 2,
+    "files": {
+      "study_plan": "morfologia.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "quimica_general_ii": {
+    "name": "quimica general ii",
+    "code": "I6126",
+    "semester": 2,
+    "files": {
+      "study_plan": "quimica_general_ii.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "seminario_tutoria_inicial_ii": {
+    "name": "seminario de tutoria inicial ii",
+    "code": "I6160",
+    "semester": 2,
+    "files": {
+      "study_plan": "seminario_de_tutoria_inicial_ii.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "fisicoquimica_i_farmaceuticos": {
+    "name": "fisicoquimica i para farmaceuticos",
+    "code": "I6128",
+    "semester": 3,
+    "files": {
+      "study_plan": "fisicoquimica_i_para_farmaceuticos_0.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "quimica_organica_ii": {
+    "name": "quimica organica ii",
+    "code": "I6129",
+    "semester": 3,
+    "files": {
+      "study_plan": "quimica_organica_ii_qfb__0.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "fisiologia_fundamentos_fisiopatologia": {
+    "name": "fisiologia y fundamentos de fisiopatologia",
+    "code": "I6137",
+    "semester": 3,
+    "files": {
+      "study_plan": "fisiologia_y_fundamentos_de_fisiopatologia_0.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "quimica_analitica_i": {
+    "name": "quimica analitica i",
+    "code": "I6127",
+    "semester": 3,
+    "files": {
+      "study_plan": "quimica_analitica_i_0.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "diseno_experimentos": {
+    "name": "diseno de experimentos",
+    "code": "I5874",
+    "semester": 3,
+    "files": {
+      "study_plan": "diseno_de_experimentos.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "seminario_tutoria_inicial_iii": {
+    "name": "seminario de tutoria inicial iii",
+    "code": "I6161",
+    "semester": 3,
+    "files": {
+      "study_plan": "seminario_de_tutoria_inicial_iii.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "fisicoquimica_ii_farmaceuticos": {
+    "name": "fisicoquimica ii para farmaceuticos",
+    "code": "I6131",
+    "semester": 4,
+    "files": {
+      "study_plan": "fisicoquimica_ii_para_farmaceuticos_0.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "farmacologia_i": {
+    "name": "farmacologia i",
+    "code": "I6138",
+    "semester": 4,
+    "files": {
+      "study_plan": "farmacologia_i_0.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "bioquimica_i": {
+    "name": "bioquimica i",
+    "code": "I6140",
+    "semester": 4,
+    "files": {
+      "study_plan": "bioquimica_i.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "normatividad_legislacion_sanitaria": {
+    "name": "normatividad y legislacion sanitaria",
+    "code": "I6139",
+    "semester": 4,
+    "files": {
+      "study_plan": "normatividad_y_legislacion_sanitaria_.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "quimica_analitica_ii": {
+    "name": "quimica analitica ii",
+    "code": "I6130",
+    "semester": 4,
+    "files": {
+      "study_plan": "quimica_analitica_ii_0.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "parasitologia": {
+    "name": "parasitologia",
+    "code": "I6141",
+    "semester": 4,
+    "files": {
+      "study_plan": "parasitologia_0.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "seminario_tutoria_intermedia_i": {
+    "name": "seminario de tutoria intermedia i",
+    "code": "I6162",
+    "semester": 4,
+    "files": {
+      "study_plan": "seminario_de_tutoria_intermedia_i.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "farmacologia_ii": {
+    "name": "farmacologia ii",
+    "code": "I6142",
+    "semester": 5,
+    "files": {
+      "study_plan": "farmacologia_ii_1.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "bioquimica_ii": {
+    "name": "bioquimica ii",
+    "code": "I6144",
+    "semester": 5,
+    "files": {
+      "study_plan": "bioquimica_ii_1.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "quimica_analitica_iii": {
+    "name": "quimica analitica iii",
+    "code": "I6132",
+    "semester": 5,
+    "files": {
+      "study_plan": "quimica_analitica_iii__0.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "seminario_investigacion": {
+    "name": "seminario de investigacion",
+    "code": "I6143",
+    "semester": 5,
+    "files": {
+      "study_plan": "i6143_seminario_de_investigacion.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "laboratorio_parasitologia": {
+    "name": "laboratorio de parasitologia",
+    "code": "I6146",
+    "semester": 5,
+    "files": {
+      "study_plan": "laboratorio_de_parasitologia__0.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "microbiologia": {
+    "name": "microbiologia",
+    "code": "I6145",
+    "semester": 5,
+    "files": {
+      "study_plan": "microbiologia_0.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "seminario_tutoria_intermedia_ii": {
+    "name": "seminario de tutoria intermedia ii",
+    "code": "I6163",
+    "semester": 5,
+    "files": {
+      "study_plan": "seminario_de_tutoria_intermedia_ii.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "farmacognosia": {
+    "name": "farmacognosia",
+    "code": "I6147",
+    "semester": 6,
+    "files": {
+      "study_plan": "farmacognosia_0.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "tecnologia_farmaceutica_i": {
+    "name": "tecnologia farmaceutica i",
+    "code": "I6166",
+    "semester": 6,
+    "files": {
+      "study_plan": "tecnologia_farmaceutica_i_0.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "biofarmacia_farmacocinetica": {
+    "name": "biofarmacia y farmacocinetica",
+    "code": "I6148",
+    "semester": 6,
+    "files": {
+      "study_plan": "i6148_biofarmacia_y_farmacocinetica.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "biologia_molecular_genetica": {
+    "name": "biologia molecular y genetica",
+    "code": "I6149",
+    "semester": 6,
+    "files": {
+      "study_plan": "biologia_molecular_y_genetica.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "toxicologia_general": {
+    "name": "toxicologia general",
+    "code": "I6150",
+    "semester": 6,
+    "files": {
+      "study_plan": "toxicologia_general_0.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "laboratorio_microbiologia_clinica": {
+    "name": "laboratorio de microbiologia clinica",
+    "code": "I6151",
+    "semester": 6,
+    "files": {
+      "study_plan": "laboratorio_de_microbiologia_clinica.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "seminario_tutoria_intermedia_iii": {
+    "name": "seminario de tutoria intermedia iii",
+    "code": "I6164",
+    "semester": 6,
+    "files": {
+      "study_plan": "seminario_de_tutoria_intermedia_iii_0.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "tecnologia_farmaceutica_ii": {
+    "name": "tecnologia farmaceutica ii",
+    "code": "I6167",
+    "semester": 7,
+    "files": {
+      "study_plan": "tecnologia_farmaceutica_ii_0.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "farmacia_comunitaria": {
+    "name": "farmacia comunitaria y hospitalaria",
+    "code": "I6168",
+    "semester": 7,
+    "files": {
+      "study_plan": "i6168_farmacia_comunitaria_y_hospitalaria.docx.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "analisis_quimico_clinico": {
+    "name": "analisis quimico clinico",
+    "code": "I6169",
+    "semester": 7,
+    "files": {
+      "study_plan": "analisis_quimico_clinico.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "laboratorio_biologia_molecular_genetica": {
+    "name": "laboratorio de biologia molecular y genetica",
+    "code": "I6176",
+    "semester": 7,
+    "files": {
+      "study_plan": "laboratorio_de_biologia_molecular_y_genetica.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "quimica_forense": {
+    "name": "quimica y toxicologia forense",
+    "code": "I6170",
+    "semester": 7,
+    "files": {
+      "study_plan": "quimica_y_toxicologia_forense_0.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "microbiologia_aplicada": {
+    "name": "microbiologia aplicada",
+    "code": "I6152",
+    "semester": 7,
+    "files": {
+      "study_plan": "microbiologia_aplicada.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "seminario_tutoria_egreso": {
+    "name": "seminario de tutoria de egreso",
+    "code": "I6165",
+    "semester": 7,
+    "files": {
+      "study_plan": "seminario_de_tutoria_de_egreso_0.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "servicios_farmaceuticos_hospitalarios": {
+    "name": "servicios farmaceuticos hospitalarios",
+    "code": "I6173",
+    "semester": 8,
+    "files": {
+      "study_plan": "servicios_farmaceuticos_hospitalarios.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "analisis_farmacos_medicamentos": {
+    "name": "analisis de farmacos y medicamentos",
+    "code": "I6153",
+    "semester": 8,
+    "files": {
+      "study_plan": "analisis_de_farmacos_y_medicamentos_0.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "laboratorio_analisis_quimico_clinico": {
+    "name": "laboratorio de analisis quimico clinico",
+    "code": "I6174",
+    "semester": 8,
+    "files": {
+      "study_plan": "laboratorio_de_analisis_quimico_clinico.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "inmunologia": {
+    "name": "inmunologia",
+    "code": "I6154",
+    "semester": 8,
+    "files": {
+      "study_plan": "inmunologia.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "toxicologia_aplicada": {
+    "name": "toxicologia aplicada",
+    "code": "I6175",
+    "semester": 8,
+    "files": {
+      "study_plan": "toxicologia_aplicada_0.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "analisis_microbilogico": {
+    "name": "analisis microbilogicos",
+    "code": "I6171",
+    "semester": 8,
+    "files": {
+      "study_plan": "analisis_microbiologicos_0.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "validacion_de_procesos_y_metodos_analiticos": {
+    "name": "validacion de procesos y metodos analiticos",
+    "code": "I6172",
+    "semester": 9,
+    "files": {
+      "study_plan": "validacion_de_procesos_y_metodos_analiticos_0.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "gerencia_administracion": {
+    "name": "gerencia y administracion",
+    "code": "I6158",
+    "semester": 9,
+    "files": {
+      "study_plan": "i6158_programa_gerencia_y_administracion.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "aseguramiento_calidad_analitica": {
+    "name": "aseguramiento de la calidad analitica",
+    "code": "I6155",
+    "semester": 9,
+    "files": {
+      "study_plan": "aseguramiento_de_la_calidad_analitica.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "analis_bromatologicos": {
+    "name": "analisis bromatologicos",
+    "code": "I6133",
+    "semester": 9,
+    "files": {
+      "study_plan": "analisis_bromatologicos_0.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "desarrollo_sustentable": {
+    "name": "desarrollo sustentable",
+    "code": "I6177",
+    "semester": 9,
+    "files": {
+      "study_plan": "desarrollo_sustentable.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  },
+  "biotecnologia": {
+    "name": "biotecnologia",
+    "code": "I6178",
+    "semester": 9,
+    "files": {
+      "study_plan": "biotecnologia.pdf",
+      "material": ""
+    },
+    "career": "LQFB"
+  }
+}

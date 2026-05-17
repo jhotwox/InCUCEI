@@ -153,6 +153,7 @@ const testSyncFiles = (career, { studyPlan = false, material = false }) => {
   const data = subjectsData[career]
   // Order by subject name alphabetically
   const sortedData = Object.entries(data).sort((a, b) => a[1].name.localeCompare(b[1].name))
+  let counter = 0
 
   // for (const [key, subject] of Object.entries(data)) {
   for (const [key, subject] of sortedData) {
@@ -166,6 +167,7 @@ const testSyncFiles = (career, { studyPlan = false, material = false }) => {
     if (studyPlan && material) {
       if (studyPlanExists && materialExists) {
         console.log(`✅ ${subject.name} -> Both files exist`)
+        counter++
       } else if (!studyPlanExists && !materialExists) {
         console.log(`❌ ${subject.name} -> Both files are missing`)
       } else if (!studyPlanExists) {
@@ -176,26 +178,44 @@ const testSyncFiles = (career, { studyPlan = false, material = false }) => {
     } else if (studyPlan) {
       if (studyPlanExists) {
         console.log(`✅ ${subject.name} -> Study plan file exists`)
+        counter++
       } else {
         console.log(`❌ ${subject.name} -> Study plan file is missing`)
       }
     } else if (material) {
       if (materialExists) {
         console.log(`✅ ${subject.name} -> Material file exists`)
+        counter++
       } else {
         console.log(`❌ ${subject.name} -> Material file is missing`)
       }
     }
   }
+  console.log(`\n🧮 Results for ${career}: ${counter}/${Object.keys(data).length} files exist\n`)
 }
 
 
 // defaultTest()
 console.log("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-")
-testDatasetSubjects()
+// testDatasetSubjects()
 console.log("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-")
 // AllSubjectsTest()
 console.log("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-")
 // testStudyPlanFiles('INNI')
 console.log("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-")
-// testSyncFiles("INFO", { studyPlan: true, material: false })
+// testSyncFiles('IGFO', { studyPlan: true, material: false })
+// testSyncFiles('ILOT', { studyPlan: true, material: false })
+// testSyncFiles('INBI', { studyPlan: true, material: false })
+// testSyncFiles('INCE', { studyPlan: true, material: false })
+// testSyncFiles('INDU', { studyPlan: true, material: false })
+// testSyncFiles('INEA', { studyPlan: true, material: false })
+// testSyncFiles('INFO', { studyPlan: true, material: false })
+// testSyncFiles('INME', { studyPlan: true, material: false })
+// testSyncFiles('INNI', { studyPlan: true, material: false })
+// testSyncFiles('INRO', { studyPlan: true, material: false })
+// testSyncFiles('ITOG', { studyPlan: true, material: false })
+// testSyncFiles('LILT', { studyPlan: true, material: false })
+// testSyncFiles('ICIV', { studyPlan: true, material: false })
+// testSyncFiles('LQFB', { studyPlan: true, material: false })
+// testSyncFiles('LQUI', { studyPlan: true, material: false })
+testSyncFiles('LIMA', { studyPlan: true, material: false })
