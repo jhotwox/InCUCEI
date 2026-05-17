@@ -1,5 +1,5 @@
 import User from "../../models/user.model.js"
-import { CONTACT_RESOURCES } from './gemini.config.js'
+import { CONTACT_RESOURCES, getKnownCareersSummary } from './gemini.config.js'
 
 // ============ Context Builders ============
 
@@ -45,10 +45,18 @@ export function buildConversationHistory(conversationHistory) {
  */
 function getBaseInstructions(forFunctionResponse) {
   if (forFunctionResponse) {
-    return "Presenta la info de BD al usuario de forma clara sin perder detalles."
+    return "Presenta la info de BD al usuario de forma clara sin perder detalles. Si el resultado incluye error=missing_career_code o error=invalid_career_code, pide al usuario el código de su carrera (ej. INNI, INEA, LQFB) y NO adivines."
   }
 
-  return "Si necesitas info de materias, usa get_subject_material o get_subject_study_plan. Si el usuario pregunta por ubicaciones o quiere ver algo en el mapa, usa show_location_on_map. No avises que usarás las funciones, solo úsalas."
+  return `Si necesitas info de materias, usa get_subject_material o get_subject_study_plan.
+
+Regla importante (materias): para traer material o plan de estudios necesitas el CÓDIGO de carrera del usuario (p. ej. INNI, INEA, LQFB, INFO, ILOT, LILT).
+- Si el usuario NO ha dado su código de carrera aún, PÍDELO primero.
+- Nunca inventes ni adivines la carrera.
+- Cuando llames a get_subject_material o get_subject_study_plan, incluye el argumento career con el código de carrera.
+
+Si el usuario pregunta por ubicaciones o quiere ver algo en el mapa, usa show_location_on_map.
+No avises que usarás las funciones, solo úsalas.`
 }
 
 /**
@@ -64,6 +72,7 @@ function getFunctionInstructions(forFunctionResponse) {
 export function buildSystemPrompt(userContext, historyContext, forFunctionResponse = false) {
   const baseInstructions = getBaseInstructions(forFunctionResponse)
   const functionInstructions = getFunctionInstructions(forFunctionResponse)
+  const careersSummary = getKnownCareersSummary()
 
   return `Eres "Asistente InCUCEI", asistente escolar de CUCEI.
 Ayudas con campus, trámites e info de contacto.
@@ -74,7 +83,12 @@ Tono: amable, conciso, profesional. Siempre en español.
 No inventes datos. Usa emojis si es apropiado.
 Enlaces en formato markdown.
 
+Evita cerrar SIEMPRE con la misma frase. Si haces un cierre, varíalo o a veces no cierres.
+
 ${userContext}${historyContext}
+
+Lista de carreras (código → nombre):
+${careersSummary}
 
 Contactos:
 - Servicio Escolar: ${CONTACT_RESOURCES.serviciosEscolares}

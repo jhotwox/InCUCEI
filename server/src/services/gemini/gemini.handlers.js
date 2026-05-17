@@ -1,6 +1,6 @@
 import { getCurriculumByCareer, getCurriculumByName, getMaterial, getStudyPlan, getSubjectByName } from '../subjects.service.js'
 import { formatSubjectName } from "../../libs/string.utils.js"
-import { ERROR_MESSAGES } from './gemini.config.js'
+import { ERROR_MESSAGES, isKnownCareerCode } from './gemini.config.js'
 import { PLACES } from '../../constants/places.js'
 
 // ============ Function Handlers ============
@@ -8,10 +8,26 @@ import { PLACES } from '../../constants/places.js'
 /**
  * Handler para obtener material de estudio de una materia
  */
-export function handleGetSubjectMaterial(subject) {
+export function handleGetSubjectMaterial(subject, career = null) {
   try {
+    const careerKey = career ? String(career).toUpperCase().trim() : null
+    if (!careerKey) {
+      return JSON.stringify({
+        error: "missing_career_code",
+        message:
+          "Para buscar material necesito el código de tu carrera (por ejemplo: INNI, INEA, LQFB, INFO, ILOT, LILT). ¿Cuál es el tuyo?",
+      })
+    }
+
+    if (!isKnownCareerCode(careerKey)) {
+      return JSON.stringify({
+        error: "invalid_career_code",
+        message: ERROR_MESSAGES.careerNotFound(careerKey),
+      })
+    }
+
     const formattedSubject = formatSubjectName(subject)
-    const foundSubject = getSubjectByName(formattedSubject)
+    const foundSubject = getSubjectByName(formattedSubject, careerKey)
 
     if (!foundSubject) {
       console.log(`[!] Subject not found: ${subject}`)
@@ -19,7 +35,7 @@ export function handleGetSubjectMaterial(subject) {
     }
 
     console.log(`[+] Found Subject: ${JSON.stringify(foundSubject)}`)
-    const materialResponse = getMaterial(foundSubject.key, foundSubject.career)
+    const materialResponse = getMaterial(foundSubject.key, careerKey)
     
     const result = JSON.stringify({
       subject: materialResponse.data.subject,
@@ -39,10 +55,26 @@ export function handleGetSubjectMaterial(subject) {
 /**
  * Handler para obtener el plan de estudios de una materia
  */
-export function handleGetSubjectStudyPlan(subject) {
+export function handleGetSubjectStudyPlan(subject, career = null) {
   try {
+    const careerKey = career ? String(career).toUpperCase().trim() : null
+    if (!careerKey) {
+      return JSON.stringify({
+        error: "missing_career_code",
+        message:
+          "Para buscar el plan de estudios necesito el código de tu carrera (por ejemplo: INNI, INEA, LQFB, INFO, ILOT, LILT). ¿Cuál es el tuyo?",
+      })
+    }
+
+    if (!isKnownCareerCode(careerKey)) {
+      return JSON.stringify({
+        error: "invalid_career_code",
+        message: ERROR_MESSAGES.careerNotFound(careerKey),
+      })
+    }
+
     const formattedSubject = formatSubjectName(subject)
-    const foundSubject = getSubjectByName(formattedSubject)
+    const foundSubject = getSubjectByName(formattedSubject, careerKey)
 
     if (!foundSubject) {
       console.log(`[!] Subject not found: ${subject}`)
@@ -50,7 +82,7 @@ export function handleGetSubjectStudyPlan(subject) {
     }
 
     console.log(`[+] Found Subject: ${JSON.stringify(foundSubject)}`)
-    const studyPlanResponse = getStudyPlan(foundSubject.key, foundSubject.career)
+    const studyPlanResponse = getStudyPlan(foundSubject.key, careerKey)
 
     const result = JSON.stringify({
       subject: studyPlanResponse.data.subject,
@@ -157,10 +189,10 @@ export async function executeFunctionCall(functionCall) {
   
   switch (name) {
     case "get_subject_material":
-      return handleGetSubjectMaterial(args.subject)
+      return handleGetSubjectMaterial(args.subject, args.career)
 
     case "get_subject_study_plan":
-      return handleGetSubjectStudyPlan(args.subject)
+      return handleGetSubjectStudyPlan(args.subject, args.career)
 
     case "get_curriculum":
       return handleGetCurriculum(args.career)

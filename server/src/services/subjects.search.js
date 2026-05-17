@@ -407,8 +407,9 @@ export const resolveSubject = (subjectQuery, opts = {}) => {
     }))
 }
 
-export const getSubjectByName = (name) => {
-  const results = resolveSubject(name, { limit: 1 })
+export const getSubjectByName = (name, career = null) => {
+  const careerKey = career ? String(career).toUpperCase() : null
+  const results = resolveSubject(name, { career: careerKey, limit: 1 })
   const best = results[0]?.item
   if (!best) return null
 

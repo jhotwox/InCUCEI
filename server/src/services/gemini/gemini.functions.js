@@ -12,6 +12,10 @@ export const getSubjectMaterialDeclaration = {
         type: Type.STRING,
         description: "The subject name, e.g. Mathematics, Physics, Chemistry",
       },
+      career: {
+        type: Type.STRING,
+        description: "Career code (required to disambiguate), e.g. INNI, INEA, LQFB, INFO, ILOT, LILT",
+      },
     },
     required: ["subject"],
   },
@@ -26,6 +30,10 @@ export const getSubjectStudyPlanDeclaration = {
       subject: {
         type: Type.STRING,
         description: "The subject name, e.g. Mathematics, Physics, Chemistry",
+      },
+      career: {
+        type: Type.STRING,
+        description: "Career code (required to disambiguate), e.g. INNI, INEA, LQFB, INFO, ILOT, LILT",
       },
     },
     required: ["subject"],

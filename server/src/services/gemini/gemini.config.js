@@ -22,6 +22,46 @@ function getNextGeminiAI() {
 export const getGeminiAI = getNextGeminiAI
 export const MODEL_NAME = "gemini-2.5-flash"
 
+// Career catalog used by Gemini.
+// Keep in sync with server/src/data/subjects.data.js (codes) and fill the `name` fields.
+// NOTE: You can also add `aliases` so the assistant can recognize full names like
+// "ingenieria robotica" or common abbreviations like "robotica or QFB".
+//
+// EDIT HERE: Fill/adjust the `name` and `aliases` fields.
+export const KNOWN_CAREER_CODES = [
+  { code: "INNI", name: "ingenieria informatica", aliases: ["informatica", "informática"] },
+  { code: "INFO", name: "ingenieria informatica", aliases: ["informatica", "informática"] },
+  { code: "ILOT", name: "ingenieria en logistica y transporte", aliases: ["logistica y transporte"] },
+  { code: "LILT", name: "licenciatura en logistica y transporte", aliases: ["logistica y transporte"] },
+  { code: "INRO", name: "ingenieria robotica", aliases: ["robotica"] },
+  { code: "INCE", name: "ingenieria en comunicaciones y electronica", aliases: ["comunicaciones y electronica"] },
+  { code: "INEA", name: "ingenieria en electromovilidad y autotronica", aliases: ["electromovilidad", "autotronica"] },
+  { code: "INBI", name: "ingenieria biomedica", aliases: ["biomedica"] },
+  { code: "INME", name: "ingenieria mecanica electrica", aliases: ["mecanica"] },
+  { code: "INDU", name: "ingenieria industrial", aliases: ["ingenieria industrial", "industrial"] },
+  { code: "ITOG", name: "ingenieria en topografia geomatica", aliases: ["ingenieria en topografia geomatica", "topografia", "geomática", "geomatica"] },
+  { code: "IGFO", name: "ingenieria fotonica", aliases: ["ingenieria fotonica", "fotonica"] },
+  { code: "ICIV", name: "ingenieria civil", aliases: ["ingenieria civil", "civil"] },
+  { code: "LQFB", name: "licenciatura en quimico farmaceutico biologo", aliases: ["quimico farmaceutico biologo", "qfb"] },
+  { code: "LQUI", name: "licenciatura en quimica", aliases: ["licenciatura en quimica", "quimica"] },
+  { code: "LIMA", name: "licenciatura en matematicas", aliases: ["licenciatura en matematicas", "matematicas"] }
+]
+
+const KNOWN_CAREER_CODE_SET = new Set(KNOWN_CAREER_CODES.map((c) => c.code))
+
+export const isKnownCareerCode = (code) => {
+  if (!code) return false
+  return KNOWN_CAREER_CODE_SET.has(String(code).toUpperCase().trim())
+}
+
+export const getCareerByCode = (code) => {
+  const key = String(code || "").toUpperCase().trim()
+  return KNOWN_CAREER_CODES.find((c) => c.code === key) || null
+}
+
+export const getKnownCareersSummary = () =>
+  KNOWN_CAREER_CODES.map((c) => `${c.code}: ${c.name || "(nombre pendiente)"}`).join(" | ")
+
 // ============ Contact Resources ============
 export const CONTACT_RESOURCES = {
   serviciosEscolares: "servicios.escolares@cucei.udg.mx",
