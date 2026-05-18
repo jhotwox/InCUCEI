@@ -169,14 +169,11 @@ export class GeminiService {
     const finalText = varyClosing(finalResponse.text)
     console.log("[+] Final AI Response: ", finalText)
 
-    // Si hay acción especial, retornar JSON con texto de Gemini
+    // Si hay acción especial, retornar solo el texto de Gemini,
+    // ya que el cliente se encargará de la acción.
     if (specialAction) {
-      const enrichedAction = {
-        ...specialAction,
-        generatedMessage: finalText // Guardar respuesta de Gemini
-      }
-      console.log("[+] Returning special action with Gemini message")
-      return JSON.stringify(enrichedAction)
+      console.log("[+] Returning special action message to user")
+      return finalText
     }
 
     return finalText

@@ -179,6 +179,39 @@ export function handleShowLocationOnMap(locationName) {
 }
 
 /**
+ * Handler para buscar un tema en Google Scholar
+ */
+export function handleSearchScholarTopic(topic) {
+  try {
+    console.log(`[+] Searching for topic on Google Scholar: ${topic}`)
+
+    if (!topic || String(topic).trim() === "") {
+      return JSON.stringify({
+        success: false,
+        message: "Por favor, dime qué tema te gustaría buscar en Google Scholar."
+      })
+    }
+
+    const encodedTopic = encodeURIComponent(topic)
+    const scholarUrl = `https://scholar.google.com/scholar?q=${encodedTopic}`
+
+    return JSON.stringify({
+      success: true,
+      action: "open_url",
+      url: scholarUrl,
+      topic: topic,
+      message: `Aquí tienes una búsqueda en Google Scholar sobre "${topic}".`
+    })
+  } catch (error) {
+    console.error("Error creating Google Scholar link: ", error)
+    return JSON.stringify({
+      success: false,
+      message: "Hubo un error al generar el enlace de búsqueda. Intenta de nuevo."
+    })
+  }
+}
+
+/**
  * Ejecuta la función solicitada por el modelo
  */
 export async function executeFunctionCall(functionCall) {
@@ -199,6 +232,9 @@ export async function executeFunctionCall(functionCall) {
 
     case "show_location_on_map":
       return handleShowLocationOnMap(args.locationName)
+
+    case "search_scholar_topic":
+      return handleSearchScholarTopic(args.topic)
 
     default:
       console.warn(`[!] Unknown function: ${name}`)
