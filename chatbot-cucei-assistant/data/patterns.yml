@@ -4,6 +4,7 @@ patterns:
     name: pattern academic assistance
     steps:
       - action: utter_ask_topic
+      - action: utter_ask_career_code
       - action: action_get_subject_material
   pattern_chitchat:
     description: Conversation repair flow for off-topic interactions that won't disrupt the main conversation. should not respond to greetings or anything else for which there is a flow defined

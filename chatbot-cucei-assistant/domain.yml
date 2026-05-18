@@ -5,6 +5,7 @@ intents:
   - request_subject_study_plan
   - request_subjects
   - request_location_map
+  - request_curriculum
   - greet
   - goodbye
   - request_human_contact
@@ -13,9 +14,15 @@ intents:
 entities:
   - subject
   - location
+  - career_code
 
 slots:
   topic:
+    type: text
+    mappings:
+      - type: from_llm
+
+  career_code:
     type: text
     mappings:
       - type: from_llm
@@ -33,6 +40,16 @@ slots:
 responses:
   utter_ask_topic:
     - text: "Cuál es la materia en la que necesitas material?"
+      metadata:
+        rephrase: True
+
+  utter_ask_career_code:
+    - text: "¿Cuál es el código de tu carrera? (por ejemplo: INNI, INEA, LQFB, INFO, ILOT, LILT)"
+      metadata:
+        rephrase: True
+
+  utter_invalid_career_code:
+    - text: "No reconozco ese código de carrera. Intenta con uno como: INNI, INEA, LQFB, INFO, ILOT, LILT."
       metadata:
         rephrase: True
 
@@ -56,13 +73,18 @@ responses:
       metadata:
         rephrase: True
 
+  utter_curriculum_not_found:
+    - text: "No encontré la malla curricular para ese código de carrera. ¿Puedes verificarlo?"
+      metadata:
+        rephrase: True
+
   utter_ask_confirm_human_contact:
     - text: "¿Quieres que te proporcione información de contacto para más ayuda?"
       metadata:
         rephrase: True
 
   utter_human_contact:
-    - text: "Puedes contactar este correo: test@academicos.udg.mx o este teléfono: +52 33 1234 5678"
+    - text: "Contactos CUCEI:\n- Servicios escolares: servicios.escolares@cucei.udg.mx\n- Coordinación Informática: coordinacion.di@cucei.udg.mx\n- Tel: +52 33 1378-5900\n- Web: https://www.cucei.udg.mx/"
       metadata:
         rephrase: True
         # rephrase_prompt: |
@@ -112,6 +134,7 @@ responses:
 actions:
   - action_get_subject_material
   - action_get_subject_study_plan
+  - action_get_curriculum
   - action_get_subjects
   - action_show_location_on_map
   - action_fetch_academic_materials

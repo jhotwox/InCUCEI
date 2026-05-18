@@ -38,12 +38,15 @@ nlu:
 
   - intent: request_subject_material
     examples: |
-      - necesito material de [Algoritmia](subject)
-      - pásame apuntes de [Bases de Datos](subject)
-      - ¿tienes material de [Cálculo Diferencial](subject)?
+      - necesito material de [algoritmia](subject)
+      - pásame apuntes de [bases de datos](subject)
+      - ¿tienes material de [cálculo diferencial](subject)?
       - quiero el material de [Ingenieria de Software I](subject)
       - dame el material de [Administracion de Redes](subject)
       - necesito el material de [BD](subject)
+      - necesito material de [Programación](subject) de [INNI](career_code)
+      - pásame el material de [Bases de Datos](subject) para [LQFB](career_code)
+      - dame material de [Algoritmia](subject) en [INFO](career_code)
 
   - intent: request_subject_study_plan
     examples: |
@@ -51,6 +54,8 @@ nlu:
       - pásame el plan de [Bases de Datos](subject)
       - ¿me das el plan de [Cálculo Diferencial](subject)?
       - necesito el plan de [Ingenieria de Software I](subject)
+      - quiero el plan de [Programación](subject) de [INNI](career_code)
+      - pásame el plan de [Bases de Datos](subject) para [INFO](career_code)
 
   - intent: request_subjects
     examples: |
@@ -61,11 +66,20 @@ nlu:
 
   - intent: request_location_map
     examples: |
+      - ¿En dónde está la [Biblioteca](location)?
+      - ¿En dónde está el [baño del modulo Z](location)?
       - ¿dónde está [Biblioteca](location)?
       - muéstrame [Modulo A](location)
       - llévame al [Modulo B](location)
       - necesito encontrar el [Baño Modulo U](location)
       - quiero ver [Lonaria](location) en el mapa
+
+  - intent: request_curriculum
+    examples: |
+      - quiero la malla de [INNI](career_code)
+      - pásame la malla curricular de [LQFB](career_code)
+      - necesito la malla de [INFO](career_code)
+      - dame la malla de [ingenieria informatica](career_code)
 
   - intent: request_human_contact
     examples: |

@@ -6,6 +6,11 @@
     "coord": [
       -103.32573681012552,
       20.65399964620464
+    ],
+    "alias": [
+      "A",
+      "Módulo A",
+      "Edificio A"
     ]
   },
   {
@@ -15,6 +20,12 @@
     "coord": [
       -103.32542418983384,
       20.654785648099917
+    ],
+    "alias": [
+      "Biblioteca",
+      "CID",
+      "Centro Integral de Documentacion",
+      "Centro Integral de Documentación"
     ]
   },
   {
@@ -24,6 +35,11 @@
     "coord": [
       -103.32489646153516,
       20.65399729303529
+    ],
+    "alias": [
+      "B",
+      "Módulo B",
+      "Edificio B"
     ]
   },
   {
@@ -33,6 +49,11 @@
     "coord": [
       -103.325509622685,
       20.658073038775754
+    ],
+    "alias": [
+      "Baño U",
+      "Baño Módulo U",
+      "Baño U"
     ]
   },
   {
@@ -42,6 +63,11 @@
     "coord": [
       -103.32535581986318,
       20.657629453317583
+    ],
+    "alias": [
+      "Baño Q",
+      "Baño Módulo Q",
+      "Baño Q"
     ]
   },
   {
@@ -51,6 +77,11 @@
     "coord": [
       -103.3269590485193,
       20.658253598759686
+    ],
+    "alias": [
+      "X",
+      "Módulo X",
+      "Edificio X"
     ]
   },
   {
@@ -60,6 +91,11 @@
     "coord": [
       -103.32504945857431,
       20.654207886384796
+    ],
+    "alias": [
+      "C",
+      "Módulo C",
+      "Edificio C"
     ]
   },
   {
@@ -69,6 +105,11 @@
     "coord": [
       -103.32528509820646,
       20.654480145526577
+    ],
+    "alias": [
+      "D",
+      "Módulo D",
+      "Edificio D"
     ]
   },
   {
@@ -78,6 +119,11 @@
     "coord": [
       -103.3261154049591,
       20.655560711484057
+    ],
+    "alias": [
+      "E",
+      "Módulo E",
+      "Edificio E"
     ]
   },
   {
@@ -87,6 +133,11 @@
     "coord": [
       -103.32593866927908,
       20.655873956838434
+    ],
+    "alias": [
+      "F",
+      "Módulo F",
+      "Edificio F"
     ]
   },
   {
@@ -96,6 +147,11 @@
     "coord": [
       -103.32697386789724,
       20.655872709739867
+    ],
+    "alias": [
+      "G",
+      "Módulo G",
+      "Edificio G"
     ]
   },
   {
@@ -105,6 +161,11 @@
     "coord": [
       -103.32637476502784,
       20.656021273180315
+    ],
+    "alias": [
+      "H",
+      "Módulo H",
+      "Edificio H"
     ]
   },
   {
@@ -114,6 +175,11 @@
     "coord": [
       -103.3255780636685,
       20.656076044852412
+    ],
+    "alias": [
+      "I",
+      "Módulo I",
+      "Edificio I"
     ]
   },
   {
@@ -123,6 +189,11 @@
     "coord": [
       -103.3255780636685,
       20.656076044852412
+    ],
+    "alias": [
+      "J",
+      "Módulo J",
+      "Edificio J"
     ]
   },
   {
@@ -132,6 +203,11 @@
     "coord": [
       -103.32604585458235,
       20.656369729249334
+    ],
+    "alias": [
+      "K",
+      "Módulo K",
+      "Edificio K"
     ]
   },
   {
@@ -141,6 +217,11 @@
     "coord": [
       -103.32520278054604,
       20.656769746905596
+    ],
+    "alias": [
+      "L",
+      "Módulo L",
+      "Edificio L"
     ]
   },
   {
@@ -150,6 +231,11 @@
     "coord": [
       -103.32563911856676,
       20.656827413628406
+    ],
+    "alias": [
+      "L2",
+      "Módulo L2",
+      "Edificio L2"
     ]
   },
   {
@@ -159,6 +245,11 @@
     "coord": [
       -103.32618146956041,
       20.656647422090217
+    ],
+    "alias": [
+      "M",
+      "Módulo M",
+      "Edificio M"
     ]
   },
   {
@@ -168,6 +259,11 @@
     "coord": [
       -103.32618923962953,
       20.65692386098725
+    ],
+    "alias": [
+      "N",
+      "Módulo N",
+      "Edificio N"
     ]
   },
   {
@@ -177,6 +273,12 @@
     "coord": [
       -103.32623786440642,
       20.65727163272382
+    ],
+    "alias": [
+      "O",
+      "Módulo O",
+      "Edificio O",
+      "División de Ingenierías"
     ]
   },
   {
@@ -186,6 +288,11 @@
     "coord": [
       -103.32538086859083,
       20.657316345051115
+    ],
+    "alias": [
+      "P",
+      "Módulo P",
+      "Edificio P"
     ]
   },
   {
@@ -195,6 +302,11 @@
     "coord": [
       -103.32490854713187,
       20.65761617916141
+    ],
+    "alias": [
+      "Q",
+      "Módulo Q",
+      "Edificio Q"
     ]
   },
   {
@@ -204,6 +316,11 @@
     "coord": [
       -103.3256741419031,
       20.657640914710427
+    ],
+    "alias": [
+      "R",
+      "Módulo R",
+      "Edificio R"
     ]
   },
   {
@@ -213,6 +330,11 @@
     "coord": [
       -103.32627606245802,
       20.657621104035798
+    ],
+    "alias": [
+      "S",
+      "Módulo S",
+      "Edificio S"
     ]
   },
   {
@@ -222,6 +344,11 @@
     "coord": [
       -103.3264448088834,
       20.65789146379383
+    ],
+    "alias": [
+      "S2",
+      "Módulo S2",
+      "Edificio S2"
     ]
   },
   {
@@ -231,6 +358,11 @@
     "coord": [
       -103.32544292293086,
       20.65788972325224
+    ],
+    "alias": [
+      "T",
+      "Módulo T",
+      "Edificio T"
     ]
   },
   {
@@ -240,6 +372,11 @@
     "coord": [
       -103.32544270404024,
       20.658095367759984
+    ],
+    "alias": [
+      "U",
+      "Módulo U",
+      "Edificio U"
     ]
   },
   {
@@ -249,6 +386,11 @@
     "coord": [
       -103.32625937954431,
       20.658306114405917
+    ],
+    "alias": [
+      "V",
+      "Módulo V",
+      "Edificio V"
     ]
   },
   {
@@ -258,6 +400,11 @@
     "coord": [
       -103.32623209744446,
       20.65809910475312
+    ],
+    "alias": [
+      "V2",
+      "Módulo V2",
+      "Edificio V2"
     ]
   },
   {
@@ -267,6 +414,11 @@
     "coord": [
       -103.32694890691222,
       20.6580587127969
+    ],
+    "alias": [
+      "W",
+      "Módulo W",
+      "Edificio W"
     ]
   },
   {
@@ -276,6 +428,11 @@
     "coord": [
       -103.3273286565387,
       20.657264361040973
+    ],
+    "alias": [
+      "Y",
+      "Módulo Y",
+      "Edificio Y"
     ]
   },
   {
@@ -285,6 +442,11 @@
     "coord": [
       -103.32769667409521,
       20.657239676592923
+    ],
+    "alias": [
+      "Z",
+      "Módulo Z",
+      "Edificio Z"
     ]
   },
   {
@@ -294,6 +456,11 @@
     "coord": [
       -103.32786178174898,
       20.65731589394565
+    ],
+    "alias": [
+      "Z1",
+      "Módulo Z1",
+      "Edificio Z1"
     ]
   },
   {
@@ -303,6 +470,11 @@
     "coord": [
       -103.3274573161873,
       20.65759563837794
+    ],
+    "alias": [
+      "Z2",
+      "Módulo Z2",
+      "Edificio Z2"
     ]
   },
   {
@@ -312,6 +484,17 @@
     "coord": [
       -103.32722795009977,
       20.657366550883637
+    ],
+    "alias": [
+      "Auditorio Nikolai V. Mitskievich",
+      "Auditorio Dr. Nikolai V. Mitskievich",
+      "Auditorio Dr. Nikolai V Mitskievich",
+      "Auditorio Nikolai",
+      "Auditorio Mitskievich",
+      "Auditorio Dr. Nikolai",
+      "Auditorio Dr Nikolai",
+      "Auditorio Dr. Mitskievich",
+      "Auditorio Dr Mitskievich"
     ]
   },
   {
@@ -321,6 +504,16 @@
     "coord": [
       -103.3258125436777,
       20.653950796731692
+    ],
+    "alias": [
+      "Auditorio Enrique Díaz De León",
+      "Auditorio Enrique Diaz De Leon",
+      "Auditorio Enrique Diaz De León",
+      "Auditorio Enrique Díaz De Leon",
+      "Auditorio Enrique Diaz",
+      "Auditorio Diaz De León",
+      "Auditorio Diaz De Leon",
+      "Auditorio Diaz"
     ]
   },
   {
@@ -330,6 +523,12 @@
     "coord": [
       -103.32667086027445,
       20.655552679683467
+    ],
+    "alias": [
+      "Auditorio Antonio Rodríguez",
+      "Auditorio Ing. Antonio Rodríguez",
+      "Auditorio Antonio Rodriguez",
+      "Auditorio Ing. Antonio Rodriguez"
     ]
   },
   {
@@ -339,6 +538,19 @@
     "coord": [
       -103.3256314982902,
       20.65672900225057
+    ],
+    "alias": [
+      "Auditorio Ing. Jorge Matute Remus",
+      "Auditorio Ing. Jorge Matute",
+      "Auditorio Ing Jorge Matute Remus",
+      "Auditorio Ing Jorge Matute",
+      "Auditorio Jorge Matute Remus",
+      "Auditorio Jorge Matute",
+      "Auditorio Jorge Matute Remus",
+      "Auditorio Matute",
+      "Auditorio Matute Remus",
+      "Auditorio Ing. Matute Remus",
+      "Auditorio Ing Matute Remus"
     ]
   },
   {
@@ -348,6 +560,17 @@
     "coord": [
       -103.3264100001656,
       20.657209350349035
+    ],
+    "alias": [
+      "Auditorio Ing. Antonio Alatorre González",
+      "Auditorio Ing. Antonio Alatorre",
+      "Auditorio Ing Antonio Alatorre González",
+      "Auditorio Ing Antonio Alatorre",
+      "Auditorio Ing. Antonio Alatorre Gonzalez",
+      "Auditorio Ing Antonio Alatorre Gonzalez",
+      "Auditorio Antonio Alatorre",
+      "Auditorio Antonio Alatorre González",
+      "Auditorio Antonio Alatorre Gonzalez"
     ]
   },
   {
@@ -357,6 +580,10 @@
     "coord": [
       -103.32743401612962,
       20.657473077842468
+    ],
+    "alias": [
+      "Lonaria",
+      "Edificio Lonaria"
     ]
   },
   {
@@ -366,6 +593,11 @@
     "coord": [
       -103.3270751224415,
       20.657183354690147
+    ],
+    "alias": [
+      "Baño Modulo Y",
+      "Baño Módulo Y",
+      "Baño Y"
     ]
   },
   {
@@ -375,6 +607,11 @@
     "coord": [
       -103.32780271408606,
       20.657395231417894
+    ],
+    "alias": [
+      "Baño Modulo Z",
+      "Baño Módulo Z",
+      "Baño Z"
     ]
   },
   {
@@ -384,6 +621,11 @@
     "coord": [
       -103.32723008252601,
       20.658195606367286
+    ],
+    "alias": [
+      "Baño Modulo X",
+      "Baño Módulo X",
+      "Baño X"
     ]
   },
   {
@@ -393,6 +635,11 @@
     "coord": [
       -103.32612346814425,
       20.657853301635683
+    ],
+    "alias": [
+      "Baño Modulo S2",
+      "Baño Módulo S2",
+      "Baño S2"
     ]
   },
   {
@@ -402,6 +649,11 @@
     "coord": [
       -103.3255207547374,
       20.657847563745463
+    ],
+    "alias": [
+      "Baño Modulo T",
+      "Baño Módulo T",
+      "Baño T"
     ]
   },
   {
@@ -411,6 +663,17 @@
     "coord": [
       -103.32521766654148,
       20.656432942974575
+    ],
+    "alias": [
+      "Modulo UCT1 - Alfa",
+      "Módulo UCT1 - Alfa",
+      "Edificio UCT1 - Alfa",
+      "UCT1 - Alfa",
+      "UCT1 Alfa",
+      "Alfa",
+      "UCT1",
+      "Modulo UCT1",
+      "Módulo UCT1"
     ]
   },
   {
@@ -420,6 +683,17 @@
     "coord": [
       -103.32519819364244,
       20.65623381417265
+    ],
+    "alias": [
+      "Modulo UCT2 - Beta",
+      "Módulo UCT2 - Beta",
+      "Edificio UCT2 - Beta",
+      "UCT2 - Beta",
+      "UCT2 Beta",
+      "Beta",
+      "UCT2",
+      "Modulo UCT2",
+      "Módulo UCT2"
     ]
   },
   {
@@ -427,8 +701,14 @@
     "name": "CTA - Coordinación de Tecnologías para el Aprendizaje",
     "type": "edificio",
     "coord": [
-      -103.32519819364244,
-      20.65623381417265
+      -103.32487671729044,
+      20.65647922988711
+    ],
+    "alias": [
+      "CTA - Coordinación de Tecnologías para el Aprendizaje",
+      "CTA",
+      "Coordinación de Tecnologías para el Aprendizaje",
+      "Coordinacion de Tecnologias para el Aprendizaje"
     ]
   },
   {
@@ -438,6 +718,11 @@
     "coord": [
       -103.32362392868781,
       20.65724991226236
+    ],
+    "alias": [
+      "CDU - Complejo Deportivo Universitario",
+      "CDU",
+      "Complejo Deportivo Universitario"
     ]
   },
   {
@@ -447,6 +732,14 @@
     "coord": [
       -103.32354189326671,
       20.658181366477763
+    ],
+    "alias": [
+      "Gimnasio de Usos Múltiples",
+      "Gimnasio de Usos Multiples",
+      "Gimnasio de Usos Múltiple",
+      "Gimnasio de Usos Multiplo",
+      "Gimnasio de Usos Multiples",
+      "Gimnasio"
     ]
   },
   {
@@ -456,6 +749,14 @@
     "coord": [
       -103.32471469014973,
       20.657980976836157
+    ],
+    "alias": [
+      "Laboratorio de Producción de Ingenierías",
+      "Laboratorio de Produccion de Ingenierias",
+      "Laboratorio de Producción de Ingenieria",
+      "Laboratorio de Produccion de Ingenieria",
+      "Laboratorio de Producción",
+      "Laboratorio de Produccion"
     ]
   },
   {
@@ -465,6 +766,10 @@
     "coord": [
       -103.32490741393654,
       20.65748828560298
+    ],
+    "alias": [
+      "Baños Jobs",
+      "Baño Jobs"
     ]
   },
   {
@@ -483,6 +788,11 @@
     "coord": [
       -103.32568193932774,
       20.657595918860267
+    ],
+    "alias": [
+      "Baño Modulo R",
+      "Baño Módulo R",
+      "Baño R"
     ]
   },
   {
@@ -492,6 +802,12 @@
     "coord": [
       -103.32575017818547,
       20.658245096982554
+    ],
+    "alias": [
+      "Cafebreria Carlos Fuentes",
+      "Cafebrería Carlos Fuentes",
+      "Cafebreria",
+      "Cafebrería"
     ]
   },
   {
@@ -501,6 +817,11 @@
     "coord": [
       -103.32641104434164,
       20.65620329039419
+    ],
+    "alias": [
+      "Baño Modulo J",
+      "Baño Módulo J",
+      "Baño J"
     ]
   },
   {
@@ -510,6 +831,11 @@
     "coord": [
       -103.32604617872354,
       20.65565868162065
+    ],
+    "alias": [
+      "Baño Modulo F",
+      "Baño Módulo F",
+      "Baño F"
     ]
   },
   {
@@ -519,6 +845,11 @@
     "coord": [
       -103.32658211448249,
       20.655568114382305
+    ],
+    "alias": [
+      "Baño Modulo E",
+      "Baño Módulo E",
+      "Baño E"
     ]
   },
   {
@@ -528,6 +859,11 @@
     "coord": [
       -103.32602667097228,
       20.654317438435882
+    ],
+    "alias": [
+      "Baño Modulo A",
+      "Baño Módulo A",
+      "Baño A"
     ]
   },
   {
@@ -537,6 +873,10 @@
     "coord": [
       -103.32560046015712,
       20.6547458143705
+    ],
+    "alias": [
+      "Baño Biblioteca",
+      "Baño Biblioteca"
     ]
   },
   {
@@ -546,6 +886,17 @@
     "coord": [
       -103.32538002159332,
       20.656382456052654
+    ],
+    "alias": [
+      "Baño Alfa",
+      "Baño Módulo Alfa",
+      "Baño Modulo Alfa",
+      "Baño UCT1",
+      "Baño Modulo UCT1",
+      "Baño UCT1 - Alfa",
+      "Baño UCT1 Alfa",
+      "Baño Módulo UCT1",
+      "Baño Módulo Alfa"
     ]
   },
   {
@@ -555,6 +906,17 @@
     "coord": [
       -103.32537035840315,
       20.65629581989309
+    ],
+    "alias": [
+      "Baño Beta",
+      "Baño Módulo Beta",
+      "Baño Modulo Beta",
+      "Baño UCT2",
+      "Baño Modulo UCT2",
+      "Baño UCT2 - Beta",
+      "Baño UCT2 Alfa",
+      "Baño Módulo UCT2",
+      "Baño Módulo Beta"
     ]
   },
   {
@@ -564,6 +926,763 @@
     "coord": [
       -103.3250247525433,
       20.657293819454722
+    ],
+    "alias": [
+      "Baño Modulo P",
+      "Baño Módulo P",
+      "Baño P"
+    ]
+  },
+  {
+    "id": "64",
+    "name": "Control Escolar",
+    "type": "edificio",
+    "coord": [
+      -103.32570037288883,
+      20.653724526163856
+    ],
+    "alias": [
+      "Control Escolar",
+      "Edificio Control Escolar"
+    ]
+  },
+  {
+    "id": "65",
+    "name": "Unidad de Salud Integral",
+    "type": "edificio",
+    "coord": [
+      -103.32486756899843,
+      20.657005112089237
+    ],
+    "alias": [
+      "Unidad de Salud Integral",
+      "Edificio Unidad de Salud Integral",
+      "Unidad de Salud",
+      "Edificio Salud",
+      "Hospitalito",
+      "Salud Integral"
+    ]
+  },
+  {
+    "id": "66",
+    "name": "Unidad de Servicio Social",
+    "type": "edificio",
+    "coord": [
+      -103.32578288265951,
+      20.654280313540013
+    ],
+    "alias": [
+      "Unidad de Servicio Social",
+      "Edificio Unidad de Servicio Social",
+      "Unidad de Servicio",
+      "Edificio Servicio Social",
+      "Servicio Social"
+    ]
+  },
+  {
+    "id": "67",
+    "name": "Unidad de Vinculación",
+    "type": "edificio",
+    "coord": [
+      -103.32594251395427,
+      20.65402991689959
+    ],
+    "alias": [
+      "Unidad de Vinculación",
+      "Edificio Unidad de Vinculación",
+      "Unidad de Vinculacion",
+      "Edificio Vinculación",
+      "Vinculación",
+      "Vinculacion"
+    ]
+  },
+  {
+    "id": "68",
+    "name": "Módulo de Actividades Culturales - MAC",
+    "type": "edificio",
+    "coord": [
+      -103.32582639333829,
+      20.654342863269278
+    ],
+    "alias": [
+      "Módulo de Actividades Culturales - MAC",
+      "Módulo de Actividades Culturales",
+      "MAC",
+      "Edificio Módulo de Actividades Culturales",
+      "Edificio MAC",
+      "Actividades Culturales"
+    ]
+  },
+  {
+    "id": "69",
+    "name": "Rectoría",
+    "type": "edificio",
+    "coord": [
+      -103.3256674638033,
+      20.654123326370637
+    ],
+    "alias": [
+      "Rectoría",
+      "Edificio Rectoría"
+    ]
+  },
+  {
+    "id": "70",
+    "name": "Unidad de Adquisiciones y Suministros",
+    "type": "edificio",
+    "coord": [
+      -103.32575448009972,
+      20.654249297261387
+    ],
+    "alias": [
+      "Unidad de Adquisiciones y Suministros",
+      "Edificio Unidad de Adquisiciones y Suministros",
+      "Adquisiciones y Suministros"
+    ]
+  },
+  {
+    "id": "71",
+    "name": "Unidad de Mantenimiento",
+    "type": "edificio",
+    "coord": [
+      -103.32572746609982,
+      20.654200995143256
+    ],
+    "alias": [
+      "Unidad de Mantenimiento",
+      "Edificio Unidad de Mantenimiento",
+      "Mantenimiento"
+    ]
+  },
+  {
+    "id": "72",
+    "name": "Unidad de Difusión",
+    "type": "edificio",
+    "coord": [
+      -103.3256938779468,
+      20.654162493470253
+    ],
+    "alias": [
+      "Unidad de Difusión",
+      "Edificio Unidad de Difusión",
+      "Difusión"
+    ]
+  },
+  {
+    "id": "73",
+    "name": "Secretaría Administrativa",
+    "type": "edificio",
+    "coord": [
+      -103.3256275221109,
+      20.654069567391744
+    ],
+    "alias": [
+      "Secretaría Administrativa",
+      "Edificio Secretaría Administrativa",
+      "Secretaría"
+    ]
+  },
+  {
+    "id": "74",
+    "name": "Secretaría Académica",
+    "type": "edificio",
+    "coord": [
+      -103.3255984000949,
+      20.65403351405206
+    ],
+    "alias": [
+      "Secretaría Académica",
+      "Edificio Secretaría Académica"
+    ]
+  },
+  {
+    "id": "75",
+    "name": "Secretaría Técnica",
+    "type": "edificio",
+    "coord": [
+      -103.32556998827198,
+      20.653994352390313
+    ],
+    "alias": [
+      "Secretaría Técnica",
+      "Edificio Secretaría Técnica"
+    ]
+  },
+  {
+    "id": "76",
+    "name": "Coordinación de Personal",
+    "type": "edificio",
+    "coord": [
+      -103.32554109588476,
+      20.65395403561716
+    ],
+    "alias": [
+      "Coordinación de Personal",
+      "Edificio Coordinación de Personal",
+      "Personal"
+    ]
+  },
+  {
+    "id": "77",
+    "name": "Coordinación de Extensión",
+    "type": "edificio",
+    "coord": [
+      -103.32551456331893,
+      20.65391608534864
+    ],
+    "alias": [
+      "Coordinación de Extensión",
+      "Edificio Coordinación de Extensión",
+      "Extensión"
+    ]
+  },
+  {
+    "id": "78",
+    "name": "Módulo de Actividades Deportivas",
+    "type": "edificio",
+    "coord": [
+      -103.32546365554,
+      20.65384029766038
+    ],
+    "alias": [
+      "Módulo de Actividades Deportivas",
+      "Edificio Módulo de Actividades Deportivas",
+      "Deportivas"
+    ]
+  },
+  {
+    "id": "79",
+    "name": "Coordinación de Finanzas",
+    "type": "edificio",
+    "coord": [
+      -103.3254378216164,
+      20.653810844839796
+    ],
+    "alias": [
+      "Coordinación de Finanzas",
+      "Edificio Coordinación de Finanzas",
+      "Finanzas"
+    ]
+  },
+  {
+    "id": "80",
+    "name": "Coordinación de Planeación",
+    "type": "edificio",
+    "coord": [
+      -103.32541199787238,
+      20.653774336111482
+    ],
+    "alias": [
+      "Coordinación de Planeación",
+      "Edificio Coordinación de Planeación",
+      "Planeación"
+    ]
+  },
+  {
+    "id": "81",
+    "name": "Coordinación de Investigación",
+    "type": "edificio",
+    "coord": [
+      -103.32607203746062,
+      20.654192246565657
+    ],
+    "alias": [
+      "Coordinación de Investigación",
+      "Edificio Coordinación de Investigación",
+      "Investigación"
+    ]
+  },
+  {
+    "id": "82",
+    "name": "Coordinación de Servicios Académicos",
+    "type": "edificio",
+    "coord": [
+      -103.32603919372055,
+      20.654153398739467
+    ],
+    "alias": [
+      "Coordinación de Servicios Académicos",
+      "Edificio Coordinación de Servicios Académicos",
+      "Servicios Académicos"
+    ]
+  },
+  {
+    "id": "83",
+    "name": "Coordinación de Programas Docentes",
+    "type": "edificio",
+    "coord": [
+      -103.32601511873442,
+      20.654120975833663
+    ],
+    "alias": [
+      "Coordinación de Programas Docentes",
+      "Edificio Coordinación de Programas Docentes",
+      "Programas Docentes"
+    ]
+  },
+  {
+    "id": "84",
+    "name": "Unidad de Enseñanza Incorporada",
+    "type": "edificio",
+    "coord": [
+      -103.32598557227753,
+      20.654083273795507
+    ],
+    "alias": [
+      "Unidad de Enseñanza Incorporada",
+      "Edificio Unidad de Enseñanza Incorporada",
+      "Enseñanza Incorporada"
+    ]
+  },
+  {
+    "id": "85",
+    "name": "Unidad de Becas e Intercambio",
+    "type": "edificio",
+    "coord": [
+      -103.32564068783883,
+      20.65485430052783
+    ],
+    "alias": [
+      "Unidad de Becas e Intercambio",
+      "Edificio Unidad de Becas e Intercambio",
+      "Becas e Intercambio",
+      "Becas",
+      "Intercambio",
+      "Unidad de Becas",
+      "Unidad de Intercambio"
+    ]
+  },
+  {
+    "id": "86",
+    "name": "Centro de Aprendizaje Global",
+    "type": "edificio",
+    "coord": [
+      -103.32564958558467,
+      20.65480660212944
+    ],
+    "alias": [
+      "Centro de Aprendizaje Global",
+      "Edificio Centro de Aprendizaje Global",
+      "Aprendizaje Global"
+    ]
+  },
+  {
+    "id": "87",
+    "name": "Unidad de Desarrollo Bibliotecario",
+    "type": "edificio",
+    "coord": [
+      -103.32561999536784,
+      20.654898666583023
+    ],
+    "alias": [
+      "Unidad de Desarrollo Bibliotecario",
+      "Edificio Unidad de Desarrollo Bibliotecario",
+      "Desarrollo Bibliotecario"
+    ]
+  },
+  {
+    "id": "88",
+    "name": "Coordinación de Ingeniería Mecánica Electrónica",
+    "type": "edificio",
+    "coord": [
+      -103.32641620246784,
+      20.657405856757748
+    ],
+    "alias": [
+      "Coordinación de Ingeniería Mecánica Electrónica",
+      "Edificio Coordinación de Ingeniería Mecánica Electrónica",
+      "Ingeniería Mecánica Electrónica"
+    ]
+  },
+  {
+    "id": "89",
+    "name": "Coordinación de Ingeniería en Comunicaciones y Electrónica",
+    "type": "edificio",
+    "coord": [
+      -103.32613906823192,
+      20.657215224387983
+    ],
+    "alias": [
+      "Coordinación de Ingeniería en Comunicaciones y Electrónica",
+      "Edificio Coordinación de Ingeniería en Comunicaciones y Electrónica",
+      "Ingeniería en Comunicaciones y Electrónica",
+      "Comunicaciones y Electrónica",
+      "INCE",
+      "Ingeniería en Comunicaciones",
+      "Ingeniería en Electrónica",
+      "Coordinación INCE"
+    ]
+  },
+  {
+    "id": "90",
+    "name": "Coordinación en Electrónica y Sistemas Inteligentes",
+    "type": "edificio",
+    "coord": [
+      -103.32613906823192,
+      20.657215224387983
+    ],
+    "alias": [
+      "Coordinación en Electrónica y Sistemas Inteligentes",
+      "Edificio Coordinación en Electrónica y Sistemas Inteligentes",
+      "Electrónica y Sistemas Inteligentes",
+      "Sistemas Inteligentes",
+      "INES",
+      "Ingeniería en Sistemas Inteligentes",
+      "Coordinación INES"
+    ]
+  },
+  {
+    "id": "91",
+    "name": "Coordinación de Ingeniería en Computación",
+    "type": "edificio",
+    "coord": [
+      -103.32622532367085,
+      20.657235263560253
+    ],
+    "alias": [
+      "Coordinación de Ingeniería en Computación",
+      "Edificio Coordinación de Ingeniería en Computación",
+      "Ingeniería en Computación",
+      "Computación",
+      "ICOM",
+      "Coordinación ICOM"
+    ]
+  },
+  {
+    "id": "92",
+    "name": "Coordinación de Ingeniería Informática",
+    "type": "edificio",
+    "coord": [
+      -103.32613490043005,
+      20.65724980965487
+    ],
+    "alias": [
+      "Coordinación de Ingeniería Informática",
+      "Edificio Coordinación de Ingeniería Informática",
+      "Ingeniería Informática",
+      "Informática",
+      "INNI",
+      "Coordinación INNI",
+      "INFO",
+      "Coordinación INFO"
+    ]
+  },
+  {
+    "id": "93",
+    "name": "Coordinación de Ingeniería Biomédica",
+    "type": "edificio",
+    "coord": [
+      -103.32613031088196,
+      20.657299586698855
+    ],
+    "alias": [
+      "Coordinación de Ingeniería Biomédica",
+      "Edificio Coordinación de Ingeniería Biomédica",
+      "Ingeniería Biomédica",
+      "Biomédica",
+      "INBI",
+      "Coordinación INBI"
+    ]
+  },
+  {
+    "id": "94",
+    "name": "Coordinación de Ingeniería Robótica",
+    "type": "edificio",
+    "coord": [
+      -103.32627817017257,
+      20.657275500508447
+    ],
+    "alias": [
+      "Coordinación de Ingeniería Robótica",
+      "Edificio Coordinación de Ingeniería Robótica",
+      "Ingeniería Robótica",
+      "Robótica",
+      "INRO",
+      "Coordinación INRO"
+    ]
+  },
+  {
+    "id": "95",
+    "name": "Coordinación de Ingeniería Fotónica",
+    "type": "edificio",
+    "coord": [
+      -103.32632438562013,
+      20.657180773590156
+    ],
+    "alias": [
+      "Coordinación de Ingeniería Fotónica",
+      "Edificio Coordinación de Ingeniería Fotónica",
+      "Ingeniería Fotónica",
+      "Fotónica",
+      "IGFO",
+      "Coordinación IGFO"
+    ]
+  },
+  {
+    "id": "96",
+    "name": "Coordinación de Ingeniería Civil",
+    "type": "edificio",
+    "coord": [
+      -103.3263249732243,
+      20.65740865034728
+    ],
+    "alias": [
+      "Coordinación de Ingeniería Civil",
+      "Edificio Coordinación de Ingeniería Civil",
+      "Ingeniería Civil",
+      "Civil",
+      "ICIV",
+      "Coordinación ICIV"
+    ]
+  },
+  {
+    "id": "97",
+    "name": "Coordinación de Ingeniería en Logística y Transporte",
+    "type": "edificio",
+    "coord": [
+      -103.32636520143937,
+      20.657355385065785
+    ],
+    "alias": [
+      "Coordinación de Ingeniería en Logística y Transporte",
+      "Edificio Coordinación de Ingeniería en Logística y Transporte",
+      "Ingeniería en Logística y Transporte",
+      "Logística y Transporte",
+      "ILOT",
+      "Coordinación ILOT"
+    ]
+  },
+  {
+    "id": "98",
+    "name": "Coordinación de Ingeniería Industrial",
+    "type": "edificio",
+    "coord": [
+      -103.32641594729864,
+      20.657286232753194
+    ],
+    "alias": [
+      "Coordinación de Ingeniería Industrial",
+      "Edificio Coordinación de Ingeniería Industrial",
+      "Ingeniería Industrial",
+      "Industrial",
+      "INDU",
+      "Coordinación INDU"
+    ]
+  },
+  {
+    "id": "99",
+    "name": "División de Tecnologías para la Integración Ciber-Humana",
+    "type": "edificio",
+    "coord": [
+      -103.32619479202747,
+      20.657214698727444
+    ],
+    "alias": [
+      "División de Tecnologías para la Integración Ciber-Humana",
+      "Edificio División de Tecnologías para la Integración Ciber-Humana",
+      "Tecnologías para la Integración Ciber-Humana",
+      "Ciber-Humana",
+      "DIVTIC"
+    ]
+  },
+  {
+    "id": "100",
+    "name": "Coordinación de Ingeniería en Topografía Geomática",
+    "type": "edificio",
+    "coord": [
+      -103.3263717604994,
+      20.65740840113601
+    ],
+    "alias": [
+      "Coordinación de Ingeniería en Topografía Geomática",
+      "Edificio Coordinación de Ingeniería en Topografía Geomática",
+      "Ingeniería en Topografía Geomática",
+      "Topografía Geomática",
+      "ITOG",
+      "Coordinación ITOG"
+    ]
+  },
+  {
+    "id": "101",
+    "name": "Coordinación de Ingeniería en Alimentos y Biotecnología",
+    "type": "edificio",
+    "coord": [
+      -103.32641594729864,
+      20.657286232753194
+    ],
+    "alias": [
+      "Coordinación de Ingeniería en Alimentos y Biotecnología",
+      "Edificio Coordinación de Ingeniería en Alimentos y Biotecnología",
+      "Ingeniería en Alimentos y Biotecnología",
+      "Alimentos y Biotecnología",
+      "LINA",
+      "Coordinación LINA"
+    ]
+  },
+  {
+    "id": "102",
+    "name": "Coordinación de Ingeniería Química",
+    "type": "edificio",
+    "coord": [
+      -103.32569844771398,
+      20.65561614034516
+    ],
+    "alias": [
+      "Coordinación de Ingeniería Química",
+      "Edificio Coordinación de Ingeniería Química",
+      "Ingeniería Química",
+      "Química",
+      "INQU",
+      "Coordinación INQU"
+    ]
+  },
+  {
+    "id": "103",
+    "name": "Coordinación de Licenciatura en Química",
+    "type": "edificio",
+    "coord": [
+      -103.32576888727829,
+      20.65554268928473
+    ],
+    "alias": [
+      "Coordinación de Licenciatura en Química",
+      "Edificio Coordinación de Licenciatura en Química",
+      "Licenciatura en Química",
+      "LQUI",
+      "Coordinación LQUI"
+    ]
+  },
+  {
+    "id": "104",
+    "name": "Coordinación de Licenciatura en Químico Farmacéutico Biólogo",
+    "type": "edificio",
+    "coord": [
+      -103.32573925974977,
+      20.655578085214202
+    ],
+    "alias": [
+      "Coordinación de Licenciatura en Químico Farmacéutico Biólogo",
+      "Edificio Coordinación de Licenciatura en Químico Farmacéutico Biólogo",
+      "Licenciatura en Químico Farmacéutico Biólogo",
+      "LQFB",
+      "Coordinación LQFB",
+      "QFB",
+      "Coordinación QFB"
+    ]
+  },
+  {
+    "id": "105",
+    "name": "Coordinación de Licenciatura en Física",
+    "type": "edificio",
+    "coord": [
+      -103.32630882420577,
+      20.658291813731523
+    ],
+    "alias": [
+      "Coordinación de Licenciatura en Física",
+      "Edificio Coordinación de Licenciatura en Física",
+      "Licenciatura en Física",
+      "LIFI",
+      "Coordinación LIFI"
+    ]
+  },
+  {
+    "id": "106",
+    "name": "Coordinación de Licenciatura en Matemáticas",
+    "type": "edificio",
+    "coord": [
+      -103.32625761756518,
+      20.658293118836013
+    ],
+    "alias": [
+      "Coordinación de Licenciatura en Matemáticas",
+      "Edificio Coordinación de Licenciatura en Matemáticas",
+      "Licenciatura en Matemáticas",
+      "LIMA",
+      "Coordinación LIMA"
+    ]
+  },
+  {
+    "id": "107",
+    "name": "Coordinación de Ingeniería en Ciencia de Materiales",
+    "type": "edificio",
+    "coord": [
+      -103.32620341495083,
+      20.658296761395377
+    ],
+    "alias": [
+      "Coordinación de Ingeniería en Ciencia de Materiales",
+      "Edificio Coordinación de Ingeniería en Ciencia de Materiales",
+      "Ingeniería en Ciencia de Materiales",
+      "ICIM",
+      "Coordinación ICIM"
+    ]
+  },
+  {
+    "id": "108",
+    "name": "Unidad de Multimedia Instruccional",
+    "type": "edificio",
+    "coord": [
+      -103.32488391699177,
+      20.65647964796743
+    ],
+    "alias": [
+      "Unidad de Multimedia Instruccional",
+      "Edificio Unidad de Multimedia Instruccional",
+      "Multimedia Instruccional"
+    ]
+  },
+  {
+    "id": "109",
+    "name": "Unidad de Cómputo y Telecomunicaciones para el Aprendizaje",
+    "type": "edificio",
+    "coord": [
+      -103.32488391699177,
+      20.65647964796743
+    ],
+    "alias": [
+      "Unidad de Cómputo y Telecomunicaciones para el Aprendizaje",
+      "Edificio Unidad de Cómputo y Telecomunicaciones para el Aprendizaje",
+      "Cómputo y Telecomunicaciones para el Aprendizaje"
+    ]
+  },
+  {
+    "id": "110",
+    "name": "PROULEX",
+    "type": "edificio",
+    "coord": [
+      -103.32584395008922,
+      20.65419636815838
+    ],
+    "alias": [
+      "PROULEX",
+      "Edificio PROULEX"
+    ]
+  },
+  {
+    "id": "111",
+    "name": "Comisiones de Consejo",
+    "type": "edificio",
+    "coord": [
+      -103.32581569133252,
+      20.65432527341912
+    ],
+    "alias": [
+      "Comisiones de Consejo",
+      "Edificio Comisiones de Consejo"
+    ]
+  },
+  {
+    "id": "112",
+    "name": "Alberca Olímpica",
+    "type": "edificio",
+    "coord": [
+      -103.32269536862782,
+      20.655203893229412
+    ],
+    "alias": [
+      "Alberca Olímpica",
+      "Edificio Alberca Olímpica"
     ]
   }
 ]
