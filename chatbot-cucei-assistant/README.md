@@ -116,3 +116,34 @@ export INCUCEI_SERVER_BASE_URL=http://192.168.100.32:3000
 - The chatbot can assist users in finding the location of building, department, etc.
 
 - The chatbot can assist users in getting contact information from departments.
+
+
+## AI flow:
+### 1. General
+1.1 Get message, type and botType del req.body
+1.2 optionally get userId from req.body
+1.3 Generate io interface (socket.io)
+1.4 Send chatbotTyping to user
+1.5 Generate conversation ID: `user_${userId}_chatbot`
+
+### 2. Rasa
+2.1 Get user (from db) to send slots (name, career) to Rasa
+2.2 Send message via post to Rasa using Rasa.service (own)
+2.3 Check response and search metadata.actions like navigate_to_map
+2.4 Save received metadata
+2.5 Sync career in case is empty or different
+
+### 3. Gemini
+> Not relevant
+
+### 4. Post-General
+4.1 Save ChatBotMessage on DB
+4.2 If navigationAction exist, send it to user via io
+4.3 Send ChatBotMessage to user via io
+4.4 response post request
+
+Archivos principales de la IA:
+- nlu.yml
+- flows.yml
+- domain.yml
+- actions.py

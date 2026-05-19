@@ -1,6 +1,6 @@
 # Action server (Rasa SDK)
 action_endpoint:
-  url: "http://localhost:5055/webhook"
+  url: ${ACTION_SERVER_URL}
 
 # Tracker store (optional)
 # If you want persistence, configure this via environment variables or a secret manager.
