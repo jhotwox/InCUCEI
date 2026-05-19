@@ -574,47 +574,25 @@ class ActionGetSubjectMaterial(Action):
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]):
         topic = tracker.get_slot("topic") or _get_entity_value(tracker, "subject")
-        career_raw = tracker.get_slot("career_code") or _get_entity_value(tracker, "career_code")
         if not topic:
             dispatcher.utter_message(response="utter_ask_topic")
             return []
 
-        if not career_raw:
-            dispatcher.utter_message(response="utter_ask_career_code")
-            return []
+        # We no longer need career_code for general scholar search, 
+        # but we keep it if available to refine the search.
+        query = str(topic)
+        encoded_topic = re.sub(r"\s+", "+", query.strip())
+        scholar_url = f"https://scholar.google.com/scholar?q={encoded_topic}"
 
-        career_code, ambiguous = _resolve_career_code(str(career_raw), KNOWN_CAREER_CODES, CAREER_ALIAS_TO_CODES)
-        if ambiguous:
-            dispatcher.utter_message(
-                text=(
-                    "Necesito el código exacto de tu carrera. "
-                    f"Con ese nombre podría ser: {', '.join(ambiguous)}. "
-                    "¿Cuál es el tuyo?"
-                )
-            )
-            return [SlotSet("career_code", None)]
-
-        if not career_code:
-            dispatcher.utter_message(response="utter_invalid_career_code")
-            return [SlotSet("career_code", None)]
-
-        entry = _find_subject(str(topic), career_code)
-        if not entry or not entry.material_file:
-            dispatcher.utter_message(response="utter_material_not_found")
-            return []
-
-        url = _build_material_url(entry)
         dispatcher.utter_message(
-            text=f"Aquí encontrarás el material de **{entry.name or topic}**: [{entry.material_file}]({url})",
+            text=f"Aquí tienes una búsqueda en Google Scholar sobre **{query}**: [Ver resultados]({scholar_url})",
             custom={
-                "subject": entry.name or str(topic),
-                "code": entry.code,
-                "file": entry.material_file,
-                "path": url,
-                "career": entry.career,
+                "action": "open_url",
+                "url": scholar_url,
+                "topic": query,
             },
         )
-        return [SlotSet("topic", str(topic)), SlotSet("career_code", career_code)]
+        return [SlotSet("topic", query)]
 
 
 class ActionGetSubjectStudyPlan(Action):

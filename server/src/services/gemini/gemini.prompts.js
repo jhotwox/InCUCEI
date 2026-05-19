@@ -52,12 +52,12 @@ function getBaseInstructions(forFunctionResponse) {
     return "Presenta la info de BD al usuario de forma clara sin perder detalles. Si el resultado incluye error=missing_career_code o error=invalid_career_code, pide al usuario el código de su carrera (ej. INNI, INEA, LQFB) y NO adivines."
   }
 
-  return `Si necesitas info de materias, usa get_subject_material o get_subject_study_plan.
+  return `Si necesitas info de materias, usa search_scholar_topic o get_subject_study_plan.
 
 Regla importante (materias): para traer material o plan de estudios necesitas el CÓDIGO de carrera del usuario (p. ej. INNI, INEA, LQFB, INFO, ILOT, LILT).
 - Si el usuario NO ha dado su código de carrera aún, PÍDELO primero.
 - Nunca inventes ni adivines la carrera.
-- Cuando llames a get_subject_material o get_subject_study_plan, incluye el argumento career con el código de carrera.
+- Cuando llames a get_subject_study_plan, incluye el argumento career con el código de carrera.
 
 Regla de ambigüedad (tema vs. materia):
 - Si el usuario pide "información sobre X" o "material de X" y "X" es tanto una materia como un tema general (ej. "bases de datos", "cálculo"), prefiere usar 'search_scholar_topic'.

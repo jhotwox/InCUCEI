@@ -221,8 +221,8 @@ export async function executeFunctionCall(functionCall) {
   const { name, args } = functionCall
   
   switch (name) {
-    case "get_subject_material":
-      return handleGetSubjectMaterial(args.subject, args.career)
+    // case "get_subject_material":
+    //   return handleGetSubjectMaterial(args.subject, args.career)
 
     case "get_subject_study_plan":
       return handleGetSubjectStudyPlan(args.subject, args.career)

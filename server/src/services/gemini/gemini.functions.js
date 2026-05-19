@@ -2,24 +2,24 @@ import { Type } from "@google/genai"
 
 // ============ Function Declarations ============
 
-export const getSubjectMaterialDeclaration = {
-  name: "get_subject_material",
-  description: "Get study material for a given subject in CUCEI",
-  parameters: {
-    type: Type.OBJECT,
-    properties: {
-      subject: {
-        type: Type.STRING,
-        description: "The subject name, e.g. Mathematics, Physics, Chemistry",
-      },
-      career: {
-        type: Type.STRING,
-        description: "Career code (required to disambiguate), e.g. INNI, INEA, LQFB, INFO, ILOT, LILT",
-      },
-    },
-    required: ["subject"],
-  },
-}
+// export const getSubjectMaterialDeclaration = {
+//   name: "get_subject_material",
+//   description: "Get study material for a given subject in CUCEI",
+//   parameters: {
+//     type: Type.OBJECT,
+//     properties: {
+//       subject: {
+//         type: Type.STRING,
+//         description: "The subject name, e.g. Mathematics, Physics, Chemistry",
+//       },
+//       // career: {
+//       //   type: Type.STRING,
+//       //   description: "Career code (required to disambiguate), e.g. INNI, INEA, LQFB, INFO, ILOT, LILT",
+//       // },
+//     },
+//     required: ["subject"],
+//   },
+// }
 
 export const getSubjectStudyPlanDeclaration = {
   name: "get_subject_study_plan",
@@ -72,7 +72,7 @@ export const showLocationOnMapDeclaration = {
 
 export const searchScholarTopicDeclaration = {
   name: "search_scholar_topic",
-  description: "Searches a topic on Google Scholar to find academic articles, papers, and other scholarly literature. Use this when the user asks for study material on a general topic, not a specific subject from their curriculum.",
+  description: "Searches a topic on Google Scholar to find academic articles, papers, and other scholarly literature. Use this when the user asks for study material on a general topic, not the study plan of a specific subject from their curriculum.",
   parameters: {
     type: Type.OBJECT,
     properties: {
@@ -87,7 +87,7 @@ export const searchScholarTopicDeclaration = {
 
 // ============ Function Declarations Array ============
 export const functionDeclarations = [
-  getSubjectMaterialDeclaration,
+  // getSubjectMaterialDeclaration,
   getSubjectStudyPlanDeclaration,
   getCurriculumDeclaration,
   showLocationOnMapDeclaration,

@@ -5,10 +5,9 @@ flows:
       - intent: request_subject_material
     steps:
       - collect: topic
-        description: The subject name requested by the user.
-      - collect: career_code
-        description: The user's career code (e.g., INNI, INFO, LQFB).
+        description: The subject name requested for study material.
       - action: action_get_subject_material
+
 
   subject_study_plan:
     description: Provide study plan for a CUCEI subject.

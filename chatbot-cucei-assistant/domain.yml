@@ -125,9 +125,19 @@ responses:
         rephrase: True
 
   utter_capabilities:
-    - text: "Soy el asistente inteligente de InCUCEI y puedo ayudarte con:\n- 📚 **Material de estudio**: Recursos de tus materias.\n- 📋 **Planes de estudio**: Temarios oficiales.\n- 🗺️ **Mapa interactivo**: Ubicaciones en CUCEI.\n- 🎓 **Malla curricular**: El PDF de tu carrera.\n- 📞 **Información de contacto**: Datos oficiales."
+    - text: "Soy el asistente inteligente de InCUCEI y puedo ayudarte con:\n- 📚 **Material de estudio**: Búsqueda de artículos y recursos en Google Scholar.\n- 📋 **Planes de estudio**: Temarios oficiales de cada asignatura.\n- 🗺️ **Mapa interactivo**: Ubicación de módulos y servicios en CUCEI.\n- 🎓 **Malla curricular**: El PDF oficial de tu carrera.\n- 📞 **Información de contacto**: Datos de control escolar y más."
       metadata:
         rephrase: True
+        rephrase_prompt: |
+          Eres el asistente de InCUCEI. Resume tus capacidades de forma amable.
+          CAPACIDADES REALES: Búsqueda de material en Google Scholar, planes de estudio, mapa interactivo (lugares), mallas curriculares y contactos oficiales.
+          
+          Información del usuario:
+          - Nombre: {{slots.first_name}}
+          Contexto:
+          {{history}}
+          Entrada actual: {{current_input}}
+          Respuesta sugerida:
   
   utter_greet:
     - text: "¡Hola! ¿Cómo te puedo asistir el día de hoy?"
