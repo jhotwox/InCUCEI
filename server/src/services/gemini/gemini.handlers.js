@@ -1,6 +1,6 @@
 import { getCurriculumByCareer, getCurriculumByName, getMaterial, getStudyPlan, getSubjectByName } from '../subjects.service.js'
 import { formatSubjectName } from "../../libs/string.utils.js"
-import { ERROR_MESSAGES, isKnownCareerCode } from './gemini.config.js'
+import { CONTACT_RESOURCES, ERROR_MESSAGES, isKnownCareerCode } from './gemini.config.js'
 import { PLACES } from '../../constants/places.js'
 
 // ============ Function Handlers ============
@@ -211,6 +211,293 @@ export function handleSearchScholarTopic(topic) {
   }
 }
 
+const _normalize = (value) => {
+  const raw = String(value ?? "")
+  return raw
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+}
+
+const _CONTACT_STOPWORDS = new Set(
+  [
+    "de",
+    "la",
+    "el",
+    "los",
+    "las",
+    "y",
+    "e",
+    "en",
+    "a",
+    "al",
+    "del",
+    "para",
+    "por",
+    "con",
+    "que",
+    "una",
+    "un",
+    "unos",
+    "unas",
+    "porfavor",
+    "por",
+    "favor",
+    "dame",
+    "dime",
+    "pasame",
+    "pasa",
+    "me",
+    "das",
+    "pasas",
+    "quiero",
+    "necesito",
+    "puedes",
+    "podrias",
+    "contacto",
+    "contactar",
+    "comunicarme",
+    "telefono",
+    "correo",
+    "email",
+    "ext",
+  ].map(String)
+)
+
+const _tokenSet = (value) => {
+  const tokens = _normalize(value)
+    .split(" ")
+    .map((t) => t.trim())
+    .filter(Boolean)
+    .filter((t) => !_CONTACT_STOPWORDS.has(t))
+  return new Set(tokens)
+}
+
+const _jaccard = (a, b) => {
+  if (!a.size && !b.size) return 0
+  let intersection = 0
+  for (const t of a) if (b.has(t)) intersection++
+  const union = a.size + b.size - intersection
+  return union ? intersection / union : 0
+}
+
+const _humanizeKey = (key) =>
+  String(key || "")
+    .replace(/_/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+
+const _looksLikeUrl = (value) => /^https?:\/\//i.test(String(value || ""))
+
+const _formatContactMessage = (title, data) => {
+  if (data == null) return `No encontré información para **${title}**.`
+
+  if (typeof data === "string") {
+    const v = data.trim()
+    if (_looksLikeUrl(v)) return `Aquí tienes **${title}**: ${v}`
+    return `Aquí tienes **${title}**: ${v}`
+  }
+
+  if (typeof data !== "object") {
+    return `Aquí tienes **${title}**: ${String(data)}`
+  }
+
+  const lines = []
+  const nombre = data.nombre || data.name
+  const puesto = data.puesto || data.role
+  const telefono = data.telefono || data.phone
+  const correo = data.correo || data.email
+  const direccion = data.direccion || data.address
+  const sitioWeb = data.sitio_web || data.sitioWeb || data.website
+
+  if (nombre) lines.push(`**Nombre**: ${nombre}`)
+  if (puesto) lines.push(`**Puesto**: ${puesto}`)
+  if (telefono) lines.push(`**Teléfono**: ${telefono}`)
+  if (correo) lines.push(`**Correo**: ${correo}`)
+  if (direccion) lines.push(`**Dirección**: ${direccion}`)
+  if (sitioWeb) lines.push(`**Sitio web**: ${sitioWeb}`)
+
+  // Also include any social links if present
+  const redes = data.redes_sociales || data.redes || data.social
+  if (redes && typeof redes === "object" && !Array.isArray(redes)) {
+    for (const [k, v] of Object.entries(redes)) {
+      if (!v) continue
+      lines.push(`**${_humanizeKey(k)}**: ${v}`)
+    }
+  }
+
+  if (lines.length === 0) {
+    // Fallback: stringify small objects
+    try {
+      return `Aquí tienes **${title}**:\n\n${JSON.stringify(data, null, 2)}`
+    } catch {
+      return `Aquí tienes **${title}**.`
+    }
+  }
+
+  return `Aquí tienes **${title}**:\n\n${lines.join("\n")}`
+}
+
+const _flattenContactResources = (root) => {
+  const out = []
+  const visit = (node, pathParts) => {
+    if (node == null) return
+
+    if (typeof node === "string" || typeof node === "number" || typeof node === "boolean") {
+      out.push({
+        path: pathParts.join("."),
+        title: _humanizeKey(pathParts[pathParts.length - 1] || "contacto"),
+        data: String(node),
+      })
+      return
+    }
+
+    if (Array.isArray(node)) {
+      node.forEach((item, idx) => visit(item, [...pathParts, String(idx)]))
+      return
+    }
+
+    if (typeof node === "object") {
+      const keys = Object.keys(node)
+      const isContactCard =
+        keys.includes("telefono") ||
+        keys.includes("correo") ||
+        keys.includes("email") ||
+        keys.includes("direccion") ||
+        keys.includes("sitio_web") ||
+        keys.includes("nombre") ||
+        keys.includes("puesto")
+
+      if (isContactCard && pathParts.length) {
+        out.push({
+          path: pathParts.join("."),
+          title: _humanizeKey(pathParts[pathParts.length - 1]),
+          data: node,
+        })
+
+        // Treat contact cards as atomic: do not index leaf fields like `.puesto`.
+        // This ensures queries return the full contact info instead of a single field.
+        return
+      }
+
+      for (const [k, v] of Object.entries(node)) {
+        visit(v, [...pathParts, k])
+      }
+    }
+  }
+
+  visit(root, [])
+  return out
+}
+
+const _scoreContactEntry = (queryNorm, queryTokens, entry) => {
+  const title = entry?.title || ""
+  const path = entry?.path || ""
+
+  let fields = ""
+  if (entry?.data && typeof entry.data === "object") {
+    const d = entry.data
+    fields = [
+      d.nombre,
+      d.name,
+      d.puesto,
+      d.role,
+      d.telefono,
+      d.phone,
+      d.correo,
+      d.email,
+      d.direccion,
+      d.address,
+      d.sitio_web,
+      d.sitioWeb,
+      d.website,
+    ]
+      .filter(Boolean)
+      .join(" ")
+  } else if (typeof entry?.data === "string") {
+    fields = entry.data
+  }
+
+  const candidate = _normalize(`${title} ${path} ${fields}`)
+  if (!candidate) return 0
+
+  if (candidate.includes(queryNorm) || queryNorm.includes(candidate)) return 1
+
+  const candTokens = _tokenSet(candidate)
+  const j = _jaccard(queryTokens, candTokens)
+
+  // Light boost if any token is a direct substring match
+  let tokenBoost = 0
+  for (const t of queryTokens) {
+    if (t.length >= 4 && candidate.includes(t)) {
+      tokenBoost = 0.15
+      break
+    }
+  }
+
+  return Math.min(1, 0.75 * j + tokenBoost)
+}
+
+/**
+ * Handler para obtener información de contacto oficial CUCEI (tel/correo/áreas)
+ */
+export function handleGetContactResource(query) {
+  try {
+    const raw = String(query || "").trim()
+    if (!raw) {
+      return JSON.stringify({
+        success: false,
+        action: "contact",
+        message: "Dime qué contacto necesitas (por ejemplo: 'servicios escolares', 'rectoría', 'teléfono CUCEI').",
+      })
+    }
+
+    const entries = _flattenContactResources(CONTACT_RESOURCES)
+    const queryNorm = _normalize(raw)
+    const queryTokens = _tokenSet(raw)
+
+    let best = null
+    let bestScore = 0
+    for (const e of entries) {
+      const s = _scoreContactEntry(queryNorm, queryTokens, e)
+      if (s > bestScore) {
+        bestScore = s
+        best = e
+      }
+    }
+
+    if (!best || bestScore < 0.22) {
+      return JSON.stringify({
+        success: false,
+        action: "contact",
+        query: raw,
+        message: `No encontré un contacto que coincida con "${raw}". ¿Puedes decirme el área o el nombre exacto?`,
+      })
+    }
+
+    const message = _formatContactMessage(best.title, best.data)
+    return JSON.stringify({
+      success: true,
+      action: "contact",
+      query: raw,
+      key: best.path,
+      title: best.title,
+      message,
+      data: best.data,
+    })
+  } catch (error) {
+    console.error("Error resolving contact resource:", error)
+    return JSON.stringify({
+      success: false,
+      action: "contact",
+      message: "Hubo un error al buscar el contacto. Intenta de nuevo.",
+    })
+  }
+}
+
 /**
  * Ejecuta la función solicitada por el modelo
  */
@@ -235,6 +522,9 @@ export async function executeFunctionCall(functionCall) {
 
     case "search_scholar_topic":
       return handleSearchScholarTopic(args.topic)
+
+    case "get_contact_resource":
+      return handleGetContactResource(args.query)
 
     default:
       console.warn(`[!] Unknown function: ${name}`)

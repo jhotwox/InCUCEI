@@ -1,6 +1,6 @@
 import { getGeminiAI, MODEL_NAME, ERROR_MESSAGES, isKnownCareerCode } from './gemini.config.js'
 import { functionDeclarations } from './gemini.functions.js'
-import { executeFunctionCall } from './gemini.handlers.js'
+import { executeFunctionCall, handleGetContactResource } from './gemini.handlers.js'
 import { 
   getUserContext, 
   buildConversationHistory, 
@@ -41,6 +41,68 @@ const detectSubjectDocsIntent = (message) => {
   if (isMaterial) return "material"
   if (isPlan) return "study_plan"
   return null
+}
+
+const detectContactIntent = (message) => {
+  const m = String(message || "")
+  if (!m.trim()) return false
+
+  // Strong signals: user explicitly wants contact details.
+  if (/\b(contacto|contactar|comunicarme|comunicar|tel[eé]fono|ext\.?|correo|e-?mail|email|direcci[oó]n|ubicaci[oó]n de oficina|redes (sociales)?|facebook|instagram|youtube|twitter|x\.com)\b/i.test(m)) {
+    return true
+  }
+
+  // Phrases that are almost always contact-related.
+  if (/\b(dame|p[aá]same|me das|me pasas)\b[\s\S]{0,25}\b(tel[eé]fono|correo|email|contacto)\b/i.test(m)) {
+    return true
+  }
+
+  // Explicit "how do I contact/communicate with" patterns.
+  if (/\b(c[oó]mo|d[oó]nde)\b[\s\S]{0,20}\b(contacto|contactar|comunico|comunicarme|hablo|llamo)\b/i.test(m)) {
+    return true
+  }
+  if (/\b(con qui[eé]n|a qui[eé]n)\b[\s\S]{0,25}\b(me comunico|contacto|puedo contactar|puedo llamar)\b/i.test(m)) {
+    return true
+  }
+  if (/\b(quiero|necesito)\b[\s\S]{0,20}\b(comunicarme|contactar|hablar|llamar)\b/i.test(m)) {
+    return true
+  }
+
+  return false
+}
+
+const extractContactQuery = (message) => {
+  let q = String(message || "").trim()
+  if (!q) return q
+
+  // Remove polite prefixes and verbs.
+  q = q
+    .replace(/^\s*(por favor|porfa)\b\s*/i, "")
+    .replace(/^\s*(hola|buenas|buenos d[ií]as|buenas tardes|buenas noches)[\s,]+/i, "")
+
+  // Common Spanish request wrappers.
+  q = q.replace(
+    /^\s*(dame|dime|p[aá]same|pasame|me das|me pasas|quiero|necesito|podr[ií]as|puedes)\b\s*/i,
+    ""
+  )
+
+  // Normalize explicit contact/communication phrases.
+  q = q
+    .replace(/^\s*(c[oó]mo|d[oó]nde)\b[\s\S]{0,20}\b(contacto|contactar|comunico|comunicarme|hablo|llamo)\b\s*/i, "")
+    .replace(/^\s*(con qui[eé]n|a qui[eé]n)\b[\s\S]{0,25}\b(me comunico|contacto|puedo contactar|puedo llamar)\b\s*/i, "")
+    .replace(/^\s*(quiero|necesito)\b[\s\S]{0,20}\b(comunicarme|contactar|hablar|llamar)\b\s*/i, "")
+    .replace(/^\s*(comunicarme|contactar|hablar|llamar)\s+(con|a)\b\s*/i, "")
+
+  // Remove generic contact phrases.
+  q = q.replace(/\b(el|la|los|las)\s+(contacto|tel[eé]fono|correo|email|e-?mail|ext\.?)(\s+de)?\b\s*/i, "")
+  q = q.replace(/\b(contacto|tel[eé]fono|correo|email|e-?mail|ext\.?)(\s+de)?\b\s*/i, "")
+  q = q.replace(/^\s*de\s+/i, "")
+  q = q.replace(/^\s*con\s+/i, "")
+  q = q.replace(/^\s*a\s+/i, "")
+
+  // Strip trailing punctuation.
+  q = q.replace(/[\s\?\!\.]+$/g, "").trim()
+  return q
 }
 
 const buildAskCareerCodeMessage = (intent) => {
@@ -169,14 +231,11 @@ export class GeminiService {
     const finalText = varyClosing(finalResponse.text)
     console.log("[+] Final AI Response: ", finalText)
 
-    // Si hay acción especial, retornar solo el texto de Gemini,
-    // ya que el cliente se encargará de la acción.
     if (specialAction) {
-      console.log("[+] Returning special action message to user")
-      return finalText
+      console.log("[+] Function returned a special action:", specialAction.action)
     }
 
-    return finalText
+    return { text: finalText, action: specialAction }
   }
 
   // ============ Public Methods ============
@@ -191,7 +250,29 @@ export class GeminiService {
       if (docsIntent && !inferredCareer) {
         return {
           text: buildAskCareerCodeMessage(docsIntent),
-          inferredCareer: null
+          inferredCareer: null,
+          action: null,
+        }
+      }
+
+      // Contacts should be deterministic: do not rely on tool-calling.
+      if (detectContactIntent(message)) {
+        const contactQuery = extractContactQuery(message)
+        const resultJson = handleGetContactResource(contactQuery)
+        try {
+          const parsed = JSON.parse(resultJson)
+          return {
+            text: parsed?.message || "",
+            inferredCareer,
+            action: parsed,
+          }
+        } catch {
+          // Fall back to raw string; still avoid calling the model.
+          return {
+            text: String(resultJson || ""),
+            inferredCareer,
+            action: null,
+          }
         }
       }
 
@@ -220,13 +301,22 @@ export class GeminiService {
 
       // 5. Verificar y procesar llamadas a funciones
       if (response.functionCalls && response.functionCalls.length > 0) {
-        finalText = await this._processFunctionCall(
+        const out = await this._processFunctionCall(
           response, 
           message, 
           userContext, 
           historyContext, 
           config
         )
+        finalText = out?.text ?? ""
+        // Pass action back to the controller (do not rely on JSON-in-text).
+        const action = out?.action ?? null
+
+        return {
+          text: finalText,
+          inferredCareer,
+          action,
+        }
       } else {
         // 6. Respuesta directa sin function calling
         console.log("[-] No function call found in the response.")
@@ -236,14 +326,16 @@ export class GeminiService {
 
       return {
         text: finalText,
-        inferredCareer
+        inferredCareer,
+        action: null,
       }
       
     } catch (err) {
       console.error("Error generating response: ", err)
       return {
         text: ERROR_MESSAGES.technical,
-        inferredCareer: null
+        inferredCareer: null,
+        action: null,
       }
     }
   }

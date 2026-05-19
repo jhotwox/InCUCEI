@@ -28,6 +28,7 @@ export const sendChatbotMessage = async (req, res) => {
     const conversationId = `user_${userId}_chatbot`
     let displayText = ""
     let navigationAction = null
+    let geminiAction = null
     let metadata = {}
 
     if (botType === "rasa") {
@@ -101,11 +102,13 @@ export const sendChatbotMessage = async (req, res) => {
         .select("message response createdAt")
 
       const user = await User.findById(userId)
-      const { text, inferredCareer } = await geminiService.generateResponse(
+      const geminiOut = await geminiService.generateResponse(
         message,
         userId,
         recentMessages.reverse()
       )
+      const { text, inferredCareer, action } = geminiOut || {}
+      geminiAction = action || null
       console.log("Text: ", text)
       displayText = text
 
@@ -115,18 +118,25 @@ export const sendChatbotMessage = async (req, res) => {
         await user.save()
       }
 
-      try {
-        const parsed = JSON.parse(text)
-        if (parsed.action === "navigate_to_map" && parsed.success) {
-          navigationAction = parsed
-          displayText = parsed.generatedMessage || parsed.message
+      // Prefer action metadata coming from Gemini function calls.
+      if (geminiAction?.action === "navigate_to_map" && geminiAction?.success) {
+        navigationAction = geminiAction
+      } else {
+        // Backward compatibility: sometimes Gemini returns JSON directly in the text.
+        try {
+          const parsed = JSON.parse(text)
+          if (parsed.action === "navigate_to_map" && parsed.success) {
+            navigationAction = parsed
+            displayText = parsed.generatedMessage || parsed.message
+          }
+        } catch (e) {
+          // No es JSON, es texto normal
         }
-      } catch (e) {
-        // No es JSON, es texto normal
       }
       
       metadata = {
         geminiModel: geminiService.modelName,
+        ...(geminiAction && { aiAction: geminiAction }),
         ...(navigationAction && { navigationAction })
       }
     }
@@ -194,6 +204,7 @@ export const sendChatbotMessage = async (req, res) => {
           coordinates: navigationAction.coordinates,
         },
       }),
+      ...(botType === "gemini" && geminiAction && { action: geminiAction }),
     }
 
     return res.json({

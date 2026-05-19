@@ -65,6 +65,7 @@ Regla de ambigüedad (tema vs. materia):
 
 Si el usuario pide material sobre un tema general (no una materia específica del plan de estudios), usa search_scholar_topic para buscar en Google Scholar.
 Si el usuario pregunta por ubicaciones o quiere ver algo en el mapa, usa show_location_on_map.
+Si el usuario pide teléfonos, correos o datos de contacto de alguna área/persona del CUCEI, usa get_contact_resource.
 No avises que usarás las funciones, solo úsalas.`
 }
 
@@ -72,7 +73,9 @@ No avises que usarás las funciones, solo úsalas.`
  * Construye las instrucciones de funciones si aplica
  */
 function getFunctionInstructions(forFunctionResponse) {
-  return forFunctionResponse ? '' : '- Usa funciones para materiales/planes de estudio y ubicaciones en el mapa'
+  return forFunctionResponse
+    ? ''
+    : '- Usa funciones para materiales/planes de estudio, ubicaciones en el mapa y búsqueda de contactos'
 }
 
 /**
@@ -82,6 +85,22 @@ export function buildSystemPrompt(userContext, historyContext, forFunctionRespon
   const baseInstructions = getBaseInstructions(forFunctionResponse)
   const functionInstructions = getFunctionInstructions(forFunctionResponse)
   const careersSummary = getKnownCareersSummary()
+
+  const contactCucei = CONTACT_RESOURCES?.cucei || {}
+  const redes = CONTACT_RESOURCES?.redes_sociales || CONTACT_RESOURCES?.redes || {}
+  const telefonoCucei = contactCucei.telefono || CONTACT_RESOURCES?.telefono || "(no disponible)"
+  const direccionCucei = contactCucei.direccion || CONTACT_RESOURCES?.direccion || "(no disponible)"
+  const webCucei =
+    contactCucei.sitio_web || contactCucei.sitioWeb || CONTACT_RESOURCES?.sitioWeb || "(no disponible)"
+  const redesText = (() => {
+    if (!redes || typeof redes !== 'object') return "(no disponible)"
+    const parts = []
+    if (redes.facebook) parts.push(`Facebook: ${redes.facebook}`)
+    if (redes.twitter) parts.push(`X/Twitter: ${redes.twitter}`)
+    if (redes.instagram) parts.push(`Instagram: ${redes.instagram}`)
+    if (redes.youtube) parts.push(`YouTube: ${redes.youtube}`)
+    return parts.length ? parts.join(" | ") : "(no disponible)"
+  })()
 
   return `Eres "Asistente InCUCEI", asistente escolar de CUCEI.
 Ayudas con campus, trámites e info de contacto.
@@ -100,10 +119,12 @@ Lista de carreras (código → nombre):
 ${careersSummary}
 
 Contactos:
-- Servicio Escolar: ${CONTACT_RESOURCES.serviciosEscolares}
-- Coordinación Informática: ${CONTACT_RESOURCES.coordinacionInformatica}
-- Tel CUCEI: ${CONTACT_RESOURCES.telefono}
-- Web CUCEI: ${CONTACT_RESOURCES.sitioWeb}
+- Tel CUCEI: ${telefonoCucei}
+- Dirección CUCEI: ${direccionCucei}
+- Web CUCEI: ${webCucei}
+- Redes: ${redesText}
+
+Para contactos específicos (áreas/personas/coordinaciones), usa get_contact_resource.
 
 ${functionInstructions}`
 }

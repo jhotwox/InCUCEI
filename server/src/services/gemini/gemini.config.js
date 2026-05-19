@@ -1,4 +1,5 @@
 import { GoogleGenAI } from "@google/genai"
+import contact from '../../data/contact.json' with { type: "json" }
 
 // Alternador de API Keys
 const GEMINI_API_KEYS = [
@@ -63,12 +64,7 @@ export const getKnownCareersSummary = () =>
   KNOWN_CAREER_CODES.map((c) => `${c.code}: ${c.name || "(nombre pendiente)"}`).join(" | ")
 
 // ============ Contact Resources ============
-export const CONTACT_RESOURCES = {
-  serviciosEscolares: "servicios.escolares@cucei.udg.mx",
-  coordinacionInformatica: "coordinacion.di@cucei.udg.mx",
-  telefono: "+52 33 1378-5900",
-  sitioWeb: "https://www.cucei.udg.mx/"
-}
+export const CONTACT_RESOURCES = contact
 
 // ============ Error Messages ============
 export const ERROR_MESSAGES = {

@@ -85,11 +85,29 @@ export const searchScholarTopicDeclaration = {
   },
 }
 
+export const getContactResourceDeclaration = {
+  name: "get_contact_resource",
+  description:
+    "Looks up official CUCEI contact information (phones, emails, departments, coordinations) from a local catalog. Use when the user asks for a phone number, email, address, hours, social links, or contact of a specific area/person.",
+  parameters: {
+    type: Type.OBJECT,
+    properties: {
+      query: {
+        type: Type.STRING,
+        description:
+          "What contact the user is looking for, e.g., 'servicios escolares', 'coordinación de ingeniería informática', 'teléfono cucei', 'rectoría', 'secretaría técnica'",
+      },
+    },
+    required: ["query"],
+  },
+}
+
 // ============ Function Declarations Array ============
 export const functionDeclarations = [
   // getSubjectMaterialDeclaration,
   getSubjectStudyPlanDeclaration,
   getCurriculumDeclaration,
   showLocationOnMapDeclaration,
-  searchScholarTopicDeclaration
+  searchScholarTopicDeclaration,
+  getContactResourceDeclaration,
 ]
