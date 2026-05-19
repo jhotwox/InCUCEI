@@ -1,0 +1,532 @@
+{
+  "fundamentos_algebra": {
+    "name": "fundamentos de algebra",
+    "code": "I5919",
+    "semester": 1,
+    "files": {
+      "study_plan": "I5919 Fundamentos de Álgebra.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "taller_fundamentos_algebra": {
+    "name": "taller de fundamentos de algebra",
+    "code": "I5920",
+    "semester": 1,
+    "files": {
+      "study_plan": "I5920 Taller de fundamentos de álgebra.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "fundamentos_geometria": {
+    "name": "fundamentos de geometria",
+    "code": "I5921",
+    "semester": 1,
+    "files": {
+      "study_plan": "I5921 Fundamentos de Geometria.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "taller_fundamentos_geometria": {
+    "name": "taller de fundamentos de geometria",
+    "code": "I5922",
+    "semester": 1,
+    "files": {
+      "study_plan": "I5922 Taller de fundamentos de geometría.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "conjuntos_numeros": {
+    "name": "conjuntos y numeros",
+    "code": "I5923",
+    "semester": 1,
+    "files": {
+      "study_plan": "I5923 Conjuntos y numeros.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "computo_ciencias": {
+    "name": "computo para ciencias",
+    "code": "I5924",
+    "semester": 1,
+    "files": {
+      "study_plan": "I5924 Computo para Ciencias.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "seminario_modulo_soporte_matematico": {
+    "name": "seminario del modulo de soporte matematico",
+    "code": "I5940",
+    "semester": 1,
+    "files": {
+      "study_plan": "I5940 Seminario del Módulo de Soporte Matemático.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "introduccion_analitica_geometrias_i": {
+    "name": "introduccion analitica a las geometrias i",
+    "code": "I5926",
+    "semester": 2,
+    "files": {
+      "study_plan": "I5926 Introducción Analítica a las Geometrías I.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "taller_introduccion_analitica_geometrias_i": {
+    "name": "taller de introduccion a las geometrias i",
+    "code": "I5927",
+    "semester": 2,
+    "files": {
+      "study_plan": "I5927 Taller de Introducción Analítica a las Geometrías I.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "teoria_calculo_i": {
+    "name": "teoria del calculo i",
+    "code": "I5928",
+    "semester": 2,
+    "files": {
+      "study_plan": "I5928 Teoría del Cálculo I.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "taller_teoria_calculo_i": {
+    "name": "taller de teoria del calculo i",
+    "code": "I5929",
+    "semester": 2,
+    "files": {
+      "study_plan": "I5929 Taller de Teoría del Cálculo I.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "programacion_ciencias": {
+    "name": "programacion para ciencias",
+    "code": "I5937",
+    "semester": 2,
+    "files": {
+      "study_plan": "I5937 Programación para Ciencias.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "seminario_modulo_calculo_i": {
+    "name": "seminario del modulo de calculo i",
+    "code": "I5950",
+    "semester": 2,
+    "files": {
+      "study_plan": "I5950 Seminario del módulo de Calculo I.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "teoria_espacios_vectoriales": {
+    "name": "teoria de espacios vectoriales",
+    "code": "I5925",
+    "semester": 3,
+    "files": {
+      "study_plan": "I5925 Teoría de Espacios Vectoriales.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "introduccion_analitica_geometrias_ii": {
+    "name": "introduccion analitica a las geometrias ii",
+    "code": "I5945",
+    "semester": 3,
+    "files": {
+      "study_plan": "I5945 Introducción analítica a las geometrías II.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "taller_introduccion_analitica_geometrias_ii": {
+    "name": "taller de introduccion analitica a las geometrías ii",
+    "code": "I5946",
+    "semester": 3,
+    "files": {
+      "study_plan": "I5946 Taller de Introducción analítica a las geometrías II.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "teoria_calculo_ii": {
+    "name": "teoria del calculo ii",
+    "code": "I5930",
+    "semester": 3,
+    "files": {
+      "study_plan": "I5930 Teoría del Cálculo II.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "taller_teoria_calculo_ii": {
+    "name": "taller de teoria del calculo ii",
+    "code": "I5931",
+    "semester": 3,
+    "files": {
+      "study_plan": "I5931 Taller de Teoría del Cálculo II.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "teoria_de_grupos": {
+    "name": "teoria de grupos",
+    "code": "I5941",
+    "semester": 4,
+    "files": {
+      "study_plan": "I5941 Teoría de grupos.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "algebra_lineal_numerica": {
+    "name": "algebra lineal numerica",
+    "code": "I5969",
+    "semester": 4,
+    "files": {
+      "study_plan": "I5969 Álgebra Lineal Numérica.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "taller_algebra_lineal_numerica": {
+    "name": "taller de algebra lineal numerica",
+    "code": "I5970",
+    "semester": 4,
+    "files": {
+      "study_plan": "I5970 Taller de álgebra lineal numérica.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "analisis_matematico_i": {
+    "name": "analisis matematico i",
+    "code": "I5951",
+    "semester": 4,
+    "files": {
+      "study_plan": "I5951 Análisis Matemático I.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "taller_analisis_matematico_i": {
+    "name": "taller analisis matematico",
+    "code": "I5952",
+    "semester": 4,
+    "files": {
+      "study_plan": "I5952 Taller de Análisis Matemático I.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "teoria_estadistica": {
+    "name": "teoria estadistica",
+    "code": "I5936",
+    "semester": 4,
+    "files": {
+      "study_plan": "I5936 Teoría estadística.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "topologia": {
+    "name": "topologia",
+    "code": "I5948",
+    "semester": 5,
+    "files": {
+      "study_plan": "I5948 Topología.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "teoria_ecuaciones_diferenciales_ordinarias_i": {
+    "name": "teoria de ecuaciones diferenciales ordinarias i",
+    "code": "I5932",
+    "semester": 5,
+    "files": {
+      "study_plan": "I5932 Teoría de Ecuaciones Diferenciales Ordinarias I.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "taller_ecuaciones_diferenciales_ordinarias_i": {
+    "name": "taller de teoria de ecuaciones diferenciales ordinarias",
+    "code": "I5933",
+    "semester": 5,
+    "files": {
+      "study_plan": "I5933 Taller Ecuaciones Diferenciales Ordinarias I.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "analisis_matematico_ii": {
+    "name": "analisis matematico ii",
+    "code": "I5955",
+    "semester": 5,
+    "files": {
+      "study_plan": "I5955 Análisis Matemático II.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "taller_analisis_matematico_ii": {
+    "name": "taller de analisis matematico i",
+    "code": "I5956",
+    "semester": 5,
+    "files": {
+      "study_plan": "I5956 Taller de Análisis Matemático II.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "metodos_estadisticos": {
+    "name": "metodos estadisticos",
+    "code": "I5966",
+    "semester": 5,
+    "files": {
+      "study_plan": "I5966 Métodos Estadísticos.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "teoria_anillos_campos": {
+    "name": "teoria de anillos y campos",
+    "code": "I5942",
+    "semester": 6,
+    "files": {
+      "study_plan": "I5942  Teoría de Anillos y Campos.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "seminario_modulo_analisis": {
+    "name": "seminario del modulo de analisis",
+    "code": "I5960",
+    "semester": 6,
+    "files": {
+      "study_plan": "I5960 Seminario del módulo de análisis.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "teoria_ecuaciones_diferenciales_ordinarias_ii": {
+    "name": "teoria de ecuaciones diferenciales ordinarias ii",
+    "code": "I5934",
+    "semester": 6,
+    "files": {
+      "study_plan": "I5934 Teoría de Ecuaciones Diferenciales Ordinarias II.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "taller_ecuaciones_diferenciales_ordinarias_ii": {
+    "name": "taller de teoria de ecuaciones diferenciales ordinarias ii",
+    "code": "I5935",
+    "semester": 6,
+    "files": {
+      "study_plan": "I5935 Taller Ecuaciones Diferenciales Ordinarias II.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "analisis_complejo": {
+    "name": "analisis complejo",
+    "code": "I5953",
+    "semester": 6,
+    "files": {
+      "study_plan": "I5953 Análisis Complejo.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "taller_analisis_complejo": {
+    "name": "taller de analisis complejo",
+    "code": "I5944",
+    "semester": 6,
+    "files": {
+      "study_plan": "I5954 Taller de Análisis Complejo.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "inferencia_estadistica": {
+    "name": "inferencia de estadistica",
+    "code": "I5967",
+    "semester": 6,
+    "files": {
+      "study_plan": "I5967 Inferencia Estadística.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "seminario_modulo_estadistica": {
+    "name": "seminario del modulo de estadistica",
+    "code": "I5968",
+    "semester": 6,
+    "files": {
+      "study_plan": "I5968 Seminario del módulo de estadística.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "fundamentos_algebra_multilineal": {
+    "name": "fundamentos de algebra multilineal",
+    "code": "I5943",
+    "semester": 7,
+    "files": {
+      "study_plan": "I5943 Fundamentos de álgebra multilineal.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "seminario_modulo_algebra": {
+    "name": "seminario de modulo de algebra",
+    "code": "I5944_A",
+    "semester": 7,
+    "files": {
+      "study_plan": "I5944 Seminario del módulo de álgebra.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "teoria_ecuaciones_diferenciales_parciales": {
+    "name": "teoria de ecuaciones diferenciales parciales",
+    "code": "I5961",
+    "semester": 7,
+    "files": {
+      "study_plan": "I5961 Teoría de Ecuaciones Diferenciales Parciales.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "taller_ecuaciones_diferenciales_parciales": {
+    "name": "taller de ecuaciones diferenciales parciales",
+    "code": "I5962",
+    "semester": 7,
+    "files": {
+      "study_plan": "I5962 Taller de Teoría de Ecuaciones Diferenciales Parciales.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "analis_numerico": {
+    "name": "analis numerico",
+    "code": "I5938",
+    "semester": 7,
+    "files": {
+      "study_plan": "I5938 Análisis Numérico.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "taller_analis_numerico": {
+    "name": "taller de analis numerico",
+    "code": "I5939",
+    "semester": 7,
+    "files": {
+      "study_plan": "I5939 Taller de Análisis Numérico.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "seminario_modulo_metodos_numericos": {
+    "name": "seminario del modulo de metodos numericos",
+    "code": "I5971",
+    "semester": 7,
+    "files": {
+      "study_plan": "I5971 Seminario del módulo de métodos numéricos.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "geometria_diferencial": {
+    "name": "geometria diferencial",
+    "code": "I5947",
+    "semester": 8,
+    "files": {
+      "study_plan": "I5947 Geometría diferencial.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "sistemas_ecuaciones_diferenciales": {
+    "name": "taller de sistemas de ecuaciones diferenciales",
+    "code": "I5963",
+    "semester": 8,
+    "files": {
+      "study_plan": "I5963 Sistemas de Ecuaciones Diferenciales.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "taller_sistemas_ecuaciones_diferenciales": {
+    "name": "taller de sistemas de ecuaciones diferenciales",
+    "code": "I5964",
+    "semester": 8,
+    "files": {
+      "study_plan": "I5964 Taller de Sistemas de Ecuaciones Diferenciales.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "analisis_matematico_iii": {
+    "name": "analisis matematico iii",
+    "code": "I5957",
+    "semester": 8,
+    "files": {
+      "study_plan": "I5957 Análisis Matemático III.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "taller_analisis_matematico_iii": {
+    "name": "taller de analisis matematico iii",
+    "code": "I5958",
+    "semester": 8,
+    "files": {
+      "study_plan": "I5958 Taller de Análisis Matemático III.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "seminario_modulo_geometria_topologia": {
+    "name": "seminario del modulo de geometria y topologia",
+    "code": "I5949",
+    "semester": 8,
+    "files": {
+      "study_plan": "I5949 Seminario del módulo de geometría y topología.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "seminario_modulo_ecuaciones": {
+    "name": "seminario del modulo de ecuaciones diferenciales",
+    "code": "I5965",
+    "semester": 8,
+    "files": {
+      "study_plan": "I5965 Seminario del módulo de Ecuaciones.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  },
+  "analisis_funcional": {
+    "name": "analisis funcional",
+    "code": "I5959",
+    "semester": 9,
+    "files": {
+      "study_plan": "I5959 Análisis Funcional.pdf",
+      "material": ""
+    },
+    "career": "LIMA"
+  }
+}

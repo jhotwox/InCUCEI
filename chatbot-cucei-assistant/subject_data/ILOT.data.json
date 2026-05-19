@@ -1,0 +1,472 @@
+{
+  "introduccion_fisica": {
+    "name": "introducción a la física",
+    "code": "IF498",
+    "files": {
+      "study_plan": "introduccion_a_la_fisica.pdf",
+      "material": "introduccion_a_la_fisica.pdf"
+    },
+    "career": "ILOT",
+    "semester": 1
+  },
+  "etica_profesional": {
+    "name": "ética profesional",
+    "code": "IC579",
+    "files": {
+      "study_plan": "etica_profesional.pdf",
+      "material": "etica_profesional.pdf"
+    },
+    "career": "ILOT",
+    "semester": 1
+  },
+  "introduccion_ingenieria_logistica": {
+    "name": "introducción a la ingeniería logística",
+    "code": "IF499",
+    "files": {
+      "study_plan": "introduccion_a_la_ingenieria_logistica.pdf",
+      "material": "introduccion_a_la_ingenieria_logistica.pdf"
+    },
+    "career": "ILOT",
+    "semester": 1
+  },
+  "algebra_lineal": {
+    "name": "álgebra lineal",
+    "code": "IF497",
+    "files": {
+      "study_plan": "algebra_lineal.pdf",
+      "material": "algebra_lineal.pdf"
+    },
+    "career": "ILOT",
+    "semester": 1
+  },
+  "calculo_diferencial_integral": {
+    "name": "cálculo diferencial e integral",
+    "code": "I8058",
+    "files": {
+      "study_plan": "calculo_diferencial_e_integral.pdf",
+      "material": "calculo_diferencial_e_integral.pdf"
+    },
+    "career": "ILOT",
+    "semester": 1
+  },
+  "fundamentos_administracion": {
+    "name": "fundamentos de administración",
+    "code": "IF500",
+    "files": {
+      "study_plan": "fundamentos_de_administracion.pdf",
+      "material": "fundamentos_de_administracion.pdf"
+    },
+    "career": "ILOT",
+    "semester": 1
+  },
+  "fundamentos_quimica": {
+    "name": "fundamentos de química",
+    "code": "IF873",
+    "files": {
+      "study_plan": "fundamentos_de_quimica.pdf",
+      "material": "fundamentos_de_quimica.pdf"
+    },
+    "career": "ILOT",
+    "semester": 2
+  },
+  "fundamentos_cadena_suministro": {
+    "name": "fundamentos de la cadena de suministro",
+    "code": "IF907",
+    "files": {
+      "study_plan": "fundamentos_de_la_cadena_de_suministro.pdf",
+      "material": "fundamentos_de_la_cadena_de_suministro.pdf"
+    },
+    "career": "ILOT",
+    "semester": 2
+  },
+  "tipologia_producto": {
+    "name": "tipología del producto",
+    "code": "IF889",
+    "files": {
+      "study_plan": "tipologia_del_producto.pdf",
+      "material": "tipologia_del_producto.pdf"
+    },
+    "career": "ILOT",
+    "semester": 2
+  },
+  "metodos_numericos": {
+    "name": "métodos numéricos",
+    "code": "IF879",
+    "files": {
+      "study_plan": "metodos_numericos.pdf",
+      "material": "metodos_numericos.pdf"
+    },
+    "career": "ILOT",
+    "semester": 2
+  },
+  "mecanica": {
+    "name": "mecánica",
+    "code": "IF874",
+    "files": {
+      "study_plan": "mecanica.pdf",
+      "material": "mecanica.pdf"
+    },
+    "career": "ILOT",
+    "semester": 2
+  },
+  "lab_mecanica": {
+    "name": "laboratorio de mecánica",
+    "code": "FS110",
+    "files": {
+      "study_plan": "lab._mecanica.pdf",
+      "material": "lab._mecanica.pdf"
+    },
+    "career": "ILOT",
+    "semester": 2
+  },
+  "administracion_capital_humano": {
+    "name": "administración de capital humano",
+    "code": "IF884",
+    "files": {
+      "study_plan": "administracion_de_capital_humano.pdf",
+      "material": "administracion_de_capital_humano.pdf"
+    },
+    "career": "ILOT",
+    "semester": 2
+  },
+  "diseno_asistido_logistica_transporte": {
+    "name": "diseño asistido para logística y transporte",
+    "code": "IF882",
+    "files": {
+      "study_plan": "diseno_asistido_para_logistica_y_transporte.pdf",
+      "material": "diseno_asistido_para_logistica_y_transporte.pdf"
+    },
+    "career": "ILOT",
+    "semester": 3
+  },
+  "ingenieria_economica": {
+    "name": "ingeniería económica",
+    "code": "I3584",
+    "files": {
+      "study_plan": "ingenieria_economica.pdf",
+      "material": "ingenieria_economica.pdf"
+    },
+    "career": "ILOT",
+    "semester": 3
+  },
+  "manejo_materiales_logistica_transporte": {
+    "name": "manejo de materiales en la logística y transporte",
+    "code": "IF887",
+    "files": {
+      "study_plan": "manejo_de_materiales_en_la_logistica_y_transporte.pdf",
+      "material": "manejo_de_materiales_en_la_logistica_y_transporte.pdf"
+    },
+    "career": "ILOT",
+    "semester": 3
+  },
+  "ecuaciones_diferenciales": {
+    "name": "ecuaciones diferenciales",
+    "code": "IF880",
+    "files": {
+      "study_plan": "ecuaciones_diferenciales_0.pdf",
+      "material": "ecuaciones_diferenciales_0.pdf"
+    },
+    "career": "ILOT",
+    "semester": 3
+  },
+  "electromagnetismo": {
+    "name": "electromagnetismo",
+    "code": "IF875",
+    "files": {
+      "study_plan": "electromagnetismo.pdf",
+      "material": "electromagnetismo.pdf"
+    },
+    "career": "ILOT",
+    "semester": 3
+  },
+  "lab_electromagnetismo": {
+    "name": "laboratorio de electromagnetismo",
+    "code": "IF876",
+    "files": {
+      "study_plan": "laboratorio_de_electromagnetismo.pdf",
+      "material": "laboratorio_de_electromagnetismo.pdf"
+    },
+    "career": "ILOT",
+    "semester": 3
+  },
+  "probabilidad": {
+    "name": "probabilidad",
+    "code": "IF877",
+    "files": {
+      "study_plan": "probabilidad.pdf",
+      "material": "probabilidad.pdf"
+    },
+    "career": "ILOT",
+    "semester": 3
+  },
+  "gestion_direccion_empresas": {
+    "name": "gestión y dirección de empresas",
+    "code": "IF885",
+    "files": {
+      "study_plan": "gestion_y_direccion_de_empresas.pdf",
+      "material": "gestion_y_direccion_de_empresas.pdf"
+    },
+    "career": "ILOT",
+    "semester": 3
+  },
+  "investigacion_aplicada": {
+    "name": "investigación aplicada a logística y transporte",
+    "code": "IF892",
+    "files": {
+      "study_plan": "investigacion_aplicada.pdf",
+      "material": "investigacion_aplicada.pdf"
+    },
+    "career": "ILOT",
+    "semester": 4
+  },
+  "investigacion_operaciones_i": {
+    "name": "investigación de operaciones i",
+    "code": "IF893",
+    "files": {
+      "study_plan": "investigacion_operaciones_i.pdf",
+      "material": "investigacion_operaciones_i.pdf"
+    },
+    "career": "ILOT",
+    "semester": 4
+  },
+  "mercadotecnia": {
+    "name": "mercadotecnia",
+    "code": "IF890",
+    "files": {
+      "study_plan": "mercadotecnia.pdf",
+      "material": "mercadotecnia.pdf"
+    },
+    "career": "ILOT",
+    "semester": 4
+  },
+  "envase_empaque_embalaje": {
+    "name": "empaque, envase y embalaje",
+    "code": "IF894",
+    "files": {
+      "study_plan": "envase_empaque_y_embalaje.pdf",
+      "material": "envase_empaque_y_embalaje.pdf"
+    },
+    "career": "ILOT",
+    "semester": 4
+  },
+  "termodinamica": {
+    "name": "termodinámica",
+    "code": "IF881",
+    "files": {
+      "study_plan": "termodinamica.pdf",
+      "material": "termodinamica.pdf"
+    },
+    "career": "ILOT",
+    "semester": 4
+  },
+  "estadistica": {
+    "name": "estadística",
+    "code": "IF878",
+    "files": {
+      "study_plan": "estadistica.pdf",
+      "material": "estadistica.pdf"
+    },
+    "career": "ILOT",
+    "semester": 4
+  },
+  "economia_transporte": {
+    "name": "economía del transporte",
+    "code": "IF883",
+    "files": {
+      "study_plan": "economia_del_transporte.pdf",
+      "material": "economia_del_transporte.pdf"
+    },
+    "career": "ILOT",
+    "semester": 5
+  },
+  "finanzas": {
+    "name": "finanzas",
+    "code": "IF891",
+    "files": {
+      "study_plan": "finanzas.pdf",
+      "material": "finanzas.pdf"
+    },
+    "career": "ILOT",
+    "semester": 5
+  },
+  "investigacion_operaciones_ii": {
+    "name": "investigación de operaciones ii",
+    "code": "IF896",
+    "files": {
+      "study_plan": "investigacion_operaciones_ii.pdf",
+      "material": "investigacion_operaciones_ii.pdf"
+    },
+    "career": "ILOT",
+    "semester": 5
+  },
+  "trafico_sistemas_transporte": {
+    "name": "tráfico y sistemas de transporte",
+    "code": "IF900",
+    "files": {
+      "study_plan": "trafico_y_sistemas_de_transporte.pdf",
+      "material": "trafico_y_sistemas_de_transporte.pdf"
+    },
+    "career": "ILOT",
+    "semester": 5
+  },
+  "logistica_aprovisionamiento": {
+    "name": "logística de aprovisionamiento",
+    "code": "IF895",
+    "files": {
+      "study_plan": "logistica_de_aprovisionamiento.pdf",
+      "material": "logistica_de_aprovisionamiento.pdf"
+    },
+    "career": "ILOT",
+    "semester": 5
+  },
+  "planeacion_cedis": {
+    "name": "planeación, diseño e instalación de cedis",
+    "code": "IF899",
+    "files": {
+      "study_plan": "planeacion_diseno_e_instalacion_de_cedis.pdf",
+      "material": "planeacion_diseno_e_instalacion_de_cedis.pdf"
+    },
+    "career": "ILOT",
+    "semester": 5
+  },
+  "legislacion_aduanera_transporte": {
+    "name": "legislación aduanera y de transporte",
+    "code": "IF888",
+    "files": {
+      "study_plan": "legislacion_aduanera_y_transporte.pdf",
+      "material": "legislacion_aduanera_y_transporte.pdf"
+    },
+    "career": "ILOT",
+    "semester": 6
+  },
+  "lab_simulacion_transporte": {
+    "name": "laboratorio de simulación para el transporte",
+    "code": "IF904",
+    "files": {
+      "study_plan": "lab._simulacion_transporte.pdf",
+      "material": "lab._simulacion_transporte.pdf"
+    },
+    "career": "ILOT",
+    "semester": 6
+  },
+  "sistemas_costeo_logistica": {
+    "name": "sistemas de costeo en operaciones logísticas",
+    "code": "IF898",
+    "files": {
+      "study_plan": "sistemas_de_costeo_en_operaciones_logisticas.pdf",
+      "material": "sistemas_de_costeo_en_operaciones_logisticas.pdf"
+    },
+    "career": "ILOT",
+    "semester": 6
+  },
+  "logistica_produccion": {
+    "name": "logística de la producción",
+    "code": "IF897",
+    "files": {
+      "study_plan": "logistica_de_la_produccion.pdf",
+      "material": "logistica_de_la_produccion.pdf"
+    },
+    "career": "ILOT",
+    "semester": 6
+  },
+  "logistica_inversa": {
+    "name": "logística inversa",
+    "code": "IF908",
+    "files": {
+      "study_plan": "logistica_inversa.pdf",
+      "material": "logistica_inversa.pdf"
+    },
+    "career": "ILOT",
+    "semester": 6
+  },
+  "administracion_centros_distribucion": {
+    "name": "administración de centros de distribución",
+    "code": "IF886",
+    "files": {
+      "study_plan": "administracion_de_centros_de_distribucion.pdf",
+      "material": "administracion_de_centros_de_distribucion.pdf"
+    },
+    "career": "ILOT",
+    "semester": 6
+  },
+  "gestion_evaluacion_proyectos": {
+    "name": "gestión y evaluación de proyectos",
+    "code": "IF901",
+    "files": {
+      "study_plan": "gestion_y_evaluacion_de_proyectos.pdf",
+      "material": "gestion_y_evaluacion_de_proyectos.pdf"
+    },
+    "career": "ILOT",
+    "semester": 7
+  },
+  "lab_simulacion_logistica": {
+    "name": "laboratorio de simulación para logística",
+    "code": "IF906",
+    "files": {
+      "study_plan": "lab._simulacion_logistica.pdf",
+      "material": "lab._simulacion_logistica.pdf"
+    },
+    "career": "ILOT",
+    "semester": 7
+  },
+  "logistica_internacional": {
+    "name": "logística internacional",
+    "code": "IF903",
+    "files": {
+      "study_plan": "logistica_internacional.pdf",
+      "material": "logistica_internacional.pdf"
+    },
+    "career": "ILOT",
+    "semester": 7
+  },
+  "administracion_cadena_suministros": {
+    "name": "administración de la cadena de suministros",
+    "code": "IF902",
+    "files": {
+      "study_plan": "administracion_de_la_cadena_de_suministros.pdf",
+      "material": "administracion_de_la_cadena_de_suministros.pdf"
+    },
+    "career": "ILOT",
+    "semester": 7
+  },
+  "seminario_transporte": {
+    "name": "seminario de transporte",
+    "code": "IF910",
+    "files": {
+      "study_plan": "seminario_de_transporte.pdf",
+      "material": "seminario_de_transporte.pdf"
+    },
+    "career": "ILOT",
+    "semester": 8
+  },
+  "servicio_logistico_cliente": {
+    "name": "servicio logístico al cliente",
+    "code": "IF503",
+    "files": {
+      "study_plan": "servicio_logistico_al_cliente.pdf",
+      "material": "servicio_logistico_al_cliente.pdf"
+    },
+    "career": "ILOT",
+    "semester": 8
+  },
+  "calidad_cadena_suministro": {
+    "name": "calidad de la cadena de suministro",
+    "code": "IF905",
+    "files": {
+      "study_plan": "calidad_de_la_cadena_de_suministros.pdf",
+      "material": "calidad_de_la_cadena_de_suministros.pdf"
+    },
+    "career": "ILOT",
+    "semester": 8
+  },
+  "seminario_logistica": {
+    "name": "seminario de logística",
+    "code": "IF909",
+    "files": {
+      "study_plan": "seminario_de_logistica.pdf",
+      "material": "seminario_de_logistica.pdf"
+    },
+    "career": "ILOT",
+    "semester": 8
+  }
+}

@@ -41,8 +41,6 @@ deactivate
 - Para nuevas funcionalidades, seguir la arquitectura modular y aprovechar los contextos y hooks existentes.
 
 
-# OUTDATED (THE CHATBOT IS NO LONGER IN PYTHON — IT'S NOW A JS BACKEND)
-
 ### CHATBOT
 
 EN EL README DEL CHATBOT

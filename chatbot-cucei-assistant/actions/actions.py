@@ -18,12 +18,9 @@ SUBJECTS_JSON_PATH = os.path.join(DATA_DIR, "subjects.json")
 PLACES_JSON_PATH = os.path.join(DATA_DIR, "places.json")
 CAREERS_JSON_PATH = os.path.join(DATA_DIR, "careers.json")
 
-# Monorepo paths (keeps catalogs in sync with the Node backend without requiring
-# any backend changes).
+# Local catalog paths (keeps this action server self-contained).
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-SERVER_ROOT = os.path.abspath(os.path.join(PROJECT_ROOT, "..", "server"))
-SERVER_DATA_DIR = os.path.join(SERVER_ROOT, "src", "data")
-SERVER_FILES_DIR = os.path.join(SERVER_ROOT, "src", "files")
+SUBJECT_DATA_DIR = os.path.join(PROJECT_ROOT, "subject_data")
 
 # This should point to the InCUCEI server serving /files/* endpoints.
 SERVER_BASE_URL = os.environ.get("INCUCEI_SERVER_BASE_URL", "http://localhost:3000")
@@ -257,20 +254,23 @@ def _generate_acronyms(name: str) -> List[str]:
     return [a for a in out if a]
 
 
-def _load_subjects_from_server_data() -> Dict[str, Dict[str, Any]]:
-    # Reads server/src/data/*.data.json
-    if not os.path.isdir(SERVER_DATA_DIR):
+def _load_subjects_from_local_data_files() -> Dict[str, Dict[str, Any]]:
+    """Reads subject catalogs from subject_data/*.data.json.
+
+    This action server must be deployable without the monorepo `server/` folder.
+    """
+    if not os.path.isdir(SUBJECT_DATA_DIR):
         return {}
 
     subjects_by_career: Dict[str, Dict[str, Any]] = {}
-    for filename in os.listdir(SERVER_DATA_DIR):
+    for filename in os.listdir(SUBJECT_DATA_DIR):
         if not filename.endswith(".data.json"):
             continue
         career = filename.split(".")[0].upper()
         if not re.fullmatch(r"[A-Z]{4}", career):
             continue
 
-        file_path = os.path.join(SERVER_DATA_DIR, filename)
+        file_path = os.path.join(SUBJECT_DATA_DIR, filename)
         try:
             with open(file_path, "r", encoding="utf-8") as f:
                 subjects_by_career[career] = json.load(f)
@@ -494,13 +494,11 @@ def _load_places() -> List[Dict[str, Any]]:
     with open(PLACES_JSON_PATH, "r", encoding="utf-8") as f:
         return json.load(f)
 
+_subjects_from_local_files = _load_subjects_from_local_data_files()
+_subjects_from_local_json = _load_subjects_from_local_json()
 
-_subjects_from_server = _load_subjects_from_server_data()
-_subjects_from_local = _load_subjects_from_local_json()
-
-# Prefer server catalog if available (most up-to-date)
-# SUBJECTS_RAW = _subjects_from_server or _subjects_from_local
-SUBJECTS_RAW = _subjects_from_server
+# Prefer the shipped subject_data/*.data.json catalog; fallback to data/subjects.json
+SUBJECTS_RAW = _subjects_from_local_files or _subjects_from_local_json
 SUBJECTS, SUBJECTS_BY_KEY = _build_subject_index(SUBJECTS_RAW)
 
 _career_catalog = _load_career_catalog(list(SUBJECTS_RAW.keys()))
@@ -670,11 +668,6 @@ class ActionGetCurriculum(Action):
             return [SlotSet("career_code", None)]
 
         file_name = f"{career_code}.pdf"
-        local_path = os.path.join(SERVER_FILES_DIR, "Mallas", file_name)
-        if os.path.isdir(SERVER_FILES_DIR) and not os.path.exists(local_path):
-            dispatcher.utter_message(response="utter_curriculum_not_found")
-            return []
-
         url = f"{SERVER_BASE_URL}/files/Mallas/{file_name}"
         dispatcher.utter_message(
             text=f"Aquí está la malla curricular de **{career_code}**: [{file_name}]({url})",

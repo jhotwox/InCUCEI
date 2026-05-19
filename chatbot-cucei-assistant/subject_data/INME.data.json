@@ -1,0 +1,692 @@
+{
+  "quimica_basica": {
+    "name": "quimica basica",
+    "code": "I7415",
+    "semester": 1,
+    "files": {
+      "study_plan": "ua_quimica_basica.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "probabilidad_estadistica": {
+    "name": "probabilidad y estadistica",
+    "code": "I6920",
+    "semester": 1,
+    "files": {
+      "study_plan": "ua_probabilidad_y_estadistica.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "seminario_modular_i": {
+    "name": "seminario modular i",
+    "code": "I7464",
+    "semester": 1,
+    "files": {
+      "study_plan": "seminario_modular_i_i7464_diseno_completo.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "taller_expresion_oral_escrita": {
+    "name": "taller de expresion oral y escrita",
+    "code": "I7418",
+    "semester": 1,
+    "files": {
+      "study_plan": "ua_taller_de_expresion_oral_y_escrita.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "administracion": {
+    "name": "administracion",
+    "code": "I7370",
+    "semester": 1,
+    "files": {
+      "study_plan": "ua_administracion.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "precalculo": {
+    "name": "precalculo",
+    "code": "I5799",
+    "semester": 1,
+    "files": {
+      "study_plan": "ua_precalculo_i5799.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "algebra_lineal": {
+    "name": "algebra lineal",
+    "code": "I5802",
+    "semester": 1,
+    "files": {
+      "study_plan": "ua_algebra_lineal.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "ingenieria_materiales": {
+    "name": "ingenieria de los materiales",
+    "code": "I7426",
+    "semester": 2,
+    "files": {
+      "study_plan": "ingenieria_de_los_materiales_i7426.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "estatica": {
+    "name": "estatica",
+    "code": "I7412",
+    "semester": 2,
+    "files": {
+      "study_plan": "ua_estatica.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "etica_profesional": {
+    "name": "etica profesional",
+    "code": "I7381",
+    "semester": 2,
+    "files": {
+      "study_plan": "ua_etica_profesional.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "seminario_modular_ii": {
+    "name": "seminario modular ii",
+    "code": "I7465",
+    "semester": 2,
+    "files": {
+      "study_plan": "seminario_modular_ii_i7465_diseno_completo.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "comportamiento_humano_organizaciones": {
+    "name": "comportamiento humano en las organizaciones",
+    "code": "I6184",
+    "semester": 2,
+    "files": {
+      "study_plan": "ua_comportamiento_humano_en_las_organizaciones.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "dibujo_industrial_asistido": {
+    "name": "dibujo industrial asistido por computadora",
+    "code": "I7429",
+    "semester": 2,
+    "files": {
+      "study_plan": "dibujo_industrial_asistido_por_computadora_i7429_completo.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "calculo_diferencial_integral": {
+    "name": "calculo diferencial e integral",
+    "code": "I7421",
+    "semester": 2,
+    "files": {
+      "study_plan": "ua_calculo_diferencial_e_integral.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "topicos_fisica": {
+    "name": "topicos de fisica",
+    "code": "I7416",
+    "semester": 2,
+    "files": {
+      "study_plan": "ua_topicos_de_fisica.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "dinamica": {
+    "name": "dinamica",
+    "code": "I7413",
+    "semester": 3,
+    "files": {
+      "study_plan": "ua_dinamica.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "ingenieria_termodinamica": {
+    "name": "ingenieria termodinamica",
+    "code": "I7424",
+    "semester": 3,
+    "files": {
+      "study_plan": "ingenieria_termodinamica.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "sistemas_ambientales_i": {
+    "name": "sistemas ambientales i",
+    "code": "I7439",
+    "semester": 3,
+    "files": {
+      "study_plan": "sistemas_ambientales_1_programa_final_1.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "seminario_modular_iii": {
+    "name": "seminario modular iii",
+    "code": "I7466",
+    "semester": 3,
+    "files": {
+      "study_plan": "seminario_modular_iii_i7466_diseno_completo.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "liderazgo": {
+    "name": "liderazgo",
+    "code": "I7406",
+    "semester": 3,
+    "files": {
+      "study_plan": "ua_liderazgo.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "programacion_aplicada": {
+    "name": "programacion aplicada",
+    "code": "I7404",
+    "semester": 3,
+    "files": {
+      "study_plan": "ua_programacion_aplicada.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "matematicas_avanzadas_ingenieria": {
+    "name": "matematicas avanzadas para ingenieria",
+    "code": "I7423",
+    "semester": 3,
+    "files": {
+      "study_plan": "ua_matematicas_avanzadas_para_ingenieria.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "calculo_avanzado": {
+    "name": "calculo avanzado",
+    "code": "I7420",
+    "semester": 3,
+    "files": {
+      "study_plan": "ua_calculo_avanzado.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "cinematica_dinamica_maquinas": {
+    "name": "cinematica y dinamica de maquinas",
+    "code": "I7441",
+    "semester": 4,
+    "files": {
+      "study_plan": "cinematica_y_dinamica_de_maquinas_i7441.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "fluidos": {
+    "name": "fluidos",
+    "code": "I7433",
+    "semester": 4,
+    "files": {
+      "study_plan": "fluidos.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "laboratorio_mecanica_fluidos": {
+    "name": "laboratorio de mecanica de fluidos",
+    "code": "I7445",
+    "semester": 4,
+    "files": {
+      "study_plan": "laboratorio_de_mecanica_de_fluidos.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "sistemas_ambientales_ii": {
+    "name": "sistemas ambientales ii",
+    "code": "I7448",
+    "semester": 4,
+    "files": {
+      "study_plan": "sistemas_ambientales_2_version_1.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "seminario_modular_iv": {
+    "name": "seminario modular iv",
+    "code": "I7467",
+    "semester": 4,
+    "files": {
+      "study_plan": "seminario_modular_iv_i7467_diseno_completo.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "formacion_empresarial": {
+    "name": "formacion empresarial",
+    "code": "I7440",
+    "semester": 4,
+    "files": {
+      "study_plan": "ua_formacion_empresarial.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "ecuaciones_diferenciales_ordinarias": {
+    "name": "ecuaciones diferenciales ordinarias",
+    "code": "I7422",
+    "semester": 4,
+    "files": {
+      "study_plan": "ua_ecuaciones_diferenciales_ordinarias.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "optica_acustica": {
+    "name": "optica y acustica",
+    "code": "I7417",
+    "semester": 4,
+    "files": {
+      "study_plan": "ua_optica_y_acustica.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "electromagnetismo_ingenieria": {
+    "name": "electromagnetismo para ingenieria",
+    "code": "I7414",
+    "semester": 4,
+    "files": {
+      "study_plan": "ua_electromagnetismo_para_ingenierias_1.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "transferencia_calor": {
+    "name": "transferencia de calor",
+    "code": "I7435",
+    "semester": 5,
+    "files": {
+      "study_plan": "transferencia_de_calor.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "mecanica_materiales": {
+    "name": "mecanica de materiales",
+    "code": "I7434",
+    "semester": 5,
+    "files": {
+      "study_plan": "mecanica_de_materiales_i7434.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "taller_mediciones_mecanicas_electricas": {
+    "name": "taller de mediciones mecanicas y electricas",
+    "code": "I7446",
+    "semester": 5,
+    "files": {
+      "study_plan": "taller_de_mediciones_mecanicas_y_electricas.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "seminario_modular_v": {
+    "name": "seminario modular v",
+    "code": "I7468",
+    "semester": 5,
+    "files": {
+      "study_plan": "seminario_modular_v_i7468_diseno_completo.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "ingenieria_costos": {
+    "name": "ingenieria de costos",
+    "code": "I7438",
+    "semester": 5,
+    "files": {
+      "study_plan": "ua_ingenieria_de_costos_i7438.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "metodos_numericos": {
+    "name": "metodos numericos",
+    "code": "I7419",
+    "semester": 5,
+    "files": {
+      "study_plan": "ua_metodos_numericos.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "circuitos_electricos": {
+    "name": "circuitos electricos",
+    "code": "I7427",
+    "semester": 5,
+    "files": {
+      "study_plan": "circuitos_electricos_i.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "laboratorio_circuitos_electricos": {
+    "name": "laboratorio de circuitos electricos",
+    "code": "I7430",
+    "semester": 5,
+    "files": {
+      "study_plan": "laboratorio_de_circuitos_electricos_i.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "maquinas_hidraulicas": {
+    "name": "maquinas hidraulicas",
+    "code": "I7452",
+    "semester": 6,
+    "files": {
+      "study_plan": "maquinas_hidraulicas.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "laboratorio_maquinas_hidraulicas": {
+    "name": "laboratorio de maquinas hidraulicas",
+    "code": "I7450",
+    "semester": 6,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "diseno_elementos_maquinas": {
+    "name": "diseño de elementos de maquinas",
+    "code": "I7442",
+    "semester": 6,
+    "files": {
+      "study_plan": "diseno_de_elementos_de_maquina_i7442.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "laboratorio_procesos_manufactura": {
+    "name": "laboratorio de procesos de manufactura",
+    "code": "I7451",
+    "semester": 6,
+    "files": {
+      "study_plan": "laboratorio_de_procesos_de_manufactura.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "seminario_modular_vi": {
+    "name": "seminario modular vi",
+    "code": "I7469",
+    "semester": 6,
+    "files": {
+      "study_plan": "seminario_modular_vi_i7469_diseno_completo.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "procesos_manufactura": {
+    "name": "procesos de manufactura",
+    "code": "I7453",
+    "semester": 6,
+    "files": {
+      "study_plan": "ua_procesos_de_manufactura.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "sistemas_neumaticos_hidraulicos": {
+    "name": "sistemas neumaticos e hidraulicos",
+    "code": "I7447",
+    "semester": 6,
+    "files": {
+      "study_plan": "sistemas_neumaticos_e_hidraulicos.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "circuitos_electricos_ii": {
+    "name": "circuitos electricos ii",
+    "code": "I7428",
+    "semester": 6,
+    "files": {
+      "study_plan": "circuitos_electricos_ii.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "laboratorio_circuitos_electricos_ii": {
+    "name": "laboratorio de circuitos electricos ii",
+    "code": "I7431",
+    "semester": 6,
+    "files": {
+      "study_plan": "laboratorio_de_circuitos_electricos_ii.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "maquinas_termicas_i": {
+    "name": "maquinas termicas i",
+    "code": "I7432",
+    "semester": 7,
+    "files": {
+      "study_plan": "maquina_termicas_i.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "instalaciones_electricas_iluminacion": {
+    "name": "instalaciones electricas e iluminacion",
+    "code": "I7443",
+    "semester": 7,
+    "files": {
+      "study_plan": "instalaciones_electricas_e_iluminacion.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "seminario_modular_vii": {
+    "name": "seminario modular vii",
+    "code": "I7470",
+    "semester": 7,
+    "files": {
+      "study_plan": "seminario_modular_vii_i7470_diseno_completo.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "electronica_analogica_digital": {
+    "name": "electronica analogica y digital",
+    "code": "I7436",
+    "semester": 7,
+    "files": {
+      "study_plan": "ua_electronica_analogica_y_digital.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "ingenieria_control": {
+    "name": "ingenieria de control",
+    "code": "I7425",
+    "semester": 7,
+    "files": {
+      "study_plan": "ingenieria_de_control.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "maquinas_electricas_i": {
+    "name": "maquinas electricas i",
+    "code": "I7455",
+    "semester": 7,
+    "files": {
+      "study_plan": "ua_maquinas_electricas_i.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "laboratorio_maquinas_electricas_i": {
+    "name": "laboratorio de maquinas electricas i",
+    "code": "I7460",
+    "semester": 7,
+    "files": {
+      "study_plan": "ua_laboratorio_de_maquinas_electricas_i.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "teoria_electromagnetica_maquinas": {
+    "name": "teoria electromagnetica para maquinas",
+    "code": "I7449",
+    "semester": 7,
+    "files": {
+      "study_plan": "ua_teoria_electromagnetica_para_maquinas.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "maquinas_termicas_ii": {
+    "name": "maquinas termicas ii",
+    "code": "I7454",
+    "semester": 8,
+    "files": {
+      "study_plan": "ua_maquinas_termicas_ii.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "instalaciones_mecanicas": {
+    "name": "instalaciones mecanicas",
+    "code": "I7444",
+    "semester": 8,
+    "files": {
+      "study_plan": "ua_instalaciones_mecanicas.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "seminario_modular_viii": {
+    "name": "seminario modular viii",
+    "code": "I7471",
+    "semester": 8,
+    "files": {
+      "study_plan": "ua_seminario_modular_viii.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "sistemas_control_secuencial": {
+    "name": "sistemas de control secuencial",
+    "code": "I7457",
+    "semester": 8,
+    "files": {
+      "study_plan": "ua_sistemas_de_control_secuencial.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "laboratorio_control_secuencial": {
+    "name": "laboratorio de sistemas de control secuencial",
+    "code": "I7458",
+    "semester": 8,
+    "files": {
+      "study_plan": "ua_laboratorio_de_control_secuencial.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "maquinas_electricas_ii": {
+    "name": "maquinas electricas ii",
+    "code": "I7456",
+    "semester": 8,
+    "files": {
+      "study_plan": "ua_maquinas_electricas_ii.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "laboratorio_maquinas_electricas_ii": {
+    "name": "laboratorio de maquinas electricas ii",
+    "code": "I7459",
+    "semester": 8,
+    "files": {
+      "study_plan": "ua_laboratorio_de_maquinas_electricas_ii.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "subestaciones_electricas": {
+    "name": "subestaciones electricas",
+    "code": "I7463",
+    "semester": 8,
+    "files": {
+      "study_plan": "ua_subestaciones_electricas.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "redes_electricas": {
+    "name": "redes electricas",
+    "code": "I7462",
+    "semester": 8,
+    "files": {
+      "study_plan": "ua_redes_electricas.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "refrigeracion_aire_acondicionado": {
+    "name": "refrigeracion y aire acondicionado",
+    "code": "I7461",
+    "semester": 9,
+    "files": {
+      "study_plan": "ua_refrigeracion_y_aire_aacondicionado.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "seminario_modular_ix": {
+    "name": "seminario modular ix",
+    "code": "I7472",
+    "semester": 9,
+    "files": {
+      "study_plan": "ua_seminario_modular_ix.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  },
+  "automatizacion": {
+    "name": "automatizacion",
+    "code": "I7437",
+    "semester": 9,
+    "files": {
+      "study_plan": "automatizacion.pdf",
+      "material": ""
+    },
+    "career": "INME"
+  }
+}
