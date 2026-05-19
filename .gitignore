@@ -38,7 +38,7 @@ chatbot-cucei-assistant/**/*.pyc
 
 ## Rasa
 chatbot/models/
-chatbot-cucei-assistant/models/
+# chatbot-cucei-assistant/models/
 chatbot/.rasa/
 chatbot-cucei-assistant/.rasa/
 
