@@ -43,7 +43,12 @@ flows:
     nlu_trigger:
       - intent: request_human_contact
     steps:
-      - action: utter_human_contact
+      - collect: contact_name
+        description: The name of the department, person, or service the user wants to contact (e.g., control escolar, rectoria, servicios escolares).
+        rejections:
+          - if: not slots.contact_name
+            utter: utter_ask_contact_name
+      - action: action_human_contact
         next: END
   
   greet:

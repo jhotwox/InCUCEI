@@ -16,9 +16,15 @@ entities:
   - subject
   - location
   - career_code
+  - contact_name
 
 slots:
   topic:
+    type: text
+    mappings:
+      - type: from_llm
+
+  contact_name:
     type: text
     mappings:
       - type: from_llm
@@ -54,6 +60,9 @@ responses:
     - text: "Cuál es la materia en la que necesitas material?"
       metadata:
         rephrase: True
+
+  utter_ask_contact_name:
+    - text: "¿De qué departamento o persona necesitas el contacto?"
 
   utter_ask_career_code:
     - text: "¿Cuál es el código de tu carrera? (por ejemplo: INNI, INEA, LQFB, INFO, ILOT, LILT)"
@@ -96,48 +105,16 @@ responses:
         rephrase: True
 
   utter_human_contact:
-    - text: "Contactos CUCEI:\n- Servicios escolares: servicios.escolares@cucei.udg.mx\n- Coordinación Informática: coordinacion.di@cucei.udg.mx\n- Tel: +52 33 1378-5900\n- Web: https://www.cucei.udg.mx/"
-      metadata:
-        rephrase: True
-        rephrase_prompt: |
-          Eres un asistente amable para la comunidad de CUCEI. 
-          CONOCIMIENTO REAL (NO INVENTES):
-          - Teléfono: [+523313785900](tel:+523313785900)
-          - Control Escolar: [servicios.escolares@cucei.udg.mx](mailto:servicios.escolares@cucei.udg.mx) (Módulo A)
-          - Sitio Web: [www.cucei.udg.mx](https://www.cucei.udg.mx)
-          
-          Información del usuario:
-          - Nombre: {{slots.first_name}}
-          - Carrera: {{slots.career_code}}
-          Contexto:
-          {{history}}
-          Entrada actual: {{current_input}}
-          Respuesta sugerida:
+    - text: "Buscando información de contacto..."
 
   utter_human_contact_canceled:
     - text: "Entendido, no te proporcionaré información de contacto. Hay algo más en lo que pueda ayudarte?"
-      metadata:
-        rephrase: True
 
   utter_confirm_career:
     - text: "¡Entendido! He registrado que eres de la carrera {career_code}. ¿En qué más puedo ayudarte?"
-      metadata:
-        rephrase: True
 
   utter_capabilities:
-    - text: "Soy el asistente inteligente de InCUCEI y puedo ayudarte con:\n- 📚 **Material de estudio**: Búsqueda de artículos y recursos en Google Scholar.\n- 📋 **Planes de estudio**: Temarios oficiales de cada asignatura.\n- 🗺️ **Mapa interactivo**: Ubicación de módulos y servicios en CUCEI.\n- 🎓 **Malla curricular**: El PDF oficial de tu carrera.\n- 📞 **Información de contacto**: Datos de control escolar y más."
-      metadata:
-        rephrase: True
-        rephrase_prompt: |
-          Eres el asistente de InCUCEI. Resume tus capacidades de forma amable.
-          CAPACIDADES REALES: Búsqueda de material en Google Scholar, planes de estudio, mapa interactivo (lugares), mallas curriculares y contactos oficiales.
-          
-          Información del usuario:
-          - Nombre: {{slots.first_name}}
-          Contexto:
-          {{history}}
-          Entrada actual: {{current_input}}
-          Respuesta sugerida:
+    - text: "Soy el asistente inteligente de InCUCEI y puedo ayudarte con:\n- 📚 **Material de estudio**: Búsqueda en Google Scholar.\n- 📋 **Planes de estudio**: Temarios oficiales.\n- 🗺️ **Mapa interactivo**: Ubicaciones en CUCEI.\n- 🎓 **Malla curricular**: El PDF de tu carrera.\n- 📞 **Información de contacto**: Datos oficiales de dependencias y coordinaciones."
   
   utter_greet:
     - text: "¡Hola! ¿Cómo te puedo asistir el día de hoy?"

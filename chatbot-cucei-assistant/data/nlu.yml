@@ -80,6 +80,13 @@ nlu:
       - me puedes dar un correo o teléfono
       - quiero hablar con alguien
       - dame información de contacto
+      - dame el contacto de [control escolar](contact_name)
+      - correo de [rectoría](contact_name)
+      - telefono de [servicios escolares](contact_name)
+      - busco a [coordinacion de informatica](contact_name)
+      - contacto de [biblioteca](contact_name)
+      - pasame el telefono de la [enfermeria](contact_name)
+      - quiero hablar con el coordinador de [informatica](contact_name)
 
   - intent: inform_career
     examples: |

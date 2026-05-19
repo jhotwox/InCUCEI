@@ -81,7 +81,7 @@ class SubjectEntry:
     token_set: frozenset[str]
 
 
-STOPWORDS = {"de", "la", "del", "y", "e", "en", "a", "al"}
+STOPWORDS = {"de", "la", "del", "y", "e", "en", "a", "al", "para", "carrera", "el", "los", "las", "un", "una", "unos", "unas"}
 
 ACRONYM_EQUIVALENTS = {
     "DB": "BD",
@@ -625,8 +625,8 @@ class ActionGetSubjectStudyPlan(Action):
 
         entry = _find_subject(str(topic), career_code)
         if not entry or not entry.study_plan_file:
-            dispatcher.utter_message(response="utter_study_plan_not_found")
-            return []
+            dispatcher.utter_message(text=f"Lo siento, no tengo el plan de estudios de **{topic}** disponible para la carrera **{career_code}**.")
+            return [SlotSet("topic", str(topic)), SlotSet("career_code", career_code)]
 
         url = _build_study_plan_url(entry)
         dispatcher.utter_message(
@@ -711,13 +711,106 @@ class ActionShowLocationOnMap(Action):
         return [SlotSet("location_name", str(location))]
 
 
+CONTACTS_JSON_PATH = os.path.join(DATA_DIR, "contacts.json")
+
+def _load_contacts() -> Dict[str, Any]:
+    if not os.path.exists(CONTACTS_JSON_PATH):
+        return {}
+    with open(CONTACTS_JSON_PATH, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+CONTACTS = _load_contacts()
+
+def _find_contact(query: str) -> Optional[Tuple[str, Dict[str, Any]]]:
+    normalized_query = _normalize(query)
+    if not normalized_query:
+        return None
+
+    # Remove generic prefixes that users might add
+    prefixes_to_remove = ["quiero contactar a ", "quiero contactar ", "contacto de ", "correo de ", "telefono de ", "informacion de ", "horario de "]
+    for prefix in prefixes_to_remove:
+        if normalized_query.startswith(prefix):
+            normalized_query = normalized_query[len(prefix):].strip()
+
+    choices = []
+    contact_map = {}
+    
+    for key, data in CONTACTS.items():
+        # Treat the key as the primary searchable name (replace underscores with spaces)
+        readable_key = key.replace("_", " ")
+        norm_key = _normalize(readable_key)
+        
+        choices.append(norm_key)
+        contact_map[norm_key] = (readable_key, data)
+        
+        # Also index the 'nombre' field if available
+        if "nombre" in data and isinstance(data["nombre"], str):
+            norm_name = _normalize(data["nombre"])
+            if norm_name:
+                choices.append(norm_name)
+                contact_map[norm_name] = (readable_key, data)
+                
+        # Also index 'puesto' field
+        if "puesto" in data and isinstance(data["puesto"], str):
+             norm_puesto = _normalize(data["puesto"])
+             if norm_puesto:
+                 choices.append(norm_puesto)
+                 contact_map[norm_puesto] = (readable_key, data)
+
+    # 1) Try exact substring match
+    for choice in choices:
+        if normalized_query == choice or normalized_query in choice or choice in normalized_query:
+            return contact_map[choice]
+            
+    # 2) Fuzzy search
+    best_match = process.extractOne(normalized_query, choices, scorer=fuzz.token_set_ratio)
+    
+    if best_match and best_match[1] >= 75:  # Slightly lower threshold for contacts
+        return contact_map[best_match[0]]
+        
+    return None
+
 class ActionHumanContact(Action):
     def name(self) -> Text:
         return "action_human_contact"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]):
-        dispatcher.utter_message(response="utter_human_contact")
-        return []
+        contact_query = tracker.get_slot("contact_name") or _get_entity_value(tracker, "contact_name")
+        
+        if not contact_query:
+            dispatcher.utter_message(response="utter_human_contact")
+            return []
+
+        contact_match = _find_contact(str(contact_query))
+        
+        if not contact_match:
+            # Fallback to general contacts if specific one not found
+            dispatcher.utter_message(
+                text=f"No pude encontrar información de contacto específica para '{contact_query}'.\n"
+                     f"Te proporciono los contactos generales:\n"
+                     f"- Teléfono: [+52 33 1378 5900](tel:+523313785900)\n"
+                     f"- Control Escolar: [servicios.escolares@cucei.udg.mx](mailto:servicios.escolares@cucei.udg.mx)\n"
+                     f"- Web: [www.cucei.udg.mx](https://www.cucei.udg.mx)"
+            )
+            return [SlotSet("contact_name", str(contact_query))]
+
+        # Format the specific contact found
+        contact_title, contact_data = contact_match
+        formatted_title = contact_title.title()
+        
+        response_parts = [f"Aquí tienes la información sobre **{formatted_title}**:"]
+        
+        for key, value in contact_data.items():
+            if value and isinstance(value, str) and value != ".":
+                 # Capitalize keys for display (e.g., 'telefono' -> 'Telefono')
+                 display_key = key.replace("_", " ").title()
+                 response_parts.append(f"- **{display_key}**: {value}")
+                 
+        if "redes_sociales" in contact_title.lower() or "cucei" == contact_title.lower():
+            pass # Usually handled well by the loop above if formatted correctly
+            
+        dispatcher.utter_message(text="\n".join(response_parts))
+        return [SlotSet("contact_name", str(contact_query))]
 
 
 # Backward-compatible alias used by existing flows
