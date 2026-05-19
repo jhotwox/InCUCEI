@@ -26,8 +26,10 @@ export class RasaService {
         sender: senderId,
         message: message,
       })
-      console.log(`[DEBUG] Rasa responses: "${response.text}`)
-      // console.log(`[DEBUG] Rasa responses: "${response.map(r => r.text).filter(t => t).join(' | ')}"`)
+      const texts = Array.isArray(response.data)
+        ? response.data.map((r) => r?.text).filter(Boolean)
+        : []
+      console.log(`[DEBUG] Rasa responses: "${texts.join(" | ")}"`)
 
       return response.data
     } catch (error) {

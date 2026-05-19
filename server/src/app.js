@@ -6,6 +6,8 @@ import path from "path"
 import { fileURLToPath } from "url"
 import http from "http"
 import { Server } from "socket.io"
+import { createAdapter } from "@socket.io/redis-adapter"
+import { createClient } from "redis"
 
 import userRoutes from "./routes/auth.routes.js"
 import fileRoutes from "./routes/file.routes.js"
@@ -31,6 +33,52 @@ const io = new Server(server, {
     methods: ["GET", "POST"],
   },
 })
+
+// Socket.IO Redis adapter (required for multi-replica deployments)
+const getRedisClientOptionsFromEnv = () => {
+  const url = process.env.REDIS_URL
+  if (url) return { url }
+
+  const host = process.env.REDIS_HOST || process.env.REDISHOST
+  const portRaw = process.env.REDIS_PORT || process.env.REDISPORT
+  if (!host || !portRaw) return null
+
+  const port = Number(portRaw)
+  if (!Number.isFinite(port)) return null
+
+  const username = process.env.REDIS_USERNAME || process.env.REDIS_USER
+  const password = process.env.REDIS_PASSWORD || process.env.REDISPASSWORD
+
+  return {
+    socket: { host, port },
+    ...(username ? { username } : {}),
+    ...(password ? { password } : {}),
+  }
+}
+
+const redisClientOptions = getRedisClientOptionsFromEnv()
+if (redisClientOptions) {
+  try {
+    const pubClient = createClient(redisClientOptions)
+    const subClient = pubClient.duplicate()
+
+    pubClient.on("error", (err) => console.error("[redis] pubClient error:", err))
+    subClient.on("error", (err) => console.error("[redis] subClient error:", err))
+
+    await pubClient.connect()
+    await subClient.connect()
+
+    io.adapter(createAdapter(pubClient, subClient))
+    console.log("✅ Socket.IO Redis adapter enabled")
+  } catch (err) {
+    console.error(
+      "❌ Failed to enable Socket.IO Redis adapter. Multi-replica rooms/events will NOT work until Redis is configured correctly.",
+      err
+    )
+  }
+} else {
+  console.log("ℹ️ Socket.IO Redis adapter disabled (no REDIS_URL/REDIS_HOST present)")
+}
 
 // Middlewares
 app.use(cors({ origin: true, credentials: true }))
