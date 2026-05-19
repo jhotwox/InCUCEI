@@ -70,10 +70,26 @@ export const showLocationOnMapDeclaration = {
   },
 }
 
+export const searchScholarTopicDeclaration = {
+  name: "search_scholar_topic",
+  description: "Searches a topic on Google Scholar to find academic articles, papers, and other scholarly literature. Use this when the user asks for study material on a general topic, not a specific subject from their curriculum.",
+  parameters: {
+    type: Type.OBJECT,
+    properties: {
+      topic: {
+        type: Type.STRING,
+        description: "The topic to search for on Google Scholar, e.g., 'Artificial Intelligence', 'Quantum Physics'",
+      },
+    },
+    required: ["topic"],
+  },
+}
+
 // ============ Function Declarations Array ============
 export const functionDeclarations = [
   getSubjectMaterialDeclaration,
   getSubjectStudyPlanDeclaration,
   getCurriculumDeclaration,
-  showLocationOnMapDeclaration
+  showLocationOnMapDeclaration,
+  searchScholarTopicDeclaration
 ]

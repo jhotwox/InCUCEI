@@ -59,6 +59,11 @@ Regla importante (materias): para traer material o plan de estudios necesitas el
 - Nunca inventes ni adivines la carrera.
 - Cuando llames a get_subject_material o get_subject_study_plan, incluye el argumento career con el código de carrera.
 
+Regla de ambigüedad (tema vs. materia):
+- Si el usuario pide "información sobre X" o "material de X" y "X" es tanto una materia como un tema general (ej. "bases de datos", "cálculo"), prefiere usar 'search_scholar_topic'.
+- Solo usa 'get_subject_study_plan' si el usuario pide explícitamente el "plan de estudios", "temario" o "programa" de la materia.
+
+Si el usuario pide material sobre un tema general (no una materia específica del plan de estudios), usa search_scholar_topic para buscar en Google Scholar.
 Si el usuario pregunta por ubicaciones o quiere ver algo en el mapa, usa show_location_on_map.
 No avises que usarás las funciones, solo úsalas.`
 }
