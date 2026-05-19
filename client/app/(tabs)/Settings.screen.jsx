@@ -4,6 +4,7 @@ import { Button, Text, useTheme, Switch, List } from "react-native-paper"
 import { Background, BlurCard, FileInput } from "../../components"
 import { useAuth } from "../../contexts/Auth.context"
 import { useBackgroundAnimation } from "../../contexts/BackgroundAnimation.context"
+import { useChatbotType } from "../../contexts/ChatbotType.context"
 import WaveHand from "../../components/WaveHand"
 import { createFileObjectFromUrl } from "../../utils/generateFileObjectFromURL"
 import { useLayout } from "../../layout/providers.layout"
@@ -15,6 +16,7 @@ export default () => {
   const theme = useTheme()
   const { loading, error, logout, user, updateUser } = useAuth()
   const { isAnimationEnabled, setIsAnimationEnabled } = useBackgroundAnimation()
+  const { botType, toggleBotType } = useChatbotType()
   const { tabBarHeight } = useLayout()
 
   useEffect(() => {
@@ -73,6 +75,26 @@ export default () => {
                 onValueChange={setIsAnimationEnabled}
                 color={theme.colors.primary}
               />
+            )}
+          />
+
+          <List.Item
+            title="Modelo del Chatbot"
+            description={botType === 'gemini' ? "Usando Gemini AI" : "Usando Rasa (Pro)"}
+            titleStyle={{ color: theme.colors.onSurface }}
+            descriptionStyle={{ color: theme.colors.onSurfaceVariant }}
+            left={props => <List.Icon {...props} icon="robot" />}
+            right={() => (
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <Text style={{ marginRight: 8, fontSize: 12, color: theme.colors.onSurfaceVariant }}>
+                  {botType === 'gemini' ? 'Gemini' : 'Rasa'}
+                </Text>
+                <Switch
+                  value={botType === 'rasa'}
+                  onValueChange={toggleBotType}
+                  color={theme.colors.primary}
+                />
+              </View>
             )}
           />
         </List.Section>

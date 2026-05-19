@@ -14,9 +14,10 @@ export const deleteHistory = async () => {
   })
 }
 
+// TODO: Integrate this in useChatBot.jsx and remove the direct axios call there
 export const sendMessage = async (message, type = "general") => {
   return await axios
-    .post("/chatbot/message", { message, type })
+    .post("/chatbot/message", { message, type, botType: "rasa" })
     .catch((err) => {
       console.log("[-] Send Chat Message: ", err)
       throw err

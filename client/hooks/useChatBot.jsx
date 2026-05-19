@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState, useRef } from "react"
 import { useSocket } from "../contexts/Socket.context.jsx"
 import { useAuth } from "../contexts/Auth.context"
+import { useChatbotType } from "../contexts/ChatbotType.context"
 import axios from "../api/axios"
 import {
   loadHistory,
@@ -16,6 +17,7 @@ export default () => {
   const [mapNavigationData, setMapNavigationData] = useState(null)
   const { socket } = useSocket()
   const { user } = useAuth()
+  const { botType } = useChatbotType()
   const hasLoadedHistory = useRef(false)
 
   const loadChatHistory = useCallback(async () => {
@@ -76,7 +78,8 @@ export default () => {
       // TODO: Do this petition in chatbotMessage.api.jsx
 
       // Send message via HTTP - the response will arrive via Socket.IO
-      await axios.post("/chatbot/message", { message, type })
+      console.log(`[useChatBot] Sending message to API: "${message}" with botType: "${botType}"`)
+      await axios.post("/chatbot/message", { message, type, botType })
     } catch (error) {
       console.error("Error sending chatbot message:", error)
       setLoading(false)
@@ -92,7 +95,7 @@ export default () => {
       }
       setMessages((prev) => [errorMessage, ...prev])
     }
-  }, [])
+  }, [botType])
 
   // Escuchar eventos del chatbot
   useEffect(() => {

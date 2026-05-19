@@ -70,11 +70,15 @@ chatbot-cucei-assistant
    ```
 
 7. **Run (two terminals)**:
-   - Terminal A (actions):
+   - Terminal A (actions server):
      ```
-     rasa run actions
+     rasa run actions --port 5055
      ```
-   - Terminal B (chat):
+   - Terminal B (Servidor principal / rest):
+     ```
+     rasa run --enable-api --cors "*" --port 5005
+     ```
+   - Terminal C opcional (Hablar directamente con rasa):
      ```
      rasa shell
      ```

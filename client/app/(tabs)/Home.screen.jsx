@@ -17,6 +17,9 @@ import Animated, {
   withSpring,
   withRepeat,
   withSequence,
+  withTiming,
+  withDelay,
+  Easing,
 } from "react-native-reanimated"
 import { LinearGradient } from "expo-linear-gradient"
 import { router } from "expo-router"
@@ -109,51 +112,61 @@ const MessageItem = memo(({ item, theme, profileUrl, index, profileImageKey }) =
   )
 })
 
-const TypingIndicator = memo(() => {
-  const dot1 = useSharedValue(0)
-  const dot2 = useSharedValue(0)
-  const dot3 = useSharedValue(0)
+const TypingIndicator = memo(({ theme }) => {
+  const dot1 = useSharedValue(0.4)
+  const dot2 = useSharedValue(0.4)
+  const dot3 = useSharedValue(0.4)
 
   useEffect(() => {
+    const animationConfig = { duration: 600, easing: Easing.inOut(Easing.ease) }
+    
     dot1.value = withRepeat(
       withSequence(
-        withSpring(1, { damping: 2 }),
-        withSpring(0, { damping: 2 })
+        withTiming(1, animationConfig),
+        withTiming(0.4, animationConfig)
       ),
-      -1
+      -1,
+      true
     )
-    dot2.value = withRepeat(
-      withSequence(
-        withSpring(0),
-        withSpring(1, { damping: 2 }),
-        withSpring(0, { damping: 2 })
-      ),
-      -1
+    
+    dot2.value = withDelay(
+      200,
+      withRepeat(
+        withSequence(
+          withTiming(1, animationConfig),
+          withTiming(0.4, animationConfig)
+        ),
+        -1,
+        true
+      )
     )
-    dot3.value = withRepeat(
-      withSequence(
-        withSpring(0),
-        withSpring(0),
-        withSpring(1, { damping: 2 }),
-        withSpring(0, { damping: 2 })
-      ),
-      -1
+    
+    dot3.value = withDelay(
+      400,
+      withRepeat(
+        withSequence(
+          withTiming(1, animationConfig),
+          withTiming(0.4, animationConfig)
+        ),
+        -1,
+        true
+      )
     )
   }, [])
 
   const animatedStyle1 = useAnimatedStyle(() => ({
     opacity: dot1.value,
-    transform: [{ translateY: dot1.value * -8 }],
+    transform: [{ scale: dot1.value }],
   }))
 
   const animatedStyle2 = useAnimatedStyle(() => ({
     opacity: dot2.value,
-    transform: [{ translateY: dot2.value * -8 }],
+    transform: [{ scale: dot2.value }],
   }))
 
   const animatedStyle3 = useAnimatedStyle(() => ({
     opacity: dot3.value,
-    transform: [{ translateY: dot3.value * -8 }],
+    transform: [{ scale: dot3.value }],
   }))
 
   const AnimatedView = Animated.createAnimatedComponent(View)
@@ -166,14 +179,14 @@ const TypingIndicator = memo(() => {
       <Avatar.Icon
         size={32}
         icon="robot"
-        style={[styles.avatar, { backgroundColor: "#E3F2FD" }]}
-        color="#1976D2"
+        style={[styles.avatar, { backgroundColor: theme.colors.primaryContainer }]}
+        color={theme.colors.primary}
       />
-      <Surface elevation={1} style={[styles.messageCard, styles.botCard, styles.typingCard]}>
+      <Surface elevation={1} style={[styles.messageCard, styles.botCard, styles.typingCard, { backgroundColor: "#FFF" }]}>
         <View style={styles.typingContainer}>
-          <Animated.View style={[styles.typingDot, animatedStyle1]} />
-          <Animated.View style={[styles.typingDot, animatedStyle2]} />
-          <Animated.View style={[styles.typingDot, animatedStyle3]} />
+          <Animated.View style={[styles.typingDot, { backgroundColor: theme.colors.primary }, animatedStyle1]} />
+          <Animated.View style={[styles.typingDot, { backgroundColor: theme.colors.primary }, animatedStyle2]} />
+          <Animated.View style={[styles.typingDot, { backgroundColor: theme.colors.primary }, animatedStyle3]} />
         </View>
       </Surface>
     </AnimatedView>
@@ -275,7 +288,7 @@ export default () => {
         inverted={true}
         style={styles.messagesList}
         contentContainerStyle={styles.messagesContent}
-        ListFooterComponent={isTyping ? TypingIndicator : null}
+        ListHeaderComponent={isTyping ? <TypingIndicator theme={theme} /> : null}
         showsVerticalScrollIndicator={false}
         removeClippedSubviews={true}
         maxToRenderPerBatch={10}
@@ -414,19 +427,20 @@ const styles = StyleSheet.create({
     marginHorizontal: 6,
   },
   typingCard: {
-    paddingHorizontal: 20,
-    paddingVertical: 16,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    marginLeft: 8,
   },
   typingContainer: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 6,
+    gap: 4,
+    height: 12,
   },
   typingDot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: "#1976D2",
+    width: 6,
+    height: 6,
+    borderRadius: 3,
   },
   inputContainer: {
     backgroundColor: "transparent",

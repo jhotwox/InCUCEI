@@ -1,18 +1,126 @@
 [
-  {"code": "INNI", "name": "ingenieria informatica", "aliases": ["informatica", "informática"]},
-  {"code": "INFO", "name": "ingenieria informatica", "aliases": ["informatica", "informática"]},
-  {"code": "ILOT", "name": "ingenieria en logistica y transporte", "aliases": ["logistica y transporte"]},
-  {"code": "LILT", "name": "licenciatura en logistica y transporte", "aliases": ["logistica y transporte"]},
-  {"code": "INRO", "name": "ingenieria robotica", "aliases": ["robotica"]},
-  {"code": "INCE", "name": "ingenieria en comunicaciones y electronica", "aliases": ["comunicaciones y electronica"]},
-  {"code": "INEA", "name": "ingenieria en electromovilidad y autotronica", "aliases": ["electromovilidad", "autotronica"]},
-  {"code": "INBI", "name": "ingenieria biomedica", "aliases": ["biomedica"]},
-  {"code": "INME", "name": "ingenieria mecanica electrica", "aliases": ["mecanica"]},
-  {"code": "INDU", "name": "ingenieria industrial", "aliases": ["ingenieria industrial", "industrial"]},
-  {"code": "ITOG", "name": "ingenieria en topografia geomatica", "aliases": ["ingenieria en topografia geomatica", "topografia", "geomática", "geomatica"]},
-  {"code": "IGFO", "name": "ingenieria fotonica", "aliases": ["ingenieria fotonica", "fotonica"]},
-  {"code": "ICIV", "name": "ingenieria civil", "aliases": ["ingenieria civil", "civil"]},
-  {"code": "LQFB", "name": "licenciatura en quimico farmaceutico biologo", "aliases": ["quimico farmaceutico biologo", "qfb"]},
-  {"code": "LQUI", "name": "licenciatura en quimica", "aliases": ["licenciatura en quimica", "quimica"]},
-  {"code": "LIMA", "name": "licenciatura en matematicas", "aliases": ["licenciatura en matematicas", "matematicas"]}
+  {
+    "code": "INNI",
+    "name": "ingenieria informatica",
+    "aliases": [
+      "informatica",
+      "informática"
+    ]
+  },
+  {
+    "code": "INFO",
+    "name": "ingenieria informatica",
+    "aliases": [
+      "informatica",
+      "informática"
+    ]
+  },
+  {
+    "code": "ILOT",
+    "name": "ingenieria en logistica y transporte",
+    "aliases": [
+      "logistica y transporte"
+    ]
+  },
+  {
+    "code": "LILT",
+    "name": "licenciatura en logistica y transporte",
+    "aliases": [
+      "logistica y transporte"
+    ]
+  },
+  {
+    "code": "INRO",
+    "name": "ingenieria robotica",
+    "aliases": [
+      "robotica"
+    ]
+  },
+  {
+    "code": "INCE",
+    "name": "ingenieria en comunicaciones y electronica",
+    "aliases": [
+      "comunicaciones y electronica"
+    ]
+  },
+  {
+    "code": "INEA",
+    "name": "ingenieria en electromovilidad y autotronica",
+    "aliases": [
+      "electromovilidad",
+      "autotronica"
+    ]
+  },
+  {
+    "code": "INBI",
+    "name": "ingenieria biomedica",
+    "aliases": [
+      "biomedica"
+    ]
+  },
+  {
+    "code": "INME",
+    "name": "ingenieria mecanica electrica",
+    "aliases": [
+      "mecanica"
+    ]
+  },
+  {
+    "code": "INDU",
+    "name": "ingenieria industrial",
+    "aliases": [
+      "ingenieria industrial",
+      "industrial"
+    ]
+  },
+  {
+    "code": "ITOG",
+    "name": "ingenieria en topografia geomatica",
+    "aliases": [
+      "ingenieria en topografia geomatica",
+      "topografia",
+      "geomática",
+      "geomatica"
+    ]
+  },
+  {
+    "code": "IGFO",
+    "name": "ingenieria fotonica",
+    "aliases": [
+      "ingenieria fotonica",
+      "fotonica"
+    ]
+  },
+  {
+    "code": "ICIV",
+    "name": "ingenieria civil",
+    "aliases": [
+      "ingenieria civil",
+      "civil"
+    ]
+  },
+  {
+    "code": "LQFB",
+    "name": "licenciatura en quimico farmaceutico biologo",
+    "aliases": [
+      "quimico farmaceutico biologo",
+      "qfb"
+    ]
+  },
+  {
+    "code": "LQUI",
+    "name": "licenciatura en quimica",
+    "aliases": [
+      "licenciatura en quimica",
+      "quimica"
+    ]
+  },
+  {
+    "code": "LIMA",
+    "name": "licenciatura en matematicas",
+    "aliases": [
+      "licenciatura en matematicas",
+      "matematicas"
+    ]
+  }
 ]

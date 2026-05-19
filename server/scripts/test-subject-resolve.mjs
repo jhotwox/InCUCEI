@@ -195,9 +195,9 @@ const testSyncFiles = (career, { studyPlan = false, material = false }) => {
 }
 
 
-// defaultTest()
+defaultTest()
 console.log("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-")
-// testDatasetSubjects()
+testDatasetSubjects()
 console.log("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-")
 // AllSubjectsTest()
 console.log("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-")
@@ -218,4 +218,4 @@ console.log("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
 // testSyncFiles('ICIV', { studyPlan: true, material: false })
 // testSyncFiles('LQFB', { studyPlan: true, material: false })
 // testSyncFiles('LQUI', { studyPlan: true, material: false })
-testSyncFiles('LIMA', { studyPlan: true, material: false })
+// testSyncFiles('LIMA', { studyPlan: true, material: false })

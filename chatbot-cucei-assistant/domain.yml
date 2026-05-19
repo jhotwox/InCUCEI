@@ -3,12 +3,13 @@ version: "3.1"
 intents:
   - request_subject_material
   - request_subject_study_plan
-  - request_subjects
   - request_location_map
   - request_curriculum
   - greet
   - goodbye
   - request_human_contact
+  - inform_career
+  - request_capabilities
   # - thank_you
 
 entities:
@@ -26,6 +27,17 @@ slots:
     type: text
     mappings:
       - type: from_llm
+  
+  user_name:
+    type: text
+    mappings:
+      - type: custom
+
+  first_name:
+    type: text
+    mappings:
+      - type: custom
+
   confirm_human_contact:
     type: bool
     mappings:
@@ -87,31 +99,70 @@ responses:
     - text: "Contactos CUCEI:\n- Servicios escolares: servicios.escolares@cucei.udg.mx\n- Coordinación Informática: coordinacion.di@cucei.udg.mx\n- Tel: +52 33 1378-5900\n- Web: https://www.cucei.udg.mx/"
       metadata:
         rephrase: True
-        # rephrase_prompt: |
-        #   The following is a conversation in spanish with an AI assistant built with Rasa.
-        #   The assistant can help the user with academic materials.
-        #   The assistant is helpful, creative, clever, and very friendly.
-        #   The user has just requested human contact information.
-        #   The assistant should respond in a way that is polite and continues to offer help.
-        #   Context / previous conversation with the user:
-        #   {{history}}
-        #   {{current_input}}
-        #   Suggested AI Response:
+        rephrase_prompt: |
+          Eres un asistente amable para la comunidad de CUCEI. 
+          CONOCIMIENTO REAL (NO INVENTES):
+          - Teléfono: [+523313785900](tel:+523313785900)
+          - Control Escolar: [servicios.escolares@cucei.udg.mx](mailto:servicios.escolares@cucei.udg.mx) (Módulo A)
+          - Sitio Web: [www.cucei.udg.mx](https://www.cucei.udg.mx)
+          
+          Información del usuario:
+          - Nombre: {{slots.first_name}}
+          - Carrera: {{slots.career_code}}
+          Contexto:
+          {{history}}
+          Entrada actual: {{current_input}}
+          Respuesta sugerida:
 
   utter_human_contact_canceled:
     - text: "Entendido, no te proporcionaré información de contacto. Hay algo más en lo que pueda ayudarte?"
       metadata:
         rephrase: True
-  
-  utter_greet:
-    - text: "Hola! Como te puedo asistir el dia de hoy?"
+
+  utter_confirm_career:
+    - text: "¡Entendido! He registrado que eres de la carrera {career_code}. ¿En qué más puedo ayudarte?"
       metadata:
         rephrase: True
+
+  utter_capabilities:
+    - text: "Soy el asistente inteligente de InCUCEI y puedo ayudarte con:\n- 📚 **Material de estudio**: Búsqueda de artículos y recursos en Google Scholar.\n- 📋 **Planes de estudio**: Temarios oficiales de cada asignatura.\n- 🗺️ **Mapa interactivo**: Ubicación de módulos y servicios en CUCEI.\n- 🎓 **Malla curricular**: El PDF oficial de tu carrera.\n- 📞 **Información de contacto**: Datos de control escolar y más."
+      metadata:
+        rephrase: True
+        rephrase_prompt: |
+          Eres el asistente de InCUCEI. Resume tus capacidades de forma amable.
+          CAPACIDADES REALES: Búsqueda de material en Google Scholar, planes de estudio, mapa interactivo (lugares), mallas curriculares y contactos oficiales.
+          
+          Información del usuario:
+          - Nombre: {{slots.first_name}}
+          Contexto:
+          {{history}}
+          Entrada actual: {{current_input}}
+          Respuesta sugerida:
+  
+  utter_greet:
+    - text: "¡Hola! ¿Cómo te puedo asistir el día de hoy?"
+      metadata:
+        rephrase: True
+        rephrase_prompt: |
+          Eres un asistente amable para la comunidad de CUCEI. 
+          Saluda al usuario.
+          Información del usuario:
+          - Nombre: {{slots.first_name}}
+          Contexto:
+          {{history}}
+          Entrada actual: {{current_input}}
+          Respuesta sugerida:
 
   utter_goodbye:
     - text: "Hasta luego! si necesitas asistencia en el futuro, Sientete libre de preguntar."
       metadata:
         rephrase: True
+        rephrase_prompt: |
+          Eres un asistente amable. Despídete del usuario.
+          Contexto:
+          {{history}}
+          Entrada actual: {{current_input}}
+          Respuesta sugerida:
 
   # utter_thank_you:
   #   - text: "¡Con gusto! 😊"
@@ -121,21 +172,26 @@ responses:
       metadata:
         rephrase: True
         rephrase_prompt: |
-          The following is a conversation in spanish with an AI assistant built with Rasa.
-          The assistant can help the user with academic materials.
-          The assistant is helpful, creative, clever, and very friendly.
-          The user is making small talk, and the assistant should respond, keeping things light.
-          Context / previous conversation with the user:
+          Eres el asistente inteligente de InCUCEI. Ayudas con temas académicos.
+          
+          Si preguntan quién eres: eres el asistente de InCUCEI.
+          Si preguntan quiénes son o su carrera, USA LOS SLOTS:
+          - Nombre: {{slots.user_name}}
+          - Carrera: {{slots.career_code}}
+          
+          DICCIONARIO: [INNI: Informática, INFO: Computación, ILOT: Logística, INRO: Robótica, INCE: Comunicaciones, INEA: Electromovilidad, INBI: Biomédica, INME: Mecánica, INDU: Industrial, ITOG: Topografía, IGFO: Fotónica, LQFB: QFB, LQUI: Química, LIMA: Matemáticas].
+          
+          Responde en español y usa Markdown.
+          Contexto:
           {{history}}
-          {{current_input}}
-          Suggested AI Response:
+          Entrada actual: {{current_input}}
+          Respuesta sugerida:
 
 
 actions:
   - action_get_subject_material
   - action_get_subject_study_plan
   - action_get_curriculum
-  - action_get_subjects
   - action_show_location_on_map
   - action_fetch_academic_materials
   - action_human_contact

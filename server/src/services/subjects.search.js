@@ -358,8 +358,11 @@ export const resolveSubject = (subjectQuery, opts = {}) => {
       }))
     }
 
-    // If it looks like an acronym and we didn't match it, don't let Fuse guess.
-    return []
+    // If it looks like an acronym and we didn't match it, we still allow 
+    // falling through to token-set/fuzzy matching for longer queries.
+    if (acRaw.length < 3) {
+      return []
+    }
   }
 
   // 3.5) Token-set exact/subset match (handles singular/plural like "base"->"bases")

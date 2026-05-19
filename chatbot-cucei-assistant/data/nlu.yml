@@ -57,13 +57,6 @@ nlu:
       - quiero el plan de [Programación](subject) de [INNI](career_code)
       - pásame el plan de [Bases de Datos](subject) para [INFO](career_code)
 
-  - intent: request_subjects
-    examples: |
-      - qué materias tienes
-      - lista de materias
-      - dime las materias disponibles
-      - cuáles son las materias
-
   - intent: request_location_map
     examples: |
       - ¿En dónde está la [Biblioteca](location)?
@@ -87,4 +80,26 @@ nlu:
       - me puedes dar un correo o teléfono
       - quiero hablar con alguien
       - dame información de contacto
+
+  - intent: inform_career
+    examples: |
+      - soy de [INNI](career_code)
+      - mi codigo de carrera es [INNI](career_code)
+      - este es mi codigo de carrera [INNI](career_code)
+      - mi carrera es [INFO](career_code)
+      - estudio [LQFB](career_code)
+      - estudio la carrera de [LQFB](career_code)
+      - cámbiame a [INEA](career_code)
+      - recuérdame como [ILOT](career_code)
+      - soy de la carrera [INNI](career_code)
+
+  - intent: request_capabilities
+    examples: |
+      - que puedes hacer
+      - que sabes hacer
+      - dime tus funciones
+      - en que me puedes ayudar
+      - para que sirves
+      - resumen de que puedes hacer
+      - que ayuda ofreces
     

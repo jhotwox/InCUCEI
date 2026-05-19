@@ -449,8 +449,10 @@ def _resolve_subject(subject_query: str, career: Optional[str], subjects_index: 
         if prefix_matches:
             return prefix_matches[0]
 
-        # If it looks like an acronym and didn't match, don't guess.
-        return None
+        # If it looks like an acronym and didn't match, we still allow 
+        # falling through to token-set/fuzzy matching for longer queries.
+        if len(ac_raw) < 3:
+            return None
 
     # 3.5) Token subset match
     query_tokens = _normalize_tokens(
@@ -465,6 +467,7 @@ def _resolve_subject(subject_query: str, career: Optional[str], subjects_index: 
                 subset_matches.append((extra, s))
         if subset_matches:
             subset_matches.sort(key=lambda x: x[0])
+            # print(f"DEBUG: Found {len(subset_matches)} subset matches for {query_raw}. Best: {subset_matches[0][1].name}")
             return subset_matches[0][1]
 
     # 4) Fuzzy match over normalized query
@@ -496,7 +499,8 @@ _subjects_from_server = _load_subjects_from_server_data()
 _subjects_from_local = _load_subjects_from_local_json()
 
 # Prefer server catalog if available (most up-to-date)
-SUBJECTS_RAW = _subjects_from_server or _subjects_from_local
+# SUBJECTS_RAW = _subjects_from_server or _subjects_from_local
+SUBJECTS_RAW = _subjects_from_server
 SUBJECTS, SUBJECTS_BY_KEY = _build_subject_index(SUBJECTS_RAW)
 
 _career_catalog = _load_career_catalog(list(SUBJECTS_RAW.keys()))
@@ -518,23 +522,41 @@ def _build_study_plan_url(entry: SubjectEntry) -> str:
     return f"{SERVER_BASE_URL}/files/study_plan/{entry.career}/{entry.study_plan_file}"
 
 
+from rapidfuzz import process, fuzz
+
 def _find_place(query: str) -> Optional[Dict[str, Any]]:
-    normalized = _normalize(query)
-    if not normalized:
+    normalized_query = _normalize(query)
+    if not normalized_query:
         return None
 
+    # Pre-calculate normalized names and aliases for all places
+    choices = []
+    place_map = {}
+    
     for place in PLACES:
-        name_norm = _normalize(place.get("name", ""))
-        if normalized in name_norm or name_norm in normalized:
-            return place
-
+        name = place.get("name", "")
+        norm_name = _normalize(name)
+        choices.append(norm_name)
+        place_map[norm_name] = place
+        
         aliases = place.get("alias") or place.get("aliases") or []
         for a in aliases:
-            a_norm = _normalize(str(a))
-            if not a_norm:
-                continue
-            if normalized in a_norm or a_norm in normalized:
-                return place
+            norm_a = _normalize(str(a))
+            if norm_a:
+                choices.append(norm_a)
+                place_map[norm_a] = place
+
+    # 1) Try exact substring match first (as before)
+    for choice in choices:
+        if normalized_query == choice:
+            return place_map[choice]
+            
+    # 2) Fuzzy search
+    best_match = process.extractOne(normalized_query, choices, scorer=fuzz.token_set_ratio)
+    
+    if best_match and best_match[1] >= 85:
+        return place_map[best_match[0]]
+        
     return None
 
 
@@ -552,47 +574,25 @@ class ActionGetSubjectMaterial(Action):
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]):
         topic = tracker.get_slot("topic") or _get_entity_value(tracker, "subject")
-        career_raw = tracker.get_slot("career_code") or _get_entity_value(tracker, "career_code")
         if not topic:
             dispatcher.utter_message(response="utter_ask_topic")
             return []
 
-        if not career_raw:
-            dispatcher.utter_message(response="utter_ask_career_code")
-            return []
+        # We no longer need career_code for general scholar search, 
+        # but we keep it if available to refine the search.
+        query = str(topic)
+        encoded_topic = re.sub(r"\s+", "+", query.strip())
+        scholar_url = f"https://scholar.google.com/scholar?q={encoded_topic}"
 
-        career_code, ambiguous = _resolve_career_code(str(career_raw), KNOWN_CAREER_CODES, CAREER_ALIAS_TO_CODES)
-        if ambiguous:
-            dispatcher.utter_message(
-                text=(
-                    "Necesito el código exacto de tu carrera. "
-                    f"Con ese nombre podría ser: {', '.join(ambiguous)}. "
-                    "¿Cuál es el tuyo?"
-                )
-            )
-            return [SlotSet("career_code", None)]
-
-        if not career_code:
-            dispatcher.utter_message(response="utter_invalid_career_code")
-            return [SlotSet("career_code", None)]
-
-        entry = _find_subject(str(topic), career_code)
-        if not entry or not entry.material_file:
-            dispatcher.utter_message(response="utter_material_not_found")
-            return []
-
-        url = _build_material_url(entry)
         dispatcher.utter_message(
-            text=f"Aquí encontrarás el material de {entry.name or topic}: {url}",
-            metadata={
-                "subject": entry.name or str(topic),
-                "code": entry.code,
-                "file": entry.material_file,
-                "path": url,
-                "career": entry.career,
+            text=f"Aquí tienes una búsqueda en Google Scholar sobre **{query}**: [Ver resultados]({scholar_url})",
+            custom={
+                "action": "open_url",
+                "url": scholar_url,
+                "topic": query,
             },
         )
-        return [SlotSet("topic", str(topic)), SlotSet("career_code", career_code)]
+        return [SlotSet("topic", query)]
 
 
 class ActionGetSubjectStudyPlan(Action):
@@ -632,8 +632,8 @@ class ActionGetSubjectStudyPlan(Action):
 
         url = _build_study_plan_url(entry)
         dispatcher.utter_message(
-            text=f"Aquí encontrarás el plan de estudios de {entry.name or topic}: {url}",
-            metadata={
+            text=f"Aquí encontrarás el plan de estudios de **{entry.name or topic}**: [{entry.study_plan_file}]({url})",
+            custom={
                 "subject": entry.name or str(topic),
                 "code": entry.code,
                 "file": entry.study_plan_file,
@@ -677,38 +677,14 @@ class ActionGetCurriculum(Action):
 
         url = f"{SERVER_BASE_URL}/files/Mallas/{file_name}"
         dispatcher.utter_message(
-            text=f"Aquí está la malla curricular de {career_code}: {url}",
-            metadata={
+            text=f"Aquí está la malla curricular de **{career_code}**: [{file_name}]({url})",
+            custom={
                 "career": career_code,
                 "file": file_name,
                 "path": url,
             },
         )
         return [SlotSet("career_code", career_code)]
-
-
-class ActionGetSubjects(Action):
-    def name(self) -> Text:
-        return "action_get_subjects"
-
-    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]):
-        if not SUBJECTS:
-            dispatcher.utter_message(text="No tengo materias cargadas en este momento.")
-            return []
-
-        sample = []
-        for entry in SUBJECTS[:15]:
-            if entry.name:
-                sample.append(entry.name)
-
-        dispatcher.utter_message(
-            text=(
-                f"Tengo registradas {len(SUBJECTS)} materias. "
-                f"Algunas son: {', '.join(sample)}. "
-                "Dime el nombre exacto (o aproximado) y te paso material o plan."
-            )
-        )
-        return []
 
 
 class ActionShowLocationOnMap(Action):
@@ -729,8 +705,8 @@ class ActionShowLocationOnMap(Action):
             return []
 
         dispatcher.utter_message(
-            text=f"Perfecto, te estoy mostrando {place.get('name')} en el mapa 📍",
-            metadata={
+            text=f"Perfecto, te estoy mostrando **{place.get('name')}** en el mapa 📍",
+            custom={
                 "action": "navigate_to_map",
                 "success": True,
                 "placeId": place.get("id"),

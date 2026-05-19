@@ -6,6 +6,7 @@ import { ToastProvider } from "../contexts/Toast.context"
 import { AuthProvider } from "../contexts/Auth.context"
 import { SocketProvider } from "../contexts/Socket.context"
 import { BackgroundAnimationProvider } from "../contexts/BackgroundAnimation.context"
+import { ChatbotTypeProvider } from "../contexts/ChatbotType.context"
 import { createContext, useCallback, useContext, useEffect, useState } from "react"
 import * as SplashScreen from "expo-splash-screen"
 
@@ -207,11 +208,13 @@ export const Providers = ({ children }) => {
         <LayoutContext.Provider value={{ tabBarHeight: TAB_BAR_HEIGHT }}>
           <AuthProvider>
             <BackgroundAnimationProvider>
-              <ToastProvider>
-                <SocketProvider>
-                  {children}
-                </SocketProvider>
-              </ToastProvider>
+              <ChatbotTypeProvider>
+                <ToastProvider>
+                  <SocketProvider>
+                    {children}
+                  </SocketProvider>
+                </ToastProvider>
+              </ChatbotTypeProvider>
             </BackgroundAnimationProvider>
           </AuthProvider>
         </LayoutContext.Provider>
