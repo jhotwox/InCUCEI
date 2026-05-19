@@ -25,7 +25,12 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: null,
     },
-
+    career: {
+      type: String,
+      default: null,
+      uppercase: true,
+      trim: true,
+    },
     // Allows uploading logo/banner before the commerce exists (mirrors old disk behavior).
     pendingLogoUrl: {
       type: String,

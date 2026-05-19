@@ -96,7 +96,7 @@ const varyClosing = (text) => {
     "¿Quieres material o el plan de estudios?",
     "Si algo no coincide, dime tu carrera y el nombre exacto de la materia.",
     "Cuando quieras, seguimos.",
-    "",
+    "", // No agregar un cierre a veces
   ]
   const pick = closings[Math.floor(Math.random() * closings.length)]
   if (!pick) return base
@@ -192,7 +192,10 @@ export class GeminiService {
       const docsIntent = detectSubjectDocsIntent(message)
       const inferredCareer = inferCareerCode(message, conversationHistory)
       if (docsIntent && !inferredCareer) {
-        return buildAskCareerCodeMessage(docsIntent)
+        return {
+          text: buildAskCareerCodeMessage(docsIntent),
+          inferredCareer: null
+        }
       }
 
       // 1. Construir contextos
@@ -216,25 +219,35 @@ export class GeminiService {
       const response = await this._generateAIContent(contents, config)
       console.log("AI Response: ", response)
       
+      let finalText = ""
+
       // 5. Verificar y procesar llamadas a funciones
       if (response.functionCalls && response.functionCalls.length > 0) {
-        return await this._processFunctionCall(
+        finalText = await this._processFunctionCall(
           response, 
           message, 
           userContext, 
           historyContext, 
           config
         )
+      } else {
+        // 6. Respuesta directa sin function calling
+        console.log("[-] No function call found in the response.")
+        console.log("Text:", response.text)
+        finalText = varyClosing(response.text)
       }
-      
-      // 6. Respuesta directa sin function calling
-      console.log("[-] No function call found in the response.")
-      console.log("Text:", response.text)
-      return varyClosing(response.text)
+
+      return {
+        text: finalText,
+        inferredCareer
+      }
       
     } catch (err) {
       console.error("Error generating response: ", err)
-      return ERROR_MESSAGES.technical
+      return {
+        text: ERROR_MESSAGES.technical,
+        inferredCareer: null
+      }
     }
   }
 }

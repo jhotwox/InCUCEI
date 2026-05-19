@@ -9,8 +9,12 @@ import { CONTACT_RESOURCES, getKnownCareersSummary } from './gemini.config.js'
 export async function getUserContext(userId) {
   if (!userId) return ""
   
-  const user = await User.findById(userId).select("name email")
-  return user ? `Usuario: ${user.name} Correo: ${user.email}` : ""
+  const user = await User.findById(userId).select("name email career")
+  let context = user ? `Usuario: ${user.name} Correo: ${user.email}` : ""
+  if (user?.career) {
+    context += ` Carrera: ${user.career}`
+  }
+  return context
 }
 
 /**

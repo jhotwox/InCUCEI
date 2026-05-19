@@ -8,4 +8,4 @@ import AnimatedContainer from './common/AnimatedContainer'
 import ChatItem from './common/ChatItem'
 import SearchInput from './common/SearchInput'
 import Header from './common/Header'
-export { Background, ShakeView, Input, FileInput, BlurCard, MarkdownText, AnimatedContainer, ChatItem, SearchInput }
+export { Background, ShakeView, Input, FileInput, BlurCard, MarkdownText, AnimatedContainer, ChatItem, SearchInput, Header }

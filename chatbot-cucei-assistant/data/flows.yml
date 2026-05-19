@@ -30,13 +30,6 @@ flows:
         description: The user's career code (e.g., INNI, INFO, LQFB).
       - action: action_get_curriculum
 
-  subjects_list:
-    description: List available subjects.
-    nlu_trigger:
-      - intent: request_subjects
-    steps:
-      - action: action_get_subjects
-
   show_location:
     description: Show a CUCEI location on the map.
     nlu_trigger:
@@ -69,6 +62,22 @@ flows:
     steps:
       # - intent: goodbye
       - action: utter_goodbye
+
+  set_career:
+    description: Update the user's career code.
+    nlu_trigger:
+      - intent: inform_career
+    steps:
+      - collect: career_code
+        description: The user's career code.
+      - action: utter_confirm_career
+
+  bot_capabilities:
+    description: Describe what the bot can do.
+    nlu_trigger:
+      - intent: request_capabilities
+    steps:
+      - action: utter_capabilities
 
   # thank_you:
   #   description: Handle user expressions of gratitude.
