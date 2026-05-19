@@ -149,6 +149,13 @@ export const sendChatbotMessage = async (req, res) => {
     await chatBotMessage.save()
 
     if (userId) {
+      const roomSize = io?.sockets?.adapter?.rooms?.get(userId)?.size ?? 0
+      if (roomSize === 0) {
+        console.warn(
+          `[chatbot] No active sockets in room for user ${userId}; client must rely on HTTP response payload.`
+        )
+      }
+
       // Si hay acción de navegación, enviar evento especial
       if (navigationAction) {
         io.to(userId).emit("chatbotNavigateMap", {
@@ -167,17 +174,33 @@ export const sendChatbotMessage = async (req, res) => {
         messageId: chatBotMessage._id,
         botType,
       })
+      io.to(userId).emit("chatbotTyping", {
+        isTyping: false,
+        timestamp: new Date(),
+      })
     }
 
-    io.to(userId).emit("chatbotTyping", {
-      isTyping: false,
-      timestamp: new Date(),
-    })
+    const responsePayload = {
+      messageId: chatBotMessage._id,
+      message: displayText,
+      timestamp: chatBotMessage.createdAt || new Date(),
+      type,
+      botType,
+      ...(navigationAction && {
+        navigationAction: {
+          placeId: navigationAction.placeId,
+          placeName: navigationAction.placeName,
+          placeType: navigationAction.placeType,
+          coordinates: navigationAction.coordinates,
+        },
+      }),
+    }
 
     return res.json({
-      message: "Response generated and sended via socket",
+      message: "Response generated",
       status: true,
       botType,
+      data: responsePayload,
     })
   } catch (err) {
     console.error("❌ chatbot controller error:", err)

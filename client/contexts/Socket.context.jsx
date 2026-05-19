@@ -23,16 +23,18 @@ export const SocketProvider = ({ children }) => {
   useEffect(() => {
     if (token && user) {
       // Conect to socket server
-      const newSocket = io(`${process.env.EXPO_PUBLIC_SERVER_IP}`, {
-        transports: ["websocket"],
+      const socketUrl = `${process.env.EXPO_PUBLIC_SERVER_IP}`
+      const newSocket = io(socketUrl, {
+        transports: ["websocket", "polling"],
         autoConnect: true,
+        reconnection: true,
       })
 
       newSocket.on("connect", () => {
         console.log("Socket connected: ", newSocket.id)
         setConnected(true)
 
-        newSocket.emit("joinUser", user.id)
+        newSocket.emit("joinUser", String(user.id))
       })
 
       newSocket.on("disconnect", () => {
