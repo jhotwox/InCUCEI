@@ -1,12 +1,6 @@
 <div align="center">
   <img style="width: 50%" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/client/assets/icon.png"/>
-  <h1>InCUCEI</h1>
-</div>
-
-## Overview
-**InCUCEI** is a mobile application designed for CUCEI (Universidad de Guadalajara) students that centralizes academic information, campus services, and student commerce into a single platform.
-
-The app includes an AI-powered academic assistant, an interactive 2.5D campus map, and a student marketplace.
+  <h1><span style=color:#00695C>In</span><span style=color:#f79303>CUCEI</span></h1>
 
 ![React Native](https://img.shields.io/badge/React%20Native-20232A?logo=react)
 ![Expo](https://img.shields.io/badge/Expo-000020?logo=expo)
@@ -14,17 +8,23 @@ The app includes an AI-powered academic assistant, an interactive 2.5D campus ma
 ![MongoDB](https://img.shields.io/badge/MongoDB-FFF?logo=mongodb)
 ![Rasa](https://img.shields.io/badge/Rasa-5A17EE)
 ![Mapbox](https://img.shields.io/badge/Mapbox-000000?logo=mapbox)
+</div>
+
+## Overview
+**InCUCEI** is a mobile application designed for CUCEI (Universidad de Guadalajara) students that centralizes academic information, campus services, and student commerce into a single platform.
+
+The app includes an AI-powered academic assistant, an interactive 2.5D campus map, and a student marketplace.
 
 <details>
 <summary>Table of Contents</summary>
 
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Installation](#installation)
-- [Usage](#usage)
+- [📚 Features](#features)
+- [🧰 Tech Stack](#tech-stack)
+- [⚙️ Installation](#installation)
+- [▶️ Usage](#usage)
 - [📱 Interface](#interface)
-- [Architecture](#architecture)
-- [Contributors](#contributors)
+- [🏛️ Architecture](#architecture)
+- [👥 Contributors](#contributors)
 
 </details>
 
@@ -232,3 +232,39 @@ rasa inspect
              │ NLP / Intents│            │ Generative AI  │
              └──────────────┘            └────────────────┘
 ```
+
+## Contributors
+
+<div>
+  <table>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/jhotwox">
+          <img src="https://github.com/jhotwox.png" width="100px;" alt="Cristian"/>
+          <br />
+          <sub><b>Cristian Orozco</b></sub>
+        </a>
+        <br />
+        Fullstack / AI
+      </td>
+      <td align="center">
+        <a href="https://github.com/GersonIsma">
+          <img src="https://github.com/GersonIsma.png" width="100px;" alt="Teammate"/>
+          <br />
+          <sub><b>Gerson Flores</b></sub>
+        </a>
+        <br />
+        Map
+      </td>
+      <td align="center">
+        <a href="https://github.com/BrandonHerrera23">
+          <img src="https://github.com/BrandonHerrera23.png" width="100px;" alt="Teammate"/>
+          <br />
+          <sub><b>Brandon Herrera</b></sub>
+        </a>
+        <br />
+        Student Marketplace
+      </td>
+    </tr>
+  </table>
+</div>
