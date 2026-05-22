@@ -1,119 +1,230 @@
-## MONGO
+<img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/client/assets/icon.png"/>
+<h1 style="text-align: center">InCUCEI</h1>
 
-### Mongo with docker (don't use)
-``` BASH
-MONGO CONNECTION: mongodb://admin:admin123@localhost:27017
-```
+## Overview
+**InCUCEI** is a mobile application designed for CUCEI (Universidad de Guadalajara) students that centralizes academic information, campus services, and student commerce into a single platform.
 
-``` BASH
-mongosh "mongodb+srv://incucei.ldif0fo.mongodb.net/" --apiVersion 1 --username <username> --password <password>
-```
+The app includes an AI-powered academic assistant, an interactive 2.5D campus map, and a student marketplace.
 
-``` BASH
-use InCUCEI
-db.chatbot.insertOne( { x: 1 } );
-```
+![React Native](https://img.shields.io/badge/React%20Native-20232A?logo=react)
+![Expo](https://img.shields.io/badge/Expo-000020?logo=expo)
+![NodeJS](https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=f5f5f5)
+![MongoDB](https://img.shields.io/badge/MongoDB-FFF?logo=mongodb)
+![Rasa](https://img.shields.io/badge/Rasa-5A17EE)
+![Mapbox](https://img.shields.io/badge/Mapbox-000000?logo=mapbox)
+
+<details>
+<summary>Table of Contents</summary>
+
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Usage](#usage)
+- [📱 Interface](#interface)
+- [Architecture](#architecture)
+- [Contributors](#contributors)
+
+</details>
+
+## Features
+### 🤖 Academic Assistant
+- Search CUCEI dependencies and contact information 
+- Access to degree plan
+- Get study plan from your subjects
+- Search academic resources using Google Scholar
+- Locate university facilities directly on the map
+
+### 🗺️ Interactive Map
+- 2.5D map rendering using building extrusion
+- Indexed search for modules, bathrooms and dependencies
+- Realtime geolocation
+
+### 🏪 Student Marketplace
+- Create and manage your business
+- Browse student-owned stores
+- Realtime student-business chat
 
 
-## PYTHON
+## Tech Stack
+### Mobile App
+- React Native
+- Expo
+- React Native Paper
+- React Native Reanimated
 
-CREATE VENV
-``` BASH
-python -m venv venv
-SOURCE venv/bin/activate
-```
+### Backend
+- Node.js
+- Express.js
+- MongoDB
 
-PYENV
-``` BASH
-pyenv global 3.11.9
-```
+### AI Assistant
+- Rasa Pro
+- Gemini API
 
-DEACTIVATE VENV
-``` BASH
-deactivate
-```
+### Maps & Geolocation
+- Mapbox GL
+- Expo Location
+
+### DevOps / Tools
+- Docker
+- Python 3.11.9
+
+## Installation
+<a href="https://github.com/jhotwox/InCUCEI/releases/tag/V1.0.0">
+  <img src="https://img.shields.io/badge/Android-.apk-73BA25?style=for-the-badge&logo=android" height="60" alt="Download SONE .deb package for Debian and Ubuntu" />
+</a>
 
 ---
-
-## Contacto y Recursos
-- Documentación técnica: consultar los archivos README.md y los esquemas en `/server/src/schemas/`.
-- Para dudas sobre integración de Gemini, revisar `/server/src/services/gemini.service.js`.
-- Para nuevas funcionalidades, seguir la arquitectura modular y aprovechar los contextos y hooks existentes.
-
-
-### CHATBOT
-
-EN EL README DEL CHATBOT
-Carpeta chatbot solo es un tutorial
-Carpeta chatbot-cucei-assistant es el de verdad 
-
-
-## Instalación del proyecto
+### 1. Clone repository
 ``` BASH
-git clone https://github.com/jhotwox/InCUCEI
+git clone https://github.com/jhotwox/InCUCEI && cd InCUCEI
 ```
-
-#### Mover el archivo .env del cliente dentro de la carpeta `client` y cambiar los siguientes valores del archivo:
-- Cambiar correo electronico por el propio
-- Cambiar contraseña por la propia
-- Cambiar la IP de `EXPO_PUBLIC_SERVER_IP` por la IP de tu maquina
-
-##### Para ver la IP en windows, dentro de la terminal escribir el siguiente comando:
-``` PS
-ipconfig
-```
-
-#### Mover el archivo .env del server dentro de la carpeta `server`
-
-> Abrir proyecto en visual studio code
->
-> Crear dos terminales (puede ser dentro de visual studio code), en la primera de ellas escribir:
+### 2. Client setup
+**Install packages**
 ``` BASH
 cd client
 npm i
-npx expo start
 ```
 
-> En la segunda de ellas escribir:
-``` BASH
-cd server
-npm i
-npm run dev
-```
-
----
-## Actualizar proyecto
-> En la rama main
-``` BASH
-git fetch origin
-```
-
-``` BASH
-git pull origin main
-```
-
-## Instalación de la APP en dispositivos moviles
-### Desarrollo
-> En caso de ser necesario recrear android e ios
-``` BASH
-npx expo prebuild --clean
-```
-
-> Crear apk desarrollo e instalar al dispositivo conectado
+**Run app**
 ``` BASH
 npx expo run:android
 ```
 
-El resultado esta disponible en la siguiente ruta:
-`/client/android/app/build/outputs/apk/debug/app-debug.apk`
-
-### Producción
-> En caso de ser necesario recrear android e ios
+### 3. Backend setup
+**Install packages**
 ``` BASH
-npx expo prebuild --clean
+cd server
+npm i
 ```
 
-> Crear APK producción para verlo en EAS dashboard
+**Run server**
 ``` BASH
-eas build --profile production --platform android
+npm run dev
 ```
+
+### 4. Rasa setup
+Select python version (recommended 3.11.9)
+>With PYENV
+``` BASH
+pyenv local 3.11.9
+```
+
+**Create venv**
+``` BASH
+python -m venv venv
+```
+**Activate environment**
+>Linux
+``` BASH
+SOURCE venv/bin/activate
+```
+>Windows
+``` BASH
+venv\Scripts\activate
+```
+
+**Install dependencies**
+```
+pip install -r requirements.txt
+```
+**Export license key**
+>Linux
+```
+export RASA_PRO_LICENSE=<Rasa_license>
+```
+>Windows
+```
+set RASA_PRO_LICENSE=<Rasa_license>
+```
+**Train model**
+```
+rasa train
+```
+
+**Run AI model (Requires two running servers)**
+
+Terminal A (actions server)
+```
+rasa run actions --port 5055
+```
+
+Terminal B (core server)
+```
+rasa run --enable-api --cors "*" --port 5005
+```
+> or this to talk directly from the web browser
+```
+rasa inspect
+```
+
+## Usage
+1. Lauch the app using develop build or expo Go (Maps do not work with Expo Go because need native dependencies)
+2. Create an account using an institutional email
+3. Chat with the academic assistant, navigate through the interactive map or talk with a student commerce
+
+## Interface
+<h3 style="text-align: center">Login / Register</h3>
+<div style="display: flex;">
+  <img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/login.png"/>
+  <img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/register.png"/>
+</div>
+<h3 style="text-align: center">Academic Assistant</h3>
+  <img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/AI.png"/>
+<h3 style="text-align: center">Map</h3>
+<div style="display: flex;">
+  <img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/map1.png"/>
+  <img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/map2.png"/>
+</div>
+<h3 style="text-align: center">Student Marketplace</h3>
+<div style="display: flex;">
+  <img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/commerceList.png"/>
+  <img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/myCommerce.png"/>
+</div>
+<div style="display: flex;">
+  <img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/chatList.png"/>
+  <img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/chat.png"/>
+</div>
+
+## Interface with tables
+<h3 style="text-align: center">Login / Register</h3>
+<table>
+  <tr>
+    <td><img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/login.png"/></td>
+    <td><img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/register.png"/></td>
+  </tr>
+</table>
+<h3 style="text-align: center">Academic Assistant</h3>
+<table>
+  <tr>
+    <td><img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/AI.png"/></td>
+  </tr>
+</table>
+<h3 style="text-align: center">Map</h3>
+<table>
+  <tr>
+    <td><img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/map1.png"/></td>
+    <td><img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/map2.png"/></td>
+  </tr>
+</table>
+<h3 style="text-align: center">Student Marketplace</h3>
+<table>
+  <tr>
+    <td><img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/commerceList.png"/></td>
+    <td><img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/myCommerce.png"/></td>
+    <td><img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/chatList.png"/></td>
+    <td><img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/chat.png"/></td>
+  </tr>
+</table>
+
+## Architecture
+
+Mobile App (React Native)
+    ↓
+Backend API (Node.js)
+ ├── MongoDB
+ ├── Cloudinary
+ ├── Redis (for multi-instance)
+ └── Academic Assistant
+      ├── Rasa Pro
+      └── Gemini API
