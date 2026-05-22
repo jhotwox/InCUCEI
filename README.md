@@ -1,5 +1,7 @@
-<img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/client/assets/icon.png"/>
-<h1 style="text-align: center">InCUCEI</h1>
+<div align="center">
+  <img style="width: 50%" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/client/assets/icon.png"/>
+  <h1>InCUCEI</h1>
+</div>
 
 ## Overview
 **InCUCEI** is a mobile application designed for CUCEI (Universidad de Guadalajara) students that centralizes academic information, campus services, and student commerce into a single platform.
@@ -164,67 +166,69 @@ rasa inspect
 3. Chat with the academic assistant, navigate through the interactive map or talk with a student commerce
 
 ## Interface
-<h3 style="text-align: center">Login / Register</h3>
-<div style="display: flex;">
-  <img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/login.png"/>
-  <img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/register.png"/>
+<div align="center">
+  <h3>Login / Register</h3>
+  <div style="display: flex;">
+    <img style="width: 25%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/login.png"/>
+    <img style="width: 25%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/register.png"/>
+  </div>
+  <h3>Academic Assistant</h3>
+    <img style="width: 25%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/AI.png"/>
+  <h3>Map</h3>
+  <div style="display: flex;">
+    <img style="width: 25%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/map1.png"/>
+    <img style="width: 25%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/map2.png"/>
+  </div>
+  <h3>Student Marketplace</h3>
+  <div style="display: flex;">
+    <img style="width: 25%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/commerceList.png"/>
+    <img style="width: 25%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/myCommerce.png"/>
+  </div>
+  <div style="display: flex;">
+    <img style="width: 25%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/chatList.png"/>
+    <img style="width: 25%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/chat.png"/>
+  </div>
 </div>
-<h3 style="text-align: center">Academic Assistant</h3>
-  <img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/AI.png"/>
-<h3 style="text-align: center">Map</h3>
-<div style="display: flex;">
-  <img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/map1.png"/>
-  <img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/map2.png"/>
-</div>
-<h3 style="text-align: center">Student Marketplace</h3>
-<div style="display: flex;">
-  <img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/commerceList.png"/>
-  <img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/myCommerce.png"/>
-</div>
-<div style="display: flex;">
-  <img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/chatList.png"/>
-  <img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/chat.png"/>
-</div>
-
-## Interface with tables
-<h3 style="text-align: center">Login / Register</h3>
-<table>
-  <tr>
-    <td><img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/login.png"/></td>
-    <td><img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/register.png"/></td>
-  </tr>
-</table>
-<h3 style="text-align: center">Academic Assistant</h3>
-<table>
-  <tr>
-    <td><img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/AI.png"/></td>
-  </tr>
-</table>
-<h3 style="text-align: center">Map</h3>
-<table>
-  <tr>
-    <td><img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/map1.png"/></td>
-    <td><img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/map2.png"/></td>
-  </tr>
-</table>
-<h3 style="text-align: center">Student Marketplace</h3>
-<table>
-  <tr>
-    <td><img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/commerceList.png"/></td>
-    <td><img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/myCommerce.png"/></td>
-    <td><img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/chatList.png"/></td>
-    <td><img style="width: 50%; display:block; margin: auto" src="https://raw.githubusercontent.com/jhotwox/InCUCEI/refs/heads/main/readmeAssets/chat.png"/></td>
-  </tr>
-</table>
 
 ## Architecture
 
-Mobile App (React Native)
-    ↓
-Backend API (Node.js)
- ├── MongoDB
- ├── Cloudinary
- ├── Redis (for multi-instance)
- └── Academic Assistant
-      ├── Rasa Pro
-      └── Gemini API
+```text
+                           ┌─────────────────────┐
+                           │ Mobile App          │
+                           │ React Native/Expo   │
+                           └──────────┬──────────┘
+                                      │
+                         HTTP / WebSocket Requests
+                                      │
+          ┌───────────────────────────┼───────────────────────────┐
+          ▼                           ▼                           ▼
+┌─────────────────┐       ┌─────────────────┐       ┌─────────────────┐
+│ Backend API #1  │       │ Backend API #2  │  ...  │ Backend API #N  │
+│ Node.js/Express │       │ Node.js/Express │       │ Node.js/Express │
+└──────┬──────────┘       └──────┬──────────┘       └──────┬──────────┘
+       │                         │                         │
+       └──────────────┬──────────┴──────────┬─────────────┘
+                      │                     │
+                      ▼                     ▼
+          ┌─────────────────┐   ┌─────────────────────┐
+          │ Redis Pub/Sub   │   │ MongoDB             │
+          │ Socket Sync     │   │ Main Database       │
+          └─────────────────┘   └─────────────────────┘
+                                             │
+                                             ▼
+                                 ┌─────────────────────┐
+                                 │ Cloudinary          │
+                                 │ Media Storage       │
+                                 └─────────────────────┘
+
+                         ┌─────────────────────────────┐
+                         │ Academic Assistant          │
+                         └──────────┬──────────────────┘
+                                    │
+                     ┌──────────────┴──────────────┐
+                     ▼                             ▼
+             ┌──────────────┐            ┌────────────────┐
+             │ Rasa Pro     │            │ Gemini API     │
+             │ NLP / Intents│            │ Generative AI  │
+             └──────────────┘            └────────────────┘
+```
