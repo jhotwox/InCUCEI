@@ -34,7 +34,7 @@ The app includes an AI-powered academic assistant, an interactive 2.5D campus ma
 - Access to degree plan
 - Get study plan from your subjects
 - Search academic resources using Google Scholar
-- Locate university facilities directly on the map
+- Locate university facilities directly on the map 
 
 ### 🗺️ Interactive Map
 - 2.5D map rendering using building extrusion
@@ -44,14 +44,14 @@ The app includes an AI-powered academic assistant, an interactive 2.5D campus ma
 ### 🏪 Student Marketplace
 - Create and manage your business
 - Browse student-owned stores
-- Realtime student-business chat
+- Realtime student-business chat 
 
 
 ## Tech Stack
 ### Mobile App
 - React Native
 - Expo
-- React Native Paper
+- React Native Paper 
 - React Native Reanimated
 
 ### Backend
@@ -63,7 +63,7 @@ The app includes an AI-powered academic assistant, an interactive 2.5D campus ma
 - Rasa Pro
 - Gemini API
 
-### Maps & Geolocation
+### Maps & Geolocation 
 - Mapbox GL
 - Expo Location
 
@@ -77,7 +77,7 @@ The app includes an AI-powered academic assistant, an interactive 2.5D campus ma
 </a>
 
 ---
-### 1. Clone repository
+### 1. Clone repository Git
 ``` BASH
 git clone https://github.com/jhotwox/InCUCEI && cd InCUCEI
 ```
