@@ -11,11 +11,11 @@ pipeline:
 
 policies:
 - name: FlowPolicy
+# Supports rule-based training data in data/rules.yml
+- name: RulePolicy
 # - name: EnterpriseSearchPolicy
 
-# Copilot
-express_backend:
-  url: "http://192.168.100.32:3000"
+# Actions build URLs using INCUCEI_SERVER_BASE_URL (see README).
 # Copilot
 # assistant_id: 20250907-131251-wicker-creek
 # Tutorial

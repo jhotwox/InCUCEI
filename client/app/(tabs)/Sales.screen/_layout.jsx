@@ -33,15 +33,26 @@ export default () => {
           fontSize: 12,
           fontWeight: "600",
         },
+        animation: 'shift',
+        animationDuration: 250,
       }}
       initialRouteName="Shop.screen"
     >
       <Tabs.Screen
         name="ChatList.screen"
         options={{
-          title: "Chats",
-          tabBarIcon: ({ color }) => (
-            <Icon size={24} source="chat" theme={theme} />
+          title: "Mis chats",
+          tabBarIcon: ({ focused, color }) => (
+            <Icon size={24} source={focused ? "chat" : "chat-outline"} theme={theme} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="CommerceChatList.screen"
+        options={{
+          title: "Clientes",
+          tabBarIcon: ({ focused, color }) => (
+            <Icon size={24} source={focused ? "account-group" : "account-group-outline"} theme={theme} />
           ),
         }}
       />
@@ -49,17 +60,17 @@ export default () => {
         name="Shop.screen"
         options={{
           title: "Tienda",
-          tabBarIcon: ({ color }) => (
-            <Icon size={24} source="store" theme={theme} />
+          tabBarIcon: ({ focused, color }) => (
+            <Icon size={24} source={focused ? "store" : "store-outline"} theme={theme} />
           ),
         }}
       />
       <Tabs.Screen
         name="Commerce.screen"
         options={{
-          title: "Comercio",
-          tabBarIcon: ({ color }) => (
-            <Icon size={24} source="shopping" theme={theme} />
+          title: "Mi Comercio",
+          tabBarIcon: ({ focused, color }) => (
+            <Icon size={24} source={focused ? "shopping" : "shopping-outline"} theme={theme} />
           ),
         }}
       />

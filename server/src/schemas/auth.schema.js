@@ -23,3 +23,9 @@ export const loginSchema = z.object({
     .string({ required_error: "La contraseña es requerida" })
     .min(6, { message: "La contraseña debe tener mínimo 6 caracteres" }),
 })
+
+export const pushTokenSchema = z.object({
+  token: z
+    .string({ required_error: "El token es requerido" })
+    .min(10, { message: "Token inválido" }),
+})

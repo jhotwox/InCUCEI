@@ -1,0 +1,482 @@
+{
+  "programacion": {
+    "name": "programacion",
+    "code": "I9887",
+    "semester": 1,
+    "files": {
+      "study_plan": "programacion.pdf",
+      "material": "programacion.pdf"
+    },
+    "career": "IGFO"
+  },
+  "seminario_programacion": {
+    "name": "seminario de programacion",
+    "code": "I9888",
+    "semester": 1,
+    "files": {
+      "study_plan": "",
+      "material": "programacion.pdf"
+    },
+    "career": "IGFO"
+  },
+  "metodos_matematicos_i": {
+    "name": "metodos matematicos i",
+    "code": "I9881",
+    "semester": 1,
+    "files": {
+      "study_plan": "metodos_matematicos_i.pdf",
+      "material": "metodos_matematicos_i.pdf"
+    },
+    "career": "IGFO"
+  },
+  "seminario_problemas_metodos_matematicos_i": {
+    "name": "seminario de problemas de metodos matematicos i",
+    "code": "I9882",
+    "semester": 1,
+    "files": {
+      "study_plan": "seminario_de_problemas_metodos_matematicos_i.pdf",
+      "material": "seminario_de_problemas_metodos_matematicos_i.pdf"
+    },
+    "career": "IGFO"
+  },
+  "circuitos_electricos": {
+    "name": "circuitos electricos",
+    "code": "IB127",
+    "semester": 1,
+    "files": {
+      "study_plan": "circuitos_electricos.pdf",
+      "material": "circuitos_electricos.pdf"
+    },
+    "career": "IGFO"
+  },
+  "leyes_fundamentales_fisica_i": {
+    "name": "leyes fundamentales de la fisica i",
+    "code": "IB132",
+    "semester": 1,
+    "files": {
+      "study_plan": "leyes_fundamentales_de_la_fisica_i.pdf",
+      "material": "leyes_fundamentales_de_la_fisica_i.pdf"
+    },
+    "career": "IGFO"
+  },
+  "estructura_datos_i": {
+    "name": "estructura de datos i",
+    "code": "IB129",
+    "semester": 2,
+    "files": {
+      "study_plan": "estructura_de_datos_i.pdf",
+      "material": "estructura_de_datos_i.pdf"
+    },
+    "career": "IGFO"
+  },
+  "sistemas_medicion": {
+    "name": "sistemas de medicion",
+    "code": "IB136",
+    "semester": 2,
+    "files": {
+      "study_plan": "sistemas_de_medicion.pdf",
+      "material": "sistemas_de_medicion.pdf"
+    },
+    "career": "IGFO"
+  },
+  "metodos_matematicos_ii": {
+    "name": "metodos matematicos ii",
+    "code": "I9883",
+    "semester": 2,
+    "files": {
+      "study_plan": "metodos_matematicos_ii.pdf",
+      "material": "metodos_matematicos_ii.pdf"
+    },
+    "career": "IGFO"
+  },
+  "seminario_problemas_metodos_matematicos_ii": {
+    "name": "seminario de problemas de metodos matematicos ii",
+    "code": "I9884",
+    "semester": 2,
+    "files": {
+      "study_plan": "seminario_de_problemas_metodos_matematicos_ii.pdf",
+      "material": "seminario_de_problemas_metodos_matematicos_ii.pdf"
+    },
+    "career": "IGFO"
+  },
+  "circuitos_analogicos_i": {
+    "name": "circuitos analogicos i",
+    "code": "IB125",
+    "semester": 2,
+    "files": {
+      "study_plan": "circuitos_analogicos_i.pdf",
+      "material": "circuitos_analogicos_i.pdf"
+    },
+    "career": "IGFO"
+  },
+  "leyes_fundamentales_fisica_ii": {
+    "name": "leyes fundamentales de la fisica ii",
+    "code": "IB133",
+    "semester": 2,
+    "files": {
+      "study_plan": "leyes_fundamentales_de_la_fisica_ii.pdf",
+      "material": "leyes_fundamentales_de_la_fisica_ii.pdf"
+    },
+    "career": "IGFO"
+  },
+  "seminario_problemas_estructura_datos_i": {
+    "name": "seminario de problemas de estructura de datos i",
+    "code": "IB130",
+    "semester": 3,
+    "files": {
+      "study_plan": "seminario_de_problemas_de_estructura_de_datos_i.pdf",
+      "material": "seminario_de_problemas_de_estructura_de_datos_i.pdf"
+    },
+    "career": "IGFO"
+  },
+  "programacion_sistemas_reconfigurables": {
+    "name": "programacion de sistemas reconfigurables",
+    "code": "I9894",
+    "semester": 3,
+    "files": {
+      "study_plan": "programacion_sistemas_reconfigurables.pdf",
+      "material": "programacion_sistemas_reconfigurables.pdf"
+    },
+    "career": "IGFO"
+  },
+  "metodos_matematicos_iii": {
+    "name": "metodos matematicos iii",
+    "code": "I9885",
+    "semester": 3,
+    "files": {
+      "study_plan": "metodos_matematicos_iii.pdf",
+      "material": "metodos_matematicos_iii.pdf"
+    },
+    "career": "IGFO"
+  },
+  "seminario_problemas_metodos_matematicos_iii": {
+    "name": "seminario de problemas de metodos matematicos iii",
+    "code": "I9886",
+    "semester": 3,
+    "files": {
+      "study_plan": "seminario_de_problemas_metodos_matematicos_iii.pdf",
+      "material": "seminario_de_problemas_metodos_matematicos_iii.pdf"
+    },
+    "career": "IGFO"
+  },
+  "circuitos_analogicos_ii": {
+    "name": "circuitos analogicos ii",
+    "code": "IB126",
+    "semester": 3,
+    "files": {
+      "study_plan": "circuitos_analogicos_ii.pdf",
+      "material": "circuitos_analogicos_ii.pdf"
+    },
+    "career": "IGFO"
+  },
+  "mecanica_teorica": {
+    "name": "mecanica teorica",
+    "code": "IB134",
+    "semester": 3,
+    "files": {
+      "study_plan": "mecanica_teorica.pdf",
+      "material": "mecanica_teorica.pdf"
+    },
+    "career": "IGFO"
+  },
+  "estructura_datos_ii": {
+    "name": "estructura de datos ii",
+    "code": "IB163",
+    "semester": 4,
+    "files": {
+      "study_plan": "estructura_de_datos_ii.pdf",
+      "material": "estructura_de_datos_ii.pdf"
+    },
+    "career": "IGFO"
+  },
+  "seminario_problemas_programacion_sistemas_reconfigurables": {
+    "name": "seminario de problemas programacion de sistemas reconfigurables",
+    "code": "I9895",
+    "semester": 4,
+    "files": {
+      "study_plan": "seminario_de_problemas_programacion_de_sistemas_reconfigurables.pdf",
+      "material": "seminario_de_problemas_programacion_de_sistemas_reconfigurables.pdf"
+    },
+    "career": "IGFO"
+  },
+  "teoria_electromagnetica_i": {
+    "name": "teoria electromagnetica i",
+    "code": "IB138",
+    "semester": 4,
+    "files": {
+      "study_plan": "teoria_electromagnetica_i.pdf",
+      "material": "teoria_electromagnetica_i.pdf"
+    },
+    "career": "IGFO"
+  },
+  "metodos_matematicos_fisica": {
+    "name": "metodos matematicos de la fisica",
+    "code": "IB150",
+    "semester": 4,
+    "files": {
+      "study_plan": "metodos_matematicos_de_la_fisica.pdf",
+      "material": "metodos_matematicos_de_la_fisica.pdf"
+    },
+    "career": "IGFO"
+  },
+  "electronica_integrada": {
+    "name": "electronica integrada",
+    "code": "IB128",
+    "semester": 4,
+    "files": {
+      "study_plan": "electronica_integrada.pdf",
+      "material": "electronica_integrada.pdf"
+    },
+    "career": "IGFO"
+  },
+  "mecanica_cuantica": {
+    "name": "mecanica cuantica",
+    "code": "IB148",
+    "semester": 4,
+    "files": {
+      "study_plan": "mecanica_cuantica.pdf",
+      "material": "mecanica_cuantica.pdf"
+    },
+    "career": "IGFO"
+  },
+  "seminario_problemas_estructura_datos_ii": {
+    "name": "seminario de problemas de estructura de datos ii",
+    "code": "IB131",
+    "semester": 5,
+    "files": {
+      "study_plan": "seminario_de_problemas_de_estructura_de_datos_ii.pdf",
+      "material": "seminario_de_problemas_de_estructura_de_datos_ii.pdf"
+    },
+    "career": "IGFO"
+  },
+  "programacion_sistemas_embebidos": {
+    "name": "programacion de sistemas embebidos",
+    "code": "I9892",
+    "semester": 5,
+    "files": {
+      "study_plan": "programacion_sistemas_embebidos.pdf",
+      "material": "programacion_sistemas_embebidos.pdf"
+    },
+    "career": "IGFO"
+  },
+  "teoria_electromagnetica_ii": {
+    "name": "teoria electromagnetica ii",
+    "code": "IB160",
+    "semester": 5,
+    "files": {
+      "study_plan": "teoria_electromagnetica_ii.pdf",
+      "material": "teoria_electromagnetica_ii.pdf"
+    },
+    "career": "IGFO"
+  },
+  "optica_geometrica": {
+    "name": "optica geometrica",
+    "code": "IB152",
+    "semester": 5,
+    "files": {
+      "study_plan": "optica_electromagnetica.pdf",
+      "material": "optica_electromagnetica.pdf"
+    },
+    "career": "IGFO"
+  },
+  "optoelectronica": {
+    "name": "optoelectronica",
+    "code": "IB154",
+    "semester": 5,
+    "files": {
+      "study_plan": "fotometria.pdf",
+      "material": "fotometria.pdf"
+    },
+    "career": "IGFO"
+  },
+    "aplicaciones_mecanica_cuantica": {
+    "name": "aplicaciones de la mecanica cuantica",
+    "code": "IB149",
+    "semester": 5,
+    "files": {
+      "study_plan": "aplicaciones_mecanica_cuantica.pdf",
+      "material": "aplicaciones_mecanica_cuantica.pdf"
+    },
+    "career": "IGFO"
+  },
+  "procesamiento_imagenes": {
+    "name": "procesamiento de imagenes",
+    "code": "IB155",
+    "semester": 6,
+    "files": {
+      "study_plan": "procesamiento_de_imagenes.pdf",
+      "material": "procesamiento_de_imagenes.pdf"
+    },
+    "career": "IGFO"
+  },
+  "seminario_problemas_programacion_sistemas_embebidos": {
+    "name": "seminario de problemas de programacion de sistemas embebidos",
+    "code": "I9893",
+    "semester": 6,
+    "files": {
+      "study_plan": "seminario_de_problemas_programacion_sistemas_embebidos.pdf",
+      "material": "seminario_de_problemas_programacion_sistemas_embebidos.pdf"
+    },
+    "career": "IGFO"
+  },
+  "optica_electromagnetica": {
+    "name": "optica electromagnetica",
+    "code": "IB151",
+    "semester": 6,
+    "files": {
+      "study_plan": "optica_electromagnetica.pdf",
+      "material": "optica_electromagnetica.pdf"
+    },
+    "career": "IGFO"
+  },
+  "diseno_mecanico": {
+    "name": "diseño mecanico asistido",
+    "code": "IB141",
+    "semester": 6,
+    "files": {
+      "study_plan": "diseno_mecanico.pdf",
+      "material": "diseno_mecanico.pdf"
+    },
+    "career": "IGFO"
+  },
+  "fibras_opticas": {
+    "name": "fibras opticas",
+    "code": "IB143",
+    "semester": 6,
+    "files": {
+      "study_plan": "fibras_opticas.pdf",
+      "material": "fibras_opticas.pdf"
+    },
+    "career": "IGFO"
+  },
+  "radiometria": {
+    "name": "radiometria",
+    "code": "IB156",
+    "semester": 6,
+    "files": {
+      "study_plan": "radiometria.pdf",
+      "material": "radiometria.pdf"
+    },
+    "career": "IGFO"
+  },
+  "optica_no_lineal": {
+    "name": "optica no lineal",
+    "code": "IB153",
+    "semester": 7,
+    "files": {
+      "study_plan": "optica_no_lineal.pdf",
+      "material": "optica_no_lineal.pdf"
+    },
+    "career": "IGFO"
+  },
+  "laseres": {
+    "name": "laseres",
+    "code": "IB147",
+    "semester": 7,
+    "files": {
+      "study_plan": "laseres.pdf",
+      "material": "laseres.pdf"
+    },
+    "career": "IGFO"
+  },
+  "sistemas_radiofrecuencia": {
+    "name": "sistemas de radiofrecuencia",
+    "code": "IB137",
+    "semester": 7,
+    "files": {
+      "study_plan": "sistemas_de_radiofrecuencia.pdf",
+      "material": "sistemas_de_radiofrecuencia.pdf"
+    },
+    "career": "IGFO"
+  },
+  "fotometria": {
+    "name": "fotometria",
+    "code": "IB144",
+    "semester": 7,
+    "files": {
+      "study_plan": "fotometria.pdf",
+      "material": "fotometria.pdf"
+    },
+    "career": "IGFO"
+  },
+  "diseno_optico": {
+    "name": "diseño optico",
+    "code": "IB142",
+    "semester": 8,
+    "files": {
+      "study_plan": "diseno_optico.pdf",
+      "material": "diseno_optico.pdf"
+    },
+    "career": "IGFO"
+  },
+  "laboratorio_caracterizacion_optica": {
+    "name": "laboratorio de caracterizacion optica",
+    "code": "IB146",
+    "semester": 8,
+    "files": {
+      "study_plan": "laboratorio_de_caracterizacion_optica.pdf",
+      "material": "laboratorio_de_caracterizacion_optica.pdf"
+    },
+    "career": "IGFO"
+  },
+  "comunicaciones_opticas_i": {
+    "name": "comunicaciones opticas i",
+    "code": "IB139",
+    "semester": 8,
+    "files": {
+      "study_plan": "comunicaciones_opticas_i.pdf",
+      "material": "comunicaciones_opticas_i.pdf"
+    },
+    "career": "IGFO"
+  },
+  "sistemas_fotonicos": {
+    "name": "sistemas fotonicos",
+    "code": "IB159",
+    "semester": 8,
+    "files": {
+      "study_plan": "sistemas_fotonicos.pdf",
+      "material": "sistemas_fotonicos.pdf"
+    },
+    "career": "IGFO"
+  },
+  "sistemas_iluminacion": {
+    "name": "sistemas de iluminacion",
+    "code": "IB158",
+    "semester": 9,
+    "files": {
+      "study_plan": "sistemas_de_iluminacion.pdf",
+      "material": "sistemas_de_iluminacion.pdf"
+    },
+    "career": "IGFO"
+  },
+  "sistemas_conversion_energia": {
+    "name": "sistemas de conversion de energia",
+    "code": "IB157",
+    "semester": 9,
+    "files": {
+      "study_plan": "sistemas_de_conversion_de_energia.pdf",
+      "material": "sistemas_de_conversion_de_energia.pdf"
+    },
+    "career": "IGFO"
+  },
+  "comunicaciones_opticas_ii": {
+    "name": "comunicaciones opticas ii",
+    "code": "IB140",
+    "semester": 9,
+    "files": {
+      "study_plan": "comunicaciones_opticas_ii.pdf",
+      "material": "comunicaciones_opticas_ii.pdf"
+    },
+    "career": "IGFO"
+  },
+  "instrumentacion_sistemas_fotonicos": {
+    "name": "instrumentacion para sistemas fotonicos",
+    "code": "IB145",
+    "semester": 9,
+    "files": {
+      "study_plan": "instrumentacion_para_sistemas_fotonicos.pdf",
+      "material": "instrumentacion_para_sistemas_fotonicos.pdf"
+    },
+    "career": "IGFO"
+  }
+}

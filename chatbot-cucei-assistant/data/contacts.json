@@ -1,0 +1,823 @@
+{
+  "redes_sociales": {
+    "facebook": "https://www.facebook.com/udegcucei",
+    "twitter": "https://x.com/udegcucei",
+    "instagram": "https://www.instagram.com/udegcucei",
+    "youtube": "https://www.youtube.com/@udegcucei"
+  },
+  "cucei": {
+    "telefono": "[33 1378 5900](tel:3313785900)",
+    "direccion": "Blvd. Marcelino García Barragán #1421, esq Calzada Olímpica, C.P. 44430, Guadalajara, Jalisco, México."
+  },
+  "rectoría": {
+    "nombre": "Dr. Marco Antonio Pérez Cisneros",
+    "correo": "[rector@cucei.udg.mx](mailto:rector@cucei.udg.mx)",
+    "horario": "9:00 am - 5:00 pm"
+  },
+  "secretaria_tecnica": {
+    "nombre": "Dra. Beatriz Adriana Rivera Aguilar",
+    "telefono": "[33 1378 5900, Ext: 27466](tel:3313785900,27466)",
+    "correo": "[secretaria.tecnica@cucei.udg.mx](mailto:secretaria.tecnica@cucei.udg.mx)"
+  },
+  "secretaria_particular": {
+    "nombre": "Mtro. Jorge Silva Landeros",
+    "telefono": "[33 1378 5900, Ext: 27403](tel:3313785900,27403)",
+    "correo": "[secpart@cucei.udg.mx](mailto:secpart@cucei.udg.mx)"
+  },
+  "asistente_rectoria": {
+    "nombre": "Lic. María Alexa Ruíz Madero",
+    "telefono": "[33 1378 5900, Ext: 27402](tel:3313785900,27402)",
+    "correo": "[asistente.rectoria@cucei.udg.mx](mailto:asistente.rectoria@cucei.udg.mx)"
+  },
+  "asistente_protocolo": {
+    "nombre": "Gloria Guadalupe Rivera Villafaña",
+    "telefono": "[33 1378 5900, Ext: 27405](tel:3313785900,27405)",
+    "correo": "[protocolo@cucei.udg.mx](mailto:protocolo@cucei.udg.mx)"
+  },
+  "secretaria_academica": {
+    "nombre": "Mtro. Eduardo Mendez Palos",
+    "puesto": "Secretario Académico",
+    "telefono": "[33 1378 5900, Ext: 27407, 27408](tel:3313785900)",
+    "correo": "[sac@cucei.udg.mx](mailto:sac@cucei.udg.mx)"
+  },
+  "oficina_de_comisiones_del_consejo": {
+    "nombre": "Lic. Barbara Monserrat Rebollar Casillas",
+    "puesto": "Responsable",
+    "telefono": "[33 1378 5900, Ext: 27301](tel:3313785900,27301)",
+    "correo": "[comisiones.consejo@cucei.udg.mx](mailto:comisiones.consejo@cucei.udg.mx)"
+  },
+  "area_de_convenios_y_contratos": {
+    "nombre": "Mtra. María Guadalupe Morelos Velázquez",
+    "puesto": "Jefa de Área",
+    "telefono": "[33 1378 5900, Ext: 27604](tel:3313785900,27604)",
+    "correo": "[convenios@cucei.udg.mx](mailto:convenios@cucei.udg.mx)"
+  },
+  "coordinacion_de_planeacion": {
+    "nombre": "Dra. Karla Avila Cárdenas",
+    "puesto": "Coordinadora",
+    "telefono": "[33 1378 5900, Ext: 27431](tel:3313785900,27431)",
+    "correo": "[cplan@cucei.udg.mx](mailto:cplan@cucei.udg.mx)"
+  },
+  "coordinacion_de_programas_docentes": {
+    "nombre": "Dra. Sabrina Lizbeth Vega Maldonado",
+    "puesto": "Coordinadora",
+    "telefono": "[33 1378 5900, Ext: 27456](tel:3313785900,27456)",
+    "correo": "[cpdoc@cucei.udg.mx](mailto:cpdoc@cucei.udg.mx)"
+  },
+  "coordinacion_de_investigacion": {
+    "nombre": "Dra. Rocío Ivette López Roa",
+    "puesto": "Coordinadora",
+    "telefono": "[33 1378 5900, Ext: 27458](tel:3313785900,27458)",
+    "correo": "[cinv@cucei.udg.mx](mailto:cinv@cucei.udg.mx)"
+  },
+  "unidad_de_posgrados": {
+    "nombre": "Dra. Margarita Cid Hernández",
+    "puesto": "Jefa de Unidad",
+    "telefono": "[33 1378 5900, Ext: 27564](tel:3313785900,27564)",
+    "correo": "[uposg@cucei.udg.mx](mailto:uposg@cucei.udg.mx)"
+  },
+  "coordinacion_de_extension": {
+    "nombre": "Mtro. Omar Israel Patiño Hernandez",
+    "puesto": "Coordinador",
+    "telefono": "[33 1378 5900, Ext: 27422](tel:3313785900,27422)",
+    "correo": "[cext@cucei.udg.mx](mailto:cext@cucei.udg.mx)"
+  },
+  "unidad_de_vinculacion": {
+    "nombre": "Mtra. Erika Lizeth Quiroz Pérez",
+    "puesto": "Jefa de Unidad",
+    "telefono": "[33 1378 5900, Ext: 27423, 27575](tel:3313785900)",
+    "correo": "[uvinc@cucei.udg.mx](mailto:uvinc@cucei.udg.mx)"
+  },
+  "unidad_de_servicio_social": {
+    "nombre": "Lic. Lucero Araceli Rios Espinoza",
+    "puesto": "Jefa de Unidad",
+    "telefono": "[33 1378 5900, Ext: 27427 y 27482](tel:3313785900)",
+    "correo": "[ussocial@cucei.udg.mx](mailto:ussocial@cucei.udg.mx)"
+  },
+  "unidad_de_difusion": {
+    "nombre": "Lic. José Orlando Salas Contreras",
+    "puesto": "Jefe de Unidad",
+    "telefono": "[33 1378 5900, Ext: 27557](tel:3313785900,27557)",
+    "correo": "[udifus@cucei.udg.mx](mailto:udifus@cucei.udg.mx)"
+  },
+  "coordinacion_de_servicios_academicos": {
+    "nombre": "Dra. María Elena Romero Gastelú",
+    "puesto": "Coordinadora",
+    "telefono": "[33 1378 5900, Ext: 27418](tel:3313785900,27418)",
+    "correo": "[csa@cucei.udg.mx](mailto:csa@cucei.udg.mx)"
+  },
+  "unidad_de_becas_e_intercambio": {
+    "nombre": "Mtra. María Cristina Padilla Becerra",
+    "puesto": "Jefa de Unidad",
+    "telefono": "[33 1378 5900, Ext: 27420](tel:3313785900,27420)",
+    "correo": "[ubecas@cucei.udg.mx](mailto:ubecas@cucei.udg.mx)"
+  },
+  "unidad_de_desarrollo_bibliotecario": {
+    "nombre": "Mtra. Erika Daniela Buenrostro González",
+    "puesto": "Jefa de Unidad",
+    "telefono": "[33 1378 5900, Ext: 27486](tel:3313785900,27486)",
+    "correo": "[ubiblio@cucei.udg.mx](mailto:ubiblio@cucei.udg.mx)"
+  },
+  "centro_integral_de_documentacion": {
+    "nombre": "Mtro. Moisés Gilberto Pérez Martínez",
+    "puesto": "Responsable",
+    "telefono": "[33 1378 5900, Ext: 27489](tel:3313785900,27489)",
+    "correo": "[cid@cucei.udg.mx](mailto:cid@cucei.udg.mx)",
+    "horario": "8:00 am - 8:00 pm"
+  },
+  "coordinacion_de_tecnologias_para_el_aprendizaje": {
+    "nombre": "Mtro. José Omar Saavedra Fajardo",
+    "puesto": "Coordinador",
+    "telefono": "[33 1378 5900, Ext: 27412](tel:3313785900,27412)",
+    "correo": "[cta@cucei.udg.mx](mailto:cta@cucei.udg.mx)",
+    "horario": "7:00 am - 7:00 pm"
+  },
+  "unidad_de_computo_y_telecomunicaciones_para_el_aprendizaje": {
+    "nombre": "Mtro. Ricardo Acosta Velázquez",
+    "puesto": "Jefe de Unidad",
+    "telefono": "[33 1378 5900, Ext: 27495](tel:3313785900,27495)",
+    "correo": "[ucta@cucei.udg.mx](mailto:ucta@cucei.udg.mx)"
+  },
+  "unidad_de_multimedia_instruccional": {
+    "nombre": "Mtro. Rafael Alejandro Ramírez Gómez",
+    "puesto": "Jefe de Unidad",
+    "telefono": "[33 1378 5900, Ext: 27451](tel:3313785900,27451)",
+    "correo": "[umi@cucei.udg.mx](mailto:umi@cucei.udg.mx)"
+  },
+  "itrans": {
+    "nombre": "Dra. Ruth Padilla Muñoz",
+    "puesto": "Directora",
+    "telefono": "[33 3134 2222, Ext: 21404](tel:3331342222,21404)",
+    "correo": "[director.itrans@cucei.udg.mx](mailto:director.itrans@cucei.udg.mx)",
+    "sitio_web": "http://itrans.cucei.udg.mx/"
+  },
+  "coordinacion_de_la_licenciatura_en_fisica": {
+    "nombre": "Dr. Jorge Manuel Montes Aréchiga",
+    "puesto": "Coordinador de Carrera",
+    "telefono": "[33 1378 5900, Ext: 27677](tel:3313785900,27677)",
+    "correo": "[cdfis@cucei.udg.mx](mailto:cdfis@cucei.udg.mx)",
+    "horario": "8:00 am - 6:00 pm"
+  },
+  "coordinacion_de_la_licenciatura_en_matematicas": {
+    "nombre": "Mtro. Ricardo Águila Gómez",
+    "puesto": "Coordinador de Carrera",
+    "telefono": "[33 1378 5900, Ext: 27755](tel:3313785900,27755)",
+    "correo": "[cdmat@cucei.udg.mx](mailto:cdmat@cucei.udg.mx)"
+  },
+  "coordinacion_de_la_licenciatura_en_quimica": {
+    "nombre": "Dra. Carolina Elizabeth Gómez Márquez",
+    "puesto": "Coordinador de Carrera",
+    "telefono": "[33 1378 5900, Ext: 27532](tel:3313785900,27532)",
+    "correo": "[cdquim@cucei.udg.mx](mailto:cdquim@cucei.udg.mx)"
+  },
+  "coordinacion_de_la_licenciatura_en_quimico_farmaceutico_biologo": {
+    "nombre": "Dra. Erika Fabiola López Villalobos",
+    "puesto": "Coordinador de Carrera",
+    "telefono": "[33 1378 5900, Ext: 27527](tel:3313785900,27527)",
+    "correo": "[cdfarm@cucei.udg.mx](mailto:cdfarm@cucei.udg.mx)"
+  },
+  "coordinacion_de_ingenieria_en_ciencia_de_materiales": {
+    "nombre": "Mtro. Javier Rosales Martínez",
+    "puesto": "Coordinador de Carrera",
+    "telefono": "[33 1378 5900, Ext. 27790](tel:3313785900,27790)",
+    "correo": "[cdcmt@cucei.udg.mx](mailto:cdcmt@cucei.udg.mx)"
+  },
+  "coordinacion_de_ingenieria_quimica": {
+    "nombre": "Dr. Enrique Michel Valdivia",
+    "puesto": "Coordinador de Carrera",
+    "telefono": "[33 1378 5900, Ext: 27536](tel:3313785900,27536)",
+    "correo": "[cdiq@cucei.udg.mx](mailto:cdiq@cucei.udg.mx)"
+  },
+  "coordinacion_de_ingenieria_civil": {
+    "nombre": "Dr. Manuel Alberto Gallardo Sanchez",
+    "puesto": "Coordinador de Carrera",
+    "telefono": "[33 1378 5900, Ext: 27700](tel:3313785900,27700)",
+    "correo": "[cdciv@cucei.udg.mx](mailto:cdciv@cucei.udg.mx)"
+  },
+  "coordinacion_de_ingenieria_en_topografia_geomatica": {
+    "nombre": "Ing. Eduardo Corona López",
+    "puesto": "Coordinador de Carrera",
+    "telefono": "[33 1378 5900, Ext: 27788](tel:3313785900,27788)",
+    "correo": "[cdtop@cucei.udg.mx](mailto:cdtop@cucei.udg.mx)"
+  },
+  "coordinacion_de_ingenieria_en_alimentos_y_biotecnologia": {
+    "nombre": "Dra. María Luisa Muñoz Almaguer",
+    "puesto": "Coordinador de Carrera",
+    "telefono": "[33 1378 5900, Ext: 27742](tel:3313785900,27742)",
+    "correo": "[cdiab@cucei.udg.mx](mailto:cdiab@cucei.udg.mx)"
+  },
+  "coordinacion_de_ingenieria_industrial": {
+    "nombre": "Mtro. Omar Hunab-Ku Candelas Hernández",
+    "puesto": "Coordinador de Carrera",
+    "telefono": "[33 1378 5900, Ext: 27704](tel:3313785900,27704)",
+    "correo": "[cdind@cucei.udg.mx](mailto:cdind@cucei.udg.mx)",
+    "horario": "7:00 am - 9:00 pm"
+  },
+  "coordinacion_de_ingenieria_mecanica_electrica": {
+    "nombre": "Dra. Laura Angélica Zamora Quintana",
+    "puesto": "Coordinador de Carrera",
+    "telefono": "[33 1378 5900, Ext: 27709](tel:3313785900,27709)",
+    "correo": "[cdime@cucei.udg.mx](mailto:cdime@cucei.udg.mx)",
+    "horario": "9:00 am - 7:00 pm"
+  },
+  "coordinacion_de_ingenieria_en_logistica_y_transporte": {
+    "nombre": "Dr. Rafael González Bravo",
+    "puesto": "Coordinador de Carrera",
+    "telefono": "[33 1378 5900, Ext. 27785](tel:3313785900,27785)",
+    "correo": "[cdilot@cucei.udg.mx](mailto:cdilot@cucei.udg.mx)"
+  },
+  "coordinacion_de_ingenieria_informatica": {
+    "nombre": "Mtra. Sara Esquivel Torres",
+    "puesto": "Coordinador de Carrera",
+    "telefono": "[33 1378 5900, Ext: 27736](tel:3313785900,27736)",
+    "correo": "[cdinf@cucei.udg.mx](mailto:cdinf@cucei.udg.mx)"
+  },
+  "coordinacion_de_ingenieria_biomedica": {
+    "nombre": "Mtro. Víctor Ernesto Moreno González",
+    "puesto": "Coordinador de Carrera",
+    "telefono": "[33 1378 5900, Ext: 27730](tel:3313785900,27730)",
+    "correo": "[cdibio@cucei.udg.mx](mailto:cdibio@cucei.udg.mx)"
+  },
+  "coordinacion_de_ingenieria_en_computacion": {
+    "nombre": "Mtro. Pedro Misraim Gómez Rodríguez",
+    "puesto": "Coordinador de Carrera",
+    "telefono": "[33 1378 5900, Ext: 27734](tel:3313785900,27734)",
+    "correo": "[cdcomp@cucei.udg.mx](mailto:cdcomp@cucei.udg.mx)",
+    "horario": "8:00 am - 8:00 pm"
+  },
+  "coordinacion_de_ingenieria_en_electronica_y_sistemas_inteligentes": {
+    "nombre": "Mtra. Flor Anel Galaviz Lugo",
+    "puesto": "Coordinador de Carrera",
+    "telefono": "[33 1378 5900, Ext: 27728](tel:3313785900,27728)",
+    "correo": "[cdcelc@cucei.udg.mx](mailto:cdcelc@cucei.udg.mx)"
+  },
+  "coordinacion_de_ingenieria_en_electromovilidad_y_autotronica": {
+    "nombre": "Mtro. Ehecatl Joel Chávez Martínez",
+    "puesto": "Coordinador",
+    "telefono": "[33 1378 5900, Ext: 27741](tel:3313785900,27741)",
+    "correo": "[cdema@cucei.udg.mx](mailto:cdema@cucei.udg.mx)"
+  },
+  "coordinacion_de_ingenieria_en_mecatronica_inteligente": {
+    "nombre": "Dra. Blanca Lorena Reynoso Gómez",
+    "puesto": "Coordinador",
+    "telefono": "[33 1378 5900, Ext: 27719](tel:3313785900,27719)",
+    "correo": "[cd.imi@cucei.udg.mx](mailto:cd.imi@cucei.udg.mx)"
+  },
+  "coordinacion_de_ingenieria_robotica": {
+    "nombre": "Dr. Erasmo Gabriel Martínez Soltero",
+    "puesto": "Coordinador de Carrera",
+    "telefono": "[33 1378 5900, Ext: 27726](tel:3313785900,27726)",
+    "correo": "[cdrob@cucei.udg.mx](mailto:cdrob@cucei.udg.mx)"
+  },
+  "coordinacion_de_ingenieria_fotonica": {
+    "nombre": "Dr. Anuar Benjamín Beltrán González",
+    "puesto": "Coordinador de Carrera",
+    "telefono": "[33 1378 5900, Ext: 27740](tel:3313785900,27740)",
+    "correo": "[cdfoton@cucei.udg.mx](mailto:cdfoton@cucei.udg.mx)"
+  },
+  "coordinacion_de_la_licenciatura_en_desarrollo_de_sistemas_web_virtual": {
+    "nombre": "Mtro. Rafael Franco Sapién",
+    "puesto": "Coordinador",
+    "telefono": "[33 1378 5900, Ext: 27374](tel:3313785900,27374)",
+    "correo": "[cdsweb@cucei.udg.mx](mailto:cdsweb@cucei.udg.mx)"
+  },
+  "coordinacion_de_la_licenciatura_en_tecnologias_e_informacion_virtual": {
+    "nombre": "Dra. Griselda Pérez Torres",
+    "puesto": "Coordinador",
+    "telefono": "[33 1378 5900, Ext: 27372](tel:3313785900,27372)",
+    "correo": "[cdlti@cucei.udg.mx](mailto:cdlti@cucei.udg.mx)"
+  },
+  "coordinacion_de_la_maestria_en_ciencias_biofarmaceuticas": {
+    "nombre": "Dr. Daniel Román Rojas",
+    "puesto": "Coordinador",
+    "telefono": "[33 1378 5900, Ext: 27642](tel:3313785900,27642)",
+    "correo": "[mcbio.farmacia@cucei.udg.mx](mailto:mcbio.farmacia@cucei.udg.mx)"
+  },
+  "coordinacion_de_la_maestria_en_ciencias_en_bioingenieria_y_computo_inteligente": {
+    "nombre": "Dr. Francisco Javier Álvarez Padilla",
+    "puesto": "Coordinador de Maestría",
+    "telefono": "[33 1378 5900, Ext: 27659](tel:3313785900,27659)",
+    "correo": "[coordinacion.mcbci@cucei.udg.mx](mailto:coordinacion.mcbci@cucei.udg.mx)"
+  },
+  "coordinacion_de_la_maestria_en_ciencias_en_fisica": {
+    "nombre": "Dr. José Guadalupe Quiñones Galván",
+    "puesto": "Coordinador de Maestría",
+    "telefono": "[33 1378 5900, Ext: 27681](tel:3313785900,27681)",
+    "correo": "[cdmcf@cucei.udg.mx](mailto:cdmcf@cucei.udg.mx)"
+  },
+  "coordinacion_de_la_maestria_en_ciencias_en_fisica_educativa": {
+    "nombre": "Dr. José Luis Santana Fajardo",
+    "puesto": "Coordinador de Maestría",
+    "telefono": "[33 1378 5900](tel:3313785900)",
+    "correo": "[cdmfe@cucei.udg.mx](mailto:cdmfe@cucei.udg.mx)"
+  },
+  "coordinacion_de_la_maestria_en_ciencias_en_quimica": {
+    "nombre": "Dra. Maite Renteria Urquiza",
+    "puesto": "Coordinador de Maestría",
+    "telefono": "[33 1378 5900 Ext: 27772 y 27540](tel:3313785900)",
+    "correo": "[cdmcq@cucei.udg.mx](mailto:cdmcq@cucei.udg.mx)"
+  },
+  "coordinacion_de_la_maestria_en_ciencias_en_inocuidad_alimentaria": {
+    "nombre": "Dra. Adriana Cavazos Garduño",
+    "puesto": "Coordinador de Maestría",
+    "telefono": "[33 1378 5900 Ext: 27649](tel:3313785900,27649)",
+    "correo": "[maestria.inocuidad@cucei.udg.mx](mailto:maestria.inocuidad@cucei.udg.mx)"
+  },
+  "coordinacion_de_la_maestria_en_ensenanza_de_las_matematicas": {
+    "nombre": "Dr. Carlos Valenzuela García",
+    "puesto": "Coordinador de Maestría",
+    "telefono": "[33 1378 5900 Ext: 27759](tel:3313785900,27759)",
+    "correo": "[maestria.matematicas@cucei.udg.mx](mailto:maestria.matematicas@cucei.udg.mx)"
+  },
+  "coordinacion_de_la_maestria_en_ciencias_en_matematicas": {
+    "nombre": "Dra. Miriam Bocardo Gaspar",
+    "puesto": "Coordinador de Maestría",
+    "telefono": null,
+    "correo": "[maestriaciencias.matematicas@cucei.udg.mx](mailto:maestriaciencias.matematicas@cucei.udg.mx)"
+  },
+  "coordinacion_de_la_maestria_en_ciencia_de_materiales": {
+    "nombre": "Dr. Antonio Casillas Zamora",
+    "puesto": "Coordinador de Maestría",
+    "telefono": "[33 1378 5900 Ext: 27773](tel:3313785900,27773)",
+    "correo": "[maestria.materiales@cucei.udg.mx](mailto:maestria.materiales@cucei.udg.mx)"
+  },
+  "coordinacion_de_la_maestria_en_ciencias_en_hidrometeorologia": {
+    "nombre": "M.C. Alma Delia Ortíz Bañuelos",
+    "puesto": "Coordinador de Maestría",
+    "telefono": "[33 1378 5900 Ext: 27762](tel:3313785900,27762)",
+    "correo": "[cdmrch@cucei.udg.mx](mailto:cdmrch@cucei.udg.mx)"
+  },
+  "coordinacion_de_la_maestria_en_ciencias_en_ingenieria_quimica": {
+    "nombre": "Dr. Carlos Federico Jasso Gastinel",
+    "puesto": "Coordinador de Maestría",
+    "telefono": "[33 1378 5900 Ext: 27506](tel:3313785900,27506)",
+    "correo": "[cdmciq@cucei.udg.mx](mailto:cdmciq@cucei.udg.mx)"
+  },
+  "coordinacion_de_la_maestria_en_ciencias_en_procesos_biotecnologicos": {
+    "nombre": "Dr. Hugo Oscar Méndez Acosta",
+    "puesto": "Coordinador de Maestría",
+    "telefono": "[33 1378 5900 Ext: 27551](tel:3313785900,27551)",
+    "correo": "[mpb@cucei.udg.mx](mailto:mpb@cucei.udg.mx)"
+  },
+  "coordinacion_de_la_maestria_en_ciencias_en_ingenieria_electrica": {
+    "nombre": "Dr. Carlos Alberto López de Alba",
+    "puesto": "Coordinador de Maestría",
+    "telefono": "[33 1378 5900 Ext: 27739](tel:3313785900,27739)",
+    "correo": "[cdmcie@cucei.udg.mx](mailto:cdmcie@cucei.udg.mx)"
+  },
+  "coordinacion_de_la_maestria_en_ciencia_de_productos_forestales": {
+    "nombre": "Dr. José Anzaldo Hernández",
+    "puesto": "Coordinador de Maestría",
+    "telefono": "[33 1378 5900 ext. 27857](tel:3313785900,27857)",
+    "correo": "[maestria.forestales@cucei.udg.mx](mailto:maestria.forestales@cucei.udg.mx)"
+  },
+  "coordinacion_de_la_maestria_en_ciencias_en_ingenieria_electronica_y_computacion": {
+    "nombre": "Dr. Robin Fernando Conchas Cedano",
+    "puesto": "Coordinador de Maestría",
+    "telefono": "[33 1378 5900, Ext: 27650](tel:3313785900,27650)",
+    "correo": "[cdmcec@cucei.udg.mx](mailto:cdmcec@cucei.udg.mx)"
+  },
+  "coordinacion_de_la_maestria_en_ciencias_en_optica_y_fotonica": {
+    "nombre": "Dr. Jorge Luis Flores Núñez",
+    "puesto": "Coordinador de Maestría",
+    "telefono": "[33 1378 5900, Ext. 27743](tel:3313785900,27743)",
+    "correo": "[maestria.opticayfotonica@cucei.udg.mx](mailto:maestria.opticayfotonica@cucei.udg.mx)"
+  },
+  "coordinacion_de_la_maestria_en_ciencias_en_robotica_e_inteligencia_artificial": {
+    "nombre": "Dr. Jorge Daniel Ríos Arrañaga",
+    "puesto": "Coordinador de Maestría",
+    "telefono": "[33 1378 5900](tel:3313785900)",
+    "correo": "[cdmroi@cucei.udg.mx](mailto:cdmroi@cucei.udg.mx)"
+  },
+  "coordinacion_de_la_maestria_en_computo_aplicado": {
+    "nombre": "Dr. Mario Jiménez Rodríguez",
+    "puesto": "Coordinador de Maestría",
+    "telefono": "[33 1378 5900 Ext: 27363](tel:3313785900,27363)",
+    "correo": "[coord.computoaplicado@cucei.udg.mx](mailto:coord.computoaplicado@cucei.udg.mx)"
+  },
+  "coordinacion_de_la_maestria_en_ingenieria_civil": {
+    "nombre": "Mtro. David Alejandro Urzúa Pineda",
+    "puesto": "Coordinador de Maestría",
+    "telefono": null,
+    "correo": "[maestria.civil@cucei.udg.mx](mailto:maestria.civil@cucei.udg.mx)"
+  },
+  "coordinacion_de_la_maestria_en_ingenieria_y_ciencia_de_datos": {
+    "nombre": "Dr. Fernando Abraham Fausto Martínez",
+    "puesto": "Coordinador de Maestría",
+    "telefono": "[33 1378 5900, Ext: 27658](tel:3313785900,27658)",
+    "correo": "[micid@cucei.udg.mx](mailto:micid@cucei.udg.mx)"
+  },
+  "coordinacion_del_doctorado_en_ciencias_en_fisica": {
+    "nombre": "Dra. Isabel Sainz Abascal",
+    "puesto": "Coordinador de Doctorado",
+    "telefono": "[33 1378 5900, Ext. 27632](tel:3313785900,27632)",
+    "correo": "[cddcf@cucei.udg.mx](mailto:cddcf@cucei.udg.mx)"
+  },
+  "coordinacion_del_doctorado_en_ciencias_en_quimica": {
+    "nombre": "Dr. Luis Guillermo Guerrero Ramírez",
+    "puesto": "Coordinador de Doctorado",
+    "telefono": "[33 1378 5900 Ext: 27518 y 27570](tel:3313785900)",
+    "correo": "[cddcq@cucei.udg.mx](mailto:cddcq@cucei.udg.mx)"
+  },
+  "coordinacion_del_doctorado_en_ciencias_en_bioquimica_molecular_y_traslacional": {
+    "nombre": "Dra. Adelaida Sara Minia Zepeda Morales",
+    "puesto": "Coordinador de Doctorado",
+    "telefono": "[33 1378 5900 Ext. 27678](tel:3313785900,27678)",
+    "correo": "[dcmbt@cucei.udg.mx](mailto:dcmbt@cucei.udg.mx)"
+  },
+  "coordinacion_del_doctorado_en_ciencia_de_biomateriales_sustentables": {
+    "nombre": "Dr. Ricardo Manríquez González",
+    "puesto": "Coordinador de Doctorado",
+    "telefono": "[3313785900 Ext. 27857 y 33 36 82 01 10 ext. 106](tel:3313785900,27857)",
+    "correo": "[doctorado.cbs@cucei.udg.mx](mailto:doctorado.cbs@cucei.udg.mx)"
+  },
+  "coordinacion_del_doctorado_en_ciencia_de_materiales": {
+    "nombre": "Dr. Lorenzo Gildo Ortiz",
+    "puesto": "Coordinador de Doctorado",
+    "telefono": "[33 1378 5900 Ext: 27773](tel:3313785900,27773)",
+    "correo": "[doctorado.materiales@cucei.udg.mx](mailto:doctorado.materiales@cucei.udg.mx)"
+  },
+  "coordinacion_del_doctorado_en_ciencias_en_matematicas": {
+    "nombre": "Dr. Ernesto Urenda Cázares",
+    "puesto": "Coordinador de Doctorado",
+    "telefono": "[33 1378 5900, Ext: 27753 y 27754](tel:3313785900)",
+    "correo": "[doctorado.ciencia-mate@cucei.udg.mx](mailto:doctorado.ciencia-mate@cucei.udg.mx)"
+  },
+  "coordinacion_del_doctorado_en_ciencias_en_ingenieria_quimica": {
+    "nombre": "Dr. Eduardo Mendizábal Mijares",
+    "puesto": "Coordinador de Doctorado",
+    "telefono": "[33 1378 5900, Ext: 27541](tel:3313785900,27541)",
+    "correo": "[cddciq@cucei.udg.mx](mailto:cddciq@cucei.udg.mx)"
+  },
+  "coordinacion_del_doctorado_en_ciencias_en_inteligencia_computacional": {
+    "nombre": "Dr. Omar Avalos Alvarez",
+    "puesto": "Coordinador de Doctorado",
+    "telefono": "[33 1378 5900, Ext. 27786](tel:3313785900,27786)",
+    "correo": "[doctoradointeligenciacomputacional@administrativos.udg.mx](mailto:doctoradointeligenciacomputacional@administrativos.udg.mx)"
+  },
+  "coordinacion_del_doctorado_en_ciencias_en_procesos_biotecnologicos_directo": {
+    "nombre": "Dr. Orfil González Reynoso",
+    "puesto": "Coordinador de Doctorado",
+    "telefono": "[33 1378 5900 Ext: 27508, 27568 y 27569](tel:3313785900)",
+    "correo": "[dpb@cucei.udg.mx](mailto:dpb@cucei.udg.mx)"
+  },
+  "coordinacion_del_doctorado_en_ciencias_en_procesos_biotecnologicos_tradicional": {
+    "nombre": "Dra. Alma Hortensia Martínez Preciado",
+    "puesto": "Coordinador de Doctorado",
+    "telefono": "[33 1378 5900 Ext: 27510, 27568 y 27569](tel:3313785900)",
+    "correo": "[dcpbt@cucei.udg.mx](mailto:dcpbt@cucei.udg.mx)"
+  },
+  "coordinacion_del_doctorado_en_ciencias_de_la_electronica_y_la_computacion": {
+    "nombre": "Dr. Jorge de Jesús Gálvez Rodríguez",
+    "puesto": "Coordinador de Doctorado",
+    "telefono": "[33 1378 5900, Ext: 27781](tel:3313785900,27781)",
+    "correo": "[cddcec@cucei.udg.mx](mailto:cddcec@cucei.udg.mx)"
+  },
+  "coordinacion_del_doctorado_en_microbiologia_y_biotecnologia_molecular": {
+    "nombre": "Dra. Blanca Rosa Aguilar Uscanga",
+    "puesto": "Coordinador de Doctorado",
+    "telefono": "[33 1378 5900](tel:3313785900)",
+    "correo": "[doc.mbbtm@cucei.udg.mx](mailto:doc.mbbtm@cucei.udg.mx)"
+  },
+  "secretaria_administrativa": {
+    "nombre": "Mtra. Dulce Angélica Valdivia Chávez",
+    "puesto": "Secretario Administrativo",
+    "telefono": "[33 1378 5900, Ext: 27434 y 27433](tel:3313785900)",
+    "correo": "[secadm@cucei.udg.mx](mailto:secadm@cucei.udg.mx)"
+  },
+  "primeros_contactos_para_la_atencion_de_violencia_de_genero_1": {
+    "nombre": "Dra. Beatriz Venegas Ruiz",
+    "puesto": "Responsable",
+    "telefono": "[33 1378 5900, Ext: 27800](tel:3313785900,27800)",
+    "correo": "[primercontacto.bvr@cucei.udg.mx](mailto:primercontacto.bvr@cucei.udg.mx)"
+  },
+  "primeros_contactos_para_la_atencion_de_violencia_de_genero_2": {
+    "nombre": "Lic. Isael Pérez González",
+    "puesto": "Responsable",
+    "telefono": "[33 1378 5900, Ext:27800](tel:3313785900,27800)",
+    "correo": "[primercontacto@cucei.udg.mx](mailto:primercontacto@cucei.udg.mx)"
+  },
+  "control_escolar": {
+    "nombre": "Ing. Edson Aldair Vital Díaz",
+    "puesto": "Coordinador",
+    "telefono": "[33 1378 5900, Ext: 27440](tel:3313785900,27440)",
+    "correo": "[cesc@cucei.udg.mx](mailto:cesc@cucei.udg.mx)"
+  },
+  "unidad_de_atencion": {
+    "nombre": "Ing. Tania Lizbeth Rocha Cabrera",
+    "puesto": "Jefe de Unidad",
+    "telefono": "[33 1378 5900, Ext: 27345](tel:3313785900,27345)",
+    "correo": "[uatencion@cucei.udg.mx](mailto:uatencion@cucei.udg.mx)"
+  },
+  "unidad_de_ingreso_y_grado": {
+    "nombre": "Lic. Jaime Arturo Hurtado Gutiérrez",
+    "puesto": "Jefe de Unidad",
+    "telefono": "[33 1378 5900, Ext: 27442](tel:3313785900,27442)",
+    "correo": "[uingreso@cucei.udg.mx](mailto:uingreso@cucei.udg.mx)"
+  },
+  "unidad_de_control_de_alumnos_y_egresados": {
+    "nombre": "Lic. Daniela Yazbeth Romo Ramírez",
+    "puesto": "Jefa de Unidad",
+    "telefono": "[33 1378 5900, Ext: 27443](tel:3313785900,27443)",
+    "correo": "[uegreso@cucei.udg.mx](mailto:uegreso@cucei.udg.mx)"
+  },
+  "coordinacion_de_servicios_generales": {
+    "nombre": "Arq. Luis Alberto Razo García",
+    "puesto": "Coordinador",
+    "telefono": "[33 1378 5900, Ext: 27446](tel:3313785900,27446)",
+    "correo": "[csg@cucei.udg.mx](mailto:csg@cucei.udg.mx)",
+    "horario": "7:00 am - 8:00 pm"
+  },
+  "obras_y_proyectos": {
+    "nombre": "Arq. Ivonne Alejandra Velázquez Torres",
+    "puesto": "Jefa de Área",
+    "telefono": "[33 1378 5900, Ext: 27446](tel:3313785900,27446)",
+    "correo": "[obrasyproy@cucei.udg.mx](mailto:obrasyproy@cucei.udg.mx)"
+  },
+  "unidad_de_mantenimiento": {
+    "nombre": "Mario Alberto Casanova Mora",
+    "puesto": "Responsable",
+    "telefono": "[33 1378 5900, Ext: 27448](tel:3313785900,27448)",
+    "correo": "[umanten@cucei.udg.mx](mailto:umanten@cucei.udg.mx)"
+  },
+  "unidad_de_adquisiciones_y_suministros": {
+    "nombre": "Lic. Veronica Marisela Frías Peralta",
+    "puesto": "Jefa de Unidad",
+    "telefono": "[33 1378 5900, Ext: 27481](tel:3313785900,27481)",
+    "correo": "[ucompras@cucei.udg.mx](mailto:ucompras@cucei.udg.mx)"
+  },
+  "coordinacion_de_finanzas": {
+    "nombre": "Lic. Martha Alejandra Romo Lizaola",
+    "puesto": "Coordinadora",
+    "telefono": "[33 1378 5900, Ext: 27461 y 27627](tel:3313785900)",
+    "correo": "[cfin@cucei.udg.mx](mailto:cfin@cucei.udg.mx)"
+  },
+  "unidad_de_contabilidad": {
+    "nombre": "Lic. María Cristina Ponce Ruiz",
+    "puesto": "Jefa de Unidad",
+    "telefono": "[33 1378 5900, Ext: 27628](tel:3313785900,27628)",
+    "correo": "[ufinan@cucei.udg.mx](mailto:ufinan@cucei.udg.mx)"
+  },
+  "unidad_de_presupuesto": {
+    "nombre": "Lic. Carlos Alberto Romo Lizaola",
+    "puesto": "Jefe de Unidad",
+    "telefono": "[33 1378 5900, Ext: 27480](tel:3313785900,27480)",
+    "correo": "[upresu@cucei.udg.mx](mailto:upresu@cucei.udg.mx)"
+  },
+  "unidad_de_nomina": {
+    "nombre": "Lic. María Guadalupe Quiñones Pantoja",
+    "puesto": "Jefa de Unidad",
+    "telefono": "[33 1378 5900, Ext: 27467](tel:3313785900,27467)",
+    "correo": "[unomina@cucei.udg.mx](mailto:unomina@cucei.udg.mx)"
+  },
+  "fondos_externos": {
+    "nombre": "Lic. Alan Gustavo Sanchez Pantaleón",
+    "puesto": "Encargado",
+    "telefono": "[33 1378 5900, Ext: 27436](tel:3313785900,27436)",
+    "correo": "[unidadfondos.externos@cucei.udg.mx](mailto:unidadfondos.externos@cucei.udg.mx)"
+  },
+  "coordinacion_de_personal": {
+    "nombre": "Mtro. Guillermo Cerpa Ceja",
+    "puesto": "Coordinador",
+    "telefono": "[33 1378 5900, Ext: 27562](tel:3313785900,27562)",
+    "correo": "[cper@cucei.udg.mx](mailto:cper@cucei.udg.mx)"
+  },
+  "unidad_de_personal_academico": {
+    "nombre": "Lic. Sergio Andres Torres Molina",
+    "puesto": "Jefe de Unidad",
+    "telefono": "[33 1378 5900, Ext: 27471](tel:3313785900,27471)",
+    "correo": "[upacad@cucei.udg.mx](mailto:upacad@cucei.udg.mx)"
+  },
+  "unidad_de_personal_administrativo": {
+    "nombre": "Lic. Edgar Manuel Ortíz Martínez",
+    "puesto": "Jefe de Unidad",
+    "telefono": "[33 1378 5900, Ext: 27472](tel:3313785900,27472)",
+    "correo": "[upadm@cucei.udg.mx](mailto:upadm@cucei.udg.mx)"
+  },
+  "unidad_de_ensenanza_incorporada": {
+    "nombre": "Mtra. Y. Elizabeth Ramirez Rosales",
+    "puesto": "Jefa de Unidad",
+    "telefono": "[33 1378 5900 Ext: 27491, 27492](tel:3313785900)",
+    "correo": "[uei@cucei.udg.mx](mailto:uei@cucei.udg.mx)"
+  },
+  "division_de_ciencias_basicas": {
+    "nombre": "Dra. Gloria Arlette Méndez Maldonado",
+    "puesto": "Directora de División",
+    "telefono": "[33 3619 8292 / 33 1378 5900 Ext: 27663](tel:3336198292)",
+    "correo": "[divcb@cucei.udg.mx](mailto:divcb@cucei.udg.mx)"
+  },
+  "secretaria_de_la_division_de_ciencias_basicas": {
+    "nombre": "Dra. Liliana Vázquez Mercado",
+    "puesto": "Secretario",
+    "telefono": "[33 1378 5900 Ext: 27665](tel:3313785900,27665)",
+    "correo": "[sdivcb@cucei.udg.mx](mailto:sdivcb@cucei.udg.mx)"
+  },
+  "departamento_de_farmacobiologia": {
+    "nombre": "Dr. César Ricardo Cortez Álvarez",
+    "puesto": "Jefe de Departamento",
+    "telefono": "[33 3619 8158 / 33 1378 5900 Ext: 27526](tel:3336198158)",
+    "correo": "[depfarm@cucei.udg.mx](mailto:depfarm@cucei.udg.mx)"
+  },
+  "departamento_de_quimica": {
+    "nombre": "Dr. José Miguel Velázquez López",
+    "puesto": "Jefe de Departamento",
+    "telefono": "[33 1378 5900 Ext: 27530](tel:3313785900,27530)",
+    "correo": "[depquim@cucei.udg.mx](mailto:depquim@cucei.udg.mx)"
+  },
+  "departamento_de_matematicas": {
+    "nombre": "Dra. Celia Ávalos Ramos",
+    "puesto": "Jefa de Departamento",
+    "telefono": "[33 1378 5900, Ext: 27753 y 27754](tel:3313785900)",
+    "correo": "[depmat@cucei.udg.mx](mailto:depmat@cucei.udg.mx)",
+    "horario": "7:00 am - 9:00 pm"
+  },
+  "departamento_de_fisica": {
+    "nombre": "Mtro. Vladimir Camelo Avedoy",
+    "puesto": "Jefe de Departamento",
+    "telefono": "[33 1378 5900 Ext: 27668](tel:3313785900,27668)",
+    "correo": "[depfis@cucei.udg.mx](mailto:depfis@cucei.udg.mx)"
+  },
+  "instituto_de_astronomia_y_meteorologia": {
+    "nombre": "Dr. Oscar Blanco Alonso",
+    "puesto": "Director",
+    "telefono": "[33 3616 4937 y 33 1378 5900 ext. 27812](tel:3336164937)",
+    "correo": "[iam@cucei.udg.mx](mailto:iam@cucei.udg.mx)"
+  },
+  "division_de_ingenierias": {
+    "nombre": "Dr. José Roberto Galaviz González",
+    "puesto": "Director de División",
+    "telefono": "[33 1378 5911 Ext: 27694](tel:3313785911,27694)",
+    "correo": "[diving@cucei.udg.mx](mailto:diving@cucei.udg.mx)"
+  },
+  "secretaria_de_la_division_de_ingenierias": {
+    "nombre": "Dra. Alejandra Gómez Padilla",
+    "puesto": "Secretario",
+    "telefono": "[33 1378 5911 Ext: 27696](tel:3313785911,27696)",
+    "correo": "[sdiving@cucei.udg.mx](mailto:sdiving@cucei.udg.mx)"
+  },
+  "departamento_de_ingenieria_quimica": {
+    "nombre": "Dr. Juan Paulo García Sandoval",
+    "puesto": "Jefe de Departamento",
+    "telefono": "[33 1378 5900 Ext: 27534](tel:3313785900,27534)",
+    "correo": "[depiq@cucei.udg.mx](mailto:depiq@cucei.udg.mx)",
+    "horario": "7:00 am - 9:00 pm"
+  },
+  "departamento_de_ingenieria_civil_y_topografia": {
+    "nombre": "Dr. Benjamín Ojeda Magaña",
+    "puesto": "Jefe de Departamento",
+    "telefono": "[33 1378 5900 Ext: 27699](tel:3313785900,27699)",
+    "correo": "[depciv@cucei.udg.mx](mailto:depciv@cucei.udg.mx)"
+  },
+  "departamento_de_ingenieria_industrial": {
+    "nombre": "Dra. Maria Elena Armendáriz Silva",
+    "puesto": "Jefa de Departamento",
+    "telefono": "[33 1378 5900 Ext: 27703](tel:3313785900,27703)",
+    "correo": "[depind@cucei.udg.mx](mailto:depind@cucei.udg.mx)"
+  },
+  "departamento_de_ingenieria_mecanica_electrica": {
+    "nombre": "Mtro. Fabián García Varela",
+    "puesto": "Jefe de Departamento",
+    "telefono": "[33 1378 5900 Ext: 27707](tel:3313785900,27707)",
+    "correo": "[depmec@cucei.udg.mx](mailto:depmec@cucei.udg.mx)"
+  },
+  "departamento_de_madera_celulosa_y_papel": {
+    "nombre": "Dr. José Antonio Silva Guzmán",
+    "puesto": "Jefe de Departamento",
+    "telefono": "[33 3682 0110 Ext. 104 y 33 13785900 Ext. 27859](tel:3336820110)",
+    "correo": "[depcel@cucei.udg.mx](mailto:depcel@cucei.udg.mx)"
+  },
+  "departamento_de_ingenieria_de_proyectos": {
+    "nombre": "Dr. César Octavio Monzón",
+    "puesto": "Jefe de Departamento",
+    "telefono": "[33 3836 4500](tel:3338364500)",
+    "correo": "[depip@cucei.udg.mx](mailto:depip@cucei.udg.mx)"
+  },
+  "division_de_tecnologias_para_la_integracion_ciber_humana": {
+    "nombre": "Dra. Alma Yolanda Alanís García",
+    "puesto": "Directora de División",
+    "telefono": "[33 1378 5900 Ext: 27720](tel:3313785900,27720)",
+    "correo": "[divtic@cucei.udg.mx](mailto:divtic@cucei.udg.mx)",
+    "horario": "9:00 am - 5:00 pm"
+  },
+  "secretaria_de_la_division_de_tecnologias_para_la_integracion_ciber_humana": {
+    "nombre": "Dr. Azael de Jesús Mora Nuñez",
+    "puesto": "Secretario",
+    "telefono": "[33 1378 5900 Ext: 27720](tel:3313785900,27720)",
+    "correo": "[sdivtic@cucei.udg.mx](mailto:sdivtic@cucei.udg.mx)"
+  },
+  "departamento_de_bioingenieria_traslacional": {
+    "nombre": "Dr. José Alejandro Morales Valencia",
+    "puesto": "Jefe de Departamento",
+    "telefono": "[33 13785900 ext 27729](tel:3313785900,27729)",
+    "correo": "[depbio@cucei.udg.mx](mailto:depbio@cucei.udg.mx)"
+  },
+  "departamento_de_ciencias_computacionales": {
+    "nombre": "Dra. Patricia Sánchez Rosario",
+    "puesto": "Jefe de Departamento",
+    "telefono": "[33 1378 5900, Ext: 27732](tel:3313785900,27732)",
+    "correo": "[depcc@cucei.udg.mx](mailto:depcc@cucei.udg.mx)"
+  },
+  "departamento_de_ingenieria_electro_fotonica": {
+    "nombre": "Mtro. José Vladimir Quiroga Rojas",
+    "puesto": "Jefe de Departamento",
+    "telefono": "[33 1378 5900 Ext: 27737](tel:3313785900,27737)",
+    "correo": "[depief@cucei.udg.mx](mailto:depief@cucei.udg.mx)"
+  },
+  "departamento_de_innovacion_basada_en_la_informacion_y_el_conocimiento": {
+    "nombre": "Mtra. Patricia del Rosario Retamoza Vega",
+    "puesto": "Jefa de Departamento",
+    "telefono": "[33 13785900 ext 27727](tel:3313785900,27727)",
+    "correo": "[dibic@cucei.udg.mx](mailto:dibic@cucei.udg.mx)"
+  },
+  "consejo_social": {
+    "nombre": "Ing. Luis García Limón",
+    "puesto": "Presidente",
+    "telefono": null,
+    "correo": "[consejo.social@cucei.udg.mx](mailto:consejo.social@cucei.udg.mx)"
+  },
+  "patronato": {
+    "nombre": ".",
+    "puesto": "Presidente",
+    "telefono": null,
+    "correo": "[patronato@cucei.udg.mx](mailto:patronato@cucei.udg.mx)"
+  },
+  "contraloria_del_centro": {
+    "nombre": "Mtro. Braulio Vicente Ruiz Arrez",
+    "puesto": "Contralor del Centro",
+    "telefono": "[33 1378 5900 Ext: 27449](tel:3313785900,27449)",
+    "correo": "[contraloria.cucei@udg.mx](mailto:contraloria.cucei@udg.mx)"
+  },
+  "biblioteca": {
+    "horario": "Lunes a Viernes de 7:30 am - 8:00 pm, Sábados de 8:00 am - 1:45 pm",
+    "telefono": "[33 1378 5900 Ext: 27489](tel:3313785900,27489)",
+    "correo": "[ubiblio@cucei.udg.mx](mailto:ubiblio@cucei.udg.mx)",
+    "facebook": "https://www.facebook.com/CIDCUCEI"
+  },
+  "enfermeria": {
+    "horario": "9:00 am - 3:00 pm (Tentativo)"
+  },
+  "areas_tecnicas_alpha_beta": {
+    "horario_alpha": "7:00 am - 3:00 pm",
+    "horario_beta": "3:00 pm - 8:00 pm"
+  },
+  "alberca_olimpica": {
+    "horario": "Lunes a Viernes de 7:00 am - 10:00 pm, Sábados de 7:00 am - 3:00 pm"
+  },
+  "hospital_de_computadoras": {
+    "horario": "11:00 am - 3:00 pm"
+  },
+  "unidad_interna_de_proteccion_civil": {
+    "horario": "8:30 am - 6:30 pm"
+  },
+  "laboratorio_de_inventores": {
+    "horario": "9:00 am - 6:00 pm"
+  },
+  "radio_cucei": {
+    "frecuencia": "96.7 FM",
+    "horario": "8:00 am - 9:00 pm"
+  },
+  "laboratorio_de_analisis_clinicos_e_investigacion_traslacional": {
+    "horario": "8:00 am - 3:00 pm"
+  },
+  "proulex_tecnologico": {
+    "horario": "7:00 am - 9:00 pm"
+  },
+  "modulo_de_actividades_culturales_mac": {
+    "horario": "9:00 am - 5:00 pm"
+  },
+  "pista_de_atletismo_cdu_cucei": {
+    "horario": "6:00 am - 7:00 pm"
+  },
+  "gimnasio_de_usos_multiples_udg": {
+    "horario": "6:00 am - 10:00 pm"
+  },
+  "coliseo_olimpico": {
+    "horario": "9:00 am - 6:00 pm"
+  },
+  "cafe_la_flor_de_cordoba": {
+    "horario": "7:00 am - 9:00 pm"
+  },
+  "banco_santander_empresarial": {
+    "horario": "9:00 am - 4:00 pm"
+  },
+  "escultura_pucei": {
+    "horario": "7:00 am - 9:00 pm"
+  },
+  "loncheria_dona_raque": {
+    "horario": "8:00 am - 5:00 pm"
+  },
+  "desayunos_donde_quiera": {
+    "horario": "8:00 am - 5:00 pm"
+  },
+  "loncheria_el_brother": {
+    "horario": "8:00 am - 6:00 pm"
+  },
+  "las_cuatro_y_cacho": {
+    "horario": "8:00 am - 5:00 pm"
+  },
+  "talleres_culturales": {
+    "horario": "9:00 am - 3:00 pm",
+    "telefono": "[33 1378 5900 Ext: 27424](tel:3313785900,27424)",
+    "correo": "[acultural@cucei.udg.mx](mailto:acultural@cucei.udg.mx)"
+  }
+}

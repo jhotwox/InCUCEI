@@ -1,0 +1,682 @@
+{
+  "precalculo": {
+    "name": "precalculo",
+    "code": "MT101",
+    "semester": 1,
+    "files": {
+      "study_plan": "PRECALCULO cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "diseno_asistido_computadora": {
+    "name": "diseño asistido por computadora",
+    "code": "IC580",
+    "semester": 1,
+    "files": {
+      "study_plan": "DIBUJO CONSTRUCTIVO cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "estatica": {
+    "name": "estatica",
+    "code": "IC581",
+    "semester": 1,
+    "files": {
+      "study_plan": "ESTÁTICA cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "taller_redaccion_tecnica": {
+    "name": "taller de redaccion tecnica",
+    "code": "IC571",
+    "semester": 1,
+    "files": {
+      "study_plan": "TALLER DE REDACCIÓN cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "programacion_aplicada_ingenieria_civil": {
+    "name": "programacion aplicada a la ingenieria civil",
+    "code": "IC589",
+    "semester": 1,
+    "files": {
+      "study_plan": "TALLER DE PROGRAMACION ESTRUCTURADA cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "induccion_ingenieros_civiles": {
+    "name": "induccion para ingenieros civiles",
+    "code": "IC583",
+    "semester": 1,
+    "files": {
+      "study_plan": "INTRODUCCION A LA INGENIERIA cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "calculo_diferencial_integral": {
+    "name": "calculo diferencial e integral",
+    "code": "MT201",
+    "semester": 2,
+    "files": {
+      "study_plan": "CALCULO DIFERENCIAL E INTEGRAL cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "algebra_lineal": {
+    "name": "algebra lineal",
+    "code": "IC577",
+    "semester": 2,
+    "files": {
+      "study_plan": "ALGEBRA LINEAL cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "dinamica": {
+    "name": "dinamica",
+    "code": "IC582",
+    "semester": 2,
+    "files": {
+      "study_plan": "DINÁMICA cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "quimica_ingenieria_civil": {
+    "name": "quimica en la ingenieria civil",
+    "code": "IC601",
+    "semester": 2,
+    "files": {
+      "study_plan": "QUÍMICA BASICA cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "geologia": {
+    "name": "geologia",
+    "code": "IT211",
+    "semester": 2,
+    "files": {
+      "study_plan": "GEOLOGIA cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "topografia": {
+    "name": "topografia",
+    "code": "IC587",
+    "semester": 2,
+    "files": {
+      "study_plan": "TOPOGRAFIA GENERAL cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "practicas_topografia": {
+    "name": "practicas de topografia",
+    "code": "IC588",
+    "semester": 2,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "taller_deportes": {
+    "name": "taller de deportes",
+    "code": "IC573",
+    "semester": 3,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "calculo_avanzado": {
+    "name": "calculo avanzado",
+    "code": "IC586",
+    "semester": 3,
+    "files": {
+      "study_plan": "CALCULO AVANZADO cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "ecuaciones_diferenciales_ordinarias_i": {
+    "name": "ecuaciones diferenciales ordinarias i",
+    "code": "IC585",
+    "semester": 3,
+    "files": {
+      "study_plan": "ECUACIONES DIFERENCIALES Y ORDINARIAS I cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "mecanica_solidos_i": {
+    "name": "mecanica de solidos i",
+    "code": "IC578",
+    "semester": 3,
+    "files": {
+      "study_plan": "MECÁNICA DE SÓLIDOS I cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "probabilidad_estadistica": {
+    "name": "probabilidad y estadistica",
+    "code": "IC572",
+    "semester": 3,
+    "files": {
+      "study_plan": "ELEMENTOS DE PROBABILIDAD Y ESTADISTICA PROBABILIDAD Y ESTADISTICA cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "fenomenos_termicos": {
+    "name": "fenomenos termicos",
+    "code": "IC600",
+    "semester": 3,
+    "files": {
+      "study_plan": "FENÓMENOS TÉRMICOS cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "conocimiento_materiales": {
+    "name": "conocimiento de materiales",
+    "code": "IC590",
+    "semester": 3,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "electromagnetismo": {
+    "name": "electromagnetismo",
+    "code": "IC591",
+    "semester": 3,
+    "files": {
+      "study_plan": "ELECTROMAGNETISMO cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "taller_cultura": {
+    "name": "taller de cultura",
+    "code": "IC574",
+    "semester": 4,
+    "files": {
+      "study_plan": "TALLER DE REDACCIÓN cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "hidraulica_i": {
+    "name": "hidraulica i",
+    "code": "IC597",
+    "semester": 4,
+    "files": {
+      "study_plan": "HIDRÁULICA I cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "laboratorio_hidraulica_i": {
+    "name": "laboratorio de hidraulica i",
+    "code": "IC598",
+    "semester": 4,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "mecanica_solidos_ii": {
+    "name": "mecanica de solidos ii",
+    "code": "IC599",
+    "semester": 4,
+    "files": {
+      "study_plan": "MECÁNICA DE SÓLIDOS II cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "mecanica_suelos_i": {
+    "name": "mecanica de suelos i",
+    "code": "IC593",
+    "semester": 4,
+    "files": {
+      "study_plan": "MECANICA DE SUELOS  I cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "laboratorio_suelos_i": {
+    "name": "laboratorio de suelos i",
+    "code": "IC592",
+    "semester": 4,
+    "files": {
+      "study_plan": "LABORATORIO DE SUELOS I cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "construccion_i": {
+    "name": "construccion i",
+    "code": "IC608",
+    "semester": 4,
+    "files": {
+      "study_plan": "CONSTRUCCIÓN I cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "ingenieria_costos": {
+    "name": "ingenieria de costos",
+    "code": "CB221",
+    "semester": 4,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "taller_labor_social": {
+    "name": "taller de labor social",
+    "code": "IC575",
+    "semester": 5,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "hidraulica_ii": {
+    "name": "hidraulica ii",
+    "code": "IC609",
+    "semester": 5,
+    "files": {
+      "study_plan": "HIDRAULICA  II cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "laboratorio_hidraulica_ii": {
+    "name": "laboratorio de hidraulica ii",
+    "code": "IC610",
+    "semester": 5,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "analisis_estructural_i": {
+    "name": "analisis estructural i",
+    "code": "IC611",
+    "semester": 5,
+    "files": {
+      "study_plan": "ANALISIS ESTRUCTURAL  I cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "mecanica_suelos_ii": {
+    "name": "mecanica de suelos ii",
+    "code": "IC596",
+    "semester": 5,
+    "files": {
+      "study_plan": "MECÁNICA DE SUELOS II cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "laboratorio_mecanica_suelos_ii": {
+    "name": "laboratorio de mecanica de suelos ii",
+    "code": "IC595",
+    "semester": 5,
+    "files": {
+      "study_plan": "LABORATORIO DE MECÁNICA DE SUELOS II cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "construccion_ii": {
+    "name": "construccion ii",
+    "code": "IC613",
+    "semester": 5,
+    "files": {
+      "study_plan": "CONSTRUCCIÓN II BIS cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "analisis_numerico": {
+    "name": "analisis numerico",
+    "code": "IC584",
+    "semester": 5,
+    "files": {
+      "study_plan": "ANALISIS NUMERICO cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "hidrologia": {
+    "name": "hidrologia",
+    "code": "IC602",
+    "semester": 6,
+    "files": {
+      "study_plan": "HIDROLOGÍA cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "hidraulica_iii": {
+    "name": "hidraulica iii",
+    "code": "IC616",
+    "semester": 6,
+    "files": {
+      "study_plan": "HIDRÁULICA III cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "laboratorio_hidraulica_iii": {
+    "name": "laboratorio de hidraulica iii",
+    "code": "IC617",
+    "semester": 6,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "analisis_estructural_ii": {
+    "name": "analisis estructural ii",
+    "code": "IC612",
+    "semester": 6,
+    "files": {
+      "study_plan": "ANÁLISIS ESTRUCTURAL II cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "laboratorio_concreto": {
+    "name": "laboratorio de concreto",
+    "code": "IC615",
+    "semester": 6,
+    "files": {
+      "study_plan": "LABORATORIO DE CONCRETO  cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "planeacion_programacion_obra_civil": {
+    "name": "planeacion y programacion de obra civil",
+    "code": "IC614",
+    "semester": 6,
+    "files": {
+      "study_plan": "INTRODUCCION A LA COMPUTACION cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "construccion_iii": {
+    "name": "construccion iii",
+    "code": "IC620",
+    "semester": 6,
+    "files": {
+      "study_plan": "CONSTRUCCIÓN III cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "taller_emprendimiento": {
+    "name": "taller de emprendimiento",
+    "code": "IC576",
+    "semester": 7,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "introduccion_instalaciones_electricas": {
+    "name": "introduccion a las instalaciones electricas",
+    "code": "IC606",
+    "semester": 7,
+    "files": {
+      "study_plan": "INTRODUCCIÓN A LAS INSTALACIONES ELÉCTRICAS cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "sistemas_agua_potable": {
+    "name": "sistemas de agua potable",
+    "code": "IC628",
+    "semester": 7,
+    "files": {
+      "study_plan": "AGUA POTABLE Y ALCANTARILLADO cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "analisis_estructural_iii": {
+    "name": "analisis estructural iii",
+    "code": "IC621",
+    "semester": 7,
+    "files": {
+      "study_plan": "ANALISIS ESTRUCTURAL  I cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "laboratorio_pavimentos": {
+    "name": "laboratorio de pavimentos",
+    "code": "IC619",
+    "semester": 7,
+    "files": {
+      "study_plan": "LABORATORIO DE PAVIMENTOS  cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "pavimentos": {
+    "name": "pavimentos",
+    "code": "IC618",
+    "semester": 7,
+    "files": {
+      "study_plan": "PAVIMENTOS cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "planeacion_sistemas": {
+    "name": "planeacion de sistemas",
+    "code": "IC622",
+    "semester": 7,
+    "files": {
+      "study_plan": "PLANEACION cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "obras_hidraulicas": {
+    "name": "obras hidraulicas",
+    "code": "IC623",
+    "semester": 8,
+    "files": {
+      "study_plan": "OBRAS HIDRAULICAS cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "diseno_estructuras_acero": {
+    "name": "diseño de estructuras de acero",
+    "code": "IC627",
+    "semester": 8,
+    "files": {
+      "study_plan": "DISEÑO DE ESTRUCTURAS DE ACERO I cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "diseno_estructuras_concreto": {
+    "name": "diseño de estructuras de concreto",
+    "code": "IC624",
+    "semester": 8,
+    "files": {
+      "study_plan": "DISEÑO DE ESTRUCTURAS DE CONCRETO I cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "carreteras": {
+    "name": "carreteras",
+    "code": "IC625",
+    "semester": 8,
+    "files": {
+      "study_plan": "CARRETERAS cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "ingenieria_transito": {
+    "name": "ingenieria de transito",
+    "code": "IC631",
+    "semester": 8,
+    "files": {
+      "study_plan": "INGENIERIA DE TRANSITO cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "sistemas_transporte": {
+    "name": "sistemas de transporte",
+    "code": "IC632",
+    "semester": 8,
+    "files": {
+      "study_plan": "SISTEMAS DE TRASPORTE cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "administracion_obras_civiles": {
+    "name": "administracion de obras civiles",
+    "code": "IC605",
+    "semester": 8,
+    "files": {
+      "study_plan": "ADMINISTRACIÓN cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "sistemas_alcantarillado_sanitario": {
+    "name": "sistemas de alcantarillado sanitario",
+    "code": "IC626",
+    "semester": 9,
+    "files": {
+      "study_plan": "TRATAMIENTO DE AGUAS RESIDUALES cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "seminario_diseno_obra_civil": {
+    "name": "seminario de diseño de obra civil",
+    "code": "IC633",
+    "semester": 9,
+    "files": {
+      "study_plan": "INGENIERIA DE SISTEMAS cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "ingenieria_sismica": {
+    "name": "ingenieria sismica",
+    "code": "IC630",
+    "semester": 9,
+    "files": {
+      "study_plan": "INGENIERIA SISMICA cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "cimentaciones": {
+    "name": "cimentaciones",
+    "code": "IC636",
+    "semester": 9,
+    "files": {
+      "study_plan": "CIMENTACIONES cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "seminario_planeacion_admin_obra_civil": {
+    "name": "seminario de planeación, construccion y administracion de obra civil",
+    "code": "IC634",
+    "semester": 9,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "etica_profesional": {
+    "name": "etica profesional",
+    "code": "IC579",
+    "semester": 10,
+    "files": {
+      "study_plan": "ÉTICA PROFESIONAL cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "proyecto_modular_diseno_obra_civil": {
+    "name": "proyecto modular de diseño de obra civil",
+    "code": "IC635",
+    "semester": 10,
+    "files": {
+      "study_plan": "PROYECTO TERMINAL cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "herramientas_emprendedor": {
+    "name": "herramientas del emprendedor",
+    "code": "IC603",
+    "semester": 10,
+    "files": {
+      "study_plan": "LEGISLACIÓN EMPRESARIAL cpdf.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "impacto_ambiental": {
+    "name": "impacto ambiental",
+    "code": "IC604",
+    "semester": 10,
+    "files": {
+      "study_plan": "IMPACTO AMBIENTAL pdf 2.pdf",
+      "material": ""
+    },
+    "career": "ICIV"
+  },
+  "proyecto_modular_de_planeacion_administracion_obras_civiles": {
+    "name": "proyecto modular de planeación, construccion y administración de obra civil",
+    "code": "IC636",
+    "semester": 10,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "ICIV"
+  }
+}

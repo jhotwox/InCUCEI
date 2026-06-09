@@ -1,73 +1,44 @@
 // All subject names need to have number in the end converted to arabic numerals
 // and tildes removed for better matching
+// and lowercase for better matching
+import IGFO from './IGFO.data.json' with { type: "json" }
+import ILOT from './ILOT.data.json' with { type: "json" }
+import INBI from './INBI.data.json' with { type: "json" }
+import INCE from './INCE.data.json' with { type: "json" }
+import INDU from './INDU.data.json' with { type: "json" }
+import INEA from './INEA.data.json' with { type: "json" }
+import INFO from './INFO.data.json' with { type: "json" }
+import INME from './INME.data.json' with { type: "json" }
+import INNI from './INNI.data.json' with { type: "json" }
+import INRO from './INRO.data.json' with { type: "json" }
+import ITOG from './ITOG.data.json' with { type: "json" }
+import LILT from './LILT.data.json' with { type: "json" }
+import ICIV from './ICIV.data.json' with { type: "json" }
+import LQFB from './LQFB.data.json' with { type: "json" }
+import LQUI from './LQUI.data.json' with { type: "json" }
+import LIMA from './LIMA.data.json' with { type: "json" }
+// IMEI is not included because we couldn't find study plans for it
+// ICOM is not included because we couldn't find study plans for it
+// LINA is not included because we couldn't find study plans for it
+// ICIM is not included because we couldn't find study plans for it
+// LIFI is not included because we couldn't find study plans for it
+
+
 export const subjectsData = {
-  INNI: {
-    "administracion_bases_datos": {
-      names: [
-        "Administracion de Bases de Datos", "Administracion Bases de Datos", "Administracion Bases Datos", "Administracion de Base de Datos", "Administracion Base de Datos", "Administracion Base Datos", "Administracion BD", "Administracion de BD", "Administracion DB", "Administracion de DB", 
-        "Admin de Bases de Datos", "Admin Bases de datos", "Admin Bases Datos", "Admin de Base de Datos", "Admin Base de datos", "Admin Base Datos", "Admin BD", "Admin de BD", "Admin DB", "Admin de DB",
-        "Ad. de Bases de Datos", "Ad. Bases de Datos", "Ad. Bases Datos", "Ad. de Base de Datos", "Ad. Base de Datos", "Ad. Base Datos", "Ad. BD", "AD. de BD", "Ad. DB", "AD. de DB", 
-        "ABD", "ADB",
-      ],
-      code: "CC301",
-      files: {
-        "study_plan": "administracionbasesdatos.pdf"
-      },
-      // keywords: ["bases", "datos", "administracion", "base de datos"],
-      career: "INNI"
-    },
-    "administracion_redes": {
-      names: [
-        "Administracion de Redes", "Admin de Redes", "Redes", "Admin de Redes", "Admin Redes", "Admin Red", "Administracion Red", "Administracion de Red",
-        "AR"
-      ],
-      code: "CC302", 
-      files: {
-        "study_plan": "administracionredes.pdf"
-      },
-      // keywords: ["redes", "administracion", "networking"],
-      career: "INNI"
-    },
-    "algoritmia": {
-      names: ["Algoritmia", "Algoritmos"],
-      code: "CC101",
-      files: {
-        "study_plan": "algoritmia.pdf"
-      },
-      // keywords: ["algoritmos", "algoritmia", "programacion"],
-      career: "INNI"
-    },
-    "bases_datos": {
-      names: [
-        "Bases de Datos", "Base de Datos", "Bases Datos", "Base Datos",
-        "BD", "DB", "B.D.", "B.D", "D.B.", "D.B"
-      ],
-      code: "CC201",
-      files: {
-        "study_plan": "basesdatos.pdf"
-      },
-      // keywords: ["bases", "datos", "database", "sql"],
-      career: "INNI"
-    },
-    "ingenieria_software_i": {
-      names: ["Ingenieria de Software I", "Ing. Software I", "Ingenieria Software I", "Ing Software I", "IS", "ISI"],
-      code: "CC401",
-      files: {
-        "study_plan": "ingenieriasoftwarei.pdf"
-      },
-      // keywords: ["ingenieria", "software", "desarrollo"],
-      career: "INNI"
-    }
-  },
-  IC: {
-    "calculo_diferencial": {
-      names: ["Calculo Diferencial", "Calculo I"],
-      code: "MA101",
-      files: {
-        "study_plan": "calculodiferencial.pdf"
-      },
-      // keywords: ["calculo", "matematicas", "diferencial"],
-      career: "IC"
-    },
-  }
+  INNI: INNI,
+  INFO: INFO,
+  LILT: LILT,
+  ILOT: ILOT,
+  INRO: INRO,
+  INCE: INCE,
+  INEA: INEA,
+  INBI: INBI,
+  INME: INME,
+  INDU: INDU,
+  ITOG: ITOG,
+  IGFO: IGFO,
+  ICIV: ICIV,
+  LQFB: LQFB,
+  LQUI: LQUI,
+  LIMA: LIMA
 }

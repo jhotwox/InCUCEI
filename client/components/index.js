@@ -4,5 +4,8 @@ import Input from './common/Input'
 import FileInput from './common/FileInput'
 import BlurCard from './common/BlurCard'
 import MarkdownText from './common/MarkdownText'
-
-export { Background, ShakeView, Input, FileInput, BlurCard, MarkdownText }
+import AnimatedContainer from './common/AnimatedContainer'
+import ChatItem from './common/ChatItem'
+import SearchInput from './common/SearchInput'
+import Header from './common/Header'
+export { Background, ShakeView, Input, FileInput, BlurCard, MarkdownText, AnimatedContainer, ChatItem, SearchInput, Header }

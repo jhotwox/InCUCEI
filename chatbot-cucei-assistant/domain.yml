@@ -1,29 +1,59 @@
 version: "3.1"
 
 intents:
-  - request_academic_material
+  - request_subject_material
+  - request_subject_study_plan
+  - request_location_map
+  - request_curriculum
   - greet
   - goodbye
+  - request_human_contact
+  - inform_career
+  - request_capabilities
   # - thank_you
 
+entities:
+  - subject
+  - location
+  - career_code
+  - contact_name
+
 slots:
-  # material_type:
-  #   type: text
-  #   mappings:
-  #     - type: from_llm
-  # material_name:
-  #   type: text
-  #   mappings:
-  #     - type: from_llm
   topic:
     type: text
     mappings:
       - type: from_llm
+
+  contact_name:
+    type: text
+    mappings:
+      - type: from_llm
+
+  career_code:
+    type: text
+    mappings:
+      - type: from_llm
+  
+  user_name:
+    type: text
+    mappings:
+      - type: custom
+
+  first_name:
+    type: text
+    mappings:
+      - type: custom
+
   confirm_human_contact:
     type: bool
     mappings:
       - type: from_llm
         # allow_nlu_correction: true
+
+  location_name:
+    type: text
+    mappings:
+      - type: from_llm
 
 responses:
   utter_ask_topic:
@@ -31,13 +61,41 @@ responses:
       metadata:
         rephrase: True
 
-  utter_material_found:
-    - text: "Aquí encontraras el material que necesitas: {material_link}"
+  utter_ask_contact_name:
+    - text: "¿De qué departamento o persona necesitas el contacto?"
+
+  utter_ask_career_code:
+    - text: "¿Cuál es el código de tu carrera? (por ejemplo: INNI, INEA, LQFB, INFO, ILOT, LILT)"
+      metadata:
+        rephrase: True
+
+  utter_invalid_career_code:
+    - text: "No reconozco ese código de carrera. Intenta con uno como: INNI, INEA, LQFB, INFO, ILOT, LILT."
+      metadata:
+        rephrase: True
+
+  utter_ask_location_name:
+    - text: "¿Qué lugar necesitas ver en el mapa del CUCEI? (por ejemplo: Módulo A, Biblioteca, Baño)"
+      metadata:
+        rephrase: True
+
+  utter_ask_location:
+    - text: "¿Qué lugar necesitas ver en el mapa del CUCEI? (por ejemplo: Módulo A, Biblioteca, Baño)"
       metadata:
         rephrase: True
 
   utter_material_not_found:
     - text: "No se encontró el material solicitado."
+      metadata:
+        rephrase: True
+
+  utter_study_plan_not_found:
+    - text: "No se encontró el plan de estudios solicitado."
+      metadata:
+        rephrase: True
+
+  utter_curriculum_not_found:
+    - text: "No encontré la malla curricular para ese código de carrera. ¿Puedes verificarlo?"
       metadata:
         rephrase: True
 
@@ -47,34 +105,41 @@ responses:
         rephrase: True
 
   utter_human_contact:
-    - text: "Puedes contactar este correo: test@academicos.udg.mx o este teléfono: +52 33 1234 5678"
-      metadata:
-        rephrase: True
-        # rephrase_prompt: |
-        #   The following is a conversation in spanish with an AI assistant built with Rasa.
-        #   The assistant can help the user with academic materials.
-        #   The assistant is helpful, creative, clever, and very friendly.
-        #   The user has just requested human contact information.
-        #   The assistant should respond in a way that is polite and continues to offer help.
-        #   Context / previous conversation with the user:
-        #   {{history}}
-        #   {{current_input}}
-        #   Suggested AI Response:
+    - text: "Buscando información de contacto..."
 
   utter_human_contact_canceled:
     - text: "Entendido, no te proporcionaré información de contacto. Hay algo más en lo que pueda ayudarte?"
-      metadata:
-        rephrase: True
+
+  utter_confirm_career:
+    - text: "¡Entendido! He registrado que eres de la carrera {career_code}. ¿En qué más puedo ayudarte?"
+
+  utter_capabilities:
+    - text: "Soy el asistente inteligente de InCUCEI y puedo ayudarte con:\n- 📚 **Material de estudio**: Búsqueda en Google Scholar.\n- 📋 **Planes de estudio**: Temarios oficiales.\n- 🗺️ **Mapa interactivo**: Ubicaciones en CUCEI.\n- 🎓 **Malla curricular**: El PDF de tu carrera.\n- 📞 **Información de contacto**: Datos oficiales de dependencias y coordinaciones."
   
   utter_greet:
-    - text: "Hola! Como te puedo asistir el dia de hoy?"
+    - text: "¡Hola! ¿Cómo te puedo asistir el día de hoy?"
       metadata:
         rephrase: True
+        rephrase_prompt: |
+          Eres un asistente amable para la comunidad de CUCEI. 
+          Saluda al usuario.
+          Información del usuario:
+          - Nombre: {{slots.first_name}}
+          Contexto:
+          {{history}}
+          Entrada actual: {{current_input}}
+          Respuesta sugerida:
 
   utter_goodbye:
     - text: "Hasta luego! si necesitas asistencia en el futuro, Sientete libre de preguntar."
       metadata:
         rephrase: True
+        rephrase_prompt: |
+          Eres un asistente amable. Despídete del usuario.
+          Contexto:
+          {{history}}
+          Entrada actual: {{current_input}}
+          Respuesta sugerida:
 
   # utter_thank_you:
   #   - text: "¡Con gusto! 😊"
@@ -84,16 +149,26 @@ responses:
       metadata:
         rephrase: True
         rephrase_prompt: |
-          The following is a conversation in spanish with an AI assistant built with Rasa.
-          The assistant can help the user with academic materials.
-          The assistant is helpful, creative, clever, and very friendly.
-          The user is making small talk, and the assistant should respond, keeping things light.
-          Context / previous conversation with the user:
+          Eres el asistente inteligente de InCUCEI. Ayudas con temas académicos.
+          
+          Si preguntan quién eres: eres el asistente de InCUCEI.
+          Si preguntan quiénes son o su carrera, USA LOS SLOTS:
+          - Nombre: {{slots.user_name}}
+          - Carrera: {{slots.career_code}}
+          
+          DICCIONARIO: [INNI: Informática, INFO: Computación, ILOT: Logística, INRO: Robótica, INCE: Comunicaciones, INEA: Electromovilidad, INBI: Biomédica, INME: Mecánica, INDU: Industrial, ITOG: Topografía, IGFO: Fotónica, LQFB: QFB, LQUI: Química, LIMA: Matemáticas].
+          
+          Responde en español y usa Markdown.
+          Contexto:
           {{history}}
-          {{current_input}}
-          Suggested AI Response:
+          Entrada actual: {{current_input}}
+          Respuesta sugerida:
 
 
 actions:
+  - action_get_subject_material
+  - action_get_subject_study_plan
+  - action_get_curriculum
+  - action_show_location_on_map
   - action_fetch_academic_materials
   - action_human_contact

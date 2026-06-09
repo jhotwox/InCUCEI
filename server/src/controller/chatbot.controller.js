@@ -1,16 +1,20 @@
 import { GeminiService } from "../services/gemini/index.js"
+import { RasaService } from "../services/rasa.service.js"
 import ChatbotMessage from "../models/chatbotMessage.model.js"
+import User from "../models/user.model.js"
 
 const geminiService = new GeminiService()
+const rasaService = new RasaService()
 
 export const sendChatbotMessage = async (req, res) => {
   const startTime = Date.now()
 
+  // botType can be "gemini" or "rasa", default to "gemini" for backward compatibility
   try {
-    const { message, type = "general" } = req.body
+    const { message, type = "general", botType = "gemini" } = req.body
     const userId = req.user?.id
 
-    console.log(`🤖 Processing chatbot message for user ${userId}`)
+    console.log(`🤖 Processing chatbot message for user ${userId} using ${botType}`)
 
     const io = req.app.get("io")
 
@@ -22,18 +26,120 @@ export const sendChatbotMessage = async (req, res) => {
     }
 
     const conversationId = `user_${userId}_chatbot`
+    let displayText = ""
+    let navigationAction = null
+    let geminiAction = null
+    let metadata = {}
 
-    const recentMessages = await ChatbotMessage.find({ conversationId, userId })
-      .sort({ createdAt: -1 })
-      .limit(10)
-      .select("message response createdAt")
+    if (botType === "rasa") {
+      // --- Rasa Logic ---
+      const user = await User.findById(userId)
+      const firstName = user?.name ? user.name.split(" ")[0] : "Estudiante"
+      
+      const slots = {
+        user_name: user?.name || "Usuario",
+        first_name: firstName,
+        career_code: user?.career || null,
+      }
 
-    const text = await geminiService.generateResponse(
-      message,
-      userId,
-      recentMessages.reverse()
-    )
-    console.log("Text: ", text)
+      const rasaResponses = await rasaService.sendMessage(message, userId, slots)
+      console.log(`[DEBUG] Rasa responses for user ${userId}:`, JSON.stringify(rasaResponses, null, 2))
+      
+      // Rasa can return multiple messages. We join them but deduplicate if they are too similar.
+      if (rasaResponses && rasaResponses.length > 0) {
+        const uniqueTexts = []
+        for (const r of rasaResponses) {
+          if (!r.text) continue
+          
+          const trimmed = r.text.trim()
+          // Basic deduplication
+          if (uniqueTexts.length > 0) {
+            const last = uniqueTexts[uniqueTexts.length - 1]
+            if (trimmed === last || (trimmed.length > 5 && last.includes(trimmed))) {
+              console.log(`[DEBUG] Skipping duplicate Rasa response: "${trimmed}"`)
+              continue
+            }
+          }
+          uniqueTexts.push(trimmed)
+        }
+        displayText = uniqueTexts.join("\n\n")
+        console.log(`[DEBUG] Joined Rasa responses: "${displayText}"`)
+        
+        // Check for custom actions/metadata in the first response that has it
+        for (const r of rasaResponses) {
+          const m = r.metadata || r.custom || {}
+          if (m.action === "navigate_to_map") {
+            navigationAction = m
+          }
+          if (Object.keys(m).length > 0) {
+            metadata = { ...metadata, ...m }
+          }
+        }
+        
+        // console.log(`[DEBUG] Rasa metadata: "${rasaResponses.map(r => r.metadata).filter(m => m)}"`)
+        // console.log(`[DEBUG] Rasa custom: "${rasaResponses.map(r => r.custom).filter(m => m)}"`)
+      } else {
+        displayText = "No recibí respuesta de Rasa."
+      }
+
+      // Sync career back to user model if it was detected by Rasa
+      const slots_from_rasa = await rasaService.getSlots(`user_${userId}`)
+      // console.log(`[DEBUG] Rasa slots for user ${userId}:`, JSON.stringify(slots_from_rasa))
+      
+      if (slots_from_rasa && slots_from_rasa.career_code) {
+        const detectedCareer = slots_from_rasa.career_code.toUpperCase()
+        if (!user.career || user.career !== detectedCareer) {
+          console.log(`[DEBUG] Updating user career to: ${detectedCareer}`)
+          user.career = detectedCareer
+          await user.save()
+        }
+      }
+    } else {
+      // --- Gemini Logic (Existing) ---
+      const recentMessages = await ChatbotMessage.find({ conversationId, userId })
+        .sort({ createdAt: -1 })
+        .limit(10)
+        .select("message response createdAt")
+
+      const user = await User.findById(userId)
+      const geminiOut = await geminiService.generateResponse(
+        message,
+        userId,
+        recentMessages.reverse()
+      )
+      const { text, inferredCareer, action } = geminiOut || {}
+      geminiAction = action || null
+      console.log("Text: ", text)
+      displayText = text
+
+      // Sync career back to user model if it was detected/inferred by Gemini
+      if (inferredCareer && (!user.career || user.career !== inferredCareer)) {
+        user.career = inferredCareer
+        await user.save()
+      }
+
+      // Prefer action metadata coming from Gemini function calls.
+      if (geminiAction?.action === "navigate_to_map" && geminiAction?.success) {
+        navigationAction = geminiAction
+      } else {
+        // Backward compatibility: sometimes Gemini returns JSON directly in the text.
+        try {
+          const parsed = JSON.parse(text)
+          if (parsed.action === "navigate_to_map" && parsed.success) {
+            navigationAction = parsed
+            displayText = parsed.generatedMessage || parsed.message
+          }
+        } catch (e) {
+          // No es JSON, es texto normal
+        }
+      }
+      
+      metadata = {
+        geminiModel: geminiService.modelName,
+        ...(geminiAction && { aiAction: geminiAction }),
+        ...(navigationAction && { navigationAction })
+      }
+    }
 
     const responseTime = Date.now() - startTime
 
@@ -41,33 +147,71 @@ export const sendChatbotMessage = async (req, res) => {
       userId,
       conversationId,
       message,
-      response: text,
+      response: displayText,
       messageType: type,
       metadata: {
         responseTime,
-        geminiModel: geminiService.modelName,
+        botType,
+        ...metadata
       },
     })
 
     await chatBotMessage.save()
 
     if (userId) {
+      const roomSize = io?.sockets?.adapter?.rooms?.get(userId)?.size ?? 0
+      if (roomSize === 0) {
+        console.warn(
+          `[chatbot] No active sockets in room for user ${userId}; client must rely on HTTP response payload.`
+        )
+      }
+
+      // Si hay acción de navegación, enviar evento especial
+      if (navigationAction) {
+        io.to(userId).emit("chatbotNavigateMap", {
+          placeId: navigationAction.placeId,
+          placeName: navigationAction.placeName,
+          placeType: navigationAction.placeType,
+          coordinates: navigationAction.coordinates,
+          timestamp: new Date(),
+        })
+      }
+
       io.to(userId).emit("chatbotResponse", {
-        message: text,
+        message: displayText,
         timestamp: new Date(),
         type,
         messageId: chatBotMessage._id,
+        botType,
+      })
+      io.to(userId).emit("chatbotTyping", {
+        isTyping: false,
+        timestamp: new Date(),
       })
     }
 
-    io.to(userId).emit("chatbotTyping", {
-      isTyping: false,
-      timestamp: new Date(),
-    })
+    const responsePayload = {
+      messageId: chatBotMessage._id,
+      message: displayText,
+      timestamp: chatBotMessage.createdAt || new Date(),
+      type,
+      botType,
+      ...(navigationAction && {
+        navigationAction: {
+          placeId: navigationAction.placeId,
+          placeName: navigationAction.placeName,
+          placeType: navigationAction.placeType,
+          coordinates: navigationAction.coordinates,
+        },
+      }),
+      ...(botType === "gemini" && geminiAction && { action: geminiAction }),
+    }
 
     return res.json({
-      message: "Response generated and sended via socket",
+      message: "Response generated",
       status: true,
+      botType,
+      data: responsePayload,
     })
   } catch (err) {
     console.error("❌ chatbot controller error:", err)
@@ -80,10 +224,12 @@ export const sendChatbotMessage = async (req, res) => {
       })
     }
 
-    io.to(req.user.id).emit("chatbotTyping", {
-      isTyping: false,
-      timestamp: new Date(),
-    })
+    if (req.user?.id) {
+      io.to(req.user.id).emit("chatbotTyping", {
+        isTyping: false,
+        timestamp: new Date(),
+      })
+    }
 
     return res.status(500).json({
       message: "Error processing chatbot request",
@@ -113,7 +259,7 @@ export const getChatbotHistory = async (req, res) => {
     console.log("returning messages...")
     return res.json({
       message: "Chatbot history retrieved",
-      data: messages.reverse(),
+      data: messages,
       pagination: {
         currentPage: parseInt(page),
         totalPages: Math.ceil(totalMessages / parseInt(limit)),

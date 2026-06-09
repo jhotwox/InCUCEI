@@ -1,15 +1,16 @@
-# FROM THE TUTORIAL
+# Action server (Rasa SDK)
 action_endpoint:
-  actions_module: "actions"
-  # Copilot
-  # url: "http://192.168.100.32:3000/api/actions"
+  url: ${ACTION_SERVER_URL}
 
-tracker_store:
-   type: mongod
-   url: mongodb+srv://incucei.ldif0fo.mongodb.net/
-   db: chatbot
-   username: chatbot
-   password: passwordChatbot
+# Tracker store (optional)
+# If you want persistence, configure this via environment variables or a secret manager.
+# Example (MongoDB):
+# tracker_store:
+#   type: mongod
+#   url: ${MONGO_URL}
+#   db: ${MONGO_DB}
+#   username: ${MONGO_USERNAME}
+#   password: ${MONGO_PASSWORD}
 
 # Allow rephrasing of responses using a Rasa-hosted model
 nlg:

@@ -1,10 +1,11 @@
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useState, useRef } from "react"
 import { useSocket } from "../contexts/Socket.context.jsx"
 import { useAuth } from "../contexts/Auth.context"
+import { useChatbotType } from "../contexts/ChatbotType.context"
 import axios from "../api/axios"
 import {
   loadHistory,
-  deleteHistory,
+  deleteHistory as deleteHistoryRequest,
   sendMessage as sendMessageRequest,
 } from "../api/chatbotMessage.api.js"
 
@@ -13,11 +14,14 @@ export default () => {
   const [isTyping, setIsTyping] = useState(false)
   const [loading, setLoading] = useState(false)
   const [loadingChatHistory, setLoadingChatHistory] = useState(false)
+  const [mapNavigationData, setMapNavigationData] = useState(null)
   const { socket } = useSocket()
   const { user } = useAuth()
+  const { botType } = useChatbotType()
+  const hasLoadedHistory = useRef(false)
 
   const loadChatHistory = useCallback(async () => {
-    if (!user) return
+    if (!user || hasLoadedHistory.current) return
 
     try {
       setLoadingChatHistory(true)
@@ -28,28 +32,23 @@ export default () => {
       const historyMessages = []
       response.data.data.forEach((msg) => {
         historyMessages.push({
+          id: `${msg._id}_bot`,
+          text: msg.response,
+          isUser: false,
+          // Asegura que el mensaje del bot sea posterior
+          timestamp: new Date(new Date(msg.createdAt).getTime() + 1),
+        })
+
+        historyMessages.push({
           id: `${msg._id}_user`,
           text: msg.message,
           isUser: true,
           timestamp: new Date(msg.createdAt),
         })
-
-        historyMessages.push({
-          id: `${msg._id}_bot`,
-          text: msg.response,
-          isUser: false,
-          timestamp: new Date(new Date(msg.createdAt).getTime() + 1), // Asegura que el mensaje del bot sea posterior
-        })
       })
 
-      historyMessages.sort((a, b) => a.timestamp - b.timestamp)
-
-      console.log(
-        "[+] Loaded chat history:",
-        historyMessages.length,
-        "messages"
-      )
       setMessages(historyMessages)
+      hasLoadedHistory.current = true
     } catch (err) {
       console.error("Error loading chat history:", err)
     } finally {
@@ -64,25 +63,66 @@ export default () => {
   const sendMessage = useCallback(async (message, type = "general") => {
     if (!message.trim()) return
 
+    const trimmedMessage = message.trim()
+
     // Agregar mensaje del usuario inmediatamente
     const tempId = `${Date.now()}_${Math.random()}`
     const userMessage = {
       id: tempId,
-      text: message.trim(),
+      text: trimmedMessage,
       isUser: true,
       timestamp: new Date(),
     }
-    setMessages((prev) => [...prev, userMessage])
+    setMessages((prev) => [userMessage, ...prev])
     setLoading(true)
+    setIsTyping(true)
 
     try {
       // TODO: Do this petition in chatbotMessage.api.jsx
 
       // Send message via HTTP - the response will arrive via Socket.IO
-      await axios.post("/chatbot/message", { message, type })
+      console.log(
+        `[useChatBot] Sending message to API: "${trimmedMessage}" with botType: "${botType}"`
+      )
+      const response = await axios.post("/chatbot/message", {
+        message: trimmedMessage,
+        type,
+        botType,
+      })
+
+      // Fallback: if Socket.IO doesn't deliver, use HTTP payload.
+      const payload = response?.data?.data
+      const botText = payload?.message
+      const botId = payload?.messageId
+
+      if (botText) {
+        const botMessage = {
+          id: botId ? String(botId) : `${Date.now()}_bot`,
+          text: botText,
+          isUser: false,
+          timestamp: payload?.timestamp ? new Date(payload.timestamp) : new Date(),
+        }
+
+        setMessages((prev) => {
+          const id = botMessage.id ? String(botMessage.id) : null
+          if (id && prev.some((m) => String(m.id) === id)) return prev
+          return [botMessage, ...prev]
+        })
+      }
+
+      if (payload?.navigationAction?.placeId) {
+        setMapNavigationData({
+          ...payload.navigationAction,
+          timestamp: payload?.timestamp ? new Date(payload.timestamp) : new Date(),
+        })
+      }
+
+      setLoading(false)
+      setIsTyping(false)
     } catch (error) {
       console.error("Error sending chatbot message:", error)
       setLoading(false)
+      setIsTyping(false)
 
       // Agregar mensaje de error
       const errorId = `${Date.now()}_${Math.random()}`
@@ -93,9 +133,9 @@ export default () => {
         isError: true,
         timestamp: new Date(),
       }
-      setMessages((prev) => [...prev, errorMessage])
+      setMessages((prev) => [errorMessage, ...prev])
     }
-  }, [])
+  }, [botType])
 
   // Escuchar eventos del chatbot
   useEffect(() => {
@@ -104,12 +144,17 @@ export default () => {
     // Respuesta del chatbot
     const handleChatbotResponse = (data) => {
       const botMessage = {
-        id: data.messageId || `${Date.now()}_bot`,
+        id: data.messageId ? String(data.messageId) : `${Date.now()}_bot`,
         text: data.message,
         isUser: false,
         timestamp: new Date(data.timestamp),
       }
-      setMessages((prev) => [...prev, botMessage])
+
+      setMessages((prev) => {
+        const id = botMessage.id ? String(botMessage.id) : null
+        if (id && prev.some((m) => String(m.id) === id)) return prev
+        return [botMessage, ...prev]
+      })
       setLoading(false)
       setIsTyping(false)
     }
@@ -129,24 +174,32 @@ export default () => {
         isError: true,
         timestamp: new Date(data.timestamp),
       }
-      setMessages((prev) => [...prev, errorMessage])
+      setMessages((prev) => [errorMessage, ...prev])
       setLoading(false)
       setIsTyping(false)
+    }
+
+    // Navegación al mapa
+    const handleChatbotNavigateMap = (data) => {
+      console.log("[+] Navigate to map:", data)
+      setMapNavigationData(data)
     }
 
     socket.on("chatbotResponse", handleChatbotResponse)
     socket.on("chatbotTyping", handleChatbotTyping)
     socket.on("chatbotError", handleChatbotError)
+    socket.on("chatbotNavigateMap", handleChatbotNavigateMap)
 
     return () => {
       socket.off("chatbotResponse", handleChatbotResponse)
       socket.off("chatbotTyping", handleChatbotTyping)
       socket.off("chatbotError", handleChatbotError)
+      socket.off("chatbotNavigateMap", handleChatbotNavigateMap)
     }
   }, [socket, user])
 
   const deleteHistory = useCallback(async () => {
-    await deleteHistory().catch(console.error)
+    await deleteHistoryRequest().catch(console.error)
     setMessages([])
     setIsTyping(false)
     setLoading(false)
@@ -158,6 +211,10 @@ export default () => {
     setLoading(false)
   }, [])
 
+  const clearMapNavigation = useCallback(() => {
+    setMapNavigationData(null)
+  }, [])
+
   return {
     messages,
     sendMessage,
@@ -167,5 +224,7 @@ export default () => {
     loadChatHistory,
     deleteHistory,
     clearMessages,
+    mapNavigationData,
+    clearMapNavigation,
   }
 }

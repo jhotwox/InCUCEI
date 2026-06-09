@@ -1,84 +1,112 @@
 version: "3.1"
 
 nlu:
-- intent: greet
-  examples: |
-    - hola
-    - buenos días
-    - qué tal
-    - Como estás?
-    - buenas tardes
-    - buenas noches
-    - noches
-    - dias
-    - tardes
-    - hey
-    - holaa
-    - holis
-    - qué hubo
-    - qué onda
-    - qué pasa
-    - qué pasa calabaza
-    - buenas
-    - qué hubo
-    - qué hubo?
-    - hi
+  - intent: greet
+    examples: |
+      - hola
+      - buenos días
+      - qué tal
+      - como estás?
+      - buenas tardes
+      - buenas noches
+      - noches
+      - dias
+      - tardes
+      - hey
+      - holaa
+      - holis
+      - qué hubo
+      - qué onda
+      - qué pasa
+      - qué pasa calabaza
+      - buenas
+      - hi
 
-- intent: goodbye
-  examples: |
-    - adiós
-    - hasta luego
-    - nos vemos
-    - te veo luego
-    - chao
-    - chau
-    - me voy
-    - hasta la próxima
-    - camara
-    - nos estamos viendo
-    - bye
+  - intent: goodbye
+    examples: |
+      - adiós
+      - hasta luego
+      - nos vemos
+      - te veo luego
+      - chao
+      - chau
+      - me voy
+      - hasta la próxima
+      - camara
+      - nos estamos viendo
+      - bye
 
-# - intent: thank_you
-#   examples: |
-#     - gracias
-#     - muchas gracias
-#     - te lo agradezco
-#     - muy amable
-#     - se agradece
-#     - mil gracias
-#     - gracias por tu ayuda
-#     - gracias por la info
-#     - gracias por la información
-#     - gracias por tu asistencia
-#     - te agradezco mucho
-#     - te lo agradezco mucho
-#     - gracias, muy amable
-#     - gracias por tu apoyo
-#     - gracias por tu soporte
-#     - gracias por ayudarme
-#     - gracias por ayudarme con esto
-#     - gracias por tu tiempo
-#     - gracias por tu tiempo y ayuda
-#     - muchas gracias por tu ayuda
-#     - muchas gracias por la información
-#     - muchas gracias por la info
-#     - muchas gracias por tu asistencia
-#     - muchas gracias por tu apoyo
-#     - muchas gracias por tu soporte
-#     - muchas gracias por ayudarme
-#     - muchas gracias por ayudarme con esto
-#     - muchas gracias por tu tiempo
-#     - muchas gracias por tu tiempo y ayuda
-    
+  - intent: request_subject_material
+    examples: |
+      - necesito material de [algoritmia](subject)
+      - pásame apuntes de [bases de datos](subject)
+      - ¿tienes material de [cálculo diferencial](subject)?
+      - quiero el material de [Ingenieria de Software I](subject)
+      - dame el material de [Administracion de Redes](subject)
+      - necesito el material de [BD](subject)
+      - necesito material de [Programación](subject) de [INNI](career_code)
+      - pásame el material de [Bases de Datos](subject) para [LQFB](career_code)
+      - dame material de [Algoritmia](subject) en [INFO](career_code)
 
-- intent: request_academic_material
-  examples: |
-    - necesito apuntes de álgebra
-    - ¿tienes exámenes pasados de física?
-    - pásame la guía de programación
-    - ¿me puedes dar libros sobre minería de datos?
-    - busco recursos para aprender cálculo
-    - ¿dónde encuentro material de estadística?
-    - ¿tienes artículos sobre inteligencia artificial?
-    - ¿me puedes proporcionar videos de matemáticas?
+  - intent: request_subject_study_plan
+    examples: |
+      - quiero el plan de estudios de [Algoritmia](subject)
+      - pásame el plan de [Bases de Datos](subject)
+      - ¿me das el plan de [Cálculo Diferencial](subject)?
+      - necesito el plan de [Ingenieria de Software I](subject)
+      - quiero el plan de [Programación](subject) de [INNI](career_code)
+      - pásame el plan de [Bases de Datos](subject) para [INFO](career_code)
+
+  - intent: request_location_map
+    examples: |
+      - ¿En dónde está la [Biblioteca](location)?
+      - ¿En dónde está el [baño del modulo Z](location)?
+      - ¿dónde está [Biblioteca](location)?
+      - muéstrame [Modulo A](location)
+      - llévame al [Modulo B](location)
+      - necesito encontrar el [Baño Modulo U](location)
+      - quiero ver [Lonaria](location) en el mapa
+
+  - intent: request_curriculum
+    examples: |
+      - quiero la malla de [INNI](career_code)
+      - pásame la malla curricular de [LQFB](career_code)
+      - necesito la malla de [INFO](career_code)
+      - dame la malla de [ingenieria informatica](career_code)
+
+  - intent: request_human_contact
+    examples: |
+      - necesito un contacto
+      - me puedes dar un correo o teléfono
+      - quiero hablar con alguien
+      - dame información de contacto
+      - dame el contacto de [control escolar](contact_name)
+      - correo de [rectoría](contact_name)
+      - telefono de [servicios escolares](contact_name)
+      - busco a [coordinacion de informatica](contact_name)
+      - contacto de [biblioteca](contact_name)
+      - pasame el telefono de la [enfermeria](contact_name)
+      - quiero hablar con el coordinador de [informatica](contact_name)
+
+  - intent: inform_career
+    examples: |
+      - soy de [INNI](career_code)
+      - mi codigo de carrera es [INNI](career_code)
+      - este es mi codigo de carrera [INNI](career_code)
+      - mi carrera es [INFO](career_code)
+      - estudio [LQFB](career_code)
+      - estudio la carrera de [LQFB](career_code)
+      - cámbiame a [INEA](career_code)
+      - recuérdame como [ILOT](career_code)
+      - soy de la carrera [INNI](career_code)
+
+  - intent: request_capabilities
+    examples: |
+      - que puedes hacer
+      - que sabes hacer
+      - dime tus funciones
+      - en que me puedes ayudar
+      - para que sirves
+      - resumen de que puedes hacer
+      - que ayuda ofreces
     

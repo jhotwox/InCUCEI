@@ -1,33 +1,16 @@
 import Commerce from "../models/commerce.model.js"
-import fs from "fs"
-import path from "path"
-import { fileURLToPath } from "url"
+import User from "../models/user.model.js"
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-
-// Helper function to find file by pattern
-const findFileByPattern = (pattern) => {
-  try {
-    const uploadsDir = path.join(__dirname, "../../uploads")
-    const files = fs.readdirSync(uploadsDir)
-    return files.find((file) => file.startsWith(pattern))
-  } catch (err) {
-    console.error("Error buscando archivo:", err)
-    return null
-  }
-}
-
-// Helper function to construct image URLs
-const getImageUrls = (userId, req) => {
-  const logoFile = findFileByPattern(`logo_${userId}.`)
-  const bannerFile = findFileByPattern(`banner_${userId}.`)
-
-  const baseUrl = `${req.protocol}://${req.get("host")}/uploads`
-
+const toCommerceResponse = (commerce, req, { logoUrlFallback, bannerUrlFallback } = {}) => {
   return {
-    logoUrl: logoFile ? `${baseUrl}/${logoFile}` : null,
-    bannerUrl: bannerFile ? `${baseUrl}/${bannerFile}` : null,
+    id: commerce._id,
+    name: commerce.name,
+    description: commerce.description,
+    userId: commerce.userId,
+    logoUrl: commerce.logoUrl ?? logoUrlFallback ?? null,
+    bannerUrl: commerce.bannerUrl ?? bannerUrlFallback ?? null,
+    createdAt: commerce.createdAt,
+    updatedAt: commerce.updatedAt,
   }
 }
 
@@ -44,19 +27,27 @@ export const createCommerce = async (req, res) => {
     })
     const commerce = await newCommerce.save()
 
-    const { logoUrl, bannerUrl } = getImageUrls(userId, req)
+    // If the user uploaded logo/banner before creating the commerce, attach them now.
+    const user = await User.findById(userId)
+      .select("pendingLogoUrl pendingLogoPublicId pendingBannerUrl pendingBannerPublicId")
+      .lean(false)
+
+    if (user?.pendingLogoUrl || user?.pendingBannerUrl) {
+      commerce.logoUrl = user.pendingLogoUrl ?? commerce.logoUrl
+      commerce.logoPublicId = user.pendingLogoPublicId ?? commerce.logoPublicId
+      commerce.bannerUrl = user.pendingBannerUrl ?? commerce.bannerUrl
+      commerce.bannerPublicId = user.pendingBannerPublicId ?? commerce.bannerPublicId
+      await commerce.save()
+
+      user.pendingLogoUrl = null
+      user.pendingLogoPublicId = null
+      user.pendingBannerUrl = null
+      user.pendingBannerPublicId = null
+      await user.save()
+    }
 
     return res.json({
-      commerce: {
-        id: commerce._id,
-        name: commerce.name,
-        description: commerce.description,
-        userId: commerce.userId,
-        logoUrl,
-        bannerUrl,
-        createdAt: commerce.createdAt,
-        updatedAt: commerce.updatedAt,
-      },
+      commerce: toCommerceResponse(commerce, req),
       status: true,
     })
   } catch (err) {
@@ -92,14 +83,17 @@ export const updateCommerce = async (req, res) => {
         .status(400)
         .json({ message: "Comercio no encontrado", status: false })
 
-    const { logoUrl, bannerUrl } = getImageUrls(commerceUpdated.userId, req)
-
     return res.json({
       message: "Comercio actualizado",
       commerce: {
-        ...commerceUpdated,
-        logoUrl,
-        bannerUrl,
+        id: commerceUpdated._id,
+        name: commerceUpdated.name,
+        description: commerceUpdated.description,
+        userId: commerceUpdated.userId,
+        logoUrl: commerceUpdated.logoUrl ?? null,
+        bannerUrl: commerceUpdated.bannerUrl ?? null,
+        createdAt: commerceUpdated.createdAt,
+        updatedAt: commerceUpdated.updatedAt,
       },
       status: true,
     })
@@ -138,19 +132,16 @@ export const getCommerceByUserId = async (req, res) => {
         .status(400)
         .json({ message: "Comercio no encontrado", status: false })
 
-    const { logoUrl, bannerUrl } = getImageUrls(req.user.id, req)
+    // Fallback: if the user uploaded images but the commerce hasn't been updated yet.
+    const user = await User.findById(req.user.id)
+      .select("pendingLogoUrl pendingBannerUrl")
+      .lean()
 
     return res.json({
-      commerce: {
-        id: commerceFound._id,
-        name: commerceFound.name,
-        description: commerceFound.description,
-        userId: commerceFound.userId,
-        logoUrl,
-        bannerUrl,
-        createdAt: commerceFound.createdAt,
-        updatedAt: commerceFound.updatedAt,
-      },
+      commerce: toCommerceResponse(commerceFound, req, {
+        logoUrlFallback: user?.pendingLogoUrl,
+        bannerUrlFallback: user?.pendingBannerUrl,
+      }),
       status: true,
     })
   } catch (err) {
@@ -169,19 +160,7 @@ export const getAllCommerce = async (req, res) => {
         .status(400)
         .json({ message: "Comercios no encontrados", status: false })
 
-    const commercesWithImages = commerces.map((commerce) => {
-      const { logoUrl, bannerUrl } = getImageUrls(commerce.userId, req)
-      return {
-        id: commerce._id,
-        name: commerce.name,
-        description: commerce.description,
-        userId: commerce.userId,
-        logoUrl,
-        bannerUrl,
-        createdAt: commerce.createdAt,
-        updatedAt: commerce.updatedAt,
-      }
-    })
+    const commercesWithImages = commerces.map((commerce) => toCommerceResponse(commerce, req))
 
     return res.json({
       commerces: commercesWithImages,

@@ -1,91 +1,381 @@
-import { useEffect, useRef, useState } from "react"
-import { useAuth } from "../../../contexts/Auth.context"
-import { useSocket } from "../../../contexts/Socket.context"
-import { useMessages } from "../../../hooks/useMessages"
-import { Button, Card, Text, TextInput } from "react-native-paper"
+import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react"
 import { FlatList, KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native"
-import { useLocalSearchParams } from "expo-router"
+import { router, useLocalSearchParams } from "expo-router"
+import { LinearGradient } from "expo-linear-gradient"
+import {
+  ActivityIndicator,
+  Avatar,
+  IconButton,
+  Surface,
+  Text,
+  TextInput,
+  useTheme,
+} from "react-native-paper"
+import Animated, { FadeInLeft, FadeInRight } from "react-native-reanimated"
+import { Background } from "../../../components"
+import { useAuth } from "../../../contexts/Auth.context"
+import { useMessages } from "../../../hooks/useMessages"
+import { createFileObjectFromUrl } from "../../../utils/generateFileObjectFromURL"
+import Header from "../../../components/common/Header"
+import { useLayout } from "../../../layout/providers.layout"
 
-export default function ChatScreen () {
-  const { commerceId, commerceName, commerceUserId } = useLocalSearchParams()
+const MessageItem = memo(({ item, theme, isOwn, myAvatarUri, otherAvatarUri, mode, showDateSeparator, dateLabel, animateIn }) => {
+  if (!item) return null
+
+  return (
+    <Animated.View entering={animateIn ? (isOwn ? FadeInRight : FadeInLeft) : undefined}>
+      {showDateSeparator && (
+        <View style={{ width: "100%", alignItems: "center", marginVertical: 8 }}>
+          <Surface
+            style={{
+              paddingHorizontal: 12,
+              paddingVertical: 4,
+              borderRadius: 12,
+              backgroundColor: theme.colors.surfaceVariant,
+            }}
+            elevation={1}
+          >
+            <Text style={{ fontSize: 12, color: theme.colors.onSurfaceVariant }}>
+              {dateLabel}
+            </Text>
+          </Surface>
+        </View>
+      )}
+
+      <View style={[styles.messageContainer, isOwn ? styles.userMessage : styles.commerceMessage]}>
+        {!isOwn && (
+          otherAvatarUri ? (
+            <Avatar.Image size={32} source={{ uri: otherAvatarUri }} style={styles.avatar} />
+          ) : (
+            <Avatar.Icon
+              size={32}
+              icon={mode === "commerce" ? "account" : "store"}
+              style={[styles.avatar, { backgroundColor: theme.colors.primaryContainer }]}
+              color={theme.colors.primary}
+            />
+          )
+        )}
+
+        <Surface
+          elevation={isOwn ? 2 : 1}
+          style={[
+            styles.messageCard,
+            isOwn ? styles.userCard : styles.commerceCard,
+          ]}
+        >
+          <LinearGradient
+            colors={
+              isOwn
+                ? [theme.colors.primary, theme.colors.secondary]
+                : ["#ffffff", "#f8f9fa"]
+            }
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={styles.gradientContainer}
+          >
+            <Text style={[styles.messageText, isOwn ? styles.userText : styles.commerceText]}>
+              {item.content}
+            </Text>
+            <Text style={[styles.timestamp, isOwn && styles.myTimestamp]}>
+              {new Date(item.createdAt).toLocaleTimeString("es-MX", {
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
+            </Text>
+          </LinearGradient>
+        </Surface>
+
+        {isOwn && (
+          myAvatarUri ? (
+            <Avatar.Image size={32} source={{ uri: myAvatarUri }} style={styles.avatar} />
+          ) : (
+            <Avatar.Icon
+              size={32}
+              icon={mode === "commerce" ? "store" : "account"}
+              style={[styles.avatar, { backgroundColor: theme.colors.secondaryContainer }]}
+              color={theme.colors.secondary}
+            />
+          )
+        )}
+      </View>
+    </Animated.View>
+  )
+})
+
+export default function ChatScreen() {
   const [inputMessage, setInputMessage] = useState("")
+  const [profileImageKey, setProfileImageKey] = useState(Date.now())
+  const [isSwitchingConversation, setIsSwitchingConversation] = useState(false)
   const flatListRef = useRef(null)
+  const lastMarkedMessageIdRef = useRef(null)
+  const wasLoadingRef = useRef(false)
+  
+  const {
+    commerceId: commerceIdParam,
+    commerceName,
+    commerceLogoUrl: commerceLogoUrlParam,
+    mode: modeParam,
+    chatUserId: chatUserIdParam,
+    chatUserEmail,
+    chatUserName,
+    chatUserProfileUrl: chatUserProfileUrlParam,
+  } = useLocalSearchParams()
+  const { tabBarHeight } = useLayout()
 
-  const { user } = useAuth()
-  const { joinRoom, leaveRoom } = useSocket()
+  const theme = useTheme()
+  const { user, profileImageChanged, setProfileImageChanged } = useAuth()
   const {
     messages,
     sendMessage,
+    sendCommerceMessage,
     loading,
     markAsRead,
+    markCommerceAsRead,
     loadConversation,
+    loadCommerceConversation,
+    clearMessages,
   } = useMessages()
 
-  const roomId = `user_${user.id}_commerce_${commerceId}`
+  const mode = useMemo(() => {
+    const raw = Array.isArray(modeParam) ? modeParam[0] : modeParam
+    return raw === "commerce" ? "commerce" : "user"
+  }, [modeParam])
+
+  const chatUserId = useMemo(
+    () => (Array.isArray(chatUserIdParam) ? chatUserIdParam[0] : chatUserIdParam),
+    [chatUserIdParam]
+  )
+  const commerceId = useMemo(
+    () => (Array.isArray(commerceIdParam) ? commerceIdParam[0] : commerceIdParam),
+    [commerceIdParam]
+  )
+
+  const commerceLogoUrl = useMemo(
+    () => (Array.isArray(commerceLogoUrlParam) ? commerceLogoUrlParam[0] : commerceLogoUrlParam),
+    [commerceLogoUrlParam]
+  )
+
+  const chatUserProfileUrl = useMemo(
+    () => (Array.isArray(chatUserProfileUrlParam) ? chatUserProfileUrlParam[0] : chatUserProfileUrlParam),
+    [chatUserProfileUrlParam]
+  )
+
 
   useEffect(() => {
-    console.log("Initilizing chat with:", { commerceId, commerceName })
-    console.log("Generated roomId:", roomId)
-    
-    loadConversation(commerceId)
-    
-    joinRoom(roomId)
-
-    markAsRead(roomId)
-
-    return () => {
-      leaveRoom(roomId)
+    if (user?.profileUrl) {
+      setProfileImageKey(Date.now())
+      if (profileImageChanged) setProfileImageChanged(false)
     }
-  }, [roomId, commerceId])
+  }, [user?.profileUrl, profileImageChanged, setProfileImageChanged])
 
-  const handleSendMessage = async () => {
-    if (!inputMessage.trim()) return
+  const commerceAvatarUri = useMemo(() => {
+    if (!commerceLogoUrl) return null
+    return createFileObjectFromUrl(commerceLogoUrl, "logo")?.uri || null
+  }, [commerceLogoUrl])
+
+  const userAvatarUri = useMemo(() => {
+    if (!user?.profileUrl) return null
+    const base = createFileObjectFromUrl(user.profileUrl, "profile")?.uri
+    if (!base) return null
+    const joiner = base.includes("?") ? "&" : "?"
+    return `${base}${joiner}t=${profileImageKey}`
+  }, [user?.profileUrl, profileImageKey])
+
+  const chatUserAvatarUri = useMemo(() => {
+    if (!chatUserProfileUrl) return null
+    return createFileObjectFromUrl(chatUserProfileUrl, "profile")?.uri || null
+  }, [chatUserProfileUrl])
+
+  const myAvatarUri = mode === "commerce" ? commerceAvatarUri : userAvatarUri
+  const otherAvatarUri = mode === "commerce" ? chatUserAvatarUri : commerceAvatarUri
+
+  const roomUserId = mode === "commerce" ? chatUserId : user?.id
+
+  const roomId = useMemo(() => {
+    if (!roomUserId || !commerceId) return null
+    return `user_${roomUserId}_commerce_${commerceId}`
+  }, [roomUserId, commerceId])
+
+  useLayoutEffect(() => {
+    if (!roomId) return
+    clearMessages()
+    lastMarkedMessageIdRef.current = null
+    setIsSwitchingConversation(true)
+  }, [roomId, clearMessages])
+
+  useEffect(() => {
+    if (loading) {
+      wasLoadingRef.current = true
+      return
+    }
+
+    if (wasLoadingRef.current) {
+      wasLoadingRef.current = false
+      setIsSwitchingConversation(false)
+    }
+  }, [loading])
+
+  useEffect(() => {
+    if (!commerceId || !roomId) return
+
+    if (mode === "commerce") {
+      if (!chatUserId) return
+      loadCommerceConversation(commerceId, chatUserId)
+      markCommerceAsRead(commerceId, chatUserId)
+    } else {
+      loadConversation(commerceId)
+      markAsRead(commerceId)
+    }
+    return undefined
+  }, [
+    commerceId,
+    roomId,
+    mode,
+    chatUserId,
+    loadConversation,
+    loadCommerceConversation,
+    markAsRead,
+    markCommerceAsRead,
+  ])
+
+
+  const orderedMessages = useMemo(() => {
+    // API returns ascending; with inverted FlatList we want latest at bottom.
+    return [...messages].reverse()
+  }, [messages])
+
+  const handleSendMessage = useCallback(async () => {
+    if (!commerceId) return
+    if (!inputMessage.trim() || loading) return
 
     const messageContent = inputMessage.trim()
     setInputMessage("")
 
     try {
-      await sendMessage(commerceId, messageContent, "text")
-
-      setTimeout(() => {
-        flatListRef.current?.scrollToEnd({ animated: true })
-      }, 100)
+      const newMessage =
+        mode === "commerce"
+          ? await sendCommerceMessage(commerceId, chatUserId, messageContent, "text")
+          : await sendMessage(commerceId, messageContent, "text")
     } catch (err) {
       console.error("Error sending message:", err)
     }
+  }, [
+    commerceId,
+    inputMessage,
+    loading,
+    roomId,
+    mode,
+    chatUserId,
+    sendMessage,
+    sendCommerceMessage,
+  ])
+
+  // Call markAsRead when messages change (a new message arrives)
+  useEffect(() => {
+    if (!roomId || !commerceId) return
+    if (!messages.length) return
+
+    const lastMsg = messages[messages.length - 1] // messages is in ascending order, so last item is the most recent message
+    if (!lastMsg) return
+    if (lastMsg.roomId !== roomId) return
+
+    const senderId = typeof lastMsg?.sender === "string" ? lastMsg.sender : lastMsg?.sender?._id
+    const isIncoming = senderId && senderId !== user?.id
+
+    if (!isIncoming) return
+    if (lastMsg.isRead === true) return
+
+    const lastId = lastMsg?._id?.toString?.()
+    if (lastId && lastMarkedMessageIdRef.current === lastId) return
+    lastMarkedMessageIdRef.current = lastId || Date.now().toString()
+
+    if (mode === "commerce") {
+      if (!chatUserId) return
+      markCommerceAsRead(commerceId, chatUserId)
+    } else {
+      markAsRead(commerceId)
+    }
+  }, [messages, roomId, commerceId, mode, chatUserId, user?.id, markAsRead, markCommerceAsRead])
+
+  // Helper to render each message item, determines if the message is sent by the user or commerce and styles accordingly
+  const dayKey = (iso) => {
+    const d = new Date(iso)
+    d.setHours(0, 0, 0, 0)
+    return d.getTime()
   }
 
-  const renderMessage = ({ item }) => {
-    const isOwnMessage = item.sender._id === user.id || item.sender === user.id
+  const formatDateLabel = (iso) => {
+    const date = new Date(iso)
+    const today = new Date()
+    const yesterday = new Date()
+    yesterday.setDate(yesterday.getDate() - 1)
 
+    const normalize = (x) => {
+      const n = new Date(x)
+      n.setHours(0, 0, 0, 0)
+      return n.getTime()
+    }
+
+    if (normalize(date) === normalize(today)) return "Hoy"
+    if (normalize(date) === normalize(yesterday)) return "Ayer"
+
+    return date.toLocaleDateString("es-MX", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    })
+  }
+
+  const renderMessage = useCallback(
+    ({ item, index }) => {
+      const nextOlder = orderedMessages[index + 1] // Up in the screen, is older
+      const showDateSeparator = !nextOlder || dayKey(item.createdAt) !== dayKey(nextOlder.createdAt)
+
+      const senderId = typeof item?.sender === "string" ? item.sender : item?.sender?._id
+      const isOwn = senderId === user?.id
+
+      return (
+        <MessageItem
+          item={item}
+          theme={theme}
+          isOwn={isOwn}
+          myAvatarUri={myAvatarUri}
+          otherAvatarUri={otherAvatarUri}
+          mode={mode}
+          showDateSeparator={showDateSeparator}
+          dateLabel={formatDateLabel(item.createdAt)}
+          animateIn={index === 0}
+        />
+      )
+    },
+    [orderedMessages, theme, user?.id, myAvatarUri, otherAvatarUri, mode]
+  )
+
+  const keyExtractor = useCallback((item, index) => {
+    const id = item?._id?.toString?.()
+    if (id) return id
+
+    const createdAt = item?.createdAt != null ? String(item.createdAt) : ""
+    const senderId = typeof item?.sender === "string" ? item.sender : item?.sender?._id
+    const room = item?.roomId || "room"
+    const content = item?.content != null ? String(item.content) : ""
+
+    // Deterministic fallback to avoid index-based remount flicker.
+    return `tmp-${room}-${senderId || "unknown"}-${createdAt}-${content}` || `msg-${index}`
+  }, [])
+
+  if (!commerceId) {
     return (
-      <View
-        style={[
-          styles.messageContainer,
-          isOwnMessage ? styles.myMessage : styles.theirMessage,
-        ]}
-      >
-        <Card
-          style={[
-            styles.messageCard,
-            isOwnMessage ? styles.myMessageCard : styles.theirMessageCard,
-          ]}
-        >
-          <Card.Content>
-            <Text>{item.content}</Text>
-            <Text style={styles.timestamp}>
-              {new Date(item.createdAt).toLocaleTimeString()}
-            </Text>
-          </Card.Content>
-        </Card>
+      <View style={[styles.container, { justifyContent: "center" }]}>
+        <Text>No se encontró el comercio.</Text>
       </View>
     )
   }
 
-  if (loading) {
+  if (mode === "commerce" && !chatUserId) {
     return (
       <View style={[styles.container, { justifyContent: "center" }]}>
-        <Text>Cargando mensajes...</Text>
+        <Text>No se encontró el usuario del chat.</Text>
       </View>
     )
   }
@@ -94,43 +384,76 @@ export default function ChatScreen () {
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      // keyboardVerticalOffset={90}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 50 : 20}
     >
-      <View style={styles.header}>
-        <Text variant="titleLarge">{commerceName}</Text>
-        <Text variant="titleLarge">Conversación con comercio</Text>
-      </View>
+      <Background background={theme.colors.onPrimary} />
+
+      <Header
+        title={mode === "commerce" ? (chatUserName || "Usuario") : (commerceName || "Comercio")}
+        subtitle={mode === "commerce" ? chatUserEmail : "Chat"}
+        avatarUri={otherAvatarUri}
+        icon={mode === "commerce" ? "account" : "store"}
+        theme={theme}
+        paddingTop={12}
+        leftButton={{
+          icon: "arrow-left",
+          onPress: () => {
+            router.push({pathname: mode === "commerce" ? "/(tabs)/Sales.screen/CommerceChatList.screen" : "/(tabs)/Sales.screen/ChatList.screen"})
+          }
+        }}
+      />
 
       <FlatList
         ref={flatListRef}
-        // data={messages.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))}
-        data={messages}
+        data={orderedMessages}
         renderItem={renderMessage}
-        keyExtractor={(item) => item._id}
+        keyExtractor={keyExtractor}
+        inverted={true}
         style={styles.messagesList}
-        onContentSizeChange={() =>
-          flatListRef.current.scrollToEnd({ animated: true })
+        contentContainerStyle={styles.messagesContent}
+        ListEmptyComponent={
+          loading || isSwitchingConversation ? (
+            <View style={styles.emptyState}>
+              <ActivityIndicator size="large" />
+            </View>
+          ) : null
         }
-        onLayout={() => flatListRef.current.scrollToEnd({ animated: true })}
+        showsVerticalScrollIndicator={false}
+        removeClippedSubviews={true}
+        maxToRenderPerBatch={10}
+        windowSize={10}
+        initialNumToRender={15}
       />
 
-      <View style={styles.inputContainer}>
-        <TextInput
-          value={inputMessage}
-          onChangeText={setInputMessage}
-          placeholder="Escribe un mensaje..."
-          style={styles.textInput}
-          multiline
-          maxLength={1000}
-        />
-        <Button
-          mode="contained"
-          onPress={handleSendMessage}
-          disabled={!inputMessage.trim() || loading}
-          style={styles.sendButton}
-        >
-          Enviar
-        </Button>
+      <View style={[styles.inputContainer, { marginBottom: tabBarHeight }]}>
+        <Surface style={styles.inputWrapper} elevation={2}>
+          <TextInput
+            value={inputMessage}
+            onChangeText={setInputMessage}
+            placeholder="Escribe un mensaje..."
+            placeholderTextColor="#999"
+            style={styles.textInput}
+            mode="flat"
+            multiline
+            maxLength={1000}
+            disabled={loading}
+            underlineColor="transparent"
+            activeUnderlineColor="transparent"
+            contentStyle={styles.textInputContent}
+            cursorColor={theme.colors.tertiary}
+          />
+          <IconButton
+            icon={loading ? "dots-horizontal" : "send"}
+            mode="contained"
+            onPress={handleSendMessage}
+            disabled={!inputMessage.trim() || loading}
+            style={styles.sendButton}
+            iconColor="#fff"
+            containerColor={!inputMessage.trim() || loading ? "#ccc" : theme.colors.primary}
+            size={24}
+            animated
+          />
+        </Surface>
       </View>
     </KeyboardAvoidingView>
   )
@@ -139,54 +462,127 @@ export default function ChatScreen () {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f5f5f5",
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: "transparent",
   },
-  header: {
-    padding: 16,
-    backgroundColor: "#FFF",
-    borderBottomWidth: 1,
-    borderBottomColor: "#DDD",
+  header: {},
+  blurHeader: {
+    overflow: "hidden",
+  },
+  headerContent: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 16,
+    paddingTop: 12,
+    paddingBottom: 12,
+  },
+  headerTextContainer: {
+    marginLeft: 12,
+    flex: 1,
+  },
+  headerTitle: {
+    color: "#fff",
+    fontWeight: "700",
+    letterSpacing: 0.5,
+  },
+  headerSubtitle: {
+    color: "rgba(255,255,255,0.9)",
+    marginTop: 2,
   },
   messagesList: {
     flex: 1,
-    padding: 8,
+    paddingHorizontal: 12,
+  },
+  messagesContent: {
+    paddingBottom: 16,
+    paddingTop: 8,
+    flexGrow: 1,
+  },
+  emptyState: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 24,
   },
   messageContainer: {
-    marginVertical: 4,
+    marginVertical: 6,
+    flexDirection: "row",
+    alignItems: "flex-end",
   },
-  myMessage: {
-    alignSelf: "flex-end",
+  userMessage: {
+    justifyContent: "flex-end",
   },
-  theirMessage: {
-    alignSelf: "flex-start",
+  commerceMessage: {
+    justifyContent: "flex-start",
   },
   messageCard: {
-    maxWidth: "80%",
+    maxWidth: "75%",
+    borderRadius: 20,
+    overflow: "hidden",
   },
-  myMessageCard: {
-    backgroundColor: "#DCF8C6",
+  userCard: {
+    borderBottomRightRadius: 4,
   },
-  theirMessageCard: {
-    backgroundColor: "#FFF",
+  commerceCard: {
+    borderBottomLeftRadius: 4,
+    backgroundColor: "#fff",
+  },
+  gradientContainer: {
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+  },
+  messageText: {
+    lineHeight: 20,
+    fontSize: 15,
+  },
+  userText: {
+    color: "#fff",
+  },
+  commerceText: {
+    color: "#1a1a1a",
+  },
+  myTimestamp: {
+    color: "rgba(255,255,255,0.8)",
   },
   timestamp: {
-    fontSize: 10,
-    opacity: 0.7,
-    marginTop: 4,
+    fontSize: 11,
+    opacity: 0.6,
+    marginTop: 6,
+    fontWeight: "500",
+  },
+  avatar: {
+    marginHorizontal: 6,
   },
   inputContainer: {
-    flexDirection: "row",
-    padding: 16,
-    backgroundColor: "#FFF",
-    alignItems: "flex-end",
+    backgroundColor: "transparent",
+    paddingHorizontal: 12,
+    paddingBottom: Platform.OS === "ios" ? 28 : 10,
   },
   textInput: {
     flex: 1,
-    marginRight: 8,
+    maxHeight: 120,
+    minHeight: 40,
+    backgroundColor: "transparent",
+    fontSize: 15,
+    paddingHorizontal: 0,
+  },
+  textInputContent: {
+    paddingVertical: 10,
+    paddingHorizontal: 0,
+  },
+  inputWrapper: {
+    flexDirection: "row",
+    alignItems: "flex-end",
+    backgroundColor: "#f5f5f5",
+    borderRadius: 36,
+    paddingLeft: 16,
+    paddingRight: 4,
+    paddingTop: 2,
+    minHeight: 32,
   },
   sendButton: {
-    minWidth: 80,
+    margin: 0,
+    marginLeft: 4,
+    marginRight: 6,
+    marginBottom: 9,
   },
 })

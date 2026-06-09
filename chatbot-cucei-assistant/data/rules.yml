@@ -1,11 +1,17 @@
-# version: "3.1"
-# rules:
-#   - rule: Saludo
-#     steps:
-#       - intent: greet
-#       - action: utter_greet
+version: "3.1"
 
-#   - rule: Despedida
-#     steps:
-#       - intent: goodbye
-#       - action: utter_goodbye
+rules:
+  - rule: Saludo
+    steps:
+      - intent: greet
+      - action: utter_greet
+
+  - rule: Despedida
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - rule: Contacto humano
+    steps:
+      - intent: request_human_contact
+      - action: action_human_contact

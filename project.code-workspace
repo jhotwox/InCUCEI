@@ -1,0 +1,45 @@
+{
+  "folders": [
+    {
+      "name": "client",
+      "path": "client"
+    },
+    {
+      "name": "server",
+      "path": "server"
+    },
+    {
+      "name": "root/docs",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/.DS_Store": true,
+      "**/Thumbs.db": true,
+      "**/.expo": true,
+      "**/node_modules": true,
+      "**/package-lock.json": true,
+      // ".github": true,
+      ".gitignore": true,
+      ".vscode": true,
+      "client": true,
+      "server": true,
+      "docker-compose.yml": true
+    }
+  },
+  "extensions": {
+    "recommendations": [
+      "naumovs.color-highlight",
+      "xabikos.javascriptsnippets",
+      "bierner.markdown-preview-github-styles",
+      "christian-kohler.path-intellisense",
+      "wayou.vscode-todo-highlight",
+      "dsznajder.es7-react-js-snippets",
+      "pkief.material-icon-theme"
+    ]
+  }
+}

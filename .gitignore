@@ -4,6 +4,23 @@ chatbot/.env
 chatbot-cucei-assistant/.env
 client/.env
 
+## local env files
+client/.env*.local
+
+## Firebase / Push credentials (DO NOT COMMIT)
+client/*firebase-adminsdk*.json
+client/**/*firebase-adminsdk*.json
+client/*adminsdk*.json
+client/**/*adminsdk*.json
+
+## Google Services (DO NOT COMMIT)
+client/google-services.json
+client/*google-services*.json
+
+# Config files
+.vscode/
+.idea/
+
 #Express
 ## Node.js dependencies
 server/node_modules/
@@ -21,7 +38,7 @@ chatbot-cucei-assistant/**/*.pyc
 
 ## Rasa
 chatbot/models/
-chatbot-cucei-assistant/models/
+# chatbot-cucei-assistant/models/
 chatbot/.rasa/
 chatbot-cucei-assistant/.rasa/
 
@@ -59,9 +76,6 @@ client/yarn-error.*
 ## macOS
 client/.DS_Store
 client/*.pem
-
-## local env files
-client/.env*.local
 
 ## typescript
 client/*.tsbuildinfo

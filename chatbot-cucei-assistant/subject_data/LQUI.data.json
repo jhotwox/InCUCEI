@@ -1,0 +1,592 @@
+{
+  "quimica_general_i": {
+    "name": "quimica general i",
+    "code": "I6921",
+    "semester": 1,
+    "files": {
+      "study_plan": "i6921_programa_quimicageneral1.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "laboratorio_quimica_general_i": {
+    "name": "laboratorio de quimica general i",
+    "code": "I6922",
+    "semester": 1,
+    "files": {
+      "study_plan": "i6922_programa_laboratorio_de_quimica_general1.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "estructura_molecular": {
+    "name": "estructura molecular",
+    "code": "I6925",
+    "semester": 1,
+    "files": {
+      "study_plan": "i6925-estructura_moleculaer.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "seminario_induccion": {
+    "name": "seminario de induccion",
+    "code": "I7487",
+    "semester": 1,
+    "files": {
+      "study_plan": "i7487_programa_seminario_de_induccion.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "precalculo": {
+    "name": "precalculo",
+    "code": "I5799",
+    "semester": 1,
+    "files": {
+      "study_plan": "i5799_precalculo.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "algebra_lineal": {
+    "name": "algebra lineal",
+    "code": "I5802",
+    "semester": 1,
+    "files": {
+      "study_plan": "i5802_algebra_lineal.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "higiene_seguridad_laboratorios": {
+    "name": "higiene y seguridad en los laboratorios",
+    "code": "I7494",
+    "semester": 1,
+    "files": {
+      "study_plan": "i7494_programa_higiene_y_seguridad_en_laboratorios.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "quimica_general_ii": {
+    "name": "quimica general ii",
+    "code": "I6923",
+    "semester": 2,
+    "files": {
+      "study_plan": "i6923_programa_quimica_general2.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "laboratorio_quimica_general_ii": {
+    "name": "laboratorio de quimica general ii",
+    "code": "I6924",
+    "semester": 2,
+    "files": {
+      "study_plan": "i6924_programa_laboratorio_de_quimica_general2.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "teoria_quimica_organica_i": {
+    "name": "teoria de quimica organica i",
+    "code": "I7481",
+    "semester": 2,
+    "files": {
+      "study_plan": "i7481_programa_teoria_quimica_organica1_lqu.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "laboratorio_quimica_organica_i": {
+    "name": "laboratorio de quimica organica i",
+    "code": "I7483",
+    "semester": 2,
+    "files": {
+      "study_plan": "i7483_programa_laboratorio_quimica_organica1_lqu_0.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "calculo_diferencial_integral": {
+    "name": "calculo diferencial e integral",
+    "code": "I6909",
+    "semester": 2,
+    "files": {
+      "study_plan": "i6909_calculodiferencialeintegral_disenocompleto.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "mecanica": {
+    "name": "mecanica",
+    "code": "I6912",
+    "semester": 2,
+    "files": {
+      "study_plan": "i6912_mecanica.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "taller_resolucion_problemas_mecanica": {
+    "name": "taller de resolucion de problemas de mecanica",
+    "code": "I6913",
+    "semester": 2,
+    "files": {
+      "study_plan": "i6913_taller_de_resolucion_de_problemas_de_mecanica.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "quimica_inorganica_i": {
+    "name": "quimica inorganica i",
+    "code": "I7482",
+    "semester": 3,
+    "files": {
+      "study_plan": "i7482-inorqui1.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "laboratorio_quimica_inorganica_i": {
+    "name": "laboratorio de quimica inorganica i",
+    "code": "I7484",
+    "semester": 3,
+    "files": {
+      "study_plan": "i7484-labq.inor1.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "teoria_quimica_organica_ii": {
+    "name": "teoria de quimica organica ii",
+    "code": "I7488",
+    "semester": 3,
+    "files": {
+      "study_plan": "i7488_programa_teoria_quimica_organica2_lqu.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "laboratorio_quimica_organica_ii": {
+    "name": "laboratorio de quimica organica ii",
+    "code": "I7495",
+    "semester": 3,
+    "files": {
+      "study_plan": "i7495_programa_laboratorio_quimica_organica2_lqu.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "ecuaciones_diferenciales_ordinarias": {
+    "name": "ecuaciones diferenciales ordinarias",
+    "code": "I6910",
+    "semester": 3,
+    "files": {
+      "study_plan": "`i6910_edo_lic_quimica_version_corregida`.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "ondas_fluidos_fisica_molecular": {
+    "name": "ondas fluidos y fisica molecular",
+    "code": "I6917",
+    "semester": 3,
+    "files": {
+      "study_plan": "i6917_ondas_fluidos_y_fisica_molecular.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "laboratorio_ondas_fluidos_fisica_molecular": {
+    "name": "laboratorio de ondas fluidos y fisica molecular",
+    "code": "I6918",
+    "semester": 3,
+    "files": {
+      "study_plan": "i6918_laboratorio_de_ondas_fluidos_y_fisica_molecular.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "quimica_analitica_i": {
+    "name": "quimica analitica i",
+    "code": "I7504",
+    "semester": 3,
+    "files": {
+      "study_plan": "i7504_programa_quimica_analitica1.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "laboratorio_quimica_analitica_i": {
+    "name": "laboratorio de quimica analitica i",
+    "code": "I7507",
+    "semester": 3,
+    "files": {
+      "study_plan": "i7507_programa_quimica_laboratorio_quimica_analitica_i.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "quimica_inorganica_ii": {
+    "name": "quimica inorganica ii",
+    "code": "I7491",
+    "semester": 4,
+    "files": {
+      "study_plan": "i7491-inorqui2.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "laboratorio_quimica_inorganica_ii": {
+    "name": "laboratorio de quimica inorganica ii",
+    "code": "I7497",
+    "semester": 4,
+    "files": {
+      "study_plan": "i7497-labq.inor2.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "teoria_quimica_organica_iii": {
+    "name": "teoria de quimica organica iii",
+    "code": "I7489",
+    "semester": 4,
+    "files": {
+      "study_plan": "i7489_programa_teoria_quimica_organica3_lqu.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "laboratorio_quimica_organica_iii": {
+    "name": "laboratorio de quimica organica iii",
+    "code": "I7496",
+    "semester": 4,
+    "files": {
+      "study_plan": "i7496_programa_laboratorio_quimica_organica3_lqu.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "taller_matematicas_aplicada_quimica": {
+    "name": "taller de matematicas aplicada a la quimica",
+    "code": "I6911",
+    "semester": 4,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "fisicoquimica_i": {
+    "name": "fisicoquimica i",
+    "code": "I6928",
+    "semester": 4,
+    "files": {
+      "study_plan": "i6928_programa_fisicoquimica_i_lq.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "laboratorio_fisicoquimica_i": {
+    "name": "laboratorio de fisicoquimica i",
+    "code": "I7486",
+    "semester": 4,
+    "files": {
+      "study_plan": "i7486_programa_lab_fisicoquimica_i_lq.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "quimica_analitica_ii": {
+    "name": "quimica analitica ii",
+    "code": "I7506",
+    "semester": 4,
+    "files": {
+      "study_plan": "i7506_programa_quimica_analitica2.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "laboratorio_quimica_analitica_ii": {
+    "name": "laboratorio de quimica analitica ii",
+    "code": "I7508",
+    "semester": 4,
+    "files": {
+      "study_plan": "i7508_programa_quimica_laboratorio_quimica_analitica2.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "quimica_cuantica": {
+    "name": "quimica cuantica",
+    "code": "I7482_Q",
+    "semester": 5,
+    "files": {
+      "study_plan": "i7482_quimica_cuantica.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "quimica_macromolecular": {
+    "name": "quimica macromolecular",
+    "code": "I7517",
+    "semester": 5,
+    "files": {
+      "study_plan": "i7517_quimica_macromolecular.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "laboratorio_quimica_macromolecular": {
+    "name": "laboratorio de quimica macromolecular",
+    "code": "I7518",
+    "semester": 5,
+    "files": {
+      "study_plan": "i7518_lab_quim_macromolecular.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "probabilidad_estadistica": {
+    "name": "probabilidad y estadistica",
+    "code": "I6920",
+    "semester": 5,
+    "files": {
+      "study_plan": "i6920_probabilidad_y_estadistica_sintetico.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "fisicoquimica_ii": {
+    "name": "fisicoquimica ii",
+    "code": "I7490",
+    "semester": 5,
+    "files": {
+      "study_plan": "i7490_programa_fisicoquimica_ii_lq.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "laboratorio_fisicoquimica_ii": {
+    "name": "laboratorio de fisicoquimica ii",
+    "code": "I7502",
+    "semester": 5,
+    "files": {
+      "study_plan": "i7502_programa_lab_fisicoquimica_ii_lq.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "electromagnetismo": {
+    "name": "electromagnetismo",
+    "code": "I6914",
+    "semester": 5,
+    "files": {
+      "study_plan": "i6914_electromagnetismo.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "taller_resolucion_problemas_electromagnetismo": {
+    "name": "taller de resolucion de problemas de electromagnetismo",
+    "code": "I6915",
+    "semester": 5,
+    "files": {
+      "study_plan": "i6915_taller_de_resolucion_de_problemas_de_electromagnetismo.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "instrumentacion_quimica_analitica_i": {
+    "name": "instrumentacion quimica analitica i",
+    "code": "I7510",
+    "semester": 6,
+    "files": {
+      "study_plan": "i7510_iqaii.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "laboratorio_instrumentacion_quimica_analitica_i": {
+    "name": "laboratorio de instrumentacion quimica analitica i",
+    "code": "I7511",
+    "semester": 6,
+    "files": {
+      "study_plan": "i7511_liqai.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "bioquimica_estructural": {
+    "name": "bioquimica estructural",
+    "code": "I7493",
+    "semester": 6,
+    "files": {
+      "study_plan": "i7493_programa_bioq_estructural_i.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "laboratorio_bioquimica_estructural": {
+    "name": "laboratorio de bioquimica estructural",
+    "code": "I7498",
+    "semester": 6,
+    "files": {
+      "study_plan": "i7498_lab_bioq_estructural_i.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "fundamentos_espectroscopia": {
+    "name": "fundamentos de espectroscopia",
+    "code": "I6926",
+    "semester": 6,
+    "files": {
+      "study_plan": "i6926-fundspect.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "fisicoquimica_iii": {
+    "name": "fisicoquimica iii",
+    "code": "I7492",
+    "semester": 6,
+    "files": {
+      "study_plan": "i7492_fisicoquimica_iii.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "laboratorio_fisicoquimica_iii": {
+    "name": "laboratorio de fisicoquimica iii",
+    "code": "I7503",
+    "semester": 6,
+    "files": {
+      "study_plan": "i7503_programa_lab_fisicoquimica_iii_lq.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "taller_fisica_aplicada_quimica": {
+    "name": "taller de fisica aplicada a la quimica",
+    "code": "I0000",
+    "semester": 6,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "taller_seguimiento_modulo_i": {
+    "name": "taller de seguimiento de modulo i",
+    "code": "I6972",
+    "semester": 6,
+    "files": {
+      "study_plan": "i6972_programa_tsm_i.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "instrumentacion_quimica_analitica_ii": {
+    "name": "instrumentacion quimica analitica ii",
+    "code": "I7512",
+    "semester": 7,
+    "files": {
+      "study_plan": "i7512_liqaii.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "quimica_alimentos_i": {
+    "name": "quimica de alimentos i",
+    "code": "I7519",
+    "semester": 7,
+    "files": {
+      "study_plan": "i7519_quimica_de_alimentos_i.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "electroquimica_i": {
+    "name": "electroquimica i",
+    "code": "I7500",
+    "semester": 7,
+    "files": {
+      "study_plan": "i7500_-_electroquimica_i.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "laboratorio_electroquimica_i": {
+    "name": "laboratorio de electroquimica i",
+    "code": "I7501",
+    "semester": 7,
+    "files": {
+      "study_plan": "i7501_programa_lab_electroquimica_i_lq.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "diseno_experimentos": {
+    "name": "diseno de experimentos",
+    "code": "I7516",
+    "semester": 7,
+    "files": {
+      "study_plan": "i7516_diseno_de_experimentos_0.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "taller_seguimiento_modulo_ii": {
+    "name": "taller de seguimiento de modulo ii",
+    "code": "I7499",
+    "semester": 7,
+    "files": {
+      "study_plan": "i7499_programa_tsmii.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "quimica_legal": {
+    "name": "quimica legal",
+    "code": "I7375",
+    "semester": 8,
+    "files": {
+      "study_plan": "i7514_programa_quimica_legal.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "taller_seguimiento_modulo_iii": {
+    "name": "taller de seguimiento de modulo iii",
+    "code": "I7513",
+    "semester": 8,
+    "files": {
+      "study_plan": "i7513_programa_tsm_iiii_0.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "administracion_recursos_humanos": {
+    "name": "administracion de recursos humanos",
+    "code": "I7378",
+    "semester": 9,
+    "files": {
+      "study_plan": "",
+      "material": ""
+    },
+    "career": "LQUI"
+  },
+  "taller_seguimiento_modulo_iv": {
+    "name": "taller de seguimiento de modulo iv",
+    "code": "I7515",
+    "semester": 9,
+    "files": {
+      "study_plan": "i7515_programa_tsm_iv.pdf",
+      "material": ""
+    },
+    "career": "LQUI"
+  }
+}

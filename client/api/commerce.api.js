@@ -1,3 +1,4 @@
+import { updatePictureRequest } from "./auth.api"
 import axios from "./axios"
 
 export const getCommerce = async () => {
@@ -45,20 +46,9 @@ export const uploadImage = async (file, imageType) => {
     name: file.fileName,
   })
 
-  return axios
-    .post(`/upload?imageType=${imageType}`, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-      transformRequest: (data) => data,
-    })
-    .catch((err) => {
-      console.log("[-] Upload image: ", err)
-      console.log("[-] Upload image message: ", err?.message)
-      console.log("[-] Upload image repsonse message: ", err.response?.message)
-      console.log("[-] Upload image data: ", err.response?.data)
-      throw err.response?.data || err
-    })
+  console.log("Multipart: ", {uri: file.uri, mimeType: file.mimeType, fileName: file.fileName})
+
+  return updatePictureRequest(formData, imageType)
 }
 
 export const deleteCommerce = async (id) => {

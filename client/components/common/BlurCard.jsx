@@ -1,5 +1,5 @@
 import { BlurView } from "expo-blur"
-import { StyleSheet, View } from "react-native"
+import { StyleSheet } from "react-native"
 import { useTheme } from "react-native-paper"
 
 export default ({ styles, borderRadius = 16, children }) => {

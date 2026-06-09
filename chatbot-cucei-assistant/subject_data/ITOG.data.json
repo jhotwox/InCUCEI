@@ -1,0 +1,602 @@
+{
+  "taller_redaccion_tecnica": {
+    "name": "taller de redaccion tecnica",
+    "code": "IC571",
+    "semester": 1,
+    "files": {
+      "study_plan": "taller_de_redaccion_tecnica.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "taller_expresion_oral": {
+    "name": "taller de expresion oral",
+    "code": "IC678",
+    "semester": 1,
+    "files": {
+      "study_plan": "taller_de_expresion_oral.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "algebra": {
+    "name": "algebra",
+    "code": "IC673",
+    "semester": 1,
+    "files": {
+      "study_plan": "algebra.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "geometria_euclidiana": {
+    "name": "geometria euclidiana",
+    "code": "IC674",
+    "semester": 1,
+    "files": {
+      "study_plan": "geometria_euclidiana.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "diseno_asistido_computadora": {
+    "name": "diseno asistido por computadora",
+    "code": "IC580",
+    "semester": 1,
+    "files": {
+      "study_plan": "dibujo_asistido_por_computadora.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "seminario_induccion_topografia_geomatica": {
+    "name": "seminario de induccion para ingenieros topografos geomaticos",
+    "code": "IC693",
+    "semester": 1,
+    "files": {
+      "study_plan": "seminario_de_induccion_a_la_topografia_y_geomatica.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "mecanica": {
+    "name": "mecanica",
+    "code": "IC675",
+    "semester": 1,
+    "files": {
+      "study_plan": "mecanica.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "probabilidad_estadistica": {
+    "name": "probabilidad y estadistica",
+    "code": "IC572",
+    "semester": 2,
+    "files": {
+      "study_plan": "probabilidad_y_estadistica.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "geometria_analitica_tridimensional": {
+    "name": "geometria analitica tridimensional",
+    "code": "IC680",
+    "semester": 2,
+    "files": {
+      "study_plan": "geometria_analitica_tridimensional.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "calculo_diferencial_integral": {
+    "name": "calculo diferencial e integral",
+    "code": "IC681",
+    "semester": 2,
+    "files": {
+      "study_plan": "calculo_diferencial_e_integral_0.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "geometria_proyectiva": {
+    "name": "geometria proyectiva",
+    "code": "IC677",
+    "semester": 2,
+    "files": {
+      "study_plan": "geometria_proyectiva.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "topografia_i": {
+    "name": "topografia i",
+    "code": "IC695",
+    "semester": 2,
+    "files": {
+      "study_plan": "topografia_i_0.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "practicas_topografia_i": {
+    "name": "practicas de topografia i",
+    "code": "IC696",
+    "semester": 2,
+    "files": {
+      "study_plan": "practicas_de_topografia_i.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "taller_optica_geometrica": {
+    "name": "taller de optica geometrica",
+    "code": "IC672",
+    "semester": 2,
+    "files": {
+      "study_plan": "taller_de_optica_geometrica.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "teoria_errores": {
+    "name": "teoria de los errores",
+    "code": "IC691",
+    "semester": 3,
+    "files": {
+      "study_plan": "teoria_de_los_errores_0.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "topografia_ii": {
+    "name": "topografia ii",
+    "code": "IC697",
+    "semester": 3,
+    "files": {
+      "study_plan": "topografia_ii.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "practicas_topografia_ii": {
+    "name": "practicas de topografia ii",
+    "code": "IC698",
+    "semester": 3,
+    "files": {
+      "study_plan": "practicas_de_topografia_ii_0.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "optica_electromagnetismo": {
+    "name": "optica y electromagnetismo",
+    "code": "IC671",
+    "semester": 3,
+    "files": {
+      "study_plan": "optica_y_electromagnetismo.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "ecuaciones_diferenciales": {
+    "name": "ecuaciones diferenciales",
+    "code": "IC682",
+    "semester": 3,
+    "files": {
+      "study_plan": "ecuaciones_diferenciales.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "programacion_aplicada": {
+    "name": "programacion aplicada",
+    "code": "IC686",
+    "semester": 3,
+    "files": {
+      "study_plan": "programacion_aplicada_0.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "astronomia_posicion": {
+    "name": "astronomia de posicion",
+    "code": "IC714",
+    "semester": 3,
+    "files": {
+      "study_plan": "astronomia_de_posicion_1.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "practicas_astronomia_posicion": {
+    "name": "practicas de astronomia de posicion",
+    "code": "IC715",
+    "semester": 3,
+    "files": {
+      "study_plan": "practicas_de_astronomia_de_posicion_0.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "taller_deportes": {
+    "name": "taller de deportes",
+    "code": "IC573",
+    "semester": 3,
+    "files": {
+      "study_plan": "taller_de_deportes.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "topografia_iii": {
+    "name": "topografia iii",
+    "code": "IC707",
+    "semester": 4,
+    "files": {
+      "study_plan": "topografia_iii.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "practicas_topografia_iii": {
+    "name": "practicas de topografia iii",
+    "code": "IC708",
+    "semester": 4,
+    "files": {
+      "study_plan": "practicas_de_topografia_iii_0.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "hidrografia": {
+    "name": "hidrografia",
+    "code": "IC705",
+    "semester": 4,
+    "files": {
+      "study_plan": "hidrografia_0.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "cartografia": {
+    "name": "cartografia",
+    "code": "IC699",
+    "semester": 4,
+    "files": {
+      "study_plan": "cartografia.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "geologia": {
+    "name": "geologia",
+    "code": "IT211",
+    "semester": 4,
+    "files": {
+      "study_plan": "geologia.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "sistema_posicionamiento_global_gps": {
+    "name": "sistema de posicionamiento global (gps)",
+    "code": "IC701",
+    "semester": 5,
+    "files": {
+      "study_plan": "sistemas_de_posicionamiento_global_0.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "quimica_suelos": {
+    "name": "quimica de suelos",
+    "code": "IC676",
+    "semester": 4,
+    "files": {
+      "study_plan": "quimica_de_los_suelos.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "sistemas_coordenadas": {
+    "name": "sistemas de coordenadas",
+    "code": "IC706",
+    "semester": 5,
+    "files": {
+      "study_plan": "sistemas_de_coordenadas.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "taller_cultura": {
+    "name": "taller de cultura",
+    "code": "IC574",
+    "semester": 4,
+    "files": {
+      "study_plan": "taller_de_cultura.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "urbanizacion": {
+    "name": "urbanizacion",
+    "code": "IC710",
+    "semester": 5,
+    "files": {
+      "study_plan": "urbanizacion.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "practicas_urbanizacion": {
+    "name": "practicas de urbanizacion",
+    "code": "IC711",
+    "semester": 5,
+    "files": {
+      "study_plan": "practicas_de_urbanizacion_0.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "seminario_modulo_topografia": {
+    "name": "seminario del modulo de topografia",
+    "code": "IC722",
+    "semester": 5,
+    "files": {
+      "study_plan": "seminario_del_modulo_de_topografia.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "geodesia": {
+    "name": "geodesia",
+    "code": "IC703",
+    "semester": 5,
+    "files": {
+      "study_plan": "geodesia.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "sistemas_informacion_geografica_i": {
+    "name": "sistemas de informacion geografica i",
+    "code": "IC702",
+    "semester": 5,
+    "files": {
+      "study_plan": "sistemas_de_inf_geog_1_0.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "fotogrametria_i": {
+    "name": "fotogrametria i",
+    "code": "IC700",
+    "semester": 5,
+    "files": {
+      "study_plan": "fotogrametria_i.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+    "percepcion_remota_i": {
+    "name": "percepcion remota i",
+    "code": "IC704",
+    "semester": 5,
+    "files": {
+      "study_plan": "percepcion_remota_i.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "taller_formacion_integral": {
+    "name": "taller de formacion integral",
+    "code": "IC684",
+    "semester": 5,
+    "files": {
+      "study_plan": "taller_de_formacion_integral_.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "taller_emprendurismo": {
+    "name": "taller de emprendurismo",
+    "code": "IC685",
+    "semester": 5,
+    "files": {
+      "study_plan": "taller_de_emprendurismo.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "presas_obras_irrigacion": {
+    "name": "presas y obras de irrigacion",
+    "code": "IC712",
+    "semester": 6,
+    "files": {
+      "study_plan": "presas_y_obras_de_irrigacion.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "impacto_ambiental": {
+    "name": "impacto ambiental",
+    "code": "IC688",
+    "semester": 6,
+    "files": {
+      "study_plan": "impacto_ambiental.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "geotecnia": {
+    "name": "geotecnia",
+    "code": "IC692",
+    "semester": 6,
+    "files": {
+      "study_plan": "geotecnia.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "sistemas_informacion_geografica_ii": {
+    "name": "sistemas de informacion geografica ii",
+    "code": "IC718",
+    "semester": 7,
+    "files": {
+      "study_plan": "sistemas_de_inf_geog_2.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "fotogrametria_ii": {
+    "name": "fotogrametria ii",
+    "code": "IC709",
+    "semester": 6,
+    "files": {
+      "study_plan": "fotogrametria_ii.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "percepcion_remota_ii": {
+    "name": "percepcion remota ii",
+    "code": "IC721",
+    "semester": 6,
+    "files": {
+      "study_plan": "percepcion_remota_ii.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "seminario_modulo_geomatica": {
+    "name": "seminario del modulo de geomatica",
+    "code": "IC723",
+    "semester": 6,
+    "files": {
+      "study_plan": "seminario_del_modulo_de_geomatica.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "topografia_legal": {
+    "name": "topografia legal",
+    "code": "IT368",
+    "semester": 7,
+    "files": {
+      "study_plan": "topografia_legal_0.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "analisis_costos_presupuestos": {
+    "name": "analisis de costos y presupuestos",
+    "code": "IC687",
+    "semester": 7,
+    "files": {
+      "study_plan": "analisis_de_costos_y_presupuestos.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "ingenieria_transito": {
+    "name": "ingenieria de transito",
+    "code": "IC713",
+    "semester": 7,
+    "files": {
+      "study_plan": "ingenieria_de_transito.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "topografia_subterranea": {
+    "name": "topografia subterranea",
+    "code": "IC716",
+    "semester": 7,
+    "files": {
+      "study_plan": "topografia_subterranea.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "practica_topografia_subterranea": {
+    "name": "practica de topografia subterranea",
+    "code": "IC717",
+    "semester": 7,
+    "files": {
+      "study_plan": "practca_de_topografia_subterranea.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "practicas_localizacion_trazo_vias": {
+    "name": "practica de localizacion y trazo de vias",
+    "code": "IC720",
+    "semester": 7,
+    "files": {
+      "study_plan": "practicas_de_localizacion_y_trazo_de_vias.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "localizacion_trazo_vias": {
+    "name": "localizacion y trazo de vias",
+    "code": "IC719",
+    "semester": 7,
+    "files": {
+      "study_plan": "localizacion_y_trazo_de_vias.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "seminario_modulo_replanteo": {
+    "name": "seminario del modulo de replanteo de obras de ingenieria",
+    "code": "IC724",
+    "semester": 7,
+    "files": {
+      "study_plan": "seminario_del_modulo_de_replanteo_de_obras_de_ingenieria_0.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "etica_profesional": {
+    "name": "etica profesional",
+    "code": "IC579",
+    "semester": 8,
+    "files": {
+      "study_plan": "etica.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "prevencion_riesgos_ambientales": {
+    "name": "prevencion por riesgos ambientales",
+    "code": "IC690",
+    "semester": 8,
+    "files": {
+      "study_plan": "prevencion_por_riesgos_ambientales.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "recursos_necesidades_mexico": {
+    "name": "recursos y necesidades de mexico",
+    "code": "IC689",
+    "semester": 8,
+    "files": {
+      "study_plan": "rec_y_necesidades_de_mex.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  },
+  "ecologia_paisaje": {
+    "name": "ecologia del paisaje",
+    "code": "IC694",
+    "semester": 8,
+    "files": {
+      "study_plan": "ecologia_del_paisaje.pdf",
+      "material": ""
+    },
+    "career": "ITOG"
+  }
+}

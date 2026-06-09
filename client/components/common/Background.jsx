@@ -1,10 +1,10 @@
-import { StyleSheet, View, Dimensions } from 'react-native'
-import Animated, { useSharedValue, useAnimatedStyle, withRepeat, withTiming, Easing, FadeIn } from 'react-native-reanimated'
+import { StyleSheet, Dimensions } from 'react-native'
+import Animated, { useAnimatedStyle, FadeIn } from 'react-native-reanimated'
 import { useTheme } from 'react-native-paper'
-import { useFocusEffect } from 'expo-router'
 import Svg, { Path } from 'react-native-svg'
-import { useCallback } from 'react'
 import { topography } from '../../assets/backgrounds'
+import { useBackgroundAnimation } from '../../contexts/BackgroundAnimation.context'
+import { memo } from 'react'
 
 const { width: WIDTH, height: HEIGHT } = Dimensions.get('window')
 
@@ -18,44 +18,47 @@ const { width: WIDTH, height: HEIGHT } = Dimensions.get('window')
  *
  * @remarks
  * - Uses useTheme() for default colors.
- * - Uses useSharedValue, useAnimatedStyle and withRepeat/withTiming to drive a continuous translation animation.
- * - Animation is started on focus via useFocusEffect.
- * - The SVG dimensions depend on externally defined WIDTH and HEIGHT and the path data provided by topography.d.
+ * - Uses shared animation state from BackgroundAnimationContext to maintain consistent animation across screens.
+ * - Includes FadeIn animation when mounting for smooth transitions.
+ * - Memoized for performance optimization.
+ * - The SVG dimensions are optimized (1.5x instead of 3x) to reduce processing load.
  */
 
-export default ({ background = null, color = null }) => {
+const Background = ({ background = null, color = null }) => {
   const theme = useTheme()
-  const offset = useSharedValue(0)
-
-  useFocusEffect(
-    useCallback(() => {
-      offset.value = 0
-      offset.value = withRepeat(
-        withTiming(1, { duration: 3000, easing: Easing.inOut(Easing.ease) }),
-        -1,
-        true
-      )
-    }, [])
-  )
+  const { offset } = useBackgroundAnimation()
 
   const animatedStyles = useAnimatedStyle(() => ({
     transform: [
-      { translateX: -600 + offset.value * 20 },
-      { translateY: -400 + offset.value * 10 },
-      // { rotate: interpolate(offset.value, [0, 1], [0, 359], Extrapolation.CLAMP) + 'deg' }  // Example rotation, can be adjusted or removed
+      { translateX: -400 + offset.value * 20 },
+      { translateY: -300 + offset.value * 15 },
     ]
   }))
 
+  const bgColor = background === null ? theme.colors.onSurfaceDisabled : background
+  const fillColor = color === null ? theme.colors.primary : color
+
   return (
-    <View style={[StyleSheet.absoluteFill, { backgroundColor: background === null ? theme.colors.onSurfaceDisabled : background }]}>
+    <Animated.View 
+      // entering={FadeIn.duration(300)} 
+      style={[StyleSheet.absoluteFill, { backgroundColor: bgColor }]}
+    >
       <Animated.View style={[StyleSheet.absoluteFill, animatedStyles]} pointerEvents={'none'}>
-        <Svg width={WIDTH * 3} height={HEIGHT * 3} viewBox={`0 0 ${WIDTH} ${HEIGHT}`} style={{ position: 'absolute', top: 0, left: 0 }}>
+        <Svg 
+          width={WIDTH * 1.5}
+          height={HEIGHT} 
+          viewBox={`0 0 ${WIDTH} ${HEIGHT * 1/2}`} 
+          style={{ position: 'absolute', top: 0, left: 0 }}
+          transform={`scale(2)`}
+        >
           <Path
-            fill={color === null ? theme.colors.primary : color}
+            fill={fillColor}
             d={topography.d}
           />
         </Svg>
       </Animated.View>
-    </View>
+    </Animated.View>
   )
 }
+
+export default memo(Background)

@@ -1,6 +1,8 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react"
+import { AppState } from "react-native"
 import { io } from "socket.io-client"
 import { useAuth } from "./Auth.context"
+import { usePushNotifications } from "../hooks/usePushNotifications"
 
 
 
@@ -16,19 +18,23 @@ export const SocketProvider = ({ children }) => {
   const { token, user } = useAuth()
   const socketRef = useRef(null)
 
+  usePushNotifications({ enabled: Boolean(token && user), userId: user?.id })
+
   useEffect(() => {
     if (token && user) {
       // Conect to socket server
-      const newSocket = io(`http://${process.env.EXPO_PUBLIC_SERVER_IP}:3000`, {
-        transports: ["websocket"],
+      const socketUrl = `${process.env.EXPO_PUBLIC_SERVER_IP}`
+      const newSocket = io(socketUrl, {
+        transports: ["websocket", "polling"],
         autoConnect: true,
+        reconnection: true,
       })
 
       newSocket.on("connect", () => {
         console.log("Socket connected: ", newSocket.id)
         setConnected(true)
 
-        newSocket.emit("joinUser", user.id)
+        newSocket.emit("joinUser", String(user.id))
       })
 
       newSocket.on("disconnect", () => {
@@ -59,6 +65,23 @@ export const SocketProvider = ({ children }) => {
       }
     }
   }, [token, user])
+
+  useEffect(() => {
+    if (!socket || !connected || !user?.id) return
+
+    const sendState = (nextState) => {
+      const state = nextState === "active" ? "active" : "background"
+      socket.emit("appState", { state })
+    }
+
+    // Send initial state
+    sendState(AppState.currentState)
+
+    const subscription = AppState.addEventListener("change", sendState)
+    return () => {
+      subscription?.remove?.()
+    }
+  }, [socket, connected, user?.id])
 
   const joinRoom = (roomId) => {
     if (socket) {

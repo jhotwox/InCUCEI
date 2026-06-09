@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { View } from "react-native"
 import { Button, Text, useTheme } from "react-native-paper"
-import { Background, Input, FileInput, BlurCard } from "../../../components"
+import { Background, Input, FileInput, BlurCard, AnimatedContainer } from "../../../components"
 import {
   getCommerce,
   createCommerce,
@@ -9,20 +9,8 @@ import {
   deleteCommerce,
 } from "../../../api/commerce.api"
 import { useToast } from "../../../contexts/Toast.context"
-
-const createFileObjectFromUrl = (url, type) => {
-  if (!url) return null
-
-  return {
-    uri: url.startsWith("http")
-      ? url
-      : `${process.env.EXPO_PUBLIC_API_URL}${url}`,
-    name: `${type}_image.jpg`,
-    type: "image/jpeg",
-    isUploaded: true,
-    uploadedUrl: url,
-  }
-}
+import { createFileObjectFromUrl } from "../../../utils/generateFileObjectFromURL"
+import { useLayout } from "../../../layout/providers.layout"
 
 export default () => {
   const [name, setName] = useState("")
@@ -36,15 +24,11 @@ export default () => {
   const logoUrlRef = useRef(null)
   const bannerRef = useRef(null)
 
-  const inputs = [nameRef, descriptionRef]
-
   const theme = useTheme()
   const { showToast } = useToast()
-
-  // useEffect(() => {
-  //   console.log("Logo URL changed: ", logoUrl)
-  //   console.log("Banner URL changed: ", bannerUrl)
-  // }, [logoUrl, bannerUrl])
+  const { tabBarHeight } = useLayout()
+  
+  const inputs = [nameRef, descriptionRef]
 
   useEffect(() => {
     const fetchCommerce = async () => {
@@ -61,6 +45,7 @@ export default () => {
               data.commerce.logoUrl,
               "logo"
             )
+            console.log("Logo File: ", logoFile)
             setLogoUrl(logoFile)
           }
 
@@ -84,6 +69,7 @@ export default () => {
 
     fetchCommerce()
   }, [])
+
 
   const handleSave = async () => {
     for (let input of inputs) {
@@ -166,63 +152,74 @@ export default () => {
     console.log("Banner seleccionado:", file)
   }
 
-  return (
-    <View style={{ flex: 1, padding: 16 }}>
-      <Background background={theme.colors.onPrimary} />
-      <Text
-        variant="titleLarge"
-        style={{ marginBottom: 16, textAlign: "center", fontWeight: "bold" }}
-      >
-        {!commerce
-          ? "Crear comercio".toUpperCase()
-          : "Actualizar comercio".toUpperCase()}
-      </Text>
+  // Componentes divididos para animación
+  const TitleSection = (
+    <Text
+      variant="titleLarge"
+      style={{ marginBottom: 16, textAlign: "center", fontWeight: "bold", color: theme.colors.tertiary }}
+    >
+      {!commerce
+        ? "Crear comercio".toUpperCase()
+        : "Actualizar comercio".toUpperCase()}
+    </Text>
+  )
 
-      <BlurCard styles={{ marginTop: 8, paddingVertical: 8, paddingHorizontal: 18 }}>
-          <Input
-            label="Nombre"
-            value={name}
-            onChangeText={setName}
-            ref={nameRef}
-            leftIcon="format-title"
-            style={{ marginTop: 8 }}
-          />
-          <Input
-            label="Descripción"
-            value={description}
-            onChangeText={setDescription}
-            leftIcon="view-agenda"
-            multiline
-            numberOfLines={3}
-            ref={descriptionRef}
-          />
-      </BlurCard>
+  const FormSection = (
+    <BlurCard styles={{ marginTop: 8, paddingVertical: 8, paddingHorizontal: 18 }}>
+      <Input
+        label="Nombre"
+        value={name}
+        onChangeText={setName}
+        leftIcon="format-title"
+        style={{ marginTop: 8 }}
+        ref={nameRef}
+        key="name"
+        />
+      <Input
+        label="Descripción"
+        value={description}
+        onChangeText={setDescription}
+        leftIcon="view-agenda"
+        multiline
+        numberOfLines={3}
+        ref={descriptionRef}
+        key="description"
+      />
+    </BlurCard>
+  )
 
-      <BlurCard styles={{ paddingBottom: 20, paddingHorizontal: 18 }}>
-        <FileInput
-          placeholder="Selecciona logo"
-          value={logoUrl}
-          // selectedFile={logoUrl}
-          onFileSelect={handleLogoSelect}
-          type="logo"
-          ref={logoUrlRef}
+  const FileInputsSection = (
+    <BlurCard styles={{ paddingBottom: 20, paddingHorizontal: 18 }}>
+      <FileInput
+        placeholder="Selecciona logo"
+        value={logoUrl}
+        onFileSelect={handleLogoSelect}
+        type="logo"
+        ref={logoUrlRef}
+        key="logo"
         />
-        <FileInput
-          // label="Imagen de productos"
-          placeholder="Selecciona banner"
-          value={bannerUrl}
-          onFileSelect={handleBannerSelect}
-          type="banner"
-          ref={bannerRef}
-        />
-      </BlurCard>
-      
+      <FileInput
+        placeholder="Selecciona banner"
+        value={bannerUrl}
+        onFileSelect={handleBannerSelect}
+        type="banner"
+        ref={bannerRef}
+        key="banner"
+      />
+    </BlurCard>
+  )
+
+  const ButtonsSection = (
+    <>
       <Button
         icon={!commerce ? "plus" : "content-save"}
         mode="contained"
         style={{ marginTop: 16 }}
         onPress={handleSave}
-      >
+        buttonColor={commerce && theme.colors.secondary}
+        textColor={commerce && theme.colors.onSecondary}
+        key="save"
+        >
         {!commerce ? "Crear" : "Actualizar"}
       </Button>
       {commerce && (
@@ -230,12 +227,29 @@ export default () => {
           onPress={handleDelete}
           mode="contained"
           style={{ marginTop: 8 }}
-          buttonColor={theme.colors.error}
+          buttonColor={theme.colors.delete}
+          textColor={theme.colors.onDelete}
           icon="delete"
+          key="delete"
         >
           Eliminar
         </Button>
       )}
+    </>
+  )
+
+  return (
+    <View style={{ flex: 1, padding: 16 }}>
+      <Background background={theme.colors.onPrimary} />
+      <AnimatedContainer 
+        animation="fadeInUp"
+        delays={[0, 200, 400, 600]}
+        // scrollProps={{ contentContainerStyle: { paddingBottom: 20 } }}
+        // resetOnFocus
+        style={{ marginBottom: tabBarHeight }}
+      >
+        {[TitleSection, FormSection, FileInputsSection, ButtonsSection]}
+      </AnimatedContainer>
     </View>
   )
 }

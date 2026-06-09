@@ -1,33 +1,819 @@
-from typing import Any, Dict, List, Text
-import requests
+from __future__ import annotations
+
+from dataclasses import dataclass
+import difflib
+import json
+import os
+import re
+import unicodedata
+from typing import Any, Dict, List, Optional, Text, Tuple
 
 from rasa_sdk import Action, Tracker
-from rasa_sdk.events import SlotSet
 from rasa_sdk.executor import CollectingDispatcher
+from rasa_sdk.events import SlotSet
 
 
-class ActionFetchAcademicMaterials(Action):
+DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
+SUBJECTS_JSON_PATH = os.path.join(DATA_DIR, "subjects.json")
+PLACES_JSON_PATH = os.path.join(DATA_DIR, "places.json")
+CAREERS_JSON_PATH = os.path.join(DATA_DIR, "careers.json")
+
+# Local catalog paths (keeps this action server self-contained).
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+SUBJECT_DATA_DIR = os.path.join(PROJECT_ROOT, "subject_data")
+
+# This should point to the InCUCEI server serving /files/* endpoints.
+SERVER_BASE_URL = os.environ.get("INCUCEI_SERVER_BASE_URL", "http://localhost:3000")
+
+
+def _strip_accents(text: str) -> str:
+    return "".join(
+        ch for ch in unicodedata.normalize("NFD", text) if unicodedata.category(ch) != "Mn"
+    )
+
+
+def _roman_to_arabic_end(text: str) -> str:
+    """Convert trailing roman numerals (I, II, III, IV, V...) to arabic digits."""
+    roman_map = {
+        "i": "1",
+        "ii": "2",
+        "iii": "3",
+        "iv": "4",
+        "v": "5",
+        "vi": "6",
+        "vii": "7",
+        "viii": "8",
+        "ix": "9",
+        "x": "10",
+    }
+
+    parts = text.strip().split()
+    if not parts:
+        return text
+
+    last = parts[-1].lower()
+    if last in roman_map:
+        parts[-1] = roman_map[last]
+        return " ".join(parts)
+    return text
+
+
+def _normalize(text: str) -> str:
+    text = text or ""
+    text = _strip_accents(text)
+    text = text.lower().strip()
+    text = _roman_to_arabic_end(text)
+    text = re.sub(r"[^a-z0-9\s]", " ", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
+
+
+@dataclass(frozen=True)
+class SubjectEntry:
+    key: str
+    career: str
+    name: str
+    code: str
+    material_file: str
+    study_plan_file: str
+    name_search: str
+    acronyms: Tuple[str, ...]
+    token_set: frozenset[str]
+
+
+STOPWORDS = {"de", "la", "del", "y", "e", "en", "a", "al", "para", "carrera", "el", "los", "las", "un", "una", "unos", "unas"}
+
+ACRONYM_EQUIVALENTS = {
+    "DB": "BD",
+    "AI": "IA",
+}
+
+TOKEN_EQUIVALENTS = {
+    "base": "bases",
+    "dato": "datos",
+    "servidor": "servidores",
+    "red": "redes",
+    "sim": "simulacion",
+    "sis": "sistemas",
+    "lab": "laboratorio",
+    "ecucacion": "ecuaciones",
+    "diferencial": "diferenciales",
+    "algoritmos": "algoritmia",
+}
+
+
+def _is_likely_acronym_query(query: str) -> bool:
+    q = str(query or "").strip()
+    if not q:
+        return False
+    return bool(re.fullmatch(r"[A-Z0-9]{2,6}", q))
+
+
+def _sanitize_acronym_query(query: str) -> str:
+    raw = str(query or "")
+    return re.sub(r"[^A-Za-z0-9]", "", raw).upper()
+
+
+def _should_treat_as_acronym(query_raw: str, acronym: str) -> bool:
+    if not _is_likely_acronym_query(acronym):
+        return False
+
+    parts = [p for p in str(query_raw or "").strip().split() if p]
+    if len(parts) <= 1:
+        return True
+
+    # If it's spaced/dotted letters like "B. D" treat as acronym.
+    all_single_char = all(len(_sanitize_acronym_query(p)) == 1 for p in parts)
+    return all_single_char
+
+
+def _normalize_for_search(text: str) -> str:
+    # Keep it similar to server/src/services/subjects.search.js
+    s = _normalize(str(text or ""))
+    s = re.sub(r"[^a-z0-9\s]", " ", s)
+    s = re.sub(r"\s+", " ", s).strip()
+    return s
+
+
+def _tokenize(text: str) -> List[str]:
+    return [t for t in _normalize_for_search(text).split(" ") if t]
+
+
+def _remove_stopwords(tokens: List[str]) -> List[str]:
+    return [t for t in tokens if t not in STOPWORDS]
+
+
+def _expand_abbreviations(tokens: List[str]) -> List[str]:
+    expanded: List[str] = []
+    for token in tokens:
+        t = token.lower()
+        if t in {"adm", "admin", "ad"}:
+            expanded.append("administracion")
+            continue
+        if t == "ing":
+            expanded.append("ingenieria")
+            continue
+        if t in {"s", "soft", "sw"}:
+            expanded.append("software")
+            continue
+        if t in {"bd", "db"}:
+            expanded.extend(["bases", "datos"])
+            continue
+        expanded.append(t)
+
+    # Domain shortcut: "calculo 1" often means "calculo diferencial".
+    if "calculo" in expanded and "1" in expanded:
+        out = [t for t in expanded if t != "1"]
+        out.append("diferencial")
+        return out
+
+    return expanded
+
+
+def _normalize_token(token: str) -> str:
+    t = str(token or "").lower()
+    if not t:
+        return ""
+    if t.isdigit():
+        return t
+
+    if t in TOKEN_EQUIVALENTS:
+        return TOKEN_EQUIVALENTS[t]
+
+    # If it already is a canonical value, keep it.
+    for _from, _to in TOKEN_EQUIVALENTS.items():
+        if t == _to:
+            return _to
+        if t == _from:
+            return _to
+
+    return t
+
+
+def _normalize_tokens(tokens: List[str]) -> List[str]:
+    return [t for t in (_normalize_token(x) for x in tokens) if t]
+
+
+def _is_roman_numeral_token(token: str) -> bool:
+    t = str(token or "").lower()
+    return bool(re.fullmatch(r"i|ii|iii|iv|v|vi|vii|viii|ix|x", t))
+
+
+def _acronym_from_tokens(tokens: List[str]) -> str:
+    if not tokens:
+        return ""
+    out = []
+    for t in tokens:
+        if t.isdigit():
+            out.append(t)
+            continue
+        if _is_roman_numeral_token(t):
+            out.append(t.upper())
+            continue
+        out.append((t[0] if t else "").upper())
+    return "".join(out)
+
+
+def _tokenize_for_acronyms_raw(text: str) -> List[str]:
+    # Similar to search tokenization but DO NOT convert roman numerals.
+    s = str(text or "").lower()
+    s = _strip_accents(s)
+    s = re.sub(r"[^a-z0-9\s]", " ", s)
+    s = re.sub(r"\s+", " ", s).strip()
+    return [t for t in s.split(" ") if t]
+
+
+def _generate_acronyms(name: str) -> List[str]:
+    tokens_all_raw = _tokenize_for_acronyms_raw(name)
+    tokens_no_stop_raw = _remove_stopwords(tokens_all_raw)
+
+    tokens_all_formatted = _tokenize(name)
+    tokens_no_stop_formatted = _remove_stopwords(tokens_all_formatted)
+
+    out: set[str] = set()
+
+    out.add(_acronym_from_tokens(tokens_no_stop_raw))
+    out.add(_acronym_from_tokens(tokens_no_stop_formatted))
+
+    all_acronym = _acronym_from_tokens(tokens_all_raw)
+    if 2 <= len(all_acronym) <= 6:
+        out.add(all_acronym)
+
+    max_prefix = min(4, len(tokens_all_raw))
+    for n in range(2, max_prefix + 1):
+        a = _acronym_from_tokens(tokens_all_raw[:n])
+        if 2 <= len(a) <= 6:
+            out.add(a)
+
+    max_prefix_no_stop = min(4, len(tokens_no_stop_raw))
+    for n in range(2, max_prefix_no_stop + 1):
+        a = _acronym_from_tokens(tokens_no_stop_raw[:n])
+        if 2 <= len(a) <= 6:
+            out.add(a)
+
+    return [a for a in out if a]
+
+
+def _load_subjects_from_local_data_files() -> Dict[str, Dict[str, Any]]:
+    """Reads subject catalogs from subject_data/*.data.json.
+
+    This action server must be deployable without the monorepo `server/` folder.
+    """
+    if not os.path.isdir(SUBJECT_DATA_DIR):
+        return {}
+
+    subjects_by_career: Dict[str, Dict[str, Any]] = {}
+    for filename in os.listdir(SUBJECT_DATA_DIR):
+        if not filename.endswith(".data.json"):
+            continue
+        career = filename.split(".")[0].upper()
+        if not re.fullmatch(r"[A-Z]{4}", career):
+            continue
+
+        file_path = os.path.join(SUBJECT_DATA_DIR, filename)
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                subjects_by_career[career] = json.load(f)
+        except Exception:
+            continue
+
+    return subjects_by_career
+
+
+def _load_subjects_from_local_json() -> Dict[str, Dict[str, Any]]:
+    if not os.path.exists(SUBJECTS_JSON_PATH):
+        return {}
+    with open(SUBJECTS_JSON_PATH, "r", encoding="utf-8") as f:
+        raw = json.load(f)
+    if isinstance(raw, dict):
+        return raw
+    return {}
+
+
+def _build_subject_index(subjects_by_career: Dict[str, Dict[str, Any]]) -> Tuple[List[SubjectEntry], Dict[Tuple[str, str], SubjectEntry]]:
+    entries: List[SubjectEntry] = []
+    by_key: Dict[Tuple[str, str], SubjectEntry] = {}
+
+    for career_key, career_subjects in subjects_by_career.items():
+        if not isinstance(career_subjects, dict):
+            continue
+        for key, subject in career_subjects.items():
+            if not isinstance(subject, dict):
+                continue
+            files = subject.get("files", {}) or {}
+            name = subject.get("name")
+            if not name:
+                # Backward compatibility with older subjects.json ("names" list)
+                names = subject.get("names", []) or []
+                name = names[0] if names else key
+
+            tokens = _normalize_tokens(
+                _expand_abbreviations(_remove_stopwords(_tokenize(name)))
+            )
+            name_search = " ".join(tokens)
+
+            acronyms = sorted(set(_generate_acronyms(name) + _generate_acronyms(_normalize(name))))
+            token_set = frozenset(tokens)
+
+            entry = SubjectEntry(
+                key=str(key),
+                career=str(subject.get("career", career_key)).upper(),
+                name=str(name),
+                code=str(subject.get("code", "")),
+                material_file=str(files.get("material", "")),
+                study_plan_file=str(files.get("study_plan", "")),
+                name_search=name_search,
+                acronyms=tuple(acronyms),
+                token_set=token_set,
+            )
+            entries.append(entry)
+            by_key[(entry.career, entry.key)] = entry
+
+    return entries, by_key
+
+
+def _load_career_catalog(default_codes: List[str]) -> List[Dict[str, Any]]:
+    # Optional, used to resolve aliases like "informatica" -> INNI/INFO.
+    if os.path.exists(CAREERS_JSON_PATH):
+        try:
+            with open(CAREERS_JSON_PATH, "r", encoding="utf-8") as f:
+                raw = json.load(f)
+            if isinstance(raw, list):
+                return raw
+        except Exception:
+            pass
+
+    # Fallback: known codes from data.
+    return [{"code": c, "name": "", "aliases": []} for c in sorted(default_codes)]
+
+
+def _build_career_resolver(catalog: List[Dict[str, Any]]) -> Tuple[set[str], Dict[str, List[str]]]:
+    known_codes: set[str] = set()
+    alias_to_codes: Dict[str, List[str]] = {}
+
+    for item in catalog:
+        code = str(item.get("code", "")).upper().strip()
+        if not code:
+            continue
+        known_codes.add(code)
+
+        name = str(item.get("name", "") or "").strip()
+        aliases = item.get("aliases", []) or []
+
+        for raw in [name, *aliases]:
+            norm = _normalize(str(raw or ""))
+            if not norm:
+                continue
+            alias_to_codes.setdefault(norm, [])
+            if code not in alias_to_codes[norm]:
+                alias_to_codes[norm].append(code)
+
+    return known_codes, alias_to_codes
+
+
+def _resolve_career_code(value: str, known_codes: set[str], alias_to_codes: Dict[str, List[str]]) -> Tuple[Optional[str], Optional[List[str]]]:
+    # Returns (code, ambiguous_codes)
+    if not value:
+        return None, None
+
+    # 1) Direct code inside text
+    upper = str(value).upper()
+    for token in re.findall(r"\b[A-Z]{4}\b", upper):
+        if token in known_codes:
+            return token, None
+
+    # 2) Alias/name match
+    norm = _normalize(str(value))
+    if not norm:
+        return None, None
+
+    candidates = set()
+    for alias_norm, codes in alias_to_codes.items():
+        if not alias_norm:
+            continue
+        if norm == alias_norm or norm in alias_norm or alias_norm in norm:
+            for c in codes:
+                if c in known_codes:
+                    candidates.add(c)
+
+    if len(candidates) == 1:
+        return next(iter(candidates)), None
+    if len(candidates) > 1:
+        return None, sorted(candidates)
+    return None, None
+
+
+def _resolve_subject(subject_query: str, career: Optional[str], subjects_index: List[SubjectEntry], subjects_by_key: Dict[Tuple[str, str], SubjectEntry]) -> Optional[SubjectEntry]:
+    query_raw = str(subject_query or "").strip()
+    if not query_raw:
+        return None
+
+    career_key = str(career).upper().strip() if career else None
+
+    # 1) Exact key match
+    if career_key:
+        key = query_raw.lower()
+        exact = subjects_by_key.get((career_key, key))
+        if exact:
+            return exact
+
+    # 2) Exact code match
+    code = query_raw.upper().strip()
+    for s in subjects_index:
+        if career_key and s.career != career_key:
+            continue
+        if s.code and s.code.upper() == code:
+            return s
+
+    # 3) Acronym match
+    ac_raw = _sanitize_acronym_query(query_raw)
+    ac_canonical = ACRONYM_EQUIVALENTS.get(ac_raw, ac_raw)
+    ac_candidates = [x for x in {ac_raw, ac_canonical} if x]
+
+    if _should_treat_as_acronym(query_raw, ac_raw):
+        matches = [
+            s
+            for s in subjects_index
+            if (not career_key or s.career == career_key)
+            and any(ac in s.acronyms for ac in ac_candidates)
+        ]
+        if matches:
+            return matches[0]
+
+        prefix_matches = [
+            s
+            for s in subjects_index
+            if (not career_key or s.career == career_key)
+            and any(any(a.startswith(ac) for a in s.acronyms) for ac in ac_candidates)
+        ]
+        if prefix_matches:
+            return prefix_matches[0]
+
+        # If it looks like an acronym and didn't match, we still allow 
+        # falling through to token-set/fuzzy matching for longer queries.
+        if len(ac_raw) < 3:
+            return None
+
+    # 3.5) Token subset match
+    query_tokens = _normalize_tokens(
+        _expand_abbreviations(_remove_stopwords(_tokenize(query_raw)))
+    )
+    if query_tokens:
+        candidates = [s for s in subjects_index if not career_key or s.career == career_key]
+        subset_matches: List[Tuple[int, SubjectEntry]] = []
+        for s in candidates:
+            if all(qt in s.token_set for qt in query_tokens):
+                extra = max(0, len(s.token_set) - len(query_tokens))
+                subset_matches.append((extra, s))
+        if subset_matches:
+            subset_matches.sort(key=lambda x: x[0])
+            # print(f"DEBUG: Found {len(subset_matches)} subset matches for {query_raw}. Best: {subset_matches[0][1].name}")
+            return subset_matches[0][1]
+
+    # 4) Fuzzy match over normalized query
+    query = " ".join(query_tokens)
+    if not query:
+        return None
+
+    best: Optional[Tuple[float, SubjectEntry]] = None
+    for s in subjects_index:
+        if career_key and s.career != career_key:
+            continue
+        ratio = difflib.SequenceMatcher(None, query, s.name_search).ratio()
+        if best is None or ratio > best[0]:
+            best = (ratio, s)
+
+    if best and best[0] >= 0.55:
+        return best[1]
+    return None
+
+
+def _load_places() -> List[Dict[str, Any]]:
+    if not os.path.exists(PLACES_JSON_PATH):
+        return []
+    with open(PLACES_JSON_PATH, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+_subjects_from_local_files = _load_subjects_from_local_data_files()
+_subjects_from_local_json = _load_subjects_from_local_json()
+
+# Prefer the shipped subject_data/*.data.json catalog; fallback to data/subjects.json
+SUBJECTS_RAW = _subjects_from_local_files or _subjects_from_local_json
+SUBJECTS, SUBJECTS_BY_KEY = _build_subject_index(SUBJECTS_RAW)
+
+_career_catalog = _load_career_catalog(list(SUBJECTS_RAW.keys()))
+KNOWN_CAREER_CODES, CAREER_ALIAS_TO_CODES = _build_career_resolver(_career_catalog)
+
+PLACES = _load_places()
+
+
+def _find_subject(query: str, career: Optional[str]) -> Optional[SubjectEntry]:
+    return _resolve_subject(query, career, SUBJECTS, SUBJECTS_BY_KEY)
+
+
+def _build_material_url(entry: SubjectEntry) -> str:
+    # Mirrors server/src/services/subjects.service.js
+    return f"{SERVER_BASE_URL}/files/material/{entry.career}/{entry.material_file}"
+
+
+def _build_study_plan_url(entry: SubjectEntry) -> str:
+    return f"{SERVER_BASE_URL}/files/study_plan/{entry.career}/{entry.study_plan_file}"
+
+
+from rapidfuzz import process, fuzz
+
+def _find_place(query: str) -> Optional[Dict[str, Any]]:
+    normalized_query = _normalize(query)
+    if not normalized_query:
+        return None
+
+    # Pre-calculate normalized names and aliases for all places
+    choices = []
+    place_map = {}
+    
+    for place in PLACES:
+        name = place.get("name", "")
+        norm_name = _normalize(name)
+        choices.append(norm_name)
+        place_map[norm_name] = place
+        
+        aliases = place.get("alias") or place.get("aliases") or []
+        for a in aliases:
+            norm_a = _normalize(str(a))
+            if norm_a:
+                choices.append(norm_a)
+                place_map[norm_a] = place
+
+    # 1) Try exact substring match first (as before)
+    for choice in choices:
+        if normalized_query == choice:
+            return place_map[choice]
+            
+    # 2) Fuzzy search
+    best_match = process.extractOne(normalized_query, choices, scorer=fuzz.token_set_ratio)
+    
+    if best_match and best_match[1] >= 85:
+        return place_map[best_match[0]]
+        
+    return None
+
+
+def _get_entity_value(tracker: Tracker, entity_name: str) -> Optional[str]:
+    entities = tracker.latest_message.get("entities", []) or []
+    for ent in entities:
+        if ent.get("entity") == entity_name and ent.get("value"):
+            return str(ent.get("value"))
+    return None
+
+
+class ActionGetSubjectMaterial(Action):
+    def name(self) -> Text:
+        return "action_get_subject_material"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]):
+        topic = tracker.get_slot("topic") or _get_entity_value(tracker, "subject")
+        if not topic:
+            dispatcher.utter_message(response="utter_ask_topic")
+            return []
+
+        # We no longer need career_code for general scholar search, 
+        # but we keep it if available to refine the search.
+        query = str(topic)
+        encoded_topic = re.sub(r"\s+", "+", query.strip())
+        scholar_url = f"https://scholar.google.com/scholar?q={encoded_topic}"
+
+        dispatcher.utter_message(
+            text=f"Aquí tienes una búsqueda en Google Scholar sobre **{query}**: [Ver resultados]({scholar_url})",
+            custom={
+                "action": "open_url",
+                "url": scholar_url,
+                "topic": query,
+            },
+        )
+        return [SlotSet("topic", query)]
+
+
+class ActionGetSubjectStudyPlan(Action):
+    def name(self) -> Text:
+        return "action_get_subject_study_plan"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]):
+        topic = tracker.get_slot("topic") or _get_entity_value(tracker, "subject")
+        career_raw = tracker.get_slot("career_code") or _get_entity_value(tracker, "career_code")
+        if not topic:
+            dispatcher.utter_message(response="utter_ask_topic")
+            return []
+
+        if not career_raw:
+            dispatcher.utter_message(response="utter_ask_career_code")
+            return []
+
+        career_code, ambiguous = _resolve_career_code(str(career_raw), KNOWN_CAREER_CODES, CAREER_ALIAS_TO_CODES)
+        if ambiguous:
+            dispatcher.utter_message(
+                text=(
+                    "Necesito el código exacto de tu carrera. "
+                    f"Con ese nombre podría ser: {', '.join(ambiguous)}. "
+                    "¿Cuál es el tuyo?"
+                )
+            )
+            return [SlotSet("career_code", None)]
+
+        if not career_code:
+            dispatcher.utter_message(response="utter_invalid_career_code")
+            return [SlotSet("career_code", None)]
+
+        entry = _find_subject(str(topic), career_code)
+        if not entry or not entry.study_plan_file:
+            dispatcher.utter_message(text=f"Lo siento, no tengo el plan de estudios de **{topic}** disponible para la carrera **{career_code}**.")
+            return [SlotSet("topic", str(topic)), SlotSet("career_code", career_code)]
+
+        url = _build_study_plan_url(entry)
+        dispatcher.utter_message(
+            text=f"Aquí encontrarás el plan de estudios de **{entry.name or topic}**: [{entry.study_plan_file}]({url})",
+            custom={
+                "subject": entry.name or str(topic),
+                "code": entry.code,
+                "file": entry.study_plan_file,
+                "path": url,
+                "career": entry.career,
+            },
+        )
+        return [SlotSet("topic", str(topic)), SlotSet("career_code", career_code)]
+
+
+class ActionGetCurriculum(Action):
+    def name(self) -> Text:
+        return "action_get_curriculum"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]):
+        career_raw = tracker.get_slot("career_code") or _get_entity_value(tracker, "career_code")
+        if not career_raw:
+            dispatcher.utter_message(response="utter_ask_career_code")
+            return []
+
+        career_code, ambiguous = _resolve_career_code(str(career_raw), KNOWN_CAREER_CODES, CAREER_ALIAS_TO_CODES)
+        if ambiguous:
+            dispatcher.utter_message(
+                text=(
+                    "Necesito el código exacto de tu carrera. "
+                    f"Con ese nombre podría ser: {', '.join(ambiguous)}. "
+                    "¿Cuál es el tuyo?"
+                )
+            )
+            return [SlotSet("career_code", None)]
+
+        if not career_code:
+            dispatcher.utter_message(response="utter_invalid_career_code")
+            return [SlotSet("career_code", None)]
+
+        file_name = f"{career_code}.pdf"
+        url = f"{SERVER_BASE_URL}/files/Mallas/{file_name}"
+        dispatcher.utter_message(
+            text=f"Aquí está la malla curricular de **{career_code}**: [{file_name}]({url})",
+            custom={
+                "career": career_code,
+                "file": file_name,
+                "path": url,
+            },
+        )
+        return [SlotSet("career_code", career_code)]
+
+
+class ActionShowLocationOnMap(Action):
+    def name(self) -> Text:
+        return "action_show_location_on_map"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]):
+        location = tracker.get_slot("location_name") or _get_entity_value(tracker, "location")
+        if not location:
+            dispatcher.utter_message(response="utter_ask_location")
+            return []
+
+        place = _find_place(str(location))
+        if not place:
+            dispatcher.utter_message(
+                text=f"No encontré el lugar \"{location}\" en el mapa del campus. ¿Puedes darme más detalles?"
+            )
+            return []
+
+        dispatcher.utter_message(
+            text=f"Perfecto, te estoy mostrando **{place.get('name')}** en el mapa 📍",
+            custom={
+                "action": "navigate_to_map",
+                "success": True,
+                "placeId": place.get("id"),
+                "placeName": place.get("name"),
+                "placeType": place.get("type"),
+                "coordinates": place.get("coord"),
+            },
+        )
+        return [SlotSet("location_name", str(location))]
+
+
+CONTACTS_JSON_PATH = os.path.join(DATA_DIR, "contacts.json")
+
+def _load_contacts() -> Dict[str, Any]:
+    if not os.path.exists(CONTACTS_JSON_PATH):
+        return {}
+    with open(CONTACTS_JSON_PATH, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+CONTACTS = _load_contacts()
+
+def _find_contact(query: str) -> Optional[Tuple[str, Dict[str, Any]]]:
+    normalized_query = _normalize(query)
+    if not normalized_query:
+        return None
+
+    # Remove generic prefixes that users might add
+    prefixes_to_remove = ["quiero contactar a ", "quiero contactar ", "contacto de ", "correo de ", "telefono de ", "informacion de ", "horario de "]
+    for prefix in prefixes_to_remove:
+        if normalized_query.startswith(prefix):
+            normalized_query = normalized_query[len(prefix):].strip()
+
+    choices = []
+    contact_map = {}
+    
+    for key, data in CONTACTS.items():
+        # Treat the key as the primary searchable name (replace underscores with spaces)
+        readable_key = key.replace("_", " ")
+        norm_key = _normalize(readable_key)
+        
+        choices.append(norm_key)
+        contact_map[norm_key] = (readable_key, data)
+        
+        # Also index the 'nombre' field if available
+        if "nombre" in data and isinstance(data["nombre"], str):
+            norm_name = _normalize(data["nombre"])
+            if norm_name:
+                choices.append(norm_name)
+                contact_map[norm_name] = (readable_key, data)
+                
+        # Also index 'puesto' field
+        if "puesto" in data and isinstance(data["puesto"], str):
+             norm_puesto = _normalize(data["puesto"])
+             if norm_puesto:
+                 choices.append(norm_puesto)
+                 contact_map[norm_puesto] = (readable_key, data)
+
+    # 1) Try exact substring match
+    for choice in choices:
+        if normalized_query == choice or normalized_query in choice or choice in normalized_query:
+            return contact_map[choice]
+            
+    # 2) Fuzzy search
+    best_match = process.extractOne(normalized_query, choices, scorer=fuzz.token_set_ratio)
+    
+    if best_match and best_match[1] >= 75:  # Slightly lower threshold for contacts
+        return contact_map[best_match[0]]
+        
+    return None
+
+class ActionHumanContact(Action):
+    def name(self) -> Text:
+        return "action_human_contact"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]):
+        contact_query = tracker.get_slot("contact_name") or _get_entity_value(tracker, "contact_name")
+        
+        if not contact_query:
+            dispatcher.utter_message(response="utter_human_contact")
+            return []
+
+        contact_match = _find_contact(str(contact_query))
+        
+        if not contact_match:
+            # Fallback to general contacts if specific one not found
+            dispatcher.utter_message(
+                text=f"No pude encontrar información de contacto específica para '{contact_query}'.\n"
+                     f"Te proporciono los contactos generales:\n"
+                     f"- Teléfono: [+52 33 1378 5900](tel:+523313785900)\n"
+                     f"- Control Escolar: [servicios.escolares@cucei.udg.mx](mailto:servicios.escolares@cucei.udg.mx)\n"
+                     f"- Web: [www.cucei.udg.mx](https://www.cucei.udg.mx)"
+            )
+            return [SlotSet("contact_name", str(contact_query))]
+
+        # Format the specific contact found
+        contact_title, contact_data = contact_match
+        formatted_title = contact_title.title()
+        
+        response_parts = [f"Aquí tienes la información sobre **{formatted_title}**:"]
+        
+        for key, value in contact_data.items():
+            if value and isinstance(value, str) and value != ".":
+                 # Capitalize keys for display (e.g., 'telefono' -> 'Telefono')
+                 display_key = key.replace("_", " ").title()
+                 response_parts.append(f"- **{display_key}**: {value}")
+                 
+        if "redes_sociales" in contact_title.lower() or "cucei" == contact_title.lower():
+            pass # Usually handled well by the loop above if formatted correctly
+            
+        dispatcher.utter_message(text="\n".join(response_parts))
+        return [SlotSet("contact_name", str(contact_query))]
+
+
+# Backward-compatible alias used by existing flows
+class ActionFetchAcademicMaterials(ActionGetSubjectMaterial):
     def name(self) -> Text:
         return "action_fetch_academic_materials"
-
-    def run(
-        self,
-        dispatcher: CollectingDispatcher,
-        tracker: Tracker,
-        domain: Dict[Text, Any],
-    ) -> List[Dict[Text, Any]]:
-        material_type = tracker.get_slot("material_type")
-        response = requests.get(f"http://192.168.100.32:3000/materials?type={material_type}")
-
-        if response.status_code == 200:
-            materials = response.json()
-            if materials:
-                dispatcher.utter_message(text=f"Aquí esta el material para {material_type}:")
-                for material in materials:
-                    dispatcher.utter_message(text=f"- {material['title']}: {material['url']}")
-            else:
-                dispatcher.utter_message(text=f"No se encontro material para {material_type}.")
-        else:
-            dispatcher.utter_message(text="Lo siento, no logre obtener material en este momento.")
-
-        return []
